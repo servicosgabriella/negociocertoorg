@@ -1,0 +1,90 @@
+---
+// Navbar Component
+---
+
+<nav class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center">
+          <img 
+            src="/negocio-certo-logo2.svg" 
+            alt="Negócio Certo" 
+            class="h-10 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a 
+          href="/" 
+          class="text-gray-700 hover:text-blue-600 transition-colors duration-300 ease-in-out font-medium"
+        >
+          Início
+        </a>
+        <a 
+          href="/sobre" 
+          class="text-gray-700 hover:text-blue-600 transition-colors duration-300 ease-in-out font-medium"
+        >
+          Sobre
+        </a>
+        <a 
+          href="/servicos" 
+          class="text-gray-700 hover:text-blue-600 transition-colors duration-300 ease-in-out font-medium"
+        >
+          Serviços
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button 
+          type="button" 
+          class="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition-colors duration-300"
+          aria-label="Toggle menu"
+          id="mobile-menu-button"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a 
+          href="/" 
+          class="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-300 font-medium"
+        >
+          Início
+        </a>
+        <a 
+          href="/sobre" 
+          class="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-300 font-medium"
+        >
+          Sobre
+        </a>
+        <a 
+          href="/servicos" 
+          class="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-300 font-medium"
+        >
+          Serviços
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Toggle mobile menu
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>
