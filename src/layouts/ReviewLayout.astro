@@ -146,7 +146,7 @@ const itemListSchema =
 		<Header />
 		<section style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px; padding-bottom: 80px;">
 			<div style="max-width: 1200px; margin: 0 auto;">
-				<nav aria-label="Breadcrumb" style="font-size: 13px; margin-bottom: 16px;">
+				<nav aria-label="Breadcrumb" class="hidden md:flex" style="font-size: 13px; margin-bottom: 16px;">
 				  <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
 				    {breadcrumb.map((item, index) => (
 				      <li style="display: flex; align-items: center; gap: 4px;">
@@ -162,7 +162,7 @@ const itemListSchema =
 				    ))}
 				  </ol>
 				</nav>
-				<h1 style="color: white; font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">{title}</h1>
+				<h1 class="review-hero-title" style="color: white; font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">{title}</h1>
 				<p style="color: #bfdbfe; font-size: 1.125rem; max-width: 720px; margin-bottom: 24px;">{description}</p>
 				<div class="ab-root">
 					<div class="ab-author-container">
@@ -571,6 +571,8 @@ const itemListSchema =
 					min-width: 100% !important;
 					width: 100% !important;
 				}
+					/* Ajuste: título do hero no mobile */
+					.review-hero-title { font-size: 24px !important; }
 			}
 			@media (max-width: 640px) {
 				.contabilidade-wrapper { padding: 0 !important; }
