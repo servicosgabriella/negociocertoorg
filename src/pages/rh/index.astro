@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const cat = estrutura.rh;
+
+const subcategorias = Object.values(cat.subcategorias).map(sub => ({
+  label: sub.label,
+  href: sub.href,
+  description: `${sub.paginas.length > 0 ? sub.paginas.length + ' artigo' + (sub.paginas.length > 1 ? 's' : '') : 'Em breve'}`,
+}));
+---
+
+<CategoryLayout
+  title="Recursos Humanos"
+  description="Guias sobre plataformas de recrutamento, folha de pagamento online e ferramentas de RH para empresas de todos os tamanhos."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'RH' },
+  ]}
+  type="categoria"
+  articles={subcategorias}
+/>

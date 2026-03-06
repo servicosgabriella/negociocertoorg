@@ -1,0 +1,32 @@
+---
+import InstitucionalLayout from '../layouts/InstitucionalLayout.astro';
+import { estrutura } from '../data/estrutura';
+---
+<InstitucionalLayout title="Mapa do Site" description="Veja todas as páginas do Negócio Certo.">
+  <div class="institucional-content">
+    {Object.values(estrutura).map((cat: any) => (
+      <div style="margin-bottom: 32px;">
+        <h2><a href={cat.href}>{cat.label}</a></h2>
+        {cat.subcategorias && Object.values(cat.subcategorias).map((sub: any) => (
+          <div style="margin-bottom: 16px;">
+            <h3><a href={sub.href}>{sub.label}</a></h3>
+            {sub.paginas && sub.paginas.length > 0 && (
+              <ul>
+                {sub.paginas.map((p: any) => (
+                  <li><a href={p.href}>{p.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    ))}
+    <h2>Institucional</h2>
+    <ul>
+      <li><a href="/quem-somos">Quem Somos</a></li>
+      <li><a href="/contato">Contato</a></li>
+      <li><a href="/politica-de-privacidade">Política de Privacidade</a></li>
+      <li><a href="/termos-de-uso">Termos de Uso</a></li>
+    </ul>
+  </div>
+</InstitucionalLayout>

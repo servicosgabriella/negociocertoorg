@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const cat = estrutura.planejamento;
+
+const subcategorias = Object.values(cat.subcategorias).map(sub => ({
+  label: sub.label,
+  href: sub.href,
+  description: `${sub.paginas.length > 0 ? sub.paginas.length + ' artigo' + (sub.paginas.length > 1 ? 's' : '') : 'Em breve'}`,
+}));
+---
+
+<CategoryLayout
+  title="Planejamento Empresarial"
+  description="Tudo sobre plano de negócios, registro de marca no INPI e estratégias de planejamento para empreendedores brasileiros."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Planejamento' },
+  ]}
+  type="categoria"
+  articles={subcategorias}
+/>

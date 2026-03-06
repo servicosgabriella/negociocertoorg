@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.rh.subcategorias.recrutamento;
+---
+
+<CategoryLayout
+  title="Plataforma de Recrutamento"
+  description="Compare as melhores plataformas de recrutamento e seleção para empresas brasileiras. Preços, funcionalidades e qual ATS vale a pena contratar."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'RH', href: '/rh/' },
+    { label: 'Plataforma de Recrutamento' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

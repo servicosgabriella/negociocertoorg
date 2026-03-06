@@ -1,0 +1,70 @@
+---
+import InstitucionalLayout from '../layouts/InstitucionalLayout.astro';
+---
+
+<InstitucionalLayout title="Contato" description="Entre em contato com a equipe do Negócio Certo.">
+  <div style="display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;">
+
+    <div style="flex: 1; min-width: 240px;">
+      <h2 style="font-size: 1.5rem; font-weight: 800; color: #111827; margin: 0 0 16px 0;">Entre em contato conosco</h2>
+      <p style="font-size: 0.95rem; color: #374151; line-height: 1.75; margin-bottom: 12px;">
+        Adoraríamos saber o que você está pensando. Envie-nos uma mensagem com qualquer dúvida, pergunta ou problema.
+      </p>
+      <p style="font-size: 0.95rem; color: #374151; line-height: 1.75;">
+        Seja para elogiar nosso serviço ou para resolver algum problema, entre em contato.
+      </p>
+    </div>
+
+    <div style="flex: 1; min-width: 280px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 28px;">
+      <form action="https://formspree.io/f/mbdaaebp" method="POST">
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">
+            Nome <span style="color: #ef4444;">*</span>
+          </label>
+          <input
+            type="text"
+            name="nome"
+            required
+            style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; color: #111827; background: white; box-sizing: border-box; outline: none;"
+          />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">
+            E-mail <span style="color: #ef4444;">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; color: #111827; background: white; box-sizing: border-box; outline: none;"
+          />
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;">
+            Mensagem <span style="color: #ef4444;">*</span>
+          </label>
+          <textarea
+            name="mensagem"
+            required
+            rows="5"
+            style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; color: #111827; background: white; box-sizing: border-box; outline: none; resize: vertical;"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          style="width: 100%; background: #1a3a5c; color: white; font-size: 14px; font-weight: 700; padding: 12px; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.06em; transition: background 0.2s;"
+          onmouseover="this.style.background='#2d6a9f'"
+          onmouseout="this.style.background='#1a3a5c'"
+        >
+          Enviar mensagem
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</InstitucionalLayout>

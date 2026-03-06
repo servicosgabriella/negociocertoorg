@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumb?: { label: string; href?: string }[];
+}
+
+const { title, description = '', breadcrumb = [] } = Astro.props;
+const canonicalUrl = Astro.url.href;
+
+const fullBreadcrumb = [
+  { label: 'Início', href: '/' },
+  ...breadcrumb,
+  { label: title }
+];
+---
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} · Negócio Certo</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body style="background: #f9fafb; margin: 0; font-family: Arial, sans-serif;">
+  <Header />
+
+  <!-- BREADCRUMB -->
+  <nav style="background: #ffffff; border-bottom: 1px solid #e5e7eb; padding: 12px 24px;">
+    <div style="max-width: 820px; margin: 0 auto;">
+      <ol style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 13px;">
+        {fullBreadcrumb.map((item, index) => (
+          <li style="display: flex; align-items: center; gap: 8px;">
+            {index > 0 && <span style="color: #9ca3af;">/</span>}
+            {item.href ? (
+              <a href={item.href} style="color: #6b7280; text-decoration: none; transition: color 0.2s;">{item.label}</a>
+            ) : (
+              <span style="color: #111827; font-weight: 500;">{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO SIMPLES -->
+  <section style="background: #ffffff; border-bottom: 1px solid #e5e7eb; padding: 40px 24px;">
+    <div style="max-width: 820px; margin: 0 auto;">
+      <h1 style="font-size: 1.875rem; font-weight: 800; color: #111827; margin: 0 0 8px 0;">{title}</h1>
+      {description && (
+        <p style="font-size: 1rem; color: #6b7280; margin: 0; line-height: 1.6;">{description}</p>
+      )}
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div style="max-width: 820px; margin: 0 auto; padding: 40px 24px;">
+    <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+      <slot />
+    </div>
+  </div>
+
+  <Footer />
+
+</body>
+</html>
+
+<style is:global>
+  .institucional-content h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 32px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .institucional-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 24px 0 8px 0;
+  }
+  .institucional-content p {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .institucional-content a {
+    color: #007eff;
+    text-decoration: none;
+  }
+  .institucional-content a:hover {
+    text-decoration: underline;
+  }
+  .institucional-content ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+  .institucional-content ul li {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 6px;
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import '../../styles/global.css';
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const authorName = "Gabriella Fernandes";
+
+const articles = [
+  {
+    title: "Como Registrar uma Marca no INPI em 2026: Passo a Passo Completo",
+    description: "Guia passo a passo para registrar sua marca no INPI em 2026.",
+    href: "/como-registrar-uma-marca-inpi",
+    date: "2026-02-25",
+  },
+  {
+    title: "Quanto Custa Registrar uma Marca em 2026? (Valores Reais + Taxas Ocultas)",
+    description: "Todos os custos reais para registrar uma marca em 2026, taxas do INPI e custos ocultos.",
+    href: "/quanto-custa-registrar-uma-marca",
+    date: "2026-02-25",
+  },
+  {
+    title: "Melhores Contabilidades Online (Atualizado 2026)",
+    description: "Comparação completa das 6 melhores contabilidades online do Brasil.",
+    href: "/financas/contabilidade-online/melhores-contabilidades-online/",
+    date: "2026-02-21",
+  },
+  {
+    title: "Como Trocar de Contabilidade em 2026",
+    description: "Descubra como trocar de contador de forma segura, rápida e sem dor de cabeça.",
+    href: "/blog/como-trocar-de-contabilidade-em-2026/",
+    date: "2026-02-23",
+  },
+  {
+    title: "Contabilidade Online ou Presencial: Qual Escolher em 2026?",
+    description: "Descubra as diferenças entre contabilidade online e presencial.",
+    href: "/contabilidade-online-ou-presencial",
+    date: "2026-02-25",
+  },
+  {
+    title: "Quanto Custa uma Contabilidade Online? [Preços 2026]",
+    description: "Descubra os preços reais de contabilidade online em 2026, sem pegadinhas.",
+    href: "/quanto-custa-uma-contabilidade-online-precos-2026",
+    date: "2026-02-25",
+  },
+
+  {
+    title: "Como Fazer um Plano de Negócios: Guia Completo e Prático (2026)",
+    description: "Aprenda a criar um plano de negócios prático, direto ao ponto e atualizado para 2026. Guia completo para empreendedores.",
+    href: "/como-fazer-um-plano-de-negocios-guia-completo-e-pratico-2026",
+    date: "2026-02-25",
+  },
+
+];
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{authorName} · Negócio Certo</title>
+  <meta
+    name="description"
+    content="Especialista em finanças empresariais e contabilidade online. Analisa ferramentas e serviços para pequenas e médias empresas."
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<Header />
+  <section style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px;">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+      <img
+        src="/images/perfil.jpg"
+        alt={`Foto de ${authorName}`}
+        style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,0.2); flex-shrink: 0;"
+      />
+      <div>
+        <p style="color: #bfdbfe; font-size: 13px; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.08em;">Autor</p>
+        <h1 style="color: white; font-size: 2rem; font-weight: 800; margin: 0 0 6px 0;">{authorName}</h1>
+        <p style="color: #bfdbfe; font-size: 15px; margin: 0 0 16px 0;">Analista Sênior</p>
+        <p style="color: #dce4f1; font-size: 14px; max-width: 580px; line-height: 1.7; margin: 0 0 20px 0;">
+          Especialista em finanças empresariais e contabilidade online. Analisa ferramentas e serviços para pequenas e médias empresas com foco em custo-benefício e praticidade para o empreendedor brasileiro.
+        </p>
+        <div style="display: flex; gap: 12px;">
+          
+           <a href="https://www.linkedin.com/in/gabriella-fernandes-85b95416a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600;"
+          >
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background: #f9fafb; border-bottom: 1px solid #e5e7eb;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 40px;">
+      <div>
+        <span style="font-size: 1.5rem; font-weight: 800; color: #111827;">{articles.length}</span>
+        <span style="font-size: 13px; color: #6b7280; margin-left: 6px;">artigos publicados</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px;">
+    <h2 style="font-size: 1.25rem; font-weight: 700; color: #111827; margin-bottom: 24px;">Artigos de {authorName}</h2>
+
+    {articles.length === 0 ? (
+      <p style="color: #6b7280; font-size: 14px;">Nenhum artigo publicado ainda.</p>
+    ) : (
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        {articles.map((article) => (
+          <a href={article.href} style="display: flex; gap: 16px; padding: 20px; background: white; border: 1px solid #e5e7eb; border-radius: 10px; text-decoration: none; transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
+            <div>
+              <div style="font-size: 12px; color: #6b7280; margin-bottom: 6px;">
+                <i class="fa-regular fa-clock" style="margin-right: 4px;"></i>
+                {new Date(article.date).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </div>
+              <h3 style="font-size: 16px; font-weight: 700; color: #111827; margin: 0 0 6px 0; line-height: 1.4;">{article.title}</h3>
+              <p style="font-size: 14px; color: #6b7280; margin: 0; line-height: 1.6;">{article.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+<Footer />

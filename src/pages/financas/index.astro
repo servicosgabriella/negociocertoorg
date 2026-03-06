@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const cat = estrutura.financas;
+
+const subcategorias = Object.values(cat.subcategorias).map(sub => ({
+  label: sub.label,
+  href: sub.href,
+  description: `${sub.paginas.length > 0 ? sub.paginas.length + ' artigo' + (sub.paginas.length > 1 ? 's' : '') : 'Em breve'}`,
+}));
+---
+
+<CategoryLayout
+  title="Finanças para Empresas"
+  description="Guias e comparativos sobre contabilidade online, maquininhas de cartão, ERP e sistemas de gestão financeira para pequenas e médias empresas."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Finanças' },
+  ]}
+  type="categoria"
+  articles={subcategorias}
+/>

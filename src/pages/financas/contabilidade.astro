@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.financas.subcategorias.contabilidade;
+---
+
+<CategoryLayout
+  title="Contabilidade Online"
+  description="Compare as melhores contabilidades online do Brasil. Preços, serviços, prós e contras para você escolher a ideal para o seu negócio."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Finanças', href: '/financas/' },
+    { label: 'Contabilidade Online' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

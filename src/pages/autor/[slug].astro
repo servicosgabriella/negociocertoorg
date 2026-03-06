@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+
+const autores = {
+  "gabriella-fernandes": {
+    nome: "Gabriella Fernandes",
+    cargo: "Analista Sênior",
+    bio: "Especialista em finanças empresariais e contabilidade online. Analisa ferramentas e serviços para pequenas e médias empresas com foco em custo-benefício e praticidade para o empreendedor brasileiro.",
+    foto: "/images/gabriella-fernandes.webp",
+    linkedin: "https://linkedin.com",
+    artigos: [
+      {
+        titulo: "Melhores Contabilidades Online",
+        href: "/melhores-contabilidades-online",
+        categoria: "Finanças",
+        data: "28 de Janeiro de 2026",
+        thumb: "/images/thumb-contabilidades.webp"
+      }
+    ]
+  }
+};
+
+const { slug } = Astro.params;
+const autor = slug ? autores[slug as keyof typeof autores] : undefined;
+
+if (!autor) return Astro.redirect('/404');
+
+const artigosDoBlog = (await getCollection('blog'))
+  .filter((post: any) => post.data.authorSlug === slug)
+  .map((post: any) => ({
+    titulo: post.data.title,
+    href: `/blog/${post.id}/`,
+    categoria: post.data.categoria ?? 'Blog',
+    data: post.data.pubDate.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }),
+    thumb: post.data.thumb,
+  }));
+
+const artigos = [...autor.artigos, ...artigosDoBlog].filter(
+  (artigo, index, array) => index === array.findIndex((item) => item.href === artigo.href)
+);
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "gabriella-fernandes" } }
+  ];
+}
+---
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{autor.nome} · Negócio Certo</title>
+  <meta name="description" content={autor.bio} />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0;">
+
+  <!-- HERO DO AUTOR -->
+  <section style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px;">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+      <img
+        src={autor.foto}
+        alt={`Foto de ${autor.nome}`}
+        style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,0.2); flex-shrink: 0;"
+      />
+      <div>
+        <p style="color: #bfdbfe; font-size: 13px; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.08em;">Autor</p>
+        <h1 style="color: white; font-size: 2rem; font-weight: 800; margin: 0 0 6px 0;">{autor.nome}</h1>
+        <p style="color: #bfdbfe; font-size: 15px; margin: 0 0 16px 0;">{autor.cargo}</p>
+        <p style="color: #dce4f1; font-size: 14px; max-width: 580px; line-height: 1.7; margin: 0 0 20px 0;">{autor.bio}</p>
+        <div style="display: flex; gap: 12px;">
+          {autor.linkedin && (
+            <a href={autor.linkedin} target="_blank" rel="noopener noreferrer"
+              style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: background 0.2s;">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div style="background: #f9fafb; border-bottom: 1px solid #e5e7eb;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 40px;">
+      <div>
+        <span style="font-size: 1.5rem; font-weight: 800; color: #111827;">{artigos.length}</span>
+        <span style="font-size: 13px; color: #6b7280; margin-left: 6px;">artigos publicados</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIGOS DO AUTOR -->
+  <div style="max-width: 900px; margin: 0 auto; padding: 40px 24px;">
+    <h2 style="font-size: 1.25rem; font-weight: 700; color: #111827; margin-bottom: 24px;">
+      Artigos de {autor.nome}
+    </h2>
+
+    {artigos.length === 0 ? (
+      <p style="color: #6b7280; font-size: 14px;">Nenhum artigo publicado ainda.</p>
+    ) : (
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;">
+        {artigos.map((artigo: any) => (
+          <a href={artigo.href} style="text-decoration: none; display: block; background: white; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            {artigo.thumb && (
+              <img src={artigo.thumb} alt={artigo.titulo} style="width: 100%; height: 160px; object-fit: cover;" />
+            )}
+            <div style="padding: 16px;">
+              <span style="font-size: 11px; font-weight: 700; color: #007eff; text-transform: uppercase; letter-spacing: 0.06em;">{artigo.categoria}</span>
+              <h3 style="font-size: 15px; font-weight: 700; color: #111827; margin: 6px 0 8px 0; line-height: 1.4;">{artigo.titulo}</h3>
+              <span style="font-size: 12px; color: #9ca3af;">{artigo.data}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+
+</body>
+</html>

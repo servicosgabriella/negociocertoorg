@@ -1,85 +1,641 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { estrutura } from '../data/estrutura';
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
-			<a href="https://m.webtoo.ls/@astro" target="_blank">
-				<span class="sr-only">Follow Astro on Mastodon</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-					></path></svg
-				>
-			</a>
-			<a href="https://twitter.com/astrodotbuild" target="_blank">
-				<span class="sr-only">Follow Astro on Twitter</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-					></path></svg
-				>
-			</a>
-			<a href="https://github.com/withastro/astro" target="_blank">
-				<span class="sr-only">Go to Astro's GitHub repo</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path></svg
-				>
-			</a>
-		</div>
-	</nav>
-</header>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+<header class="site-header">
+  <div class="header-inner">
+    <!-- LOGO -->
+    <a href="/" class="header-logo">
+      <span class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-white">negócio</span><span class="logo-yellow">certo</span>
+      </span>
+    </a>
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-	}
+    <!-- DESKTOP NAV -->
+    <div class="desktop-nav">
+      <nav class="nav-items">
+
+        <!-- FINANÇAS -->
+        <div class="nav-dropdown">
+          <a href={estrutura.financas.href + '/'} class="nav-link" onclick="handleNavClick(event, this)">
+            Finanças
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <!-- Link da categoria -->
+            <a href={estrutura.financas.href + '/'} class="dropdown-item dropdown-category-link">Ver tudo em Finanças →</a>
+
+            <!-- ERP -->
+            <a href={estrutura.financas.subcategorias.erp.href + '/'} class="dropdown-item">
+              ERP e Sistemas de Gestão
+            </a>
+
+            <!-- Maquininhas -->
+            <a href={estrutura.financas.subcategorias.maquininhas.href + '/'} class="dropdown-item">
+              Maquininha de Cartão
+            </a>
+
+            <!-- Contabilidade Online com sub-menu -->
+            <div class="sub-dropdown">
+              <button class="dropdown-item sub-trigger" onclick="toggleSubMenu(this)">
+                Contabilidade Online
+                <svg xmlns="http://www.w3.org/2000/svg" class="sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="sub-menu">
+                <a href={estrutura.financas.subcategorias.contabilidade.href + '/'} class="dropdown-item sub-item sub-item-category">Ver tudo em Contabilidade →</a>
+                {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
+                  <a href={p.href + '/'} class="dropdown-item sub-item">{p.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PLANEJAMENTO -->
+        <div class="nav-dropdown">
+          <a href={estrutura.planejamento.href + '/'} class="nav-link" onclick="handleNavClick(event, this)">
+            Planejamento
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href={estrutura.planejamento.href + '/'} class="dropdown-item dropdown-category-link">Ver tudo em Planejamento →</a>
+
+            <!-- Plano de Negócios -->
+            <div class="sub-dropdown">
+              <button class="dropdown-item sub-trigger" onclick="toggleSubMenu(this)">
+                Plano de Negócios
+                <svg xmlns="http://www.w3.org/2000/svg" class="sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="sub-menu">
+                <a href={estrutura.planejamento.subcategorias.plano_negocios.href + '/'} class="dropdown-item sub-item sub-item-category">Ver tudo →</a>
+                {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
+                  <a href={p.href + '/'} class="dropdown-item sub-item">{p.label}</a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Registro de Marca -->
+            <div class="sub-dropdown">
+              <button class="dropdown-item sub-trigger" onclick="toggleSubMenu(this)">
+                Registro de Marca
+                <svg xmlns="http://www.w3.org/2000/svg" class="sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="sub-menu">
+                <a href={estrutura.planejamento.subcategorias.registro_marca.href + '/'} class="dropdown-item sub-item sub-item-category">Ver tudo →</a>
+                {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
+                  <a href={p.href + '/'} class="dropdown-item sub-item">{p.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GESTÃO -->
+        <div class="nav-dropdown">
+          <a href={estrutura.gestao.href + '/'} class="nav-link" onclick="handleNavClick(event, this)">
+            Gestão
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href={estrutura.gestao.href + '/'} class="dropdown-item dropdown-category-link">Ver tudo em Gestão →</a>
+            <a href={estrutura.gestao.subcategorias.pdv.href + '/'} class="dropdown-item">Sistema PDV</a>
+            <a href={estrutura.gestao.subcategorias.nfe.href + '/'} class="dropdown-item">Nota Fiscal Eletrônica</a>
+          </div>
+        </div>
+
+        <!-- RH -->
+        <div class="nav-dropdown">
+          <a href={estrutura.rh.href + '/'} class="nav-link" onclick="handleNavClick(event, this)">
+            RH
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href={estrutura.rh.href + '/'} class="dropdown-item dropdown-category-link">Ver tudo em RH →</a>
+            <a href={estrutura.rh.subcategorias.recrutamento.href + '/'} class="dropdown-item">Plataforma de Recrutamento</a>
+            <a href={estrutura.rh.subcategorias.folha_pagamento.href + '/'} class="dropdown-item">Folha de Pagamento Online</a>
+          </div>
+        </div>
+
+        <!-- BLOG -->
+        <a href={estrutura.blog.href + '/'} class="nav-link nav-link-simple">Blog</a>
+      </nav>
+
+      <!-- BUSCA -->
+      <a href="#" class="search-icon" aria-label="Buscar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-toggle-wrapper">
+      <input id="mobile-menu-toggle" type="checkbox" class="peer sr-only" />
+      <label for="mobile-menu-toggle" class="mobile-hamburger" aria-label="Abrir menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+
+      <label for="mobile-menu-toggle" class="mobile-overlay" aria-label="Fechar menu"></label>
+
+      <aside class="mobile-sidebar">
+        <div class="mobile-sidebar-header">
+          <span class="mobile-sidebar-title">Navegação</span>
+          <label for="mobile-menu-toggle" class="mobile-close" aria-label="Fechar menu">×</label>
+        </div>
+
+        <nav class="mobile-nav">
+
+          <!-- FINANÇAS -->
+          <div class="mobile-section">
+            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+              Finanças
+              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="mobile-section-items">
+              <a href={estrutura.financas.href + '/'} class="mobile-item mobile-category-link">Ver tudo em Finanças →</a>
+              <a href={estrutura.financas.subcategorias.erp.href + '/'} class="mobile-item">ERP / Sistema de Gestão</a>
+              <a href={estrutura.financas.subcategorias.maquininhas.href + '/'} class="mobile-item">Maquininha de Cartão</a>
+              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                Contabilidade Online
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="mobile-sub-menu">
+                <a href={estrutura.financas.subcategorias.contabilidade.href + '/'} class="mobile-item mobile-sub-item mobile-category-link">Ver tudo →</a>
+                {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- PLANEJAMENTO -->
+          <div class="mobile-section">
+            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+              Planejamento
+              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="mobile-section-items">
+              <a href={estrutura.planejamento.href + '/'} class="mobile-item mobile-category-link">Ver tudo em Planejamento →</a>
+              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                Plano de Negócios
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="mobile-sub-menu">
+                <a href={estrutura.planejamento.subcategorias.plano_negocios.href + '/'} class="mobile-item mobile-sub-item mobile-category-link">Ver tudo →</a>
+                {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+              </div>
+              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                Registro de Marca
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="mobile-sub-menu">
+                <a href={estrutura.planejamento.subcategorias.registro_marca.href + '/'} class="mobile-item mobile-sub-item mobile-category-link">Ver tudo →</a>
+                {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- GESTÃO -->
+          <div class="mobile-section">
+            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+              Gestão
+              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="mobile-section-items">
+              <a href={estrutura.gestao.href + '/'} class="mobile-item mobile-category-link">Ver tudo em Gestão →</a>
+              <a href={estrutura.gestao.subcategorias.pdv.href + '/'} class="mobile-item">Sistema PDV</a>
+              <a href={estrutura.gestao.subcategorias.nfe.href + '/'} class="mobile-item">Nota Fiscal Eletrônica</a>
+            </div>
+          </div>
+
+          <!-- RH -->
+          <div class="mobile-section">
+            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+              RH
+              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="mobile-section-items">
+              <a href={estrutura.rh.href + '/'} class="mobile-item mobile-category-link">Ver tudo em RH →</a>
+              <a href={estrutura.rh.subcategorias.recrutamento.href + '/'} class="mobile-item">Plataforma de Recrutamento</a>
+              <a href={estrutura.rh.subcategorias.folha_pagamento.href + '/'} class="mobile-item">Folha de Pagamento Online</a>
+            </div>
+          </div>
+
+          <a href={estrutura.blog.href + '/'} class="mobile-section-title mobile-blog-link">Blog</a>
+
+          <a href="#" class="mobile-item" aria-label="Buscar" style="margin-top: 8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
+            </svg>
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- SCRIPTS -->
+<script is:inline>
+  // Clique no nav-link: abre dropdown no primeiro clique, navega no segundo
+  function handleNavClick(event, link) {
+    const dropdown = link.closest('.nav-dropdown');
+    const menu = dropdown.querySelector('.dropdown-menu');
+    if (!menu.classList.contains('open')) {
+      event.preventDefault();
+      closeAllDropdowns();
+      menu.classList.add('open');
+      link.classList.add('active');
+    }
+    // Se já estava aberto: navega normalmente (não previne o default)
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu.open').forEach(m => {
+      m.classList.remove('open');
+      m.querySelectorAll('.sub-menu.open').forEach(s => {
+        s.classList.remove('open');
+        const arrow = s.previousElementSibling?.querySelector('.sub-arrow');
+        if (arrow) arrow.style.transform = '';
+      });
+    });
+    document.querySelectorAll('.nav-link.active').forEach(l => l.classList.remove('active'));
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+  });
+
+  function toggleSubMenu(btn) {
+    const subMenu = btn.nextElementSibling;
+    const arrow = btn.querySelector('.sub-arrow');
+    const isOpen = subMenu.classList.contains('open');
+    subMenu.classList.toggle('open', !isOpen);
+    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  }
+
+  function toggleMobileSection(btn) {
+    const items = btn.nextElementSibling;
+    const arrow = btn.querySelector('.mobile-section-arrow');
+    const isOpen = items.classList.contains('open');
+    if (!isOpen) {
+      items.classList.add('open');
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+    } else {
+      items.classList.remove('open');
+      if (arrow) arrow.style.transform = '';
+      items.querySelectorAll('.mobile-sub-menu.open').forEach(s => {
+        s.classList.remove('open');
+        const a = s.previousElementSibling?.querySelector('.mobile-sub-arrow');
+        if (a) a.style.transform = '';
+      });
+    }
+  }
+
+  function toggleMobileSub(btn) {
+    const subMenu = btn.nextElementSibling;
+    const arrow = btn.querySelector('.mobile-sub-arrow');
+    const isOpen = subMenu.classList.contains('open');
+    subMenu.classList.toggle('open', !isOpen);
+    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  }
+</script>
+
+<style is:global>
+  /* ===================== HEADER BASE ===================== */
+  .site-header {
+    background: #0f0f0f;
+    padding: 16px 0;
+    position: relative;
+    z-index: 100;
+  }
+  .header-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ===================== LOGO ===================== */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #facc15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: lowercase;
+    line-height: 1;
+  }
+  .logo-white { color: #fff; }
+  .logo-yellow { color: #facc15; }
+
+  /* ===================== DESKTOP NAV ===================== */
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 32px;
+  }
+  @media (min-width: 768px) {
+    .desktop-nav { display: flex; }
+  }
+  .nav-items {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff !important;
+    text-decoration: none;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.08);
+    color: #fff !important;
+  }
+  .nav-arrow {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    transition: transform 0.2s;
+  }
+  .nav-link.active .nav-arrow { transform: rotate(180deg); }
+  .nav-link-simple:hover {
+    color: #facc15 !important;
+    background: transparent;
+  }
+  .search-icon {
+    color: #fff !important;
+    transition: color 0.15s;
+  }
+  .search-icon:hover { color: #facc15 !important; }
+
+  /* ===================== DROPDOWN ===================== */
+  .nav-dropdown { position: relative; }
+  .dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 0;
+    min-width: 280px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 200;
+  }
+  .dropdown-menu.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937 !important;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    text-align: left;
+    font-family: inherit;
+  }
+  .dropdown-item:last-child { border-bottom: none; }
+  .dropdown-item:hover {
+    background: #f9fafb;
+    color: #111827 !important;
+  }
+  /* Link "Ver tudo" — destaque sutil */
+  .dropdown-category-link {
+    font-size: 13px !important;
+    color: #2d6a9f !important;
+    font-weight: 600 !important;
+    background: #f0f7ff;
+  }
+  .dropdown-category-link:hover {
+    background: #e0f0ff !important;
+    color: #1a5080 !important;
+  }
+
+  .sub-dropdown { position: relative; }
+  .sub-trigger { border-bottom: 1px solid #f3f4f6; }
+  .sub-arrow {
+    width: 16px;
+    height: 16px;
+    color: #9ca3af;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: #f9fafb;
+  }
+  .sub-menu.open { max-height: 400px; }
+  .sub-item {
+    padding-left: 36px;
+    font-size: 13px;
+    color: #4b5563 !important;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .sub-item:hover {
+    background: #f3f4f6;
+    color: #111827 !important;
+  }
+  .sub-item-category {
+    font-size: 12px !important;
+    color: #2d6a9f !important;
+    font-weight: 600 !important;
+    background: #f0f7ff;
+    padding-left: 36px;
+  }
+  .sub-item-category:hover {
+    background: #e0f0ff !important;
+  }
+
+  /* ===================== MOBILE ===================== */
+  .mobile-toggle-wrapper { display: block; }
+  @media (min-width: 768px) { .mobile-toggle-wrapper { display: none; } }
+
+  .mobile-hamburger {
+    cursor: pointer;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+  }
+  .mobile-hamburger:hover { color: #facc15; }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 140;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+  #mobile-menu-toggle:checked ~ .mobile-overlay { opacity: 1; visibility: visible; }
+
+  .mobile-sidebar {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100%;
+    width: 320px;
+    max-width: 85vw;
+    background: #0f0f0f;
+    border-left: 1px solid #333;
+    z-index: 150;
+    padding: 24px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.2s;
+  }
+  #mobile-menu-toggle:checked ~ .mobile-sidebar { transform: translateX(0); }
+
+  .mobile-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .mobile-sidebar-title { font-size: 15px; font-weight: 600; color: #fff; }
+  .mobile-close { cursor: pointer; font-size: 24px; color: #fff; line-height: 1; }
+  .mobile-close:hover { color: #facc15; }
+
+  .mobile-nav { display: flex; flex-direction: column; gap: 12px; }
+
+  .mobile-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff !important;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+  }
+  .mobile-section-arrow {
+    width: 16px; height: 16px;
+    color: #6b7280;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .mobile-blog-link { border-bottom: 1px solid #333; }
+  .mobile-blog-link:hover { color: #facc15 !important; }
+
+  .mobile-section-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #1a1a1a;
+    border-radius: 6px;
+  }
+  .mobile-section-items.open {
+    max-height: 600px;
+    border: 1px solid #333;
+  }
+
+  .mobile-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #d1d5db !important;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    border-bottom: 1px solid #2a2a2a;
+    transition: color 0.15s;
+  }
+  .mobile-item:last-child { border-bottom: none; }
+  .mobile-item:hover { color: #facc15 !important; }
+
+  /* Link "Ver tudo" no mobile */
+  .mobile-category-link {
+    font-size: 12px !important;
+    color: #60a5fa !important;
+    font-weight: 600 !important;
+  }
+  .mobile-category-link:hover { color: #93c5fd !important; }
+
+  .mobile-sub-trigger { font-weight: 500; }
+  .mobile-sub-arrow {
+    width: 14px; height: 14px;
+    color: #6b7280;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .mobile-sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: #111;
+  }
+  .mobile-sub-menu.open { max-height: 400px; }
+  .mobile-sub-item {
+    padding-left: 32px;
+    font-size: 12px;
+    color: #9ca3af !important;
+    border-bottom: 1px solid #222;
+  }
+  .mobile-sub-item:hover { color: #facc15 !important; }
 </style>

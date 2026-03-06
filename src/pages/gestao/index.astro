@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const cat = estrutura.gestao;
+
+const subcategorias = Object.values(cat.subcategorias).map(sub => ({
+  label: sub.label,
+  href: sub.href,
+  description: `${sub.paginas.length > 0 ? sub.paginas.length + ' artigo' + (sub.paginas.length > 1 ? 's' : '') : 'Em breve'}`,
+}));
+---
+
+<CategoryLayout
+  title="Gestão de Negócios"
+  description="Comparativos e guias sobre sistemas PDV, nota fiscal eletrônica e ferramentas de gestão para otimizar a operação da sua empresa."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Gestão' },
+  ]}
+  type="categoria"
+  articles={subcategorias}
+/>

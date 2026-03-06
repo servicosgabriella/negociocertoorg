@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.financas.subcategorias.maquininhas;
+---
+
+<CategoryLayout
+  title="Maquininhas de Cartão"
+  description="Compare as melhores maquininhas de cartão de crédito e débito do Brasil. Taxas, modelos e qual vale a pena para o seu tipo de negócio."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Finanças', href: '/financas/' },
+    { label: 'Maquininhas de Cartão' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

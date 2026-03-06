@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.rh.subcategorias.folha_pagamento;
+---
+
+<CategoryLayout
+  title="Folha de Pagamento Online"
+  description="Compare os melhores sistemas de folha de pagamento online para empresas. Veja preços, funcionalidades e qual software de payroll vale a pena."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'RH', href: '/rh/' },
+    { label: 'Folha de Pagamento Online' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

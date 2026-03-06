@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.gestao.subcategorias.pdv;
+---
+
+<CategoryLayout
+  title="Sistema PDV"
+  description="Compare os melhores sistemas de ponto de venda (PDV) para comércio, restaurantes e varejo. Veja preços, funcionalidades e qual PDV vale a pena."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Gestão', href: '/gestao/' },
+    { label: 'Sistema PDV' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

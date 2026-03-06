@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.planejamento.subcategorias.registro_marca;
+---
+
+<CategoryLayout
+  title="Registro de Marca"
+  description="Tudo sobre como registrar uma marca no INPI. Custos, passo a passo, classes e estratégias para proteger o nome da sua empresa no Brasil."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Planejamento', href: '/planejamento/' },
+    { label: 'Registro de Marca' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

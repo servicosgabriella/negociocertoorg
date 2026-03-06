@@ -1,13 +1,20 @@
 ---
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/BlogLayout.astro';
 ---
 
 <Layout
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+	publishDate="2021-08-08"
+	updatedDate="2021-08-08"
+	authorName="Gabriella Fernandes"
+	authorRole="Redatora especialista em empreendedorismo"
+	authorImage="/images/autor/gabriella-fernandes.jpg"
+	authorHref="/autor/gabriella-fernandes/"
+	coverImage={AboutHeroImage}
+	coverAlt="Imagem sobre a autora"
+	breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Sobre', href: '/about/' }, { label: 'About Me' }]}
 >
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

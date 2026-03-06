@@ -1,0 +1,301 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+/*
+  ====================================================================
+  LAYOUT DE CATEGORIA / SUBCATEGORIA
+  ====================================================================
+  Use este layout para páginas de categoria (ex: /financas/) e
+  subcategoria (ex: /financas/contabilidade/).
+
+  NÃO use ContentLayout nem BlogLayout para essas páginas.
+
+  PROPS:
+    title         → Título da página (h1 e meta title)
+    description   → Descrição SEO (máx 160 caracteres)
+    breadcrumb    → Array de { label, href? }
+    type          → "categoria" | "subcategoria"
+    articles?     → Array de artigos para listagem automática
+                    { label: string, href: string, description?: string }
+    children?     → Conteúdo extra abaixo da listagem (slot)
+  ====================================================================
+*/
+
+interface ArticleItem {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumb: { label: string; href?: string }[];
+  type?: 'categoria' | 'subcategoria';
+  articles?: ArticleItem[];
+}
+
+const {
+  title,
+  description,
+  breadcrumb,
+  type = 'subcategoria',
+  articles = [],
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumb.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, Astro.site).href } : {}),
+  })),
+};
+
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description: description,
+  url: canonicalUrl,
+  ...(articles.length > 0 ? {
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: articles.map((article, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: article.label,
+        url: new URL(article.href, Astro.site).href,
+      }))
+    }
+  } : {}),
+};
+---
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} | Negócio Certo</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Negócio Certo" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(collectionPageSchema)}></script>
+</head>
+<body>
+  <Header />
+
+  <!-- HERO -->
+  <section class="cat-hero">
+    <div class="cat-hero-inner">
+      <nav aria-label="Breadcrumb" class="cat-breadcrumb">
+        <ol>
+          {breadcrumb.map((item, index) => (
+            <li>
+              {index < breadcrumb.length - 1 ? (
+                item.href
+                  ? <a href={item.href}>{item.label}</a>
+                  : <span class="bc-mid">{item.label}</span>
+              ) : (
+                <span class="bc-current">{item.label}</span>
+              )}
+              {index < breadcrumb.length - 1 && <span class="bc-sep">›</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <h1 class="cat-title">{title}</h1>
+      <p class="cat-desc">{description}</p>
+    </div>
+  </section>
+
+  <!-- LISTAGEM DE ARTIGOS -->
+  <main class="cat-main">
+    {articles.length > 0 && (
+      <section class="cat-articles">
+        <ul class="article-list">
+          {articles.map((article) => (
+            <li class="article-card">
+              <a href={article.href + '/'} class="article-card-link">
+                <div class="article-card-content">
+                  <span class="article-card-label">{article.label}</span>
+                  {article.description && (
+                    <span class="article-card-desc">{article.description}</span>
+                  )}
+                </div>
+                <span class="article-card-arrow">
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {articles.length === 0 && (
+      <div class="cat-empty">
+        <p>Em breve: novos conteúdos nesta categoria.</p>
+      </div>
+    )}
+
+    <!-- Slot para conteúdo editorial extra -->
+    <slot />
+  </main>
+
+  <Footer />
+
+  <style is:global>
+    /* ── HERO ── */
+    .cat-hero {
+      background: linear-gradient(to right, #1a3a5c, #2d6a9f);
+      padding: 48px 24px 56px;
+    }
+    .cat-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── BREADCRUMB ── */
+    .cat-breadcrumb ol {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+    }
+    .cat-breadcrumb li {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .cat-breadcrumb a {
+      color: #bfdbfe;
+      text-decoration: none;
+    }
+    .cat-breadcrumb a:hover { text-decoration: underline; }
+    .bc-mid  { color: #bfdbfe; }
+    .bc-current { color: #fff; font-weight: 600; }
+    .bc-sep { color: #bfdbfe; }
+
+    /* ── TÍTULOS ── */
+    .cat-title {
+      color: #fff;
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+    .cat-desc {
+      color: #bfdbfe;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 640px;
+    }
+
+    /* ── MAIN ── */
+    .cat-main {
+      max-width: 860px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+
+    /* ── LISTA DE ARTIGOS ── */
+    .article-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .article-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .article-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border-color: #2d6a9f;
+    }
+    .article-card-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      text-decoration: none;
+      gap: 16px;
+    }
+    .article-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .article-card-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.4;
+    }
+    .article-card-desc {
+      font-size: 0.875rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+    .article-card-arrow {
+      color: #9ca3af;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .article-card:hover .article-card-arrow {
+      color: #2d6a9f;
+      transform: translateX(3px);
+    }
+
+    /* ── EMPTY STATE ── */
+    .cat-empty {
+      text-align: center;
+      padding: 64px 24px;
+      color: #9ca3af;
+      font-size: 1rem;
+      border: 2px dashed #e5e7eb;
+      border-radius: 10px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .cat-title { font-size: 1.6rem; }
+      .article-card-link { padding: 16px 18px; }
+    }
+  </style>
+</body>
+</html>

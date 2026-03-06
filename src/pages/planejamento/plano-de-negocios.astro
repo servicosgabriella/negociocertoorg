@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.planejamento.subcategorias.plano_negocios;
+---
+
+<CategoryLayout
+  title="Plano de Negócios"
+  description="Aprenda a criar um plano de negócios completo e profissional. Guias práticos para empreendedores que querem tirar a ideia do papel com estrutura."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Planejamento', href: '/planejamento/' },
+    { label: 'Plano de Negócios' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

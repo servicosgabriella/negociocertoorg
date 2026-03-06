@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.financas.subcategorias.erp;
+---
+
+<CategoryLayout
+  title="ERP e Sistemas de Gestão"
+  description="Compare os melhores sistemas ERP e plataformas de gestão para pequenas e médias empresas brasileiras. Preços, funcionalidades e qual escolher."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Finanças', href: '/financas/' },
+    { label: 'ERP e Sistemas de Gestão' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>

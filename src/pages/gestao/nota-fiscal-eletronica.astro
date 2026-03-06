@@ -1,0 +1,18 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { estrutura } from '../../data/estrutura';
+
+const sub = estrutura.gestao.subcategorias.nfe;
+---
+
+<CategoryLayout
+  title="Nota Fiscal Eletrônica"
+  description="Guias completos sobre emissão de nota fiscal eletrônica (NF-e, NFS-e e NFC-e). Saiba como emitir, quais sistemas usar e como evitar erros comuns."
+  breadcrumb={[
+    { label: 'Início', href: '/' },
+    { label: 'Gestão', href: '/gestao/' },
+    { label: 'Nota Fiscal Eletrônica' },
+  ]}
+  type="subcategoria"
+  articles={sub.paginas.map(p => ({ label: p.label, href: p.href }))}
+/>
