@@ -33,7 +33,7 @@ export const estrutura = {
         paginas: [
           { label: "Melhores Contabilidades Online", href: "/melhores-contabilidades-online" },
           { label: "Contabilidade Online ou Presencial: Qual Escolher em 2026?", href: "/contabilidade-online-ou-presencial" },
-          { label: "Quanto Custa uma Contabilidade Online? [Preços 2026]", href: "/quanto-custa-uma-contabilidade-online-precos-2026" }
+          { label: "Quanto Custa uma Contabilidade Online? [Preços 2026]", href: "/quanto-custa-uma-contabilidade-online" }
         ] as Pagina[]
       },
       maquininhas: {
