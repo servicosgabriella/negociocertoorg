@@ -144,7 +144,7 @@ const itemListSchema =
 	</head>
 	<body>
 		<Header />
-		<section style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px; padding-bottom: 80px;">
+		<section class="review-hero">
 			<div style="max-width: 1200px; margin: 0 auto;">
 				<nav aria-label="Breadcrumb" class="hidden md:flex" style="font-size: 13px; margin-bottom: 16px;">
 				  <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
@@ -162,8 +162,8 @@ const itemListSchema =
 				    ))}
 				  </ol>
 				</nav>
-				<h1 style="color: white; font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">{title}</h1>
-				<p style="color: #bfdbfe; font-size: 1.125rem; max-width: 720px; margin-bottom: 24px;">{description}</p>
+				<h1 class="review-hero-title" style="color: white; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">{title}</h1>
+				<p style="color: #bfdbfe; font-size: 1.125rem; max-width: 720px; margin: 0 0 24px 0;">{description}</p>
 				<div class="ab-root">
 					<div class="ab-author-container">
 						<img
@@ -230,7 +230,7 @@ const itemListSchema =
 			<slot name="ranking" />
 		</div>
 
-		<div style="max-width: 1200px; margin: 0 auto; padding: 40px; display: flex; gap: 40px; margin-top: 48px;">
+		<div class="review-main-container">
 			<div class="flex-1 min-w-0">
 				<!--
 					SLOT PRINCIPAL (conteúdo do artigo)
@@ -581,7 +581,7 @@ const itemListSchema =
 				}
 				.logo-column { flex-direction: column; align-items: flex-start; }
 				.logo-text { display: none; }
-				.logo-image { max-width: 140px; }
+				.logo-image { max-width: 120px; }
 				.rating-column { flex-direction: row; align-items: center; gap: 8px; }
 				.rating-label { text-align: left; }
 				.info-column { width: 100%; }
@@ -824,6 +824,32 @@ const itemListSchema =
 			.faq-answer p { font-size: 14px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
 			.faq-answer ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0; }
 			.faq-answer ul li { font-size: 14px; color: #374151; margin-bottom: 4px; }
+
+			/* Review Layout Mobile Optimizations */
+			.review-hero { background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px 80px; }
+			.review-hero-title { font-size: 2.25rem; }
+			.review-main-container { max-width: 1200px; margin: 0 auto; padding: 40px; display: flex; gap: 40px; margin-top: 48px; }
+
+			@media (max-width: 768px) {
+				.review-hero { padding: 48px 24px 40px !important; }
+				.review-main-container { padding: 24px !important; }
+			}
+
+			@media (max-width: 640px) {
+				.review-hero-title { font-size: 1.75rem; }
+				.pros-cons-container { flex-direction: column; }
+				.logo-column { gap: 8px; }
+			}
+
+			@media (max-width: 480px) {
+				.review-main-container { padding: 16px !important; }
+				.review-container { padding: 16px; }
+				.review-hero-title { font-size: 1.5rem; }
+				article h2 { font-size: 1.2rem; margin: 24px 0 8px 0; }
+				.contabilidade-container { padding: 12px; }
+				.pros-cons-container { gap: 16px; }
+				.pc-column { width: 100%; }
+			}
 		</style>
 
 		<style>
@@ -873,6 +899,7 @@ const itemListSchema =
 			}
 			.ab-date-container {
 				margin-top: 10px;
+				margin-bottom: 30px;
 				font-size: 15px;
 				color: #ffffff;
 				display: flex;

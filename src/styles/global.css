@@ -32,6 +32,10 @@
 	font-style: normal;
 	font-display: swap;
 }
+html {
+	overflow-x: hidden;
+}
+
 body {
 	font-family: Arial, sans-serif;
 	margin: 0;
@@ -44,6 +48,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+	overflow-x: hidden;
 }
 main {
 	width: 720px;
@@ -156,7 +161,21 @@ hr {
 	white-space: nowrap;
 }
 
+ul:not(.info-list):not(.bullet-list):not(.plan-list):not(#custom-toc-list),
+ol {
+  list-style-position: outside;
+}
+
+ul:not(.info-list):not(.bullet-list):not(.plan-list):not(#custom-toc-list) {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
 ul:not(.info-list):not(.bullet-list):not(.plan-list):not(#custom-toc-list) li,
 ol li {
   font-size: 16px;
+  margin-left: 1.25em;
 }

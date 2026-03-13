@@ -1,0 +1,16 @@
+name = "negociocertoorg"
+type = "javascript"
+compatibility_date = "2024-12-16"
+
+[env.production]
+routes = [
+  { pattern = "negociocertoorg.pages.dev", zone_name = "negociocertoorg.pages.dev" }
+]
+
+[build]
+command = "npm run build"
+cwd = "./"
+watch_paths = ["src/**/*.{ts,tsx,astro,md}"]
+
+[build.upload]
+format = "service-worker"
