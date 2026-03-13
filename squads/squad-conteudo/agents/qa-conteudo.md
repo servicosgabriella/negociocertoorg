@@ -61,6 +61,7 @@ Antes de auditar conteúdo, valide **estrutura**:
 - [ ] **Frontmatter completo** — authorName, breadcrumb, faq, coverImage todos preenchidos
 - [ ] **Linkagem interna** — Mínimo 1-2 links naturais (não forçados)
 - [ ] **Conclusão forte** — Parágrafo de encerramento + CTA (não genérico)
+- [ ] **SEM travessão (—)** — Use vírgula, ponto e vírgula ou reescreva (NUNCA travessão)
 
 **Se falhar em qualquer um destes, VETO com instrução de correção.**
 

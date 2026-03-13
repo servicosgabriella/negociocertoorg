@@ -28,9 +28,9 @@ faq:
     answer: "Sim. O DAS é obrigatório todo mês para qualquer MEI ativo, independentemente de ter faturamento no período."
 ---
 
-Se você abriu um MEI ou está pensando em se formalizar, a primeira coisa que vai precisar saber é sobre o DAS — aquele boleto mensal que financia suas contribuições ao INSS e os impostos federais.
+Se você abriu um MEI ou está pensando em se formalizar, a primeira coisa que vai precisar saber é sobre o DAS, aquele boleto mensal que financia suas contribuições ao INSS e os impostos federais.
 
-A maioria dos MEIs acha que é complicado, mas na verdade é bem direto. O segredo é saber o prazo, o valor exato, e configurar tudo para não esquecer. Atraso sai caro — juros, multa, pode virar dívida ativa. Por isso vamos cobrir tudo aqui de forma prática.
+A maioria dos MEIs acha que é complicado, mas na verdade é bem direto. O segredo é saber o prazo, o valor exato, e configurar tudo para não esquecer. Atraso sai caro: juros, multa, pode virar dívida ativa. Por isso vamos cobrir tudo aqui de forma prática.
 
 ---
 
@@ -38,7 +38,7 @@ A maioria dos MEIs acha que é complicado, mas na verdade é bem direto. O segre
 
 DAS significa Documento de Arrecadação do Simples Nacional. Basicamente, é o boleto mensal que substitui vários impostos diferentes em um único pagamento. Quando você vira MEI, a Receita Federal cria esse boleto e coloca no portal para você gerar todo mês.
 
-Você pensa que é "só mais um imposto", mas não é bem assim. O DAS já inclui sua contribuição ao INSS — a mesma que garante aposentadoria, auxílio-doença e salário-maternidade. Então não é custo puro, é investimento no seu futuro.
+Você pensa que é "só mais um imposto", mas não é bem assim. O DAS já inclui sua contribuição ao INSS, a mesma que garante aposentadoria, auxílio-doença e salário-maternidade. Então não é custo puro; é investimento no seu futuro.
 
 Ao se formalizar, você passa a ser obrigado a pagar. Não há exceção: mesmo que o mês foi fraco e você não faturou nada, o DAS sai do seu bolso todo mês.
 
@@ -52,7 +52,7 @@ O prazo é sempre o **15º dia do mês seguinte** ao período de referência. Pa
 - Fevereiro → vence em 15 de março
 - Dezembro → vence em 15 de janeiro (do ano seguinte)
 
-A data é fixa. O boleto fica disponível no portal alguns dias antes — geralmente entre o 15º e o 20º do mês anterior. Você recebe um email avisando quando sai.
+A data é fixa. O boleto fica disponível no portal alguns dias antes, geralmente entre o 15º e o 20º do mês anterior. Você recebe um email avisando quando sai.
 
 A dica mais prática? Configure débito automático na hora que abre o MEI. Assim não corre risco de esquecer, e o banco desconta sozinho na data certa. A maioria dos bancos digitais oferece isso sem custo adicional.
 
@@ -60,13 +60,13 @@ A dica mais prática? Configure débito automático na hora que abre o MEI. Assi
 
 ## Quanto custa o DAS em 2026
 
-O valor não é fixo — varia de acordo com seu ramo de atividade e o estado onde você funciona. Em 2026, os valores ficam mais ou menos assim:
+O valor não é fixo; varia de acordo com seu ramo de atividade e o estado onde você funciona. Em 2026, os valores ficam mais ou menos assim:
 
 - Comércio ou indústria: R$ 70-75
 - Prestação de serviços: R$ 75-80
 - Comércio + serviços combinados: R$ 80-85
 
-Alguns estados agregam ISS (imposto municipal), então o valor pode ser um pouco diferente dependendo de onde você atua. A forma correta de saber é acessar o Portal do Empreendedor — a guia aparece lá com o valor exato.
+Alguns estados agregam ISS (imposto municipal), então o valor pode ser um pouco diferente dependendo de onde você atua. A forma correta de saber é acessar o Portal do Empreendedor: a guia aparece lá com o valor exato.
 
 Quando você gera o boleto, o valor já está correto. Não é aproximado, não é estimativa. Aquele é o valor que você paga naquele mês.
 
@@ -78,7 +78,7 @@ Existem várias formas. A mais comum é gerar o boleto no portal e pagar em qual
 
 **Internet Banking:** Faça login na sua conta e busque por "DAS" ou "Imposto Federal". A maioria dos bancos digitais deixa pagar direto ali. Alguns até permitem Pix.
 
-**Débito Automático:** Configure no Portal do Empreendedor e deixa o banco descontar automaticamente no 15º. É a opção mais tranquila — você não precisa fazer nada todo mês.
+**Débito Automático:** Configure no Portal do Empreendedor e deixa o banco descontar automaticamente no 15º. É a opção mais tranquila: você não precisa fazer nada todo mês.
 
 **App MEI Oficial:** A Receita Federal tem um app para celular. Você gera o boleto ali mesmo e paga no banco que quiser.
 

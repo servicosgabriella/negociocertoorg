@@ -85,6 +85,32 @@ Quando pagar:
 
 ---
 
+## ⚠️ PROIBIDO: Travessão (—) no Meio do Texto
+
+**NÃO USE travessão em nenhuma hipótese.** Use vírgula, ponto e vírgula ou reescreva.
+
+❌ **Errado:**
+```
+O DAS — aquele boleto mensal — é obrigatório.
+```
+
+✅ **Correto (opção 1 - vírgula):**
+```
+O DAS, aquele boleto mensal, é obrigatório.
+```
+
+✅ **Correto (opção 2 - ponto e vírgula):**
+```
+O DAS é obrigatório; é aquele boleto mensal.
+```
+
+✅ **Correto (opção 3 - reescrever):**
+```
+O boleto mensal chamado DAS é obrigatório.
+```
+
+---
+
 ## Parágrafos: Construção
 
 ### Regra: 1 ideia por parágrafo, 2-4 frases
