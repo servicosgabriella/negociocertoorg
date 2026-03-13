@@ -1,0 +1,55 @@
+name: squad-conteudo
+version: 1.0.0
+short-title: Squad de Conteúdo SEO
+description: >
+  Squad especializado em produção de conteúdo SEO para MEIs, empreendedores e microempreendedores
+  brasileiros. Segue o guia operacional estilodeconteudo.md com heurísticas rígidas de redação
+  e estrutura orientada por intenção de busca real.
+author: servicosgabriella
+license: UNLICENSED
+slashPrefix: conteudo
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - copywriter-seo.md
+    - pesquisador-seo.md
+    - qa-conteudo.md
+    - head-de-conteudo.md
+  tasks:
+    - pesquisar-pauta.md
+    - redigir-artigo.md
+    - auditar-artigo.md
+    - orquestrar-pauta.md
+    - gerar-capa.md
+    - publicar-artigo.md
+    - atualizar-pos-publicacao.md
+  workflows:
+    - pipeline-conteudo.md
+  checklists:
+    - checklist-pre-publicacao.md
+  templates:
+    - artigo-template.md
+  scripts: []
+  tools: []
+
+config:
+  extends: extend
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+tags:
+  - seo
+  - content
+  - copywriting
+  - brasil
+  - empreendedorismo
