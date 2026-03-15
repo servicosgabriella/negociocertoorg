@@ -1,10 +1,10 @@
 name: squad-conteudo
-version: 1.0.0
+version: 2.0.0
 short-title: Squad de Conteúdo SEO
 description: >
   Squad especializado em produção de conteúdo SEO para MEIs, empreendedores e microempreendedores
-  brasileiros. Segue o guia operacional estilodeconteudo.md com heurísticas rígidas de redação
-  e estrutura orientada por intenção de busca real.
+  brasileiros. Segue o guia de estilo com heurísticas rígidas de redação e estrutura orientada
+  por intenção de busca real. Pipeline completo: pesquisa → redação → auditoria → publicação.
 author: servicosgabriella
 license: UNLICENSED
 slashPrefix: conteudo
@@ -20,25 +20,31 @@ components:
     - qa-conteudo.md
     - head-de-conteudo.md
   tasks:
-    - pesquisar-pauta.md
-    - redigir-artigo.md
-    - auditar-artigo.md
-    - orquestrar-pauta.md
-    - gerar-capa.md
-    - publicar-artigo.md
-    - atualizar-pos-publicacao.md
+    - orquestrar-pauta.md        # Orquestrador — dispara todo o pipeline
+    - pesquisar-pauta.md         # Pesquisa de H2s no Google
+    - redigir-artigo.md          # Redação do artigo
+    - auditar-artigo.md          # Auditoria de qualidade (QA)
+    - gerar-capa.md              # Geração de imagem de capa
+    - montar-arquivo.md          # Criação do arquivo com frontmatter correto
+    - git-publicar.md            # Commit + delegação de push para @devops
+    - atualizar-pos-publicacao.md # Atualiza autor e estrutura (review e content layouts)
   workflows:
-    - pipeline-conteudo.md
+    - pipeline-conteudo.md       # Referência visual do pipeline (não executável diretamente)
   checklists:
-    - checklist-pre-publicacao.md
+    - checklist-pre-publicacao.md  # 14 pontos — executado pelo @qa-conteudo
+    - checklist-research.md        # Entrega do @pesquisador-seo
   templates:
-    - artigo-template.md
+    - artigo-template.md           # Template base do artigo
+    - briefing-tmpl.md             # Handoff: @head-de-conteudo → @copywriter-seo
+    - feedback-qa-tmpl.md          # Templates de veto e aprovação do @qa-conteudo
   scripts: []
   tools: []
 
 config:
   extends: extend
-  coding-standards: config/coding-standards.md
+  style-guide: config/style-guide.md       # Single source of truth para estilo editorial
+  blacklist: config/blacklist.md           # Single source of truth para linguagem proibida
+  slug-rules: config/slug-rules.md         # Single source of truth para regras de URL
   tech-stack: config/tech-stack.md
   source-tree: config/source-tree.md
 

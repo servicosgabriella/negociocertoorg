@@ -117,15 +117,21 @@ ENTRADA: Pauta (keyword + tema)
    → VETADO: volta para @copywriter-seo com feedback
    → APROVADO: seguir para passo 9
 
-9. PÓS-PUBLICAÇÃO (somente reviewlayout.astro ou contentlayout.astro)
-   Se bloglayout.astro → pipeline encerra aqui
+9. GERAR CAPA (obrigatório para todos os layouts)
+   Executar task gerar-capa.md:
+   npm run gerar-imagem -- --slug "{slug}" --topico "{descrição visual}"
+   → Confirmar que public/images/{slug}.png foi gerado
+   → coverImage já deve estar preenchido no frontmatter do artigo
 
-   9a. Atualizar src/pages/autor/gabriella-fernandes.astro
-       → Adicionar objeto no array articles[] (mais recente no topo)
+10. PÓS-PUBLICAÇÃO (somente reviewlayout.astro ou contentlayout.astro)
+    Se bloglayout.astro → pipeline encerra após passo 9
 
-   9b. Atualizar src/data/estrutura.ts
-       → Adicionar entrada no array paginas[] da subcategoria correta
-       → href deve ser idêntico ao slug do artigo publicado
+   10a. Atualizar src/pages/autor/gabriella-fernandes.astro
+        → Adicionar objeto no array articles[] (mais recente no topo)
+
+   10b. Atualizar src/data/estrutura.ts
+        → Adicionar entrada no array paginas[] da subcategoria correta
+        → href deve ser idêntico ao slug do artigo publicado
 ```
 
 ---
@@ -147,29 +153,9 @@ ENTRADA: Pauta (keyword + tema)
 
 ## Briefing para @copywriter-seo
 
-Ao delegar para o copywriter, sempre inclua:
+Ao delegar redação, usar o template de `templates/briefing-tmpl.md`.
 
-```
-BRIEFING — [keyword]
-
-Intenção de busca: [Informacional | Comercial | Transacional]
-É review: [Sim | Não]
-Layout Astro: [bloglayout.astro | reviewlayout.astro | contentlayout.astro]
-Keyword principal: [keyword]
-Variações semânticas sugeridas: [lista]
-Estrutura de introdução: [Ponte | CPP | Pergunta+Dor+Promessa]
-Tamanho alvo: [X–Y palavras]
-
-H2s validados (nesta ordem):
-1. [H2 — fonte: PAA]
-2. [H2 — fonte: PAA]
-3. [H2 — fonte: relacionadas]
-...
-
-Pontos obrigatórios:
-- [Ponto que não pode faltar]
-- [Contexto específico do público MEI/empreendedor]
-```
+O briefing deve incluir obrigatoriamente: intenção de busca, layout Astro, keyword, variações semânticas, estrutura de introdução, tamanho alvo, H2s validados com fontes, pontos obrigatórios e gaps dos concorrentes.
 
 ---
 

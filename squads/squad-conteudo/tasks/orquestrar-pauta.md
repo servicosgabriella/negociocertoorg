@@ -116,26 +116,7 @@ Após gerado, adicionar `coverImage: "/images/{slug}.png"` ao frontmatter do art
 Executar **somente** quando o layout for `reviewlayout.astro` ou `contentlayout.astro`.
 Artigos com `bloglayout.astro` **pulam este passo**.
 
-`@head-de-conteudo` executa `*atualizar-pos-publicacao`:
-
-**8a. `src/pages/autor/gabriella-fernandes.astro`**
-Adicionar novo objeto no array `articles` (mais recente no topo):
-```ts
-{
-  title: "[título completo]",
-  description: "[descrição curta — 1 frase]",
-  href: "[slug exato]",
-  date: "[YYYY-MM-DD]",
-},
-```
-
-**8b. `src/data/estrutura.ts`**
-Adicionar no array `paginas` da subcategoria correta:
-```ts
-{ label: "[label curto para o menu]", href: "[slug exato]" }
-```
-
-O `href` deve ser **idêntico** nos dois arquivos e no nome do arquivo em `src/pages/`.
+`@head-de-conteudo` executa task `tasks/atualizar-pos-publicacao.md` com os metadados do artigo publicado (título, descrição, href, data, categoria, subcategoria, label).
 
 ## Limites de Iteração
 

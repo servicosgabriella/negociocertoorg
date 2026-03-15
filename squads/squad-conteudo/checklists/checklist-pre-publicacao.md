@@ -1,17 +1,24 @@
 ---
 checklist: Pré-Publicação
-responsavel: "@qa-conteudo"
-version: 1.0.0
+version: 2.0.0
 squad: squad-conteudo
-fonte: Regra #11 — estilodeconteudo.md
 politica: Zero tolerância — qualquer NÃO = VETO imediato
 ---
 
 # Checklist de Pré-Publicação
 
-Execute cada item. Um único **NÃO** resulta em VETO com indicação do trecho.
+Execute cada item na ordem. Um único **NÃO** resulta em VETO com indicação do trecho.
 
-## URL / Slug — Verificar PRIMEIRO (veto imediato se falhar)
+Referências de apoio:
+- Blacklist completa → `config/blacklist.md`
+- Regras de slug → `config/slug-rules.md`
+- Templates de veto/aprovação → `templates/feedback-qa-tmpl.md`
+
+---
+
+## Fase 1 — @qa-conteudo: URL/Slug (verificar PRIMEIRO)
+
+> Qualquer NÃO = **VETO IMEDIATO** antes de revisar o conteúdo.
 
 - [ ] Slug **não contém** números ou anos (ex: 2026, 2025)?
 - [ ] Slug **não contém** meses ou datas (ex: janeiro, março)?
@@ -19,16 +26,20 @@ Execute cada item. Um único **NÃO** resulta em VETO com indicação do trecho.
 - [ ] Slug tem **menos de 75 caracteres**?
 - [ ] Slug usa apenas **letras minúsculas e hífens**?
 
-> Qualquer NÃO aqui = **VETO IMEDIATO** antes de revisar o conteúdo.
+---
 
-## Layout Astro e Destino do Arquivo
+## Fase 2 — @copywriter-seo: Layout e Destino do Arquivo
+
+> Verificado pelo copywriter antes de entregar ao QA. QA confirma na auditoria.
 
 - [ ] Intenção Informacional/Navegacional → arquivo em `src/content/blog/{slug}.md`?
 - [ ] Intenção Comercial/Transacional + review → arquivo em `src/pages/{slug}.astro` com `ReviewLayout`?
 - [ ] Intenção Comercial/Transacional + sem review → arquivo em `src/pages/{slug}.astro` com `ContentLayout`?
 - [ ] Arquivo no formato correto para o layout (`.md` para blog, `.astro` para content/review)?
 
-## SEO
+---
+
+## Fase 3 — @qa-conteudo: SEO
 
 - [ ] H1 contém keyword principal com intenção clara?
 - [ ] Keyword aparece nos primeiros 100 palavras (de forma natural)?
@@ -36,7 +47,11 @@ Execute cada item. Um único **NÃO** resulta em VETO com indicação do trecho.
 - [ ] Links internos têm âncoras descritivas (não "clique aqui")?
 - [ ] Intenção de busca está alinhada com o formato do artigo?
 
-## Estilo — Lista Negra (Regra #3)
+---
+
+## Fase 4 — @qa-conteudo: Lista Negra de Linguagem
+
+> Referência completa: `config/blacklist.md`
 
 ### Conectivos Proibidos
 
@@ -66,48 +81,47 @@ Execute cada item. Um único **NÃO** resulta em VETO com indicação do trecho.
 
 - [ ] Texto NÃO contém: "Crucial"?
 
-## Estilo — Pontuação e Conectores
+---
 
-- [ ] Texto NÃO contém travessão (—) no meio de frases (quebra de ritmo visual e parsing)?
-- [ ] Maiúsculas usadas para destaque, parênteses para complemento, vírgulas para separação?
-- [ ] Listas usam bullets (—) ou números quando apropriado, não travessões soltos?
+## Fase 5 — @qa-conteudo: Pontuação e Tom
 
-## Estilo — Tom e Voz
-
+- [ ] Texto NÃO contém travessão (—) no meio de frases?
+- [ ] NÃO há travessões (linhas cinzas) entre os H2s separando as seções?
 - [ ] Tom passa no teste: "parece conversa ou texto robótico"?
 - [ ] "Você" usado com frequência adequada?
 - [ ] Dados são específicos (não "a maioria", "muitos", "geralmente")?
 
-## Ritmo Visual (Regra #6)
+---
+
+## Fase 6 — @qa-conteudo: Ritmo Visual e Estrutura
 
 - [ ] Efeito escada ausente (sem 3+ frases de 1 linha seguidas)?
 - [ ] Blocos e frases de impacto intercalados?
-- [ ] Máximo 3-4 linhas por bloco respeitado?
-
-## Estrutura
-
 - [ ] Introdução começa com gancho (não definição)?
 - [ ] Conclusão tem próximo passo concreto (não "esperamos ter ajudado" ou similar)?
 
-## Teste Final
+---
+
+## Fase 7 — @qa-conteudo: Teste Final
 
 - [ ] Lendo em voz alta, soa como um humano explicando para outro humano?
 
 ---
 
-## Resultado
+## Resultado (@qa-conteudo emite veredicto)
 
-**APROVADO:** Todos os itens marcados ✅ → Entregar para publicação.
+**APROVADO:** Todos os itens ✅ → entregar para publicação usando template de `templates/feedback-qa-tmpl.md`.
 
-**VETADO:** Qualquer item ❌ → Listar itens falhos com trechos específicos e devolver ao `@copywriter-seo`.
+**VETADO:** Qualquer item ❌ → listar itens falhos com trechos específicos e devolver ao `@copywriter-seo` usando template de `templates/feedback-qa-tmpl.md`.
 
 ---
 
-## Pós-Publicação (responsabilidade do @head-de-conteudo)
+## Fase 8 — @head-de-conteudo: Pós-Publicação (condicional)
 
 > O QA não executa estes itens — apenas verifica se foram feitos antes de encerrar o pipeline.
+> Obrigatório apenas para `reviewlayout.astro` ou `contentlayout.astro`.
 
-- [ ] Layout é `reviewlayout.astro` ou `contentlayout.astro`? → obrigatório executar `*atualizar-pos-publicacao`
+- [ ] `*atualizar-pos-publicacao` foi executado?
 - [ ] `src/pages/autor/gabriella-fernandes.astro`: novo artigo adicionado no array `articles`?
 - [ ] `src/data/estrutura.ts`: nova entrada adicionada no array `paginas` da subcategoria correta?
 - [ ] `href` é idêntico nos dois arquivos e no nome do arquivo em `src/pages/`?

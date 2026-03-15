@@ -50,104 +50,15 @@ Redige artigo SEO completo seguindo o briefing e as regras do squad.
 
 ## Destino do Arquivo por Layout (CRÍTICO)
 
-O layout define **onde** o arquivo é criado e **qual formato** usar:
+O layout define onde o arquivo é criado e qual formato usar. **Referência completa:** `tasks/montar-arquivo.md`.
 
-### `bloglayout.astro` → `src/content/blog/{slug}.md`
+| Layout | Destino |
+|--------|---------|
+| `bloglayout.astro` | `src/content/blog/{slug}.md` (Markdown) |
+| `contentlayout.astro` | `src/pages/{slug}.astro` (Astro + ContentLayout) |
+| `reviewlayout.astro` | `src/pages/{slug}.astro` (Astro + ReviewLayout) |
 
-Arquivo Markdown com frontmatter. O roteador `src/pages/blog/[...slug].astro` aplica o layout automaticamente.
-
-```md
----
-title: "Título do artigo"
-description: "Descrição para SEO."
-pubDate: YYYY-MM-DD
-updatedDate: YYYY-MM-DD
-authorName: "Gabriella Fernandes"
-authorRole: "Especialista em Negócios"
-authorImage: "/images/perfil.jpg"
-coverImage: "/images/{slug}.png"
-authorHref: "/autor/gabriella-fernandes"
-coverAlt: "Descrição da imagem de capa."
-breadcrumb:
-  - label: "Home"
-    href: "/"
-  - label: "Blog"
-    href: "/blog/"
-  - label: "Título do artigo"
-faq:
-  - question: "Pergunta?"
-    answer: "Resposta."
----
-
-Conteúdo do artigo em Markdown...
-```
-
-### `contentlayout.astro` → `src/pages/{slug}.astro`
-
-Arquivo Astro que importa `ContentLayout`. Usa `getBreadcrumb` e `getSubcategoria` de `estrutura.ts`.
-
-```astro
----
-import ContentLayout from '../layouts/ContentLayout.astro';
-import { getBreadcrumb, getSubcategoria } from '../data/estrutura';
-
-const subcategoria = getSubcategoria('{categoria}', '{subcategoria_key}');
-const breadcrumb = getBreadcrumb('{categoria}', '{titulo_pagina}', subcategoria);
----
-
-<ContentLayout
-  title="{Título completo}"
-  description="{Descrição SEO}"
-  publishDate="{YYYY-MM-DD}"
-  authorName="Gabriella Fernandes"
-  authorRole="Especialista em Negócios"
-  authorImage="/images/perfil.jpg"
-  authorHref="/autor/gabriella-fernandes/"
-  category="{Label da categoria}"
-  subcategory="{Label da subcategoria}"
-  coverImage="/images/{slug}.png"
-  coverAlt="{Descrição da imagem}"
-  faq={[
-    { question: "Pergunta?", answer: "Resposta." }
-  ]}
->
-  <p>Conteúdo do artigo em HTML/JSX...</p>
-</ContentLayout>
-```
-
-### `reviewlayout.astro` → `src/pages/{slug}.astro`
-
-Arquivo Astro que importa `ReviewLayout`. Tem prop `ranking` com os itens sendo comparados.
-
-```astro
----
-import ReviewLayout from '../layouts/ReviewLayout.astro';
-import { getBreadcrumb, getSubcategoria } from '../data/estrutura';
-
-const subcategoria = getSubcategoria('{categoria}', '{subcategoria_key}');
-const breadcrumb = getBreadcrumb('{categoria}', '{titulo_pagina}', subcategoria);
----
-
-<ReviewLayout
-  title="{Título completo}"
-  description="{Descrição SEO}"
-  publishDate="{YYYY-MM-DD}"
-  updatedDate="{YYYY-MM-DD}"
-  authorName="Gabriella Fernandes"
-  authorHref="/autor/gabriella-fernandes/"
-  authorRole="Analista Sênior"
-  authorImage="/images/perfil.jpg"
-  breadcrumb={breadcrumb}
-  ranking={[
-    { position: 1, name: "{Nome}", url: "{URL afiliado}" },
-    { position: 2, name: "{Nome}", url: "{URL afiliado}" },
-  ]}
->
-  <div slot="ranking">
-    <!-- Conteúdo da review em HTML/JSX -->
-  </div>
-</ReviewLayout>
-```
+Após redigir o conteúdo, executar `*montar-arquivo` para criar o arquivo com frontmatter correto.
 
 ## Estruturas de Introdução
 
@@ -194,14 +105,4 @@ Ponto três.
 
 ---
 
-## Alternativas ao Travessão (—)
-
-**NUNCA use travessão para quebrar frases no meio. Use:**
-
-| Situação | Use isso | Exemplo |
-|----------|----------|---------|
-| Complemento ou nota | Parênteses | "O DAS (Documento de Arrecadação) é..." |
-| Separação natural | Vírgula | "O DAS, um documento de arrecadação, é..." |
-| Quebra clara | Ponto + nova frase | "O DAS é obrigatório. Você deve pagar todo mês." |
-| Lista de items | Bullets com `-` | `- Item um`<br/>`- Item dois` |
-| Intervalo | Travessão (ok) | "2024–2025" ou "páginas 15–20" |
+**Travessão:** NUNCA use (—) para quebrar frases. Use parênteses, vírgula ou ponto. Ver `config/style-guide.md` — seção Pontuação.

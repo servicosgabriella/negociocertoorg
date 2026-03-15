@@ -103,11 +103,16 @@ APROVADO          VETADO (max 3x)
 
 ## Tasks Envolvidas
 
-1. `orquestrar-pauta.md` — Task principal (orquestrador)
-2. `pesquisar-pauta.md` — Pesquisa de H2s
-3. `redigir-artigo.md` — Redação
-4. `auditar-artigo.md` — Auditoria
-5. `atualizar-pos-publicacao.md` — Pós-publicação (condicional: review e content layouts)
+> **Este documento é referência visual.** A task executável é `tasks/orquestrar-pauta.md`.
+
+1. `orquestrar-pauta.md` — Orquestrador (task principal, dispara todo o pipeline)
+2. `pesquisar-pauta.md` — Pesquisa de H2s no Google
+3. `redigir-artigo.md` — Redação do conteúdo
+4. `auditar-artigo.md` — Auditoria de qualidade
+5. `gerar-capa.md` — Geração de imagem de capa
+6. `montar-arquivo.md` — Criação do arquivo com frontmatter correto
+7. `git-publicar.md` — Commit e delegação de push para @devops
+8. `atualizar-pos-publicacao.md` — Atualiza autor e estrutura (condicional: review e content layouts)
 
 ## Acionamento
 
