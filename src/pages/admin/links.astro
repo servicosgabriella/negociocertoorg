@@ -1,0 +1,745 @@
+---
+// Painel interno de link building — acesso por senha
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Building — NegocioCerto</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3347;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --accent: #4f8ef7;
+      --green: #22c55e;
+      --yellow: #f59e0b;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #a855f7;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+    }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .login-box h1 { font-size: 20px; margin-bottom: 6px; }
+    .login-box p  { color: var(--muted); margin-bottom: 28px; font-size: 13px; }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 8px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .login-box input:focus { border-color: var(--accent); }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .login-box button:hover { opacity: 0.9; }
+
+    .login-error {
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* ── APP ── */
+    #app { display: none; }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-logo { font-size: 16px; font-weight: 700; color: var(--text); }
+    .topbar-sub  { color: var(--muted); font-size: 13px; }
+
+    .topbar-actions { display: flex; gap: 8px; }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity .15s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost   { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-danger  { background: transparent; color: var(--red); border: 1px solid var(--border); }
+
+    /* ── STATS ── */
+    .stats-bar {
+      display: flex;
+      gap: 12px;
+      padding: 20px 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 120px;
+    }
+
+    .stat-value { font-size: 26px; font-weight: 700; }
+    .stat-label { color: var(--muted); font-size: 12px; }
+
+    /* ── FILTERS ── */
+    .filters {
+      padding: 20px 24px 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .search-input {
+      margin-left: auto;
+      padding: 6px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      width: 200px;
+    }
+
+    .search-input:focus { border-color: var(--accent); }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      padding: 16px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .opp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      transition: border-color .15s;
+    }
+
+    .opp-card:hover { border-color: var(--accent); }
+    .opp-card.conquistado { border-left: 3px solid var(--green); }
+
+    .opp-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .opp-name a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .opp-name a:hover { text-decoration: underline; }
+
+    .opp-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .badge {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .badge-estrategia { background: #1e3a5f; color: #93c5fd; }
+    .badge-dr        { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+    .status-select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .opp-notes {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .opp-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .opp-date {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .btn-delete {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .btn-delete:hover { color: var(--red); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .empty-state span { font-size: 40px; display: block; margin-bottom: 12px; }
+
+    /* status colors for select */
+    .status-select[data-status="prospectado"]      { border-left: 3px solid var(--muted); }
+    .status-select[data-status="qualificado"]      { border-left: 3px solid var(--accent); }
+    .status-select[data-status="enviado"]          { border-left: 3px solid var(--yellow); }
+    .status-select[data-status="followup-1"]       { border-left: 3px solid var(--orange); }
+    .status-select[data-status="followup-2"]       { border-left: 3px solid var(--red); }
+    .status-select[data-status="respondeu"]        { border-left: 3px solid var(--purple); }
+    .status-select[data-status="link-conquistado"] { border-left: 3px solid var(--green); }
+    .status-select[data-status="arquivado"]        { border-left: 3px solid #374151; }
+    .status-select[data-status="recusado"]         { border-left: 3px solid var(--red); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 { font-size: 16px; margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+
+    .form-group textarea { resize: vertical; min-height: 70px; }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>🔗 Link Building</h1>
+    <p>NegocioCerto.org — Painel interno</p>
+    <input type="password" id="senha-input" placeholder="••••" maxlength="8" />
+    <button onclick="tentarLogin()">Entrar</button>
+    <div class="login-error" id="login-error">Senha incorreta.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">🔗 Link Building</div>
+      <div class="topbar-sub">NegocioCerto.org</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" onclick="exportarCSV()">⬇ Exportar CSV</button>
+      <button class="btn btn-primary" onclick="abrirModal()">+ Nova oportunidade</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-tab active" data-filter="todos" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filter-tab" data-filter="ativos" onclick="filtrar('ativos', this)">Ativos</button>
+    <button class="filter-tab" data-filter="link-conquistado" onclick="filtrar('link-conquistado', this)">✅ Conquistados</button>
+    <button class="filter-tab" data-filter="arquivo" onclick="filtrar('arquivo', this)">Arquivo</button>
+    <input class="search-input" type="text" placeholder="Buscar site..." id="search-input" oninput="renderCards()" />
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards-grid" id="cards-grid"></div>
+
+</div>
+
+<!-- MODAL NOVA OPORTUNIDADE -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Nova oportunidade</h2>
+
+    <div class="form-group">
+      <label>Nome do site *</label>
+      <input type="text" id="f-nome" placeholder="Ex: ContabilidadeMEI.com.br" />
+    </div>
+
+    <div class="form-group">
+      <label>URL do site *</label>
+      <input type="url" id="f-url" placeholder="https://..." />
+    </div>
+
+    <div class="form-group">
+      <label>E-mail de contato</label>
+      <input type="email" id="f-email" placeholder="contato@site.com.br" />
+    </div>
+
+    <div class="form-group">
+      <label>Estratégia</label>
+      <select id="f-estrategia">
+        <option value="broken-link">Broken Link Building</option>
+        <option value="resource-page">Resource Page</option>
+        <option value="guest-post">Guest Post</option>
+        <option value="reclamation">Link Reclamation</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>DR (Domain Rating — Ahrefs gratuito)</label>
+      <input type="number" id="f-dr" placeholder="Ex: 28" min="0" max="100" />
+    </div>
+
+    <div class="form-group">
+      <label>Artigo do NegocioCerto oferecido</label>
+      <input type="url" id="f-artigo" placeholder="https://negociocertoorg.com.br/..." />
+    </div>
+
+    <div class="form-group">
+      <label>Ângulo de personalização</label>
+      <textarea id="f-angulo" placeholder="O que você encontrou de específico no site para mencionar no e-mail..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Notas adicionais</label>
+      <textarea id="f-notas" placeholder="Observações, datas, contexto..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="salvarOportunidade()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SENHA = '1269';
+  const KEY   = 'lb_oportunidades_v1';
+
+  // ── AUTH ──────────────────────────────────────────
+  function tentarLogin() {
+    const v = document.getElementById('senha-input').value;
+    if (v === SENHA) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      renderStats();
+      renderCards();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  document.getElementById('senha-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') tentarLogin();
+  });
+
+  // ── STORAGE ──────────────────────────────────────
+  function getOps() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveOps(ops) {
+    localStorage.setItem(KEY, JSON.stringify(ops));
+  }
+
+  // ── MODAL ────────────────────────────────────────
+  function abrirModal() {
+    document.getElementById('modal').classList.add('open');
+  }
+
+  function fecharModal() {
+    document.getElementById('modal').classList.remove('open');
+    ['f-nome','f-url','f-email','f-dr','f-artigo','f-angulo','f-notas'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('f-estrategia').value = 'broken-link';
+  }
+
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) fecharModal();
+  });
+
+  function salvarOportunidade() {
+    const nome = document.getElementById('f-nome').value.trim();
+    const url  = document.getElementById('f-url').value.trim();
+    if (!nome || !url) { alert('Nome e URL são obrigatórios.'); return; }
+
+    const ops = getOps();
+    ops.unshift({
+      id:          Date.now(),
+      nome,
+      url,
+      email:       document.getElementById('f-email').value.trim(),
+      estrategia:  document.getElementById('f-estrategia').value,
+      dr:          document.getElementById('f-dr').value,
+      artigo:      document.getElementById('f-artigo').value.trim(),
+      angulo:      document.getElementById('f-angulo').value.trim(),
+      notas:       document.getElementById('f-notas').value.trim(),
+      status:      'prospectado',
+      dataCriacao: new Date().toISOString().split('T')[0],
+    });
+
+    saveOps(ops);
+    fecharModal();
+    renderStats();
+    renderCards();
+  }
+
+  // ── FILTRO ───────────────────────────────────────
+  let filtroAtivo = 'todos';
+
+  function filtrar(f, btn) {
+    filtroAtivo = f;
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards();
+  }
+
+  const ATIVOS   = ['prospectado','qualificado','enviado','followup-1','followup-2','respondeu'];
+  const ARQUIVO  = ['arquivado','recusado'];
+
+  function filtrarOps(ops) {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    return ops.filter(o => {
+      const matchSearch = !q || o.nome.toLowerCase().includes(q) || o.url.toLowerCase().includes(q);
+      let matchFiltro = true;
+      if (filtroAtivo === 'ativos')           matchFiltro = ATIVOS.includes(o.status);
+      else if (filtroAtivo === 'link-conquistado') matchFiltro = o.status === 'link-conquistado';
+      else if (filtroAtivo === 'arquivo')     matchFiltro = ARQUIVO.includes(o.status);
+      return matchSearch && matchFiltro;
+    });
+  }
+
+  // ── STATS ─────────────────────────────────────────
+  function renderStats() {
+    const ops = getOps();
+    const conquistados = ops.filter(o => o.status === 'link-conquistado').length;
+    const ativos       = ops.filter(o => ATIVOS.includes(o.status)).length;
+    const enviados     = ops.filter(o => ['enviado','followup-1','followup-2'].includes(o.status)).length;
+    const taxa         = enviados > 0 ? Math.round((conquistados / enviados) * 100) : 0;
+
+    document.getElementById('stats-bar').innerHTML = `
+      <div class="stat-card">
+        <span class="stat-value" style="color:var(--text)">${ops.length}</span>
+        <span class="stat-label">Total de oportunidades</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" style="color:var(--accent)">${ativos}</span>
+        <span class="stat-label">Em andamento</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" style="color:var(--yellow)">${enviados}</span>
+        <span class="stat-label">E-mails enviados</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" style="color:var(--green)">${conquistados}</span>
+        <span class="stat-label">Links conquistados</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" style="color:var(--purple)">${taxa}%</span>
+        <span class="stat-label">Taxa de conversão</span>
+      </div>
+    `;
+  }
+
+  // ── LABELS ───────────────────────────────────────
+  const STATUS_LABELS = {
+    'prospectado':      'Prospectado',
+    'qualificado':      'Qualificado',
+    'enviado':          'E-mail enviado',
+    'followup-1':       'Followup 1',
+    'followup-2':       'Followup 2',
+    'respondeu':        'Respondeu',
+    'link-conquistado': '✅ Link conquistado',
+    'arquivado':        'Arquivado',
+    'recusado':         'Recusado',
+  };
+
+  const ESTRATEGIA_LABELS = {
+    'broken-link':  'Broken Link',
+    'resource-page':'Resource Page',
+    'guest-post':   'Guest Post',
+    'reclamation':  'Reclamation',
+  };
+
+  // ── RENDER CARDS ─────────────────────────────────
+  function renderCards() {
+    const ops  = filtrarOps(getOps());
+    const grid = document.getElementById('cards-grid');
+
+    if (ops.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <span>🔍</span>
+          Nenhuma oportunidade encontrada.<br/>
+          Clique em "Nova oportunidade" para começar.
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = ops.map(o => {
+      const isConquistado = o.status === 'link-conquistado';
+      const drBadge = o.dr ? `<span class="badge badge-dr">DR ${o.dr}</span>` : '';
+      const emailInfo = o.email ? `<span style="color:var(--muted);font-size:11px">✉ ${o.email}</span>` : '';
+      const artigoInfo = o.artigo
+        ? `<a href="${o.artigo}" target="_blank" style="color:var(--accent);font-size:11px">🔗 artigo oferecido</a>`
+        : '';
+      const angulo = o.angulo
+        ? `<div class="opp-notes">💡 ${o.angulo}</div>`
+        : '';
+      const notas = o.notas
+        ? `<div class="opp-notes" style="margin-top:4px">📝 ${o.notas}</div>`
+        : '';
+
+      const statusOptions = Object.entries(STATUS_LABELS).map(([val, lbl]) =>
+        `<option value="${val}" ${o.status === val ? 'selected' : ''}>${lbl}</option>`
+      ).join('');
+
+      return `
+        <div class="opp-card ${isConquistado ? 'conquistado' : ''}" id="card-${o.id}">
+          <div>
+            <div class="opp-name">
+              ${o.nome}
+              <a href="${o.url}" target="_blank">↗ visitar</a>
+            </div>
+            <div class="opp-meta">
+              <span class="badge badge-estrategia">${ESTRATEGIA_LABELS[o.estrategia] || o.estrategia}</span>
+              ${drBadge}
+              <select
+                class="status-select"
+                data-status="${o.status}"
+                onchange="mudarStatus(${o.id}, this.value, this)"
+              >${statusOptions}</select>
+              ${emailInfo}
+              ${artigoInfo}
+            </div>
+            ${angulo}
+            ${notas}
+          </div>
+          <div class="opp-actions">
+            <span class="opp-date">${o.dataCriacao || ''}</span>
+            <button class="btn-delete" onclick="deletar(${o.id})" title="Excluir">✕</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── ACTIONS ──────────────────────────────────────
+  function mudarStatus(id, novoStatus, selectEl) {
+    const ops = getOps();
+    const idx = ops.findIndex(o => o.id === id);
+    if (idx === -1) return;
+    ops[idx].status = novoStatus;
+    selectEl.setAttribute('data-status', novoStatus);
+    const card = document.getElementById(`card-${id}`);
+    if (card) {
+      card.classList.toggle('conquistado', novoStatus === 'link-conquistado');
+    }
+    saveOps(ops);
+    renderStats();
+    // re-render só se filtro ativo vai esconder esse card
+    const deveEsconder =
+      (filtroAtivo === 'ativos' && !ATIVOS.includes(novoStatus)) ||
+      (filtroAtivo === 'link-conquistado' && novoStatus !== 'link-conquistado') ||
+      (filtroAtivo === 'arquivo' && !ARQUIVO.includes(novoStatus));
+    if (deveEsconder) renderCards();
+  }
+
+  function deletar(id) {
+    if (!confirm('Remover esta oportunidade?')) return;
+    const ops = getOps().filter(o => o.id !== id);
+    saveOps(ops);
+    renderStats();
+    renderCards();
+  }
+
+  // ── EXPORT CSV ───────────────────────────────────
+  function exportarCSV() {
+    const ops = getOps();
+    const cols = ['nome','url','email','estrategia','dr','status','artigo','angulo','notas','dataCriacao'];
+    const header = ['Nome','URL','E-mail','Estratégia','DR','Status','Artigo NC','Ângulo','Notas','Data'];
+    const rows = ops.map(o => cols.map(c => `"${(o[c] || '').toString().replace(/"/g,'""')}"`).join(','));
+    const csv  = [header.join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const a    = document.createElement('a');
+    a.href     = URL.createObjectURL(blob);
+    a.download = `link-building-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+  }
+</script>
+
+</body>
+</html>
