@@ -47,8 +47,8 @@ Antes de delegar qualquer pauta, classifique **obrigatoriamente** em um dos 4 ti
 |----------|-------------------------------------|-----------------|
 | Informacional | CPP ou Pergunta + Dor + Promessa | 800–1.200 palavras |
 | Navegacional | Não usa pipeline de artigo | — |
-| Comercial | Modelo de Ponte | 1.200–2.000 palavras |
-| Transacional | Modelo de Ponte ou Pergunta + Dor | 600–1.000 palavras |
+| Comercial | Modelo de Ponte | 1.800–3.000 palavras |
+| Transacional | Modelo de Ponte ou Pergunta + Dor | 1500–3.000 palavras |
 
 ---
 

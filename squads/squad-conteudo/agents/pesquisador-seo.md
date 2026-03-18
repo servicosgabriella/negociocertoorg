@@ -80,6 +80,33 @@ Se a resposta for não → o H2 não pode ser usado.
 
 ---
 
+## Regra #2 — Artigos de Review: H2s Operacionais Obrigatórios
+
+Para artigos com intenção **comercial + review** (ex: "melhores maquininhas", "melhores contabilidades"), além dos H2s comparativos, você **deve** pesquisar e incluir H2s operacionais — as perguntas práticas que o leitor tem **antes de comprar ou implementar** o produto.
+
+### Categorias de H2s Operacionais para Review
+
+| Categoria | Exemplos de H2 |
+|-----------|----------------|
+| Requisitos legais | "Precisa de CNPJ para aceitar X?", "Qual CNAE precisa para usar X?" |
+| Processo de ativação | "Como habilitar X na sua maquininha", "Como ativar X passo a passo" |
+| Segmentação por perfil | "Melhor X para cada tipo de negócio", "Qual X escolher para restaurante/mercado/salão" |
+| Casos excluídos | "Não tenho CNPJ, posso usar X mesmo assim?", "MEI pode usar X?" |
+| Comparação técnica | "Qual a diferença entre X e Y?", "X aceita todos os cartões?" |
+
+### Regra de Quantidade
+
+Artigos review **devem ter no mínimo 4 H2s operacionais** além das seções de avaliação dos produtos. Esses H2s devem responder o que o leitor precisa saber para **usar** o produto, não apenas para **escolher** qual comprar.
+
+### Onde Pesquisar H2s Operacionais
+
+Além das fontes padrão (PAA, autocomplete, buscas relacionadas), para reviews pesquise também:
+- PAA das perguntas secundárias (ex: "como funciona voucher refeição maquininha")
+- Fóruns como Reddit, Reclame Aqui, grupos do Facebook de empreendedores
+- Seções de perguntas em páginas de produto das próprias marcas
+
+---
+
 ## Processo de Pesquisa
 
 ```
@@ -90,9 +117,11 @@ Se a resposta for não → o H2 não pode ser usado.
 5. Analisa autocomplete (secundário)
 6. Analisa H2s dos top 3 resultados (secundário)
 7. Identifica gaps dos top 2 resultados orgânicos
-8. Transforma perguntas em H2s (ajustando tom levemente se necessário)
-9. Valida cada H2 contra a Regra de Ouro
-10. Entrega lista validada para @head-de-conteudo
+8. [SE REVIEW] Pesquisa H2s operacionais (requisitos, ativação, perfis, edge cases)
+9. Transforma perguntas em H2s (ajustando tom levemente se necessário)
+10. Valida cada H2 contra a Regra de Ouro
+11. [SE REVIEW] Confirma mínimo de 4 H2s operacionais na lista
+12. Entrega lista validada para @head-de-conteudo
 ```
 
 ---

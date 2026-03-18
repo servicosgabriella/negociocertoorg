@@ -14,6 +14,7 @@ Regras complementares:
 - Lista negra de linguagem → `config/blacklist.md`
 - Regras de slug/URL → `config/slug-rules.md`
 
+
 ---
 
 ## Tom e Voz
@@ -42,6 +43,146 @@ Não espere o leitor ficar confuso. Responda antes:
 - "Pode parecer complicado, mas..."
 - "Você deve estar pensando: 'e se...'"
 - "A pergunta que todo mundo faz aqui é..."
+
+---
+
+## Tom e Voz por Tipo de Página
+
+Cada layout tem uma voz editorial distinta. Antes de escrever, identifique o layout e aplique o perfil correspondente.
+
+### ContentLayout.astro — Artigo Informativo/Educativo
+
+**Quem escreve:** Especialista acessível. Sabe mais que o leitor, mas não é professor.
+
+**Para quem:** MEI ou empreendedor com uma dúvida concreta — veio buscar resposta, não aula.
+
+**Tom:** 80% guia prático, 20% conversa humana. Mesma proporção geral, mas aplicada com foco em resolver, não em impressionar.
+
+**Voz:**
+- Explica como se o leitor já tivesse decidido aprender — sem convencer antes de ensinar
+- Usa exemplos concretos com valores e datas reais ("R$ 75/mês", "vence dia 20")
+- Antecipa a dúvida antes de ela surgir: "Você vai pensar que é complicado. Não é."
+- Nunca usa jargão sem explicar na mesma frase
+
+**Estrutura de voz ao longo do artigo:**
+1. **Introdução:** Empatia rápida + promessa concreta. Máximo 3-4 frases.
+2. **Desenvolvimento:** Uma ideia por parágrafo. Voz firme, sem rodeios.
+3. **Conclusão:** Próximo passo real — nunca "esperamos ter ajudado".
+
+**O que evitar:**
+- Tom corporativo ("é fundamental ressaltar que...")
+- Passiva desnecessária ("é necessário que seja feito...")
+- Superlativo vazio ("a melhor solução do mercado")
+- Explicar o óbvio ("como todos sabemos...")
+
+---
+
+### ReviewLayout.astro — Review / Ranking ("Melhores X")
+
+**Quem escreve:** Redator sênior de conteúdo de afiliado. Como um amigo que já pesquisou tudo e está contando o que descobriu — com autoridade, sem chute.
+
+**Para quem:** Empreendedor brasileiro, MEI a pequena empresa. Pragmático, desconfiado de propaganda. Toma decisão por preço + facilidade + "não me dê dor de cabeça". Lê no celular, no intervalo, decide rápido.
+
+#### Tom
+
+Segunda pessoa informal ("você"). Conversacional, mas com autoridade. Sem entusiasmo exagerado, sem caps lock, sem exclamações em sequência.
+
+Coloquialismos naturais do brasileiro são bem-vindos: "pois é", "é chato, mas", "tá bombando", "isso aqui é presente". Nunca linguagem corporativa: proibido "solução", "ecossistema robusto", "experiência do usuário".
+
+#### Estrutura obrigatória de cada review
+
+1. **Abertura com dor validada** — 2-3 frases curtas que nomeiam o problema real do leitor antes de mencionar qualquer produto
+2. **Posicionamento editorial** — "a gente fez o trabalho por você" / "depois de analisar X opções"
+3. **Destaque rápido do vencedor** — uma frase com o resultado, sem suspense desnecessário
+4. **Lista de benefícios em bullets curtos** — máximo 6 itens, começando pelo mais importante, sem adjetivos vazios
+5. **Taxas/preços com contexto** — sempre com comparativo direto em reais ("no concorrente X custa R$Y, aqui custa R$Z, diferença de R$W por mês")
+6. **Detalhamento de funcionalidades** em parágrafos curtos (2-4 linhas cada), uma funcionalidade por parágrafo
+7. **Prova social** — nota no Reclame Aqui ou Google com contexto ("não é aquela nota inflada com 50 reviews manipuladas")
+8. **O que eu não gostei** — 1-2 críticas reais, minimizadas com contexto ("acontece com qualquer concorrente", "mas funciona muito bem")
+9. **Fechamento com CTA suave** — reafirma para quem vale, menciona oferta exclusiva sem pressão excessiva
+
+#### Regras de números
+
+- Sempre converta percentual em impacto real em reais para o leitor médio do nicho
+- Use faixas de faturamento realistas para o público ("quem vende entre R$10k e R$15k por mês")
+- Mostre o cálculo explícito quando comparar concorrentes
+
+#### Credibilidade editorial
+
+- Sempre mencione data de verificação ("verificado em [mês] de [ano]")
+- Inclua a metodologia brevemente: "analisamos X opções" / "consideramos três pilares: A, B e C"
+- Inclua pelo menos uma crítica legítima por produto — reviews sem pontos negativos parecem falsos
+
+#### Proibições específicas do ReviewLayout
+
+- Nunca diga "o melhor do mercado" sem provar com dado
+- Nunca use "incrível", "surpreendente", "revolucionário"
+- Nunca abra com adjetivo: proibido começar com "Excelente opção para..."
+- Nunca faça parágrafo com mais de 5 linhas
+- Nunca liste mais de 3 pontos sem intercalar com prosa
+- Bullets são para listas objetivas (preços, taxas, funcionalidades técnicas) — a maior parte do conteúdo deve ser prosa corrida. Proibido criar bullets para substituir parágrafos ou fragmentar raciocínios que fluiriam melhor em texto
+- Nunca use Frases como "O mercado de X no Brasil é grande e fragmentado" ou "O setor
+  de Y vive um momento de transformação" são marcadores imediatos de IA.
+  Em vez disso, traduza o dado para a consequência real do leitor: o que isso
+  significa pra ele, no dia a dia, no bolso, na operação.
+
+---
+
+### Regra: Sem Jargão Técnico — Traduza para o Benefício Real
+
+Nunca escreva para impressionar com vocabulário técnico. Escreva para que o leitor entenda na primeira leitura e saia sabendo o que fazer.
+
+**Princípio:** Cada dado técnico precisa ter a consequência prática para o leitor logo em seguida.
+
+| Em vez de escrever | Escreva assim |
+|--------------------|---------------|
+| "Tecnologia NFC com protocolo ISO/IEC 14443" | "Aceita pagamento por aproximação, sem precisar inserir o cartão" |
+| "Liquidação D+1 para débito e D+30 para crédito à vista" | "O dinheiro do débito cai na sua conta no dia seguinte. O crédito à vista cai em 30 dias." |
+| "Taxas MDR de 0,75% a 3,99% dependendo da bandeira" | "Você paga entre 0,75% e 3,99% por venda, dependendo do cartão do cliente" |
+| "Integração com ERP via API REST" | "Conecta com o sistema de gestão que você já usa" |
+| "Criptografia ponta a ponta certificada PCI-DSS" | "Os dados do cartão ficam protegidos — nenhuma informação vaza para fora" |
+
+**Regra de ouro:** Se você usou um termo técnico, a frase seguinte deve explicar o que isso significa na prática para quem tem um bar, mercado ou salão.
+
+**O que é proibido:**
+- Listar especificações técnicas sem contexto de uso
+- Usar siglas sem explicar (NFC, MDR, PCI, API, etc.) sem parentético
+- Falar de "tecnologia X" sem dizer o que a pessoa ganha com isso no dia a dia
+
+---
+
+### Regra: Reviews de Maquininhas — Escreva Como Quem Testou
+
+Para artigos de review de maquininhas, o redator deve escrever como se tivesse **testado pessoalmente cada equipamento**. Isso cria autoridade editorial, aproxima o leitor e diferencia o conteúdo de uma simples comparação de specs.
+
+#### Como aplicar a voz de quem testou
+
+Use expressões que transmitam experiência direta, sem mentir ou inventar:
+
+| Voz técnica/fria | Voz de quem testou |
+|------------------|--------------------|
+| "A maquininha possui conectividade Wi-Fi e 4G" | "Na prática, conectar no Wi-Fi foi questão de segundos. O 4G entrou sozinho onde não tinha sinal." |
+| "O tempo de aprovação é de 3 segundos" | "A transação aprovava rápido, sem aquela demora que constrange o cliente na fila." |
+| "Bateria de 5.200 mAh" | "A bateria aguentou o dia inteiro sem precisar carregar no meio do expediente." |
+| "Display touchscreen de 5 polegadas" | "A tela é grande o suficiente para o cliente digitar a senha sem ter que inclinar para ver." |
+| "Suporta 50 bandeiras de voucher" | "Aceitou Alelo, VR, Sodexo, Ticket e outros que você provavelmente nunca viu aparecer, mas aparecem." |
+
+#### Expressões de voz editorial aprovadas para maquininhas
+
+- "No nosso teste..."
+- "Na prática..."
+- "O que percebemos foi..."
+- "Quem usa no dia a dia vai notar..."
+- "A gente testou e..."
+- "Na hora de usar de verdade..."
+- "O que chama atenção quando você pega na mão é..."
+- "No balcão do dia a dia..."
+
+#### O que manter mesmo com voz de teste
+
+- Dados objetivos (preços, taxas, prazo de recebimento) sempre com fontes verificáveis
+- Críticas reais e proporcionais
+- Comparativo com concorrentes usando dados concretos
 
 ---
 

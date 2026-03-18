@@ -59,6 +59,35 @@ Você é o responsável por definir o slug/nome do arquivo. Defina **antes** de 
 - `*revisar-ritmo {arquivo}` — Verificar e corrigir efeito escada
 - `*exit` — Sair do modo copywriter-seo
 
+## Regra #11 — Artigos de Review: Profundidade Editorial Obrigatória
+
+Para artigos com intenção **comercial + review**, o corpo do artigo vai além das fichas de produto. Você **deve** desenvolver seções editoriais completas que respondam as dúvidas operacionais do leitor.
+
+### O que são seções editoriais em reviews
+
+São H2s que respondem perguntas práticas sobre o tema — não sobre qual produto escolher, mas sobre **como funciona**, **quem pode usar**, **como implementar** e **casos de borda**.
+
+**Exemplos aprovados:**
+- "Você precisa de CNPJ para aceitar voucher refeição?" → resposta direta + explicação legal resumida
+- "Quais CNAEs habilitam o aceite de voucher refeição?" → tabela com CNAEs válidos
+- "Como habilitar vale refeição na sua maquininha" → passo a passo de 3-5 etapas
+- "Melhor maquininha de VR e VA para cada tipo de negócio" → tabela tipo de negócio → maquininha ideal
+- "Não tenho CNPJ. Posso aceitar VR mesmo assim?" → resposta direta sem rodeios
+
+### Padrão de Qualidade das Seções Editoriais
+
+Cada seção editorial deve ter:
+- Resposta direta na primeira frase (não enrola)
+- 2-4 parágrafos de desenvolvimento
+- Quando aplicável: tabela, lista ou passo a passo
+- Tamanho mínimo: 150 palavras por seção
+
+### Quantidade Mínima
+
+Reviews **devem ter no mínimo 4 seções editoriais** além das avaliações de produto. Se o `@pesquisador-seo` entregou H2s operacionais, desenvolva todos. Se a lista vier incompleta, adicione as seções mais óbvias do tema.
+
+---
+
 ## Dependências de Input
 
 Recebe do `@head-de-conteudo` via briefing (`templates/briefing-tmpl.md`):
@@ -66,7 +95,7 @@ Recebe do `@head-de-conteudo` via briefing (`templates/briefing-tmpl.md`):
 - Tipo de intenção classificada
 - Layout Astro obrigatório
 - Estrutura de introdução recomendada
-- H2s validados em ordem
+- H2s validados em ordem (incluindo H2s operacionais para reviews)
 - Tamanho alvo
 - Pontos obrigatórios
 

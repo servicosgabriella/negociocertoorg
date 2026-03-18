@@ -39,7 +39,9 @@ export const estrutura = {
       maquininhas: {
         label: "Maquininhas de Cartão",
         href: "/financas/maquininhas/",
-        paginas: [] as Pagina[]
+        paginas: [
+          { label: "Melhores Maquininhas que Aceitam Voucher Refeição (2026)", href: "/melhores-maquininhas-cartao-voucher-refeicao" }
+        ] as Pagina[]
       },
       erp: {
         label: "ERP e Sistemas de Gestão",
