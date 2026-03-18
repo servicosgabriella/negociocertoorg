@@ -35,7 +35,7 @@
       font-size: 14px;
     }
 
-    /* ── LOGIN ── */
+    /* LOGIN */
     #login-screen {
       display: flex;
       align-items: center;
@@ -85,15 +85,9 @@
     }
 
     .login-box button:hover { opacity: 0.9; }
+    .login-error { color: var(--red); font-size: 13px; margin-top: 12px; display: none; }
 
-    .login-error {
-      color: var(--red);
-      font-size: 13px;
-      margin-top: 12px;
-      display: none;
-    }
-
-    /* ── APP ── */
+    /* APP */
     #app { display: none; }
 
     .topbar {
@@ -109,9 +103,8 @@
     }
 
     .topbar-left { display: flex; align-items: center; gap: 12px; }
-    .topbar-logo { font-size: 16px; font-weight: 700; color: var(--text); }
+    .topbar-logo { font-size: 16px; font-weight: 700; }
     .topbar-sub  { color: var(--muted); font-size: 13px; }
-
     .topbar-actions { display: flex; gap: 8px; }
 
     .btn {
@@ -126,13 +119,11 @@
       gap: 6px;
       transition: opacity .15s;
     }
-
     .btn:hover { opacity: 0.85; }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-ghost   { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-    .btn-danger  { background: transparent; color: var(--red); border: 1px solid var(--border); }
 
-    /* ── STATS ── */
+    /* STATS */
     .stats-bar {
       display: flex;
       gap: 12px;
@@ -154,7 +145,7 @@
     .stat-value { font-size: 26px; font-weight: 700; }
     .stat-label { color: var(--muted); font-size: 12px; }
 
-    /* ── FILTERS ── */
+    /* FILTERS */
     .filters {
       padding: 20px 24px 0;
       display: flex;
@@ -194,7 +185,15 @@
 
     .search-input:focus { border-color: var(--accent); }
 
-    /* ── CARDS ── */
+    /* LOADING */
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CARDS */
     .cards-grid {
       padding: 16px 24px 40px;
       display: flex;
@@ -224,6 +223,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .opp-name a {
@@ -243,13 +243,7 @@
       margin-top: 6px;
     }
 
-    .badge {
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 500;
-    }
-
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
     .badge-estrategia { background: #1e3a5f; color: #93c5fd; }
     .badge-dr        { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
 
@@ -263,6 +257,16 @@
       cursor: pointer;
       outline: none;
     }
+
+    .status-select[data-status="prospectado"]      { border-left: 3px solid var(--muted); }
+    .status-select[data-status="qualificado"]      { border-left: 3px solid var(--accent); }
+    .status-select[data-status="enviado"]          { border-left: 3px solid var(--yellow); }
+    .status-select[data-status="followup-1"]       { border-left: 3px solid var(--orange); }
+    .status-select[data-status="followup-2"]       { border-left: 3px solid var(--red); }
+    .status-select[data-status="respondeu"]        { border-left: 3px solid var(--purple); }
+    .status-select[data-status="link-conquistado"] { border-left: 3px solid var(--green); }
+    .status-select[data-status="arquivado"]        { border-left: 3px solid #374151; }
+    .status-select[data-status="recusado"]         { border-left: 3px solid var(--red); }
 
     .opp-notes {
       color: var(--muted);
@@ -278,10 +282,7 @@
       align-items: flex-end;
     }
 
-    .opp-date {
-      color: var(--muted);
-      font-size: 11px;
-    }
+    .opp-date { color: var(--muted); font-size: 11px; }
 
     .btn-delete {
       background: transparent;
@@ -303,18 +304,7 @@
 
     .empty-state span { font-size: 40px; display: block; margin-bottom: 12px; }
 
-    /* status colors for select */
-    .status-select[data-status="prospectado"]      { border-left: 3px solid var(--muted); }
-    .status-select[data-status="qualificado"]      { border-left: 3px solid var(--accent); }
-    .status-select[data-status="enviado"]          { border-left: 3px solid var(--yellow); }
-    .status-select[data-status="followup-1"]       { border-left: 3px solid var(--orange); }
-    .status-select[data-status="followup-2"]       { border-left: 3px solid var(--red); }
-    .status-select[data-status="respondeu"]        { border-left: 3px solid var(--purple); }
-    .status-select[data-status="link-conquistado"] { border-left: 3px solid var(--green); }
-    .status-select[data-status="arquivado"]        { border-left: 3px solid #374151; }
-    .status-select[data-status="recusado"]         { border-left: 3px solid var(--red); }
-
-    /* ── MODAL ── */
+    /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -375,7 +365,6 @@
       margin-top: 20px;
     }
 
-    /* scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -389,63 +378,55 @@
     <h1>🔗 Link Building</h1>
     <p>NegocioCerto.org — Painel interno</p>
     <input type="password" id="senha-input" placeholder="••••" maxlength="8" />
-    <button onclick="tentarLogin()">Entrar</button>
+    <button id="btn-login">Entrar</button>
     <div class="login-error" id="login-error">Senha incorreta.</div>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app">
-
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="topbar-logo">🔗 Link Building</div>
       <div class="topbar-sub">NegocioCerto.org</div>
     </div>
     <div class="topbar-actions">
-      <button class="btn btn-ghost" onclick="exportarCSV()">⬇ Exportar CSV</button>
-      <button class="btn btn-primary" onclick="abrirModal()">+ Nova oportunidade</button>
+      <button class="btn btn-ghost" id="btn-exportar">⬇ Exportar CSV</button>
+      <button class="btn btn-primary" id="btn-nova">+ Nova oportunidade</button>
     </div>
   </div>
 
-  <!-- STATS -->
   <div class="stats-bar" id="stats-bar"></div>
 
-  <!-- FILTERS -->
   <div class="filters">
-    <button class="filter-tab active" data-filter="todos" onclick="filtrar('todos', this)">Todos</button>
-    <button class="filter-tab" data-filter="ativos" onclick="filtrar('ativos', this)">Ativos</button>
-    <button class="filter-tab" data-filter="link-conquistado" onclick="filtrar('link-conquistado', this)">✅ Conquistados</button>
-    <button class="filter-tab" data-filter="arquivo" onclick="filtrar('arquivo', this)">Arquivo</button>
-    <input class="search-input" type="text" placeholder="Buscar site..." id="search-input" oninput="renderCards()" />
+    <button class="filter-tab active" data-filter="todos">Todos</button>
+    <button class="filter-tab" data-filter="ativos">Ativos</button>
+    <button class="filter-tab" data-filter="link-conquistado">✅ Conquistados</button>
+    <button class="filter-tab" data-filter="arquivo">Arquivo</button>
+    <input class="search-input" type="text" placeholder="Buscar site..." id="search-input" />
   </div>
 
-  <!-- CARDS -->
-  <div class="cards-grid" id="cards-grid"></div>
-
+  <div class="cards-grid" id="cards-grid">
+    <div class="loading">Carregando oportunidades...</div>
+  </div>
 </div>
 
-<!-- MODAL NOVA OPORTUNIDADE -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <h2>Nova oportunidade</h2>
-
     <div class="form-group">
       <label>Nome do site *</label>
       <input type="text" id="f-nome" placeholder="Ex: ContabilidadeMEI.com.br" />
     </div>
-
     <div class="form-group">
       <label>URL do site *</label>
       <input type="url" id="f-url" placeholder="https://..." />
     </div>
-
     <div class="form-group">
       <label>E-mail de contato</label>
       <input type="email" id="f-email" placeholder="contato@site.com.br" />
     </div>
-
     <div class="form-group">
       <label>Estratégia</label>
       <select id="f-estrategia">
@@ -455,166 +436,34 @@
         <option value="reclamation">Link Reclamation</option>
       </select>
     </div>
-
     <div class="form-group">
       <label>DR (Domain Rating — Ahrefs gratuito)</label>
       <input type="number" id="f-dr" placeholder="Ex: 28" min="0" max="100" />
     </div>
-
     <div class="form-group">
       <label>Artigo do NegocioCerto oferecido</label>
-      <input type="url" id="f-artigo" placeholder="https://negociocertoorg.com.br/..." />
+      <input type="url" id="f-artigo" placeholder="https://negociocerto.org/..." />
     </div>
-
     <div class="form-group">
       <label>Ângulo de personalização</label>
-      <textarea id="f-angulo" placeholder="O que você encontrou de específico no site para mencionar no e-mail..."></textarea>
+      <textarea id="f-angulo" placeholder="O que você encontrou de específico no site..."></textarea>
     </div>
-
     <div class="form-group">
       <label>Notas adicionais</label>
       <textarea id="f-notas" placeholder="Observações, datas, contexto..."></textarea>
     </div>
-
     <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="fecharModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarOportunidade()">Salvar</button>
+      <button class="btn btn-ghost" id="btn-cancelar">Cancelar</button>
+      <button class="btn btn-primary" id="btn-salvar">Salvar</button>
     </div>
   </div>
 </div>
 
-<script>
+<script is:inline>
   const SENHA = '1269';
-  const KEY   = 'lb_oportunidades_v1';
+  const ATIVOS  = ['prospectado','qualificado','enviado','followup-1','followup-2','respondeu'];
+  const ARQUIVO = ['arquivado','recusado'];
 
-  // ── AUTH ──────────────────────────────────────────
-  function tentarLogin() {
-    const v = document.getElementById('senha-input').value;
-    if (v === SENHA) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
-      renderStats();
-      renderCards();
-    } else {
-      document.getElementById('login-error').style.display = 'block';
-    }
-  }
-
-  document.getElementById('senha-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') tentarLogin();
-  });
-
-  // ── STORAGE ──────────────────────────────────────
-  function getOps() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
-    catch { return []; }
-  }
-
-  function saveOps(ops) {
-    localStorage.setItem(KEY, JSON.stringify(ops));
-  }
-
-  // ── MODAL ────────────────────────────────────────
-  function abrirModal() {
-    document.getElementById('modal').classList.add('open');
-  }
-
-  function fecharModal() {
-    document.getElementById('modal').classList.remove('open');
-    ['f-nome','f-url','f-email','f-dr','f-artigo','f-angulo','f-notas'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
-    document.getElementById('f-estrategia').value = 'broken-link';
-  }
-
-  document.getElementById('modal').addEventListener('click', e => {
-    if (e.target === document.getElementById('modal')) fecharModal();
-  });
-
-  function salvarOportunidade() {
-    const nome = document.getElementById('f-nome').value.trim();
-    const url  = document.getElementById('f-url').value.trim();
-    if (!nome || !url) { alert('Nome e URL são obrigatórios.'); return; }
-
-    const ops = getOps();
-    ops.unshift({
-      id:          Date.now(),
-      nome,
-      url,
-      email:       document.getElementById('f-email').value.trim(),
-      estrategia:  document.getElementById('f-estrategia').value,
-      dr:          document.getElementById('f-dr').value,
-      artigo:      document.getElementById('f-artigo').value.trim(),
-      angulo:      document.getElementById('f-angulo').value.trim(),
-      notas:       document.getElementById('f-notas').value.trim(),
-      status:      'prospectado',
-      dataCriacao: new Date().toISOString().split('T')[0],
-    });
-
-    saveOps(ops);
-    fecharModal();
-    renderStats();
-    renderCards();
-  }
-
-  // ── FILTRO ───────────────────────────────────────
-  let filtroAtivo = 'todos';
-
-  function filtrar(f, btn) {
-    filtroAtivo = f;
-    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderCards();
-  }
-
-  const ATIVOS   = ['prospectado','qualificado','enviado','followup-1','followup-2','respondeu'];
-  const ARQUIVO  = ['arquivado','recusado'];
-
-  function filtrarOps(ops) {
-    const q = document.getElementById('search-input').value.toLowerCase();
-    return ops.filter(o => {
-      const matchSearch = !q || o.nome.toLowerCase().includes(q) || o.url.toLowerCase().includes(q);
-      let matchFiltro = true;
-      if (filtroAtivo === 'ativos')           matchFiltro = ATIVOS.includes(o.status);
-      else if (filtroAtivo === 'link-conquistado') matchFiltro = o.status === 'link-conquistado';
-      else if (filtroAtivo === 'arquivo')     matchFiltro = ARQUIVO.includes(o.status);
-      return matchSearch && matchFiltro;
-    });
-  }
-
-  // ── STATS ─────────────────────────────────────────
-  function renderStats() {
-    const ops = getOps();
-    const conquistados = ops.filter(o => o.status === 'link-conquistado').length;
-    const ativos       = ops.filter(o => ATIVOS.includes(o.status)).length;
-    const enviados     = ops.filter(o => ['enviado','followup-1','followup-2'].includes(o.status)).length;
-    const taxa         = enviados > 0 ? Math.round((conquistados / enviados) * 100) : 0;
-
-    document.getElementById('stats-bar').innerHTML = `
-      <div class="stat-card">
-        <span class="stat-value" style="color:var(--text)">${ops.length}</span>
-        <span class="stat-label">Total de oportunidades</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value" style="color:var(--accent)">${ativos}</span>
-        <span class="stat-label">Em andamento</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value" style="color:var(--yellow)">${enviados}</span>
-        <span class="stat-label">E-mails enviados</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value" style="color:var(--green)">${conquistados}</span>
-        <span class="stat-label">Links conquistados</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value" style="color:var(--purple)">${taxa}%</span>
-        <span class="stat-label">Taxa de conversão</span>
-      </div>
-    `;
-  }
-
-  // ── LABELS ───────────────────────────────────────
   const STATUS_LABELS = {
     'prospectado':      'Prospectado',
     'qualificado':      'Qualificado',
@@ -634,111 +483,242 @@
     'reclamation':  'Reclamation',
   };
 
-  // ── RENDER CARDS ─────────────────────────────────
+  var todasOps = [];
+  var filtroAtivo = 'todos';
+
+  // ── AUTH ──────────────────────────────────────────
+  document.getElementById('btn-login').addEventListener('click', tentarLogin);
+  document.getElementById('senha-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tentarLogin();
+  });
+
+  function tentarLogin() {
+    if (document.getElementById('senha-input').value === SENHA) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      carregarOps();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  // ── API ───────────────────────────────────────────
+  function carregarOps() {
+    fetch('/api/links')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        todasOps = data;
+        renderStats();
+        renderCards();
+      })
+      .catch(function() {
+        document.getElementById('cards-grid').innerHTML =
+          '<div class="empty-state"><span>⚠️</span>Erro ao carregar dados.<br/>Verifique se o KV está configurado na Cloudflare.</div>';
+      });
+  }
+
+  function apiPost(body) {
+    return fetch('/api/links', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function(r) { return r.json(); });
+  }
+
+  function apiPut(body) {
+    return fetch('/api/links', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function(r) { return r.json(); });
+  }
+
+  function apiDelete(id) {
+    return fetch('/api/links', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id }),
+    }).then(function(r) { return r.json(); });
+  }
+
+  // ── FILTROS ───────────────────────────────────────
+  document.querySelectorAll('.filter-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filtroAtivo = btn.dataset.filter;
+      document.querySelectorAll('.filter-tab').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderCards();
+    });
+  });
+
+  document.getElementById('search-input').addEventListener('input', renderCards);
+
+  function getOpsFiltradas() {
+    var q = document.getElementById('search-input').value.toLowerCase();
+    return todasOps.filter(function(o) {
+      var matchSearch = !q || o.nome.toLowerCase().includes(q) || (o.url || '').toLowerCase().includes(q);
+      var matchFiltro = true;
+      if (filtroAtivo === 'ativos')            matchFiltro = ATIVOS.includes(o.status);
+      else if (filtroAtivo === 'link-conquistado') matchFiltro = o.status === 'link-conquistado';
+      else if (filtroAtivo === 'arquivo')      matchFiltro = ARQUIVO.includes(o.status);
+      return matchSearch && matchFiltro;
+    });
+  }
+
+  // ── STATS ─────────────────────────────────────────
+  function renderStats() {
+    var ops = todasOps;
+    var conquistados = ops.filter(function(o) { return o.status === 'link-conquistado'; }).length;
+    var ativos       = ops.filter(function(o) { return ATIVOS.includes(o.status); }).length;
+    var enviados     = ops.filter(function(o) { return ['enviado','followup-1','followup-2'].includes(o.status); }).length;
+    var taxa         = enviados > 0 ? Math.round((conquistados / enviados) * 100) : 0;
+
+    document.getElementById('stats-bar').innerHTML =
+      stat(ops.length, 'Total', 'var(--text)') +
+      stat(ativos, 'Em andamento', 'var(--accent)') +
+      stat(enviados, 'E-mails enviados', 'var(--yellow)') +
+      stat(conquistados, 'Links conquistados', 'var(--green)') +
+      stat(taxa + '%', 'Taxa de conversão', 'var(--purple)');
+  }
+
+  function stat(val, label, color) {
+    return '<div class="stat-card"><span class="stat-value" style="color:' + color + '">' + val + '</span><span class="stat-label">' + label + '</span></div>';
+  }
+
+  // ── CARDS ─────────────────────────────────────────
   function renderCards() {
-    const ops  = filtrarOps(getOps());
-    const grid = document.getElementById('cards-grid');
+    var ops  = getOpsFiltradas();
+    var grid = document.getElementById('cards-grid');
 
     if (ops.length === 0) {
-      grid.innerHTML = `
-        <div class="empty-state">
-          <span>🔍</span>
-          Nenhuma oportunidade encontrada.<br/>
-          Clique em "Nova oportunidade" para começar.
-        </div>`;
+      grid.innerHTML = '<div class="empty-state"><span>🔍</span>Nenhuma oportunidade encontrada.<br/>Clique em "+ Nova oportunidade" para começar.</div>';
       return;
     }
 
-    grid.innerHTML = ops.map(o => {
-      const isConquistado = o.status === 'link-conquistado';
-      const drBadge = o.dr ? `<span class="badge badge-dr">DR ${o.dr}</span>` : '';
-      const emailInfo = o.email ? `<span style="color:var(--muted);font-size:11px">✉ ${o.email}</span>` : '';
-      const artigoInfo = o.artigo
-        ? `<a href="${o.artigo}" target="_blank" style="color:var(--accent);font-size:11px">🔗 artigo oferecido</a>`
-        : '';
-      const angulo = o.angulo
-        ? `<div class="opp-notes">💡 ${o.angulo}</div>`
-        : '';
-      const notas = o.notas
-        ? `<div class="opp-notes" style="margin-top:4px">📝 ${o.notas}</div>`
-        : '';
+    grid.innerHTML = ops.map(function(o) {
+      var isC = o.status === 'link-conquistado';
+      var drBadge    = o.dr ? '<span class="badge badge-dr">DR ' + o.dr + '</span>' : '';
+      var emailInfo  = o.email ? '<span style="color:var(--muted);font-size:11px">✉ ' + o.email + '</span>' : '';
+      var artigoInfo = o.artigo ? '<a href="' + o.artigo + '" target="_blank" style="color:var(--accent);font-size:11px;text-decoration:none">🔗 artigo</a>' : '';
+      var angulo     = o.angulo ? '<div class="opp-notes">💡 ' + o.angulo + '</div>' : '';
+      var notas      = o.notas  ? '<div class="opp-notes" style="margin-top:4px">📝 ' + o.notas + '</div>' : '';
 
-      const statusOptions = Object.entries(STATUS_LABELS).map(([val, lbl]) =>
-        `<option value="${val}" ${o.status === val ? 'selected' : ''}>${lbl}</option>`
-      ).join('');
+      var opts = Object.entries(STATUS_LABELS).map(function(e) {
+        return '<option value="' + e[0] + '"' + (o.status === e[0] ? ' selected' : '') + '>' + e[1] + '</option>';
+      }).join('');
 
-      return `
-        <div class="opp-card ${isConquistado ? 'conquistado' : ''}" id="card-${o.id}">
-          <div>
-            <div class="opp-name">
-              ${o.nome}
-              <a href="${o.url}" target="_blank">↗ visitar</a>
-            </div>
-            <div class="opp-meta">
-              <span class="badge badge-estrategia">${ESTRATEGIA_LABELS[o.estrategia] || o.estrategia}</span>
-              ${drBadge}
-              <select
-                class="status-select"
-                data-status="${o.status}"
-                onchange="mudarStatus(${o.id}, this.value, this)"
-              >${statusOptions}</select>
-              ${emailInfo}
-              ${artigoInfo}
-            </div>
-            ${angulo}
-            ${notas}
-          </div>
-          <div class="opp-actions">
-            <span class="opp-date">${o.dataCriacao || ''}</span>
-            <button class="btn-delete" onclick="deletar(${o.id})" title="Excluir">✕</button>
-          </div>
-        </div>
-      `;
+      return '<div class="opp-card' + (isC ? ' conquistado' : '') + '" id="card-' + o.id + '">' +
+        '<div>' +
+          '<div class="opp-name">' + o.nome +
+            ' <a href="' + o.url + '" target="_blank">↗ visitar</a>' +
+          '</div>' +
+          '<div class="opp-meta">' +
+            '<span class="badge badge-estrategia">' + (ESTRATEGIA_LABELS[o.estrategia] || o.estrategia || '—') + '</span>' +
+            drBadge +
+            '<select class="status-select" data-status="' + o.status + '" data-id="' + o.id + '" onchange="mudarStatus(this)">' + opts + '</select>' +
+            emailInfo + artigoInfo +
+          '</div>' +
+          angulo + notas +
+        '</div>' +
+        '<div class="opp-actions">' +
+          '<span class="opp-date">' + (o.dataCriacao || '') + '</span>' +
+          '<button class="btn-delete" data-id="' + o.id + '" onclick="deletar(this)">✕</button>' +
+        '</div>' +
+      '</div>';
     }).join('');
   }
 
-  // ── ACTIONS ──────────────────────────────────────
-  function mudarStatus(id, novoStatus, selectEl) {
-    const ops = getOps();
-    const idx = ops.findIndex(o => o.id === id);
+  // ── ACTIONS ───────────────────────────────────────
+  function mudarStatus(sel) {
+    var id         = sel.dataset.id;
+    var novoStatus = sel.value;
+    var idx        = todasOps.findIndex(function(o) { return o.id === id; });
     if (idx === -1) return;
-    ops[idx].status = novoStatus;
-    selectEl.setAttribute('data-status', novoStatus);
-    const card = document.getElementById(`card-${id}`);
-    if (card) {
-      card.classList.toggle('conquistado', novoStatus === 'link-conquistado');
-    }
-    saveOps(ops);
-    renderStats();
-    // re-render só se filtro ativo vai esconder esse card
-    const deveEsconder =
-      (filtroAtivo === 'ativos' && !ATIVOS.includes(novoStatus)) ||
-      (filtroAtivo === 'link-conquistado' && novoStatus !== 'link-conquistado') ||
-      (filtroAtivo === 'arquivo' && !ARQUIVO.includes(novoStatus));
-    if (deveEsconder) renderCards();
+
+    var atualizada = Object.assign({}, todasOps[idx], { status: novoStatus });
+    todasOps[idx] = atualizada;
+
+    sel.setAttribute('data-status', novoStatus);
+    var card = document.getElementById('card-' + id);
+    if (card) card.classList.toggle('conquistado', novoStatus === 'link-conquistado');
+
+    apiPut(atualizada).then(function() {
+      renderStats();
+      var deveEsconder =
+        (filtroAtivo === 'ativos' && !ATIVOS.includes(novoStatus)) ||
+        (filtroAtivo === 'link-conquistado' && novoStatus !== 'link-conquistado') ||
+        (filtroAtivo === 'arquivo' && !ARQUIVO.includes(novoStatus));
+      if (deveEsconder) renderCards();
+    });
   }
 
-  function deletar(id) {
+  function deletar(btn) {
+    var id = btn.dataset.id;
     if (!confirm('Remover esta oportunidade?')) return;
-    const ops = getOps().filter(o => o.id !== id);
-    saveOps(ops);
-    renderStats();
-    renderCards();
+    apiDelete(id).then(function() {
+      todasOps = todasOps.filter(function(o) { return o.id !== id; });
+      renderStats();
+      renderCards();
+    });
   }
 
-  // ── EXPORT CSV ───────────────────────────────────
-  function exportarCSV() {
-    const ops = getOps();
-    const cols = ['nome','url','email','estrategia','dr','status','artigo','angulo','notas','dataCriacao'];
-    const header = ['Nome','URL','E-mail','Estratégia','DR','Status','Artigo NC','Ângulo','Notas','Data'];
-    const rows = ops.map(o => cols.map(c => `"${(o[c] || '').toString().replace(/"/g,'""')}"`).join(','));
-    const csv  = [header.join(','), ...rows].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const a    = document.createElement('a');
-    a.href     = URL.createObjectURL(blob);
-    a.download = `link-building-${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
+  // ── MODAL ─────────────────────────────────────────
+  document.getElementById('btn-nova').addEventListener('click', function() {
+    document.getElementById('modal').classList.add('open');
+  });
+
+  document.getElementById('btn-cancelar').addEventListener('click', fecharModal);
+
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+
+  function fecharModal() {
+    document.getElementById('modal').classList.remove('open');
+    ['f-nome','f-url','f-email','f-dr','f-artigo','f-angulo','f-notas'].forEach(function(id) {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('f-estrategia').value = 'broken-link';
   }
+
+  document.getElementById('btn-salvar').addEventListener('click', function() {
+    var nome = document.getElementById('f-nome').value.trim();
+    var url  = document.getElementById('f-url').value.trim();
+    if (!nome || !url) { alert('Nome e URL são obrigatórios.'); return; }
+
+    var nova = {
+      nome:       nome,
+      url:        url,
+      email:      document.getElementById('f-email').value.trim(),
+      estrategia: document.getElementById('f-estrategia').value,
+      dr:         document.getElementById('f-dr').value,
+      artigo:     document.getElementById('f-artigo').value.trim(),
+      angulo:     document.getElementById('f-angulo').value.trim(),
+      notas:      document.getElementById('f-notas').value.trim(),
+    };
+
+    apiPost(nova).then(function(salva) {
+      todasOps.unshift(salva);
+      fecharModal();
+      renderStats();
+      renderCards();
+    });
+  });
+
+  // ── EXPORT CSV ────────────────────────────────────
+  document.getElementById('btn-exportar').addEventListener('click', function() {
+    var cols   = ['nome','url','email','estrategia','dr','status','artigo','angulo','notas','dataCriacao'];
+    var header = ['Nome','URL','E-mail','Estratégia','DR','Status','Artigo NC','Ângulo','Notas','Data'];
+    var rows   = todasOps.map(function(o) {
+      return cols.map(function(c) { return '"' + (o[c] || '').toString().replace(/"/g,'""') + '"'; }).join(',');
+    });
+    var csv  = [header.join(',')].concat(rows).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var a    = document.createElement('a');
+    a.href   = URL.createObjectURL(blob);
+    a.download = 'link-building-' + new Date().toISOString().split('T')[0] + '.csv';
+    a.click();
+  });
 </script>
 
 </body>
