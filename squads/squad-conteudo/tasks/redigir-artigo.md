@@ -13,7 +13,7 @@ Entrada: |
   - tamanho_alvo: Faixa de palavras alvo (obrigatório)
 Saida: |
   - slug: URL/slug validado (sem números, anos, datas — 3 a 5 palavras)
-  - arquivo: Arquivo do artigo no formato e destino corretos para o layout definido
+  - conteudo: Corpo do artigo em Markdown puro (SEM frontmatter — frontmatter é responsabilidade do *montar-arquivo)
 Checklist:
   - "[ ] Slug definido e validado ANTES de criar o arquivo (sem números, anos, datas)"
   - "[ ] Briefing lido na íntegra"
@@ -23,13 +23,15 @@ Checklist:
   - "[ ] Introdução: sem definição como abertura"
   - "[ ] Introdução: termina com promessa clara"
   - "[ ] Todos os H2s do briefing desenvolvidos"
+  - "[ ] Para review/transacional: cada variante do mapa de variantes aparece ≥1x (H2 ou corpo)?"
+  - "[ ] Nenhuma seção usa a mesma variante da keyword que o H1 (variação distribuída)?"
   - "[ ] Ritmo variado (sem efeito escada)"
   - "[ ] Tom 80/20 (técnico com personalidade)"
   - "[ ] 'Você' usado com frequência"
   - "[ ] Nenhum travessão (—) no meio de frases — use parênteses, vírgulas ou bullets"
   - "[ ] Nenhum conectivo/clichê da Lista Negra"
   - "[ ] Conclusão com próximo passo concreto (não 'esperamos ter ajudado')"
-  - "[ ] FAQ incluído se +7 H2s ou artigo review"
+  - "[ ] FAQ preparado se +7 H2s ou artigo review: para bloglayout, entregar pares Q&A para o *montar-arquivo (NÃO escrever seção ## FAQ no corpo); para contentlayout/reviewlayout, escrever seção ## FAQ no corpo normalmente"
   - "[ ] Artigo enviado para @qa-conteudo"
 ---
 
@@ -48,17 +50,36 @@ Redige artigo SEO completo seguindo o briefing e as regras do squad.
 
 ---
 
-## Destino do Arquivo por Layout (CRÍTICO)
+## Escopo desta Task (CRÍTICO)
 
-O layout define onde o arquivo é criado e qual formato usar. **Referência completa:** `tasks/montar-arquivo.md`.
+`*redigir-artigo` entrega **apenas o corpo do artigo em Markdown puro**, sem frontmatter.
 
-| Layout | Destino |
-|--------|---------|
-| `bloglayout.astro` | `src/content/blog/{slug}.md` (Markdown) |
-| `contentlayout.astro` | `src/pages/{slug}.astro` (Astro + ContentLayout) |
-| `reviewlayout.astro` | `src/pages/{slug}.astro` (Astro + ReviewLayout) |
+- **NÃO** buscar arquivos existentes no repositório para inferir frontmatter
+- **NÃO** criar o arquivo final — isso é feito pelo `*montar-arquivo`
+- **NÃO** incluir bloco `---` de frontmatter no output
+- **NÃO** escrever seção `## FAQ` no corpo quando o layout for `bloglayout` — o BlogLayout renderiza o FAQ a partir do campo `faq:` do frontmatter; incluir FAQ no corpo causaria duplicação visual
 
-Após redigir o conteúdo, executar `*montar-arquivo` para criar o arquivo com frontmatter correto.
+O frontmatter (title, description, pubDate, coverImage, faq, etc.) é de responsabilidade exclusiva de `tasks/montar-arquivo.md`, que contém os templates completos para cada layout.
+
+### Regra do FAQ por layout
+
+| Layout | FAQ no corpo? | FAQ no frontmatter? |
+|--------|--------------|---------------------|
+| `bloglayout` | ❌ NÃO escrever `## FAQ` no corpo | ✅ Entregar pares Q&A para o `*montar-arquivo` colocar no campo `faq:` |
+| `contentlayout` | ✅ Escrever `## FAQ` no corpo | ❌ Não usar campo `faq:` |
+| `reviewlayout` | ✅ Escrever `## FAQ` no corpo | ❌ Não usar campo `faq:` |
+
+Após redigir, executar `*montar-arquivo` passando o corpo produzido aqui.
+
+## Destino do Arquivo por Layout
+
+Para referência de destino e formato final, consultar `tasks/montar-arquivo.md`:
+
+| Layout | Destino final |
+|--------|--------------|
+| `bloglayout.astro` | `src/content/blog/{slug}.md` |
+| `contentlayout.astro` | `src/pages/{slug}.astro` |
+| `reviewlayout.astro` | `src/pages/{slug}.astro` |
 
 ## Estruturas de Introdução
 

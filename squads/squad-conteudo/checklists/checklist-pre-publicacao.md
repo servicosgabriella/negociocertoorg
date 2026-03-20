@@ -46,6 +46,8 @@ Referências de apoio:
 - [ ] Nenhum H2 é genérico (sem: "O que é", "Benefícios de", "Como funciona", "Vantagens e desvantagens", "Dicas para", "Conclusão")?
 - [ ] Links internos têm âncoras descritivas (não "clique aqui")?
 - [ ] Intenção de busca está alinhada com o formato do artigo?
+- [ ] Para review/transacional: todas as variantes do mapa de briefing aparecem no texto?
+- [ ] Para review/transacional: H2s não repetem todos a mesma variante da keyword principal?
 
 ---
 

@@ -38,9 +38,26 @@ Executa o pipeline completo de produção de conteúdo para uma keyword, do brie
 ```
 @head-de-conteudo
 
+# Modo padrão — Claude executa pesquisa e redação
 *orquestrar-pauta melhores maquininhas para MEI
 *orquestrar-pauta "como abrir MEI" --contexto "público iniciante, nunca formalizou"
+
+# Modo Gemini — Gemini executa pesquisa e redação, Claude revisa
+*orquestrar-pauta melhores maquininhas para MEI --via-gemini
 ```
+
+### Modo `--via-gemini`
+
+Quando a flag `--via-gemini` for fornecida, o pipeline substitui os Passos 2 e 4 por execução via Gemini API, com revisão obrigatória do Claude antes do QA.
+
+| Passo | Modo padrão | Modo `--via-gemini` |
+|-------|-------------|---------------------|
+| 2 — Pesquisa | `@pesquisador-seo` → `*pesquisar-pauta` | `*gemini-pesquisar` (script) |
+| 3 — Validar H2s | `@head-de-conteudo` valida | `@head-de-conteudo` valida (igual) |
+| 4 — Redação | `@copywriter-seo` → `*redigir-artigo` | `*gemini-redigir` (script + revisão Claude) |
+| 5 — QA | `@qa-conteudo` → `*auditar-artigo` | `@qa-conteudo` → `*auditar-artigo` (igual) |
+
+**Fallback automático:** se qualquer script Gemini falhar, o @head-de-conteudo executa a task Claude nativa correspondente e o pipeline continua.
 
 ## Sequência de Execução
 
@@ -67,7 +84,18 @@ Em seguida, determina o layout Astro obrigatório:
 
 ### Passo 2 — Delegar Pesquisa
 
-`@head-de-conteudo` → `@pesquisador-seo`:
+**Modo padrão:** `@head-de-conteudo` → `@pesquisador-seo` → `*pesquisar-pauta`
+
+**Modo `--via-gemini`:** executar `*gemini-pesquisar`:
+```bash
+node squads/squad-conteudo/tools/gemini-pesquisar.js \
+  --keyword "{{keyword}}" \
+  --intencao {{intencao}} \
+  > /tmp/pesquisa-{{slug}}.md
+```
+Se exit code 1 → fallback: `@pesquisador-seo` → `*pesquisar-pauta` (continuar normalmente).
+
+Inputs (ambos os modos):
 - Keyword principal
 - Tipo de intenção classificada
 
@@ -79,7 +107,7 @@ Em seguida, determina o layout Astro obrigatório:
 
 ### Passo 4 — Criar Briefing e Delegar Redação
 
-`@head-de-conteudo` → `@copywriter-seo`:
+`@head-de-conteudo` cria o briefing (usando `templates/briefing-tmpl.md`) com:
 - Keyword + variações semânticas
 - Intenção classificada
 - **Layout Astro obrigatório** (`bloglayout.astro` | `reviewlayout.astro` | `contentlayout.astro`)
@@ -88,9 +116,27 @@ Em seguida, determina o layout Astro obrigatório:
 - Tamanho alvo
 - Pontos obrigatórios
 
+**Modo padrão:** briefing entregue ao `@copywriter-seo` → `*redigir-artigo`
+
+**Modo `--via-gemini`:**
+1. Salvar briefing em arquivo temporário: `/tmp/briefing-{{slug}}.md`
+2. Executar `*gemini-redigir`:
+```bash
+node squads/squad-conteudo/tools/gemini-redigir.js \
+  --briefing /tmp/briefing-{{slug}}.md \
+  > /tmp/artigo-gemini-{{slug}}.md
+```
+3. Claude lê `/tmp/artigo-gemini-{{slug}}.md` e aplica **revisão editorial** (ver `tasks/gemini-redigir.md` Passo 3):
+   - Verificar e corrigir violações da blacklist
+   - Remover travessões (—) no meio de frases
+   - Corrigir efeito escada no ritmo
+   - Validar frontmatter e slug
+   - Gerar nota de revisão com total de correções
+4. Se exit code 1 → fallback: `@copywriter-seo` → `*redigir-artigo` (continuar normalmente)
+
 ### Passo 5 — Auditoria
 
-`@copywriter-seo` → `@qa-conteudo`:
+Artigo completo em Markdown (revisado pelo Claude se modo `--via-gemini`) → `@qa-conteudo`:
 - Artigo completo em Markdown
 
 ### Passo 6 — Veredicto

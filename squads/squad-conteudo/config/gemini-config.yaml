@@ -1,0 +1,42 @@
+# gemini-config.yaml
+# Configuração da integração Gemini API para o squad-conteudo
+#
+# Variável de ambiente necessária no .env:
+#   GEMINI_API_KEY=sua-chave-do-google-ai-studio
+#
+# Para obter uma chave gratuita: https://aistudio.google.com/apikey
+
+model: gemini-2.0-flash
+# Alternativas: gemini-1.5-flash (mais estável), gemini-2.0-flash-exp (experimental)
+# Definir GEMINI_MODEL no .env para sobrescrever sem editar este arquivo
+
+temperature:
+  pesquisa: 0.5    # Mais determinístico — H2s precisam ser coerentes e baseados em padrões reais
+  redacao: 0.75    # Mais criativo — redação precisa de variação natural
+
+maxOutputTokens:
+  pesquisa: 4096
+  redacao: 16384   # Artigos longos (2000-3000 palavras) precisam de espaço
+
+retry:
+  maxAttempts: 3
+  backoffMs: 1000  # Dobra a cada tentativa (1s, 2s, 4s)
+
+fallback:
+  enabled: true
+  # Se enabled=true: quando Gemini falhar após maxAttempts, Claude executa a task nativa
+  # Pesquisa → @pesquisador-seo → *pesquisar-pauta
+  # Redação → @copywriter-seo → *redigir-artigo
+  # O pipeline continua normalmente após o fallback
+
+limits:
+  # Limites gratuitos do Google AI Studio (2026)
+  requestsPerDay: 1500      # gemini-2.0-flash: 1500 req/dia
+  requestsPerMinute: 15     # gemini-2.0-flash: 15 req/min
+  tokensPerMinute: 1000000  # gemini-2.0-flash: 1M tokens/min
+
+review:
+  # Claude SEMPRE revisa o artigo gerado pelo Gemini antes de enviar ao @qa-conteudo
+  # Isso é OBRIGATÓRIO e não pode ser desativado
+  claudeReviewEnabled: true
+  # Checklist de revisão está em: tasks/gemini-redigir.md (Passo 3)

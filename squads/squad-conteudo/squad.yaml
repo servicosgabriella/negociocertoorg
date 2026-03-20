@@ -20,9 +20,11 @@ components:
     - qa-conteudo.md
     - head-de-conteudo.md
   tasks:
-    - orquestrar-pauta.md        # Orquestrador — dispara todo o pipeline
-    - pesquisar-pauta.md         # Pesquisa de H2s no Google
-    - redigir-artigo.md          # Redação do artigo
+    - orquestrar-pauta.md        # Orquestrador — dispara todo o pipeline (suporta --via-gemini)
+    - pesquisar-pauta.md         # Pesquisa de H2s no Google (modo padrão)
+    - redigir-artigo.md          # Redação do artigo (modo padrão)
+    - gemini-pesquisar.md        # Pesquisa via Gemini API (modo --via-gemini)
+    - gemini-redigir.md          # Redação via Gemini + revisão Claude (modo --via-gemini)
     - auditar-artigo.md          # Auditoria de qualidade (QA)
     - gerar-capa.md              # Geração de imagem de capa
     - montar-arquivo.md          # Criação do arquivo com frontmatter correto
@@ -38,7 +40,10 @@ components:
     - briefing-tmpl.md             # Handoff: @head-de-conteudo → @copywriter-seo
     - feedback-qa-tmpl.md          # Templates de veto e aprovação do @qa-conteudo
   scripts: []
-  tools: []
+  tools:
+    - gemini-client.js     # Cliente base Gemini API (retry + fallback)
+    - gemini-pesquisar.js  # Pesquisa de H2s via Gemini (substitui @pesquisador-seo)
+    - gemini-redigir.js    # Redação de artigo via Gemini (substitui @copywriter-seo)
 
 config:
   extends: extend
@@ -47,6 +52,7 @@ config:
   slug-rules: config/slug-rules.md         # Single source of truth para regras de URL
   tech-stack: config/tech-stack.md
   source-tree: config/source-tree.md
+  gemini: config/gemini-config.yaml        # Configuração da integração Gemini API
 
 dependencies:
   node: []
