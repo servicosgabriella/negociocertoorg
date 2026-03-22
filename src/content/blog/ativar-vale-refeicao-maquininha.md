@@ -32,8 +32,6 @@ Você montou o estabelecimento, instalou a maquininha e na hora do primeiro paga
 
 Ativar VA e VR tem um passo a passo específico para cada operadora. Neste guia você vai ver como habilitar vale refeição e alimentação na sua maquininha, quais modelos aceitam mais bandeiras e o que fazer quando o pagamento cai na recusa.
 
----
-
 ## Minha maquininha já aceita vale refeição ou preciso ativar?
 
 Depende da maquininha. Algumas chegam pré-configuradas, outras exigem solicitação manual de credenciamento.
@@ -86,13 +84,6 @@ No PagBank, o credenciamento para VA/VR é feito pelo app ou pelo portal web:
 
 O prazo de aprovação é de 2 a 5 dias úteis. Se preferir, entre em contato pelo chat do app para agilizar.
 
-Os modelos PagBank que aceitam VA/VR:
-
-- Minizinha Chip 3: R$ 47,88 (12x de R$ 3,99) — mais compacta, comprovante via SMS
-- Moderninha ProFit: R$ 83,88 (12x de R$ 6,99) — comprovante impresso, 7h de bateria
-- Moderninha Pro 2: R$ 107,87 (12x de R$ 8,98) — 12h de bateria, garantia de 5 anos
-- Moderninha Smart 2: R$ 127,44 (12x de R$ 10,62) — tela touch 5,5", câmera, Android
-
 ## Como ativar o vale refeição no Mercado Pago
 
 O Mercado Pago aceita apenas Alelo e VR Benefícios. O credenciamento acontece automaticamente durante o cadastro do CNPJ na plataforma.
@@ -100,9 +91,6 @@ O Mercado Pago aceita apenas Alelo e VR Benefícios. O credenciamento acontece a
 Se você já tem conta no Mercado Pago com CNPJ e as bandeiras de voucher não aparecem na maquininha, acesse mercadopago.com.br, vá em "Seu negócio" > "Pagamentos" e verifique o status das bandeiras. Se o problema persistir, o suporte do Mercado Pago consegue solicitar a ativação manual.
 
 Os modelos disponíveis com 10% de desconto pelo link de parceiro:
-
-- Point Pro 3: R$ 98,91 (12x de R$ 8,24) — chip 4G grátis, 48h de bateria, NFC
-- Point Smart 2: R$ 179,91 (12x de R$ 14,99) — Android 12, 3 dias de bateria, tela 5,5"
 
 ## A maquininha recusou o vale refeição do cliente. O que fazer?
 
