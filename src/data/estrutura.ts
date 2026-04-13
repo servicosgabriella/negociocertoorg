@@ -33,7 +33,8 @@ export const estrutura = {
         paginas: [
           { label: "Melhores Contabilidades Online", href: "/melhores-contabilidades-online" },
           { label: "Contabilidade Online ou Presencial: Qual Escolher em 2026?", href: "/contabilidade-online-ou-presencial" },
-          { label: "Quanto Custa uma Contabilidade Online? [Preços 2026]", href: "/quanto-custa-uma-contabilidade-online" }
+          { label: "Quanto Custa uma Contabilidade Online? [Preços 2026]", href: "/quanto-custa-uma-contabilidade-online" },
+          { label: "Contabilidade Online para MEI: o Que Nenhuma Plataforma Te Conta Antes de Contratar", href: "/contabilidade-online-mei" }
         ] as Pagina[]
       },
       maquininhas: {
@@ -78,7 +79,9 @@ export const estrutura = {
       pdv: {
         label: "Sistema PDV",
         href: "/gestao/sistema-pdv/",
-        paginas: [] as Pagina[]
+        paginas: [
+          { label: "Melhores Sistemas PDV por Tipo de Negócio (2026)", href: "/melhores-sistemas-pdv" }
+        ] as Pagina[]
       },
       nfe: {
         label: "Nota Fiscal Eletrônica",
