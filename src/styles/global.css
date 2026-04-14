@@ -179,3 +179,73 @@ ol li {
   font-size: 16px;
   margin-left: 1.25em;
 }
+
+/* Tabela responsiva — coluna de botão oculta no desktop */
+.table-responsive th.col-visitar,
+.table-responsive td.col-visitar {
+  display: none;
+}
+
+/* Tabela responsiva — stacked layout no mobile */
+@media (max-width: 640px) {
+  .table-responsive thead {
+    display: none;
+  }
+
+  .table-responsive tbody tr {
+    display: block;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 4px 0;
+    background: inherit;
+  }
+
+  .table-responsive tbody td {
+    display: block;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+    text-align: left;
+  }
+
+  .table-responsive tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* Label acima do valor via data-label */
+  .table-responsive tbody td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+  }
+
+  /* Botão visitar site — só aparece no mobile */
+  .table-responsive td.col-visitar {
+    display: block;
+    padding: 12px 16px 16px;
+    border-bottom: none;
+  }
+
+  .btn-visitar {
+    display: block;
+    text-align: center;
+    padding: 11px 16px;
+    background: #1a3a5c;
+    color: #ffffff !important;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-visitar:hover {
+    background: #2d6a9f;
+  }
+}

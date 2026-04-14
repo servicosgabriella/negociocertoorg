@@ -7,8 +7,8 @@ Utilize essas informações sobre as maquininhas de cartão:
  ## Modelos e preço: 
  Todas as maquininhas podem ser parceladas em 12x sem juros e nós temos o cupom de desconto que oferece 20% OFF em todas as maquininhas do ton, o preço fornecido abaixo é com o cupom de desconto incluído. 
 
-* T3 Smart : R$ 158,40 ou 12x de R$ 13,20
-* T3 : R$ 127,68 ou 12x de R$ 10,64
+* T3 Smart : R$ 172,69 ou 12x de R$ 14,39
+* T3 : R$ 97,20 ou 12x de R$ 8,10
 * T2 : R$ 51,52 ou 12x de R$ 4,29
 
 ### T3 Design e Funcionalidades: 
@@ -31,19 +31,19 @@ A Ton conta com recebimento em duas modalidades, em 1 dia útil (taxas mais baix
 * Vouchers refeição e alimentação: Alelo | Banescard | Banricompras | Cooper | GreenCard | PlanVale (Grupo UpBrasil) | Pluxee (Antiga Sodexo) | Senff | Ticket | UP Brasil | ValeCard | VeroCard | VR | Abrapetite | Accredito | AmazonCard | Avancard | Banco Ponto Forte | Biq Benefícios | BNB Clube | Bônus Cred | BNCard | BsCash | CardIdeal|UzziPay | CDC Card | Credpar | Eucard | GoiasCard | Goodcard | Inttegracard | KPI | Lecard | Libercard | MaxxCard | Megavale | Meu Vale | MultVale | NGV Card | Nutricard | Nutricash | O2 Plus Card | One Card | Personal Card | RealCard | Romcard | TrioCard | Uauh Benefícios | Vegas | Viasoft Pay | Volus | YuCard | Zuumcard
 
 
-## Planos: 
-* Ton Max: Inicia com período promocional de 30 dias ou até atingir R$ 5 mil em vendas. Depois o plano conta com taxas regressivas, quanto mais vende, menores as taxas. 
+## Planos:
+* Ton Mega+ (único plano disponível no site a partir de abril de 2026): Válido para CPF, MEI ou CNPJ. Inicia com período promocional de 30 dias ou até atingir R$ 5 mil em vendas (o que acontecer primeiro). Após o período promocional, o cliente é movido automaticamente para a faixa de R$ 6 mil a R$ 10 mil (nivelamento). Depois de 1 mês de calendário completo de transações, é alocado na faixa de faturamento real que atingiu. Parcelamento em até 18x. Os planos Super, Pro e Max foram descontinuados.
 
-* Ton Super: Taxas fixas, não tem período promocional, idependente do faturamente vai ser sempre essas taxas. São taxas mais altas que no plano Max. A diferença é que as máquininhas nesse plano para adesão são mais baratas. 
+* Ton Black (exclusivo via programa de parceiros, apenas para CNPJ): Taxas imbatíveis para faturamento maior. PIX 0% sem pré-requisito. Parcelamento em até 12x.
 
-As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento (quando plano Max) 
+As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 
 
-### Plano Ton Max — Visa e Mastercard
+### Plano Ton Mega+ — Visa e Mastercard
 
 #### Faixa Promocional
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
 | Débito | 0,57% | 0,57% |
 | Crédito à vista | 0,57% | 0,57% |
@@ -58,12 +58,18 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento (quando p
 | 10x | 7,97% | 7,97% |
 | 11x | 7,97% | 7,97% |
 | 12x | 7,97% | 7,97% |
+| 13x | 14,87% | 14,87% |
+| 14x | 14,87% | 14,87% |
+| 15x | 14,87% | 14,87% |
+| 16x | 14,87% | 14,87% |
+| 17x | 14,87% | 14,87% |
+| 18x | 14,87% | 14,87% |
 
 ---
 
-#### Faixa 1 — Até R$ 2.000/mês
+#### Faixa 1 — Até R$ 3.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
 | Débito | 1,69% | 1,98% |
 | Crédito à vista | 3,86% | 4,86% |
@@ -78,232 +84,444 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento (quando p
 | 10x | 20,19% | 21,19% |
 | 11x | 20,39% | 21,39% |
 | 12x | 20,39% | 21,39% |
+| 13x | 21,03% | 22,03% |
+| 14x | 21,67% | 22,67% |
+| 15x | 22,31% | 23,31% |
+| 16x | 22,95% | 23,95% |
+| 17x | 23,59% | 24,59% |
+| 18x | 24,23% | 25,23% |
 
 ---
 
-#### Faixa 2 — R$ 2.000 a R$ 5.000/mês
+#### Faixa 2 — R$ 3.000 a R$ 6.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 1,45% | 1,66% |
-| Crédito à vista | 3,39% | 3,48% |
-| 2x | 6,73% | 7,78% |
-| 3x | 8,49% | 8,99% |
-| 4x | 9,49% | 9,99% |
-| 5x | 10,49% | 10,99% |
-| 6x | 11,49% | 11,99% |
-| 7x | 12,49% | 12,99% |
-| 8x | 13,29% | 13,94% |
-| 9x | 13,29% | 13,95% |
-| 10x | 13,29% | 13,96% |
-| 11x | 13,29% | 13,97% |
-| 12x | 13,29% | 13,98% |
+| Débito | 1,39% | 1,43% |
+| Crédito à vista | 3,34% | 3,36% |
+| 2x | 7,29% | 7,38% |
+| 3x | 8,35% | 8,97% |
+| 4x | 9,23% | 9,63% |
+| 5x | 10,10% | 10,50% |
+| 6x | 10,85% | 11,18% |
+| 7x | 10,90% | 12,19% |
+| 8x | 10,95% | 13,04% |
+| 9x | 11,00% | 13,07% |
+| 10x | 11,05% | 13,12% |
+| 11x | 11,73% | 13,17% |
+| 12x | 12,38% | 13,22% |
+| 13x | 13,02% | 13,86% |
+| 14x | 13,66% | 14,50% |
+| 15x | 14,30% | 15,14% |
+| 16x | 14,94% | 15,78% |
+| 17x | 15,58% | 16,42% |
+| 18x | 16,22% | 17,06% |
 
 ---
 
-#### Faixa 3 — R$ 5.000 a R$ 10.000/mês
+#### Faixa 3 — R$ 6.000 a R$ 10.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 1,37% | 1,43% |
-| Crédito à vista | 3,35% | 3,44% |
-| 2x | 6,72% | 6,97% |
-| 3x | 8,44% | 8,94% |
-| 4x | 9,44% | 9,94% |
-| 5x | 10,44% | 10,94% |
-| 6x | 11,44% | 11,94% |
-| 7x | 12,44% | 12,94% |
-| 8x | 12,65% | 13,15% |
-| 9x | 12,66% | 13,16% |
-| 10x | 12,67% | 13,17% |
-| 11x | 12,68% | 13,18% |
-| 12x | 12,69% | 13,19% |
+| Débito | 1,32% | 1,34% |
+| Crédito à vista | 3,25% | 3,31% |
+| 2x | 6,69% | 7,18% |
+| 3x | 7,76% | 8,56% |
+| 4x | 8,64% | 9,44% |
+| 5x | 9,51% | 10,31% |
+| 6x | 10,37% | 11,17% |
+| 7x | 10,87% | 12,00% |
+| 8x | 10,92% | 12,50% |
+| 9x | 10,97% | 12,55% |
+| 10x | 11,02% | 12,58% |
+| 11x | 11,70% | 12,61% |
+| 12x | 12,35% | 12,66% |
+| 13x | 12,99% | 13,30% |
+| 14x | 13,63% | 13,94% |
+| 15x | 14,27% | 14,58% |
+| 16x | 14,91% | 15,22% |
+| 17x | 15,55% | 15,86% |
+| 18x | 16,19% | 16,50% |
 
 ---
 
-#### Faixa 4 — R$ 10.000 a R$ 15.000/mês
+#### Faixa 4 — R$ 10.000 a R$ 30.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 1,35% | 1,42% |
-| Crédito à vista | 3,14% | 3,39% |
-| 2x | 6,71% | 6,96% |
-| 3x | 8,39% | 8,89% |
-| 4x | 9,39% | 9,89% |
-| 5x | 10,39% | 10,89% |
-| 6x | 11,39% | 11,89% |
-| 7x | 12,39% | 12,89% |
-| 8x | 12,61% | 13,11% |
-| 9x | 12,62% | 13,12% |
-| 10x | 12,63% | 13,13% |
-| 11x | 12,64% | 13,14% |
-| 12x | 12,65% | 13,15% |
+| Débito | 1,22% | 1,25% |
+| Crédito à vista | 3,02% | 3,05% |
+| 2x | 5,38% | 6,59% |
+| 3x | 6,11% | 8,19% |
+| 4x | 7,84% | 8,89% |
+| 5x | 8,56% | 9,76% |
+| 6x | 9,27% | 11,10% |
+| 7x | 9,98% | 11,68% |
+| 8x | 10,68% | 11,73% |
+| 9x | 10,94% | 11,78% |
+| 10x | 10,99% | 11,83% |
+| 11x | 11,67% | 11,88% |
+| 12x | 11,73% | 11,95% |
+| 13x | 12,37% | 12,59% |
+| 14x | 13,01% | 13,23% |
+| 15x | 13,65% | 13,87% |
+| 16x | 14,29% | 14,51% |
+| 17x | 14,93% | 15,15% |
+| 18x | 15,57% | 15,79% |
 
 ---
 
-#### Faixa 5 — Acima de R$ 15.000/mês
+#### Faixa 5 — Acima de R$ 30.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 1,29% | 1,40% |
-| Crédito à vista | 3,09% | 3,30% |
-| 2x | 6,70% | 6,95% |
-| 3x | 7,54% | 8,04% |
-| 4x | 8,42% | 8,92% |
-| 5x | 9,29% | 9,79% |
-| 6x | 11,37% | 11,87% |
-| 7x | 12,37% | 12,87% |
-| 8x | 12,55% | 13,05% |
-| 9x | 12,56% | 13,06% |
-| 10x | 12,57% | 13,07% |
-| 11x | 12,58% | 13,08% |
-| 12x | 12,59% | 13,09% |
+| Débito | 1,19% | 1,22% |
+| Crédito à vista | 2,85% | 2,91% |
+| 2x | 5,33% | 6,54% |
+| 3x | 6,06% | 8,14% |
+| 4x | 7,79% | 8,84% |
+| 5x | 8,51% | 9,71% |
+| 6x | 9,22% | 10,79% |
+| 7x | 9,93% | 10,84% |
+| 8x | 10,63% | 10,89% |
+| 9x | 10,91% | 10,94% |
+| 10x | 10,96% | 10,99% |
+| 11x | 11,46% | 11,63% |
+| 12x | 11,51% | 11,73% |
+| 13x | 12,15% | 12,37% |
+| 14x | 12,79% | 13,01% |
+| 15x | 13,43% | 13,65% |
+| 16x | 14,07% | 14,29% |
+| 17x | 14,71% | 14,93% |
+| 18x | 15,35% | 15,57% |
 
 ---
 
-### Plano Ton Max — Elo, Amex e Hipercard
+### Plano Ton Mega+ — Elo, Amex e Hipercard
 
 #### Faixa Promocional
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 2,36% | 2,36% |
-| Crédito à vista | 4,13% | 4,13% |
-| 2x | 6,97% | 6,97% |
-| 3x | 7,33% | 7,33% |
-| 4x | 7,33% | 7,33% |
-| 5x | 7,33% | 7,33% |
-| 6x | 7,33% | 7,33% |
-| 7x | 10,63% | 10,63% |
-| 8x | 11,03% | 11,03% |
-| 9x | 12,03% | 12,03% |
-| 10x | 12,53% | 12,53% |
-| 11x | 13,39% | 13,39% |
-| 12x | 13,43% | 13,43% |
+| Débito | 2,57% | 2,57% |
+| Crédito à vista | 4,34% | 4,34% |
+| 2x | 7,02% | 7,02% |
+| 3x | 7,58% | 7,58% |
+| 4x | 8,38% | 8,38% |
+| 5x | 9,38% | 9,38% |
+| 6x | 10,38% | 10,38% |
+| 7x | 10,98% | 10,98% |
+| 8x | 11,38% | 11,38% |
+| 9x | 12,38% | 12,38% |
+| 10x | 12,88% | 12,88% |
+| 11x | 13,74% | 13,74% |
+| 12x | 13,78% | 13,78% |
+| 13x | 14,87% | 14,87% |
+| 14x | 15,51% | 15,51% |
+| 15x | 16,15% | 16,15% |
+| 16x | 16,79% | 16,79% |
+| 17x | 17,43% | 17,43% |
+| 18x | 18,07% | 18,07% |
 
 ---
 
-#### Faixa 1 — Até R$ 2.000/mês
+#### Faixa 1 — Até R$ 3.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 2,88% | 3,17% |
-| Crédito à vista | 5,05% | 6,05% |
-| 2x | 11,25% | 12,25% |
-| 3x | 12,63% | 13,63% |
-| 4x | 13,98% | 14,98% |
-| 5x | 15,31% | 16,31% |
-| 6x | 16,61% | 17,61% |
-| 7x | 17,89% | 18,89% |
-| 8x | 19,15% | 20,15% |
-| 9x | 20,38% | 21,38% |
-| 10x | 21,58% | 22,58% |
-| 11x | 21,78% | 22,78% |
-| 12x | 21,78% | 22,78% |
+| Débito | 2,98% | 3,27% |
+| Crédito à vista | 5,15% | 6,15% |
+| 2x | 11,30% | 12,30% |
+| 3x | 12,68% | 13,68% |
+| 4x | 14,03% | 15,03% |
+| 5x | 15,36% | 16,36% |
+| 6x | 16,66% | 17,66% |
+| 7x | 17,94% | 18,94% |
+| 8x | 19,20% | 20,20% |
+| 9x | 20,43% | 21,43% |
+| 10x | 21,78% | 22,78% |
+| 11x | 22,64% | 23,64% |
+| 12x | 22,68% | 23,68% |
+| 13x | 23,32% | 24,32% |
+| 14x | 23,96% | 24,96% |
+| 15x | 24,60% | 25,60% |
+| 16x | 25,24% | 26,24% |
+| 17x | 25,88% | 26,88% |
+| 18x | 26,52% | 27,52% |
 
 ---
 
-#### Faixa 2 — R$ 2.000 a R$ 5.000/mês
+#### Faixa 2 — R$ 3.000 a R$ 6.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 2,74% | 2,95% |
-| Crédito à vista | 4,68% | 4,77% |
-| 2x | 8,17% | 9,22% |
-| 3x | 9,93% | 10,43% |
-| 4x | 10,93% | 11,43% |
-| 5x | 11,93% | 12,43% |
-| 6x | 12,93% | 13,43% |
-| 7x | 13,93% | 14,43% |
-| 8x | 14,73% | 15,38% |
-| 9x | 14,73% | 15,39% |
-| 10x | 14,88% | 15,55% |
-| 11x | 15,54% | 16,22% |
-| 12x | 15,58% | 16,27% |
+| Débito | 2,68% | 2,72% |
+| Crédito à vista | 4,63% | 4,65% |
+| 2x | 8,73% | 8,82% |
+| 3x | 9,79% | 10,41% |
+| 4x | 10,67% | 11,07% |
+| 5x | 11,54% | 11,94% |
+| 6x | 12,29% | 12,62% |
+| 7x | 12,34% | 13,63% |
+| 8x | 12,39% | 14,48% |
+| 9x | 12,44% | 14,51% |
+| 10x | 12,64% | 14,71% |
+| 11x | 13,98% | 15,42% |
+| 12x | 14,67% | 15,51% |
+| 13x | 15,31% | 16,15% |
+| 14x | 15,95% | 16,79% |
+| 15x | 16,59% | 17,43% |
+| 16x | 17,23% | 18,07% |
+| 17x | 17,87% | 18,71% |
+| 18x | 18,51% | 19,35% |
 
 ---
 
-#### Faixa 3 — R$ 5.000 a R$ 10.000/mês
+#### Faixa 3 — R$ 6.000 a R$ 10.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 2,66% | 2,72% |
-| Crédito à vista | 4,64% | 4,73% |
-| 2x | 8,16% | 8,41% |
-| 3x | 9,88% | 10,38% |
-| 4x | 10,88% | 11,38% |
-| 5x | 11,88% | 12,38% |
-| 6x | 12,88% | 13,38% |
-| 7x | 13,88% | 14,38% |
-| 8x | 14,09% | 14,59% |
-| 9x | 14,10% | 14,60% |
-| 10x | 14,26% | 14,76% |
-| 11x | 14,93% | 15,43% |
-| 12x | 14,98% | 15,48% |
+| Débito | 2,61% | 2,63% |
+| Crédito à vista | 4,54% | 4,60% |
+| 2x | 8,13% | 8,62% |
+| 3x | 9,20% | 10,00% |
+| 4x | 10,08% | 10,88% |
+| 5x | 10,95% | 11,75% |
+| 6x | 11,81% | 12,61% |
+| 7x | 12,31% | 13,44% |
+| 8x | 12,36% | 13,94% |
+| 9x | 12,41% | 13,99% |
+| 10x | 12,61% | 14,17% |
+| 11x | 13,95% | 14,86% |
+| 12x | 14,64% | 14,95% |
+| 13x | 15,28% | 15,59% |
+| 14x | 15,92% | 16,23% |
+| 15x | 16,56% | 16,87% |
+| 16x | 17,20% | 17,51% |
+| 17x | 17,84% | 18,15% |
+| 18x | 18,48% | 18,79% |
 
 ---
 
-#### Faixa 4 — R$ 10.000 a R$ 15.000/mês
+#### Faixa 4 — R$ 10.000 a R$ 30.000/mês
 
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 2,64% | 2,71% |
-| Crédito à vista | 4,43% | 4,68% |
-| 2x | 8,15% | 8,40% |
-| 3x | 9,83% | 10,33% |
-| 4x | 10,83% | 11,33% |
-| 5x | 11,83% | 12,33% |
-| 6x | 12,83% | 13,33% |
-| 7x | 13,83% | 14,33% |
-| 8x | 14,05% | 14,55% |
-| 9x | 14,06% | 14,56% |
-| 10x | 14,22% | 14,72% |
-| 11x | 14,89% | 15,39% |
-| 12x | 14,94% | 15,44% |
-
-
-
-#### Faixa 5 — Acima de R$ 15.000/mês
-
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
-|---|---|---|
-| Débito | 2,58% | 2,69% |
-| Crédito à vista | 4,38% | 4,59% |
-| 2x | 8,14% | 8,39% |
-| 3x | 8,98% | 9,48% |
-| 4x | 9,86% | 10,36% |
-| 5x | 10,73% | 11,23% |
-| 6x | 12,81% | 13,31% |
-| 7x | 13,81% | 14,31% |
-| 8x | 13,99% | 14,49% |
-| 9x | 14,00% | 14,50% |
-| 10x | 14,16% | 14,66% |
-| 11x | 14,83% | 15,33% |
-| 12x | 14,88% | 15,38% |
+| Débito | 2,51% | 2,54% |
+| Crédito à vista | 4,31% | 4,34% |
+| 2x | 6,82% | 8,03% |
+| 3x | 7,55% | 9,63% |
+| 4x | 9,28% | 10,33% |
+| 5x | 10,00% | 11,20% |
+| 6x | 10,71% | 12,54% |
+| 7x | 11,42% | 13,12% |
+| 8x | 12,12% | 13,17% |
+| 9x | 12,38% | 13,22% |
+| 10x | 12,58% | 13,42% |
+| 11x | 13,92% | 14,13% |
+| 12x | 14,02% | 14,24% |
+| 13x | 14,66% | 14,88% |
+| 14x | 15,30% | 15,52% |
+| 15x | 15,94% | 16,16% |
+| 16x | 16,58% | 16,80% |
+| 17x | 17,22% | 17,44% |
+| 18x | 17,86% | 18,08% |
 
 ---
 
-## Plano Ton Super — Visa e Mastercard
+#### Faixa 5 — Acima de R$ 30.000/mês
 
-> Sem mínimo de faturamento mensal.
-
-| Tipo de Venda | 1 Dia Útil | Mesmo Dia |
+| Tipo de Venda | 1 Dia Útil | Na Hora |
 |---|---|---|
-| Débito | 1,98% | 1,98% |
-| Crédito à vista | 4,98% | 4,98% |
-| 2x | 9,91% | 10,91% |
-| 3x | 11,29% | 12,29% |
-| 4x | 12,64% | 13,64% |
-| 5x | 13,97% | 14,97% |
-| 6x | 15,27% | 16,27% |
-| 7x | 16,55% | 17,55% |
-| 8x | 17,81% | 18,81% |
-| 9x | 19,04% | 20,04% |
-| 10x | 20,24% | 21,24% |
-| 11x | 21,43% | 22,43% |
-| 12x | 22,59% | 23,59% |
+| Débito | 2,48% | 2,51% |
+| Crédito à vista | 4,14% | 4,20% |
+| 2x | 6,77% | 7,98% |
+| 3x | 7,50% | 9,58% |
+| 4x | 9,23% | 10,28% |
+| 5x | 9,95% | 11,15% |
+| 6x | 10,66% | 12,23% |
+| 7x | 11,37% | 12,28% |
+| 8x | 12,07% | 12,33% |
+| 9x | 12,35% | 12,38% |
+| 10x | 12,55% | 12,58% |
+| 11x | 13,71% | 13,88% |
+| 12x | 13,80% | 14,02% |
+| 13x | 14,44% | 14,66% |
+| 14x | 15,08% | 15,30% |
+| 15x | 15,72% | 15,94% |
+| 16x | 16,36% | 16,58% |
+| 17x | 17,00% | 17,22% |
+| 18x | 17,64% | 17,86% |
 
-## Link de afiliado: 
+---
+
+### Plano Ton Black — Visa e Mastercard (exclusivo CNPJ)
+
+> Parcelamento máximo em 12x. PIX 0% sem nenhum pré-requisito. Exclusivo para clientes CNPJ. Disponível apenas via programa de parceiros Ton.
+
+#### Faixa 1 — Até R$ 20.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 1,36% | 2,28% |
+| Crédito à vista | 3,14% | 5,48% |
+| 2x | 5,38% | 10,88% |
+| 3x | 6,11% | 11,98% |
+| 4x | 6,84% | 12,58% |
+| 5x | 7,56% | 13,28% |
+| 6x | 8,27% | 13,98% |
+| 7x | 8,98% | 14,98% |
+| 8x | 9,68% | 15,58% |
+| 9x | 10,37% | 16,18% |
+| 10x | 11,05% | 16,88% |
+| 11x | 11,73% | 17,88% |
+| 12x | 12,39% | 18,28% |
+
+---
+
+#### Faixa 2 — R$ 20.000 a R$ 40.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 0,84% | 2,28% |
+| Crédito à vista | 2,88% | 5,48% |
+| 2x | 4,21% | 10,88% |
+| 3x | 4,82% | 11,98% |
+| 4x | 5,43% | 12,58% |
+| 5x | 6,04% | 13,28% |
+| 6x | 6,63% | 13,98% |
+| 7x | 7,23% | 14,98% |
+| 8x | 7,81% | 15,58% |
+| 9x | 8,40% | 16,18% |
+| 10x | 8,97% | 16,88% |
+| 11x | 9,55% | 17,88% |
+| 12x | 10,11% | 18,28% |
+
+---
+
+#### Faixa 3 — R$ 40.000 a R$ 80.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 0,78% | 2,28% |
+| Crédito à vista | 2,78% | 5,48% |
+| 2x | 4,07% | 10,88% |
+| 3x | 4,64% | 11,98% |
+| 4x | 5,20% | 12,58% |
+| 5x | 5,76% | 13,28% |
+| 6x | 6,31% | 13,98% |
+| 7x | 6,86% | 14,98% |
+| 8x | 7,41% | 15,58% |
+| 9x | 7,95% | 16,18% |
+| 10x | 8,48% | 16,88% |
+| 11x | 9,02% | 17,88% |
+| 12x | 9,55% | 18,28% |
+
+---
+
+#### Faixa 4 — Acima de R$ 80.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 0,74% | 2,28% |
+| Crédito à vista | 2,68% | 5,48% |
+| 2x | 3,93% | 10,88% |
+| 3x | 4,45% | 11,98% |
+| 4x | 4,97% | 12,58% |
+| 5x | 5,48% | 13,28% |
+| 6x | 5,98% | 13,98% |
+| 7x | 6,50% | 14,98% |
+| 8x | 6,98% | 15,58% |
+| 9x | 7,50% | 16,18% |
+| 10x | 7,98% | 16,88% |
+| 11x | 8,48% | 17,88% |
+| 12x | 8,98% | 18,28% |
+
+---
+
+### Plano Ton Black — Elo, Amex e Hipercard (exclusivo CNPJ)
+
+#### Faixa 1 — Até R$ 20.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 2,57% | 2,28% |
+| Crédito à vista | 4,90% | 5,48% |
+| 2x | 6,46% | 10,88% |
+| 3x | 7,19% | 11,98% |
+| 4x | 7,91% | 12,58% |
+| 5x | 8,62% | 13,28% |
+| 6x | 9,32% | 13,98% |
+| 7x | 10,02% | 14,98% |
+| 8x | 10,71% | 15,58% |
+| 9x | 11,40% | 16,18% |
+| 10x | 12,07% | 16,88% |
+| 11x | 12,74% | 17,88% |
+| 12x | 13,40% | 18,28% |
+
+---
+
+#### Faixa 2 — R$ 20.000 a R$ 40.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 2,07% | 2,28% |
+| Crédito à vista | 4,64% | 5,48% |
+| 2x | 6,08% | 10,88% |
+| 3x | 6,68% | 11,98% |
+| 4x | 7,27% | 12,58% |
+| 5x | 7,86% | 13,28% |
+| 6x | 8,45% | 13,98% |
+| 7x | 9,04% | 14,98% |
+| 8x | 9,62% | 15,58% |
+| 9x | 10,19% | 16,18% |
+| 10x | 10,75% | 16,88% |
+| 11x | 11,32% | 17,88% |
+| 12x | 11,87% | 18,28% |
+
+---
+
+#### Faixa 3 — R$ 40.000 a R$ 80.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 1,97% | 2,28% |
+| Crédito à vista | 4,55% | 5,48% |
+| 2x | 5,94% | 10,88% |
+| 3x | 6,49% | 11,98% |
+| 4x | 7,04% | 12,58% |
+| 5x | 7,59% | 13,28% |
+| 6x | 8,14% | 13,98% |
+| 7x | 8,68% | 14,98% |
+| 8x | 9,22% | 15,58% |
+| 9x | 9,75% | 16,18% |
+| 10x | 10,28% | 16,88% |
+| 11x | 10,80% | 17,88% |
+| 12x | 11,32% | 18,28% |
+
+---
+
+#### Faixa 4 — Acima de R$ 80.000/mês
+
+| Tipo de Venda | 1 Dia Útil | Na Hora |
+|---|---|---|
+| Débito | 1,87% | 2,28% |
+| Crédito à vista | 4,45% | 5,48% |
+| 2x | 5,80% | 10,88% |
+| 3x | 6,31% | 11,98% |
+| 4x | 6,82% | 12,58% |
+| 5x | 7,32% | 13,28% |
+| 6x | 7,82% | 13,98% |
+| 7x | 8,33% | 14,98% |
+| 8x | 8,82% | 15,58% |
+| 9x | 9,31% | 16,18% |
+| 10x | 9,80% | 16,88% |
+| 11x | 10,28% | 17,88% |
+| 12x | 10,76% | 18,28% |
+
+---
+
+## Link de afiliado:
 
 T3: https://dub.sh/T3NegocioCerto
 T3 Smart: https://dub.sh/T3SmartNegocioC

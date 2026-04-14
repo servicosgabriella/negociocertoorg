@@ -51,6 +51,15 @@ ENTRADA: keyword
 └────────────┬────────────────┘
              │
              ▼
+┌─────────────────────────────────────────────┐
+│  @revisor-design  (CONDICIONAL)             │
+│  7.5. Revisa tabelas e componentes visuais  │◄── Só executa se artigo tem tabela/grid
+│       Desktop (1440px) + Mobile (390px)     │    Se não tem → pular para @qa-conteudo
+│       Veredicto: APROVADO / AJUSTE /        │
+│       BLOQUEADO (máx 2 iterações)           │
+└────────────┬────────────────────────────────┘
+             │
+             ▼
 ┌─────────────────────────────┐
 │  @qa-conteudo               │
 │  8. Audita layout + 14pts   │◄── Aplica Regras #3, #11 + layout check
@@ -86,6 +95,7 @@ APROVADO          VETADO (max 3x)
 | `@head-de-conteudo` | Regra #5 (Intenção de Busca) + Layouts Astro | Orquestração + classificação + seleção de layout |
 | `@pesquisador-seo` | Regra #1 (H2s do PAA) | Pesquisa + validação de H2s |
 | `@copywriter-seo` | Regras #2, #4, #6 (Tom, Estrutura, Ritmo) | Redação + frontmatter com layout |
+| `@revisor-design` | Padrões HTML do projeto + responsividade | Revisão visual de tabelas/grids — desktop e mobile (condicional) |
 | `@qa-conteudo` | Regras #3, #11 (Lista Negra, Checklist) + Layout check | Auditoria + veto (inclui layout) |
 
 ## Regra de Seleção de Layout

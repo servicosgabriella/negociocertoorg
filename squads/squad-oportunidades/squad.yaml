@@ -1,0 +1,46 @@
+name: squad-oportunidades
+version: "1.0.0"
+description: >
+  Squad de criação de pillar pages de monetização para o negociocerto.org.
+  Ciclo completo: descoberta de oportunidades → arquitetura SEO → redação → publicação.
+
+agents:
+  - agents/@estrategista-buscas.md
+  - agents/@arquiteto-pilarpage.md
+  - agents/@copywriter-pilarpage.md
+  - agents/@cluster-pilarpage.md
+  - agents/@redator-cluster.md
+  - agents/@espec-links-int.md
+
+tasks:
+  - task/search-oportunidade.md
+  - task/mapeamentosematico.md
+  - task/criar-h1.md
+  - task/criar-url.md
+  - task/construcao-h2.md
+  - task/redigir-artigo.md
+  - task/criar-cluster.md
+  - task/redigir-cluster.md
+
+skills:
+  - skill/otimizador-h1.md
+  - skill/qualificador-h2.md
+  - skill/construtor-slug.md
+  - skill/copy-maquininha.md
+  - skill/box-maquininha.md
+  - skill/copy-contabilidade.md
+  - skill/copy-negociocerto.md
+  - skill/introdução.md
+  - skill/texto-ancora.md
+
+workflows:
+  - workflow/pipeline-pilarpage.md
+
+config:
+  - configuracoes/layout.md
+  - configuracoes/checklistfinal.md
+  - configuracoes/proibições.md
+
+files:
+  - file/anchor-master.md
+  - file/cluster-master.md
