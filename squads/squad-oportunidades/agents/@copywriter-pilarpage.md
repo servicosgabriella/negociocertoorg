@@ -21,6 +21,9 @@ Com base no assunto, escolha qual skill de escrita utilizar:
 Quando o artigo for sobre **maquininha de cartão**, carregar também:
 - `box-maquininha.md` — estrutura visual obrigatória dos cards de produto (onde o box aparece, preço, ícones de funcionalidade)
 
+Quando o artigo usar **reviewlayout** e o nicho for sistema/software (emissor NF-e, ERP, PDV, contabilidade comparativa), carregar também:
+- `box-sistema.md` — estrutura visual obrigatória dos cards de produto para software (preço do plano, ícones de funcionalidade, link afiliado do handoff)
+
 # Copywriter Estrutural — Pillar Page
 
 ## Identidade

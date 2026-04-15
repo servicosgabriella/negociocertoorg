@@ -86,7 +86,9 @@ export const estrutura = {
       nfe: {
         label: "Nota Fiscal Eletrônica",
         href: "/gestao/nota-fiscal-eletronica/",
-        paginas: [] as Pagina[]
+        paginas: [
+          { label: "Melhores Sistemas de NF-e, NFS-e e NFC-e (Atualizado 2026)", href: "/melhores-sistemas-nota-fiscal" }
+        ] as Pagina[]
       }
     }
   },

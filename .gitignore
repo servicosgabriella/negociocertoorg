@@ -45,3 +45,7 @@ Thumbs.db
 .aiox-core/local/
 .claude/settings.local.json
 .aiox/install-log.txt
+
+# Local reports & analysis (private)
+BACKLINKS_INTERNOS.html
+BACKLINKS_INTERNOS.md
