@@ -8,6 +8,8 @@ agents:
   - agents/@estrategista-buscas.md
   - agents/@arquiteto-pilarpage.md
   - agents/@copywriter-pilarpage.md
+  - agents/@arquiteto-cluster.md
+  - agents/@copywriter-cluster.md
   - agents/@cluster-pilarpage.md
   - agents/@redator-cluster.md
   - agents/@espec-links-int.md
@@ -32,6 +34,7 @@ skills:
   - skill/copy-negociocerto.md
   - skill/introdução.md
   - skill/texto-ancora.md
+  - skill/box-sistema.md
 
 workflows:
   - workflow/pipeline-pilarpage.md
@@ -44,3 +47,5 @@ config:
 files:
   - file/anchor-master.md
   - file/cluster-master.md
+  - file/handoff-ativo.md
+  - file/handoff-template.md
