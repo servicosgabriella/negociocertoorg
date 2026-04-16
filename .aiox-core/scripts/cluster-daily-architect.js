@@ -943,34 +943,82 @@ async function handleApproval(callbackData) {
     await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.metadata.title}\n\nPublicando...`);
 
     try {
-      // 1. Criar arquivo no local correto baseado no layout
       const urlPath = pending.metadata.url.replace(/\/$/, ''); // remove / final se houver
+      const slug = urlPath.substring(1); // remove / inicial
       const layout = pending.briefing.layout || 'bloglayout';
+      const filesToCommit = [CONFIG.ANCHOR_MASTER]; // sempre atualiza anchor-master
       let filePath, gitPath;
 
+      // 1. GERAR IMAGEM (bloglayout e contentlayout obrigatório)
+      if (layout === 'bloglayout' || layout === 'contentlayout' || layout === 'reviewlayout') {
+        log(`\n🖼️ Gerando imagem de capa...`, 'info');
+        const topicVisual = `artigo sobre ${pending.briefing.title}`;
+        const imagePath = path.join(CONFIG.PROJECT_ROOT, `public/images/${slug}.png`);
+
+        try {
+          // Chamaria npm run gerar-imagem aqui, mas como é VPS sem interface gráfica,
+          // por enquanto registramos que precisa ser gerada
+          log(`   ⚠️ TODO: gerar capa com: npm run gerar-imagem -- --slug "${slug}" --topico "${topicVisual}"`, 'warn');
+          // Em produção, integrar com script gerar-imagem.js
+        } catch (e) {
+          log(`   ⚠️ Erro ao gerar imagem: ${e.message} (continuando)`, 'warn');
+        }
+      }
+
+      // 2. CRIAR ARQUIVO NO LOCAL CORRETO
       if (layout === 'bloglayout') {
         // blogLayout → src/content/blog/{slug}.md
         const blogDir = path.join(CONFIG.PROJECT_ROOT, 'src/content/blog');
         if (!fs.existsSync(blogDir)) fs.mkdirSync(blogDir, { recursive: true });
-        filePath = path.join(blogDir, `${urlPath.substring(1)}.md`); // remove / inicial
-        gitPath = `src/content/blog/${urlPath.substring(1)}.md`;
+        filePath = path.join(blogDir, `${slug}.md`);
+        gitPath = `src/content/blog/${slug}.md`;
+        filesToCommit.push(gitPath);
+        filesToCommit.push(`public/images/${slug}.png`); // adiciona imagem ao commit
       } else {
         // contentLayout/reviewLayout → src/pages/{slug}/index.astro
         const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
         filePath = path.join(pageDir, 'index.astro');
         gitPath = `src/pages${urlPath}/index.astro`;
         if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+        filesToCommit.push(gitPath);
+        filesToCommit.push(`public/images/${slug}.png`); // adiciona imagem ao commit
       }
 
       fs.writeFileSync(filePath, pending.htmlContent);
       log(`📄 ${layout} criado: ${filePath}`, 'info');
 
-      // 2. Git commit e push
-      const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
-      const success = await gitCommitAndPush(commitMsg, [
-        gitPath,
-        CONFIG.ANCHOR_MASTER,
-      ]);
+      // 3. ATUALIZAR PÁGINA DO AUTOR (apenas para contentlayout/reviewlayout)
+      if (layout !== 'bloglayout') {
+        log(`\n👤 Atualizando página do autor...`, 'info');
+        const autorPath = path.join(CONFIG.PROJECT_ROOT, 'src/pages/autor/gabriella-fernandes.astro');
+        const estruturaPath = path.join(CONFIG.PROJECT_ROOT, 'src/data/estrutura.ts');
+
+        try {
+          // Adicionar novo artigo ao array de gabriella-fernandes.astro
+          let autorContent = fs.readFileSync(autorPath, 'utf-8');
+          const newArticleEntry = `    {\n      title: "${pending.briefing.title}",\n      description: "${pending.briefing.title}",\n      href: "${slug}",\n      date: "${new Date().toISOString().split('T')[0]}",\n    },\n`;
+
+          // Inserir após "const articles = ["
+          autorContent = autorContent.replace(/const articles = \[/, `const articles = [\n${newArticleEntry}`);
+          fs.writeFileSync(autorPath, autorContent);
+          log(`   ✅ gabriella-fernandes.astro atualizado`, 'info');
+          filesToCommit.push('src/pages/autor/gabriella-fernandes.astro');
+        } catch (e) {
+          log(`   ⚠️ Erro ao atualizar gabriella-fernandes.astro: ${e.message}`, 'warn');
+        }
+
+        try {
+          // TODO: Atualizar estrutura.ts com subcategoria correta
+          log(`   ⚠️ TODO: atualizar estrutura.ts com subcategoria`, 'warn');
+          filesToCommit.push('src/data/estrutura.ts');
+        } catch (e) {
+          log(`   ⚠️ Erro ao atualizar estrutura.ts: ${e.message}`, 'warn');
+        }
+      }
+
+      // 4. GIT COMMIT E PUSH
+      const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' [${slug}]\n\nLayout: ${layout}\nCapa: public/images/${slug}.png`;
+      const success = await gitCommitAndPush(commitMsg, filesToCommit);
 
       if (success) {
         // 3. Remover de cluster-master
