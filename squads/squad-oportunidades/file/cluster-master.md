@@ -10,10 +10,6 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
 
 ### Posts de Suporte
 
-#### Vale refeição e vale alimentação: qual seu negócio precisa aceitar
-URL: /vale-refeicao-vale-alimentacao-diferenca/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/
-
 #### Quais são as bandeiras de voucher existentes no Brasil
 URL: /bandeiras-voucher-brasil/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /vale-refeicao-vale-alimentacao-diferenca/ + /como-funciona-vale-refeicao-maquininha/
