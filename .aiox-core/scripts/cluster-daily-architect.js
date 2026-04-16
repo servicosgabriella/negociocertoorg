@@ -629,52 +629,51 @@ ${designNotes}
 
 ## INSTRUÇÕES GERAIS DE REDAÇÃO:
 
-1. **COMECE COM H1**:
-   \`\`\`html
-   <h1>Seu H1 otimizado aqui</h1>
-   \`\`\`
+⚠️ **IMPORTANTE**: O título (H1) JÁ ESTÁ NO FRONTMATTER. Você NÃO deve incluir <h1> no conteúdo!
 
-2. **INTRODUÇÃO** (3 movimentos):
+1. **COMECE DIRETO COM INTRODUÇÃO** (sem H1):
    - Pergunta específica que o usuário trouxe
    - Resposta imediata ou promessa de escopo
    - Conexão com o que vem a seguir
+   - (3-5 parágrafos curtos)
 
-3. **CADA H2** deve ter:
+2. **CADA H2** deve ter:
    - Frase de abertura conectada ao H2
    - Conteúdo com profundidade (2-3 parágrafos mínimo)
    - OBRIGATÓRIO: dado concreto (taxa, prazo, número, exemplo)
    - Transição suave para próximo H2
 
-4. **REGRAS ABSOLUTAS**:
+3. **REGRAS ABSOLUTAS**:
    - Parágrafos ultracurtos (máximo 2 linhas em desktop)
    - Voz ativa: "A Ton cobra taxa" (não "a taxa é cobrada")
    - Eliminar: "basicamente", "é importante destacar", "vale ressaltar"
    - Palavra-chave natural no primeiro parágrafo
    - Todo parágrafo faz trabalho — nenhum é redundante
 
-5. **FORMATAÇÃO HTML** (HTML PURO, SEM BLOCOS DE CÓDIGO):
-   <h1>Título aqui</h1>
-   <p>Conteúdo...</p>
+4. **FORMATAÇÃO HTML** (HTML PURO, SEM BLOCOS DE CÓDIGO):
+   <p>Parágrafo de introdução...</p>
+   <p>Outro parágrafo...</p>
    <h2>H2 aqui</h2>
    <p>Parágrafo...</p>
    <strong>destaque crítico</strong>
 
-6. **LINK INTERNO** (no H2 ${briefing.linkH2Index + 1}):
+5. **LINK INTERNO** (no H2 ${briefing.linkH2Index + 1}):
    - Texto âncora natural segundo skill texto-ancora
    - Deve parecer transição, não desvio
    - URL: \`<a href="${articleData.pillarUrl}">seu-texto-ancora-aqui</a>\`
 
-7. **LAYOUTS** (se necessário incluir elementos visuais):
+6. **LAYOUTS** (se necessário incluir elementos visuais):
 ${layoutsDesc}
 
-8. **MÍNIMO OBRIGATÓRIO**:
+7. **MÍNIMO OBRIGATÓRIO**:
    - 700+ palavras
    - 5+ H2s (estrutura já entregue)
    - Cada H2 com dado concreto
    - Qualidade > volume sempre
 
 RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
-- Inclua <h1> + <p> de introdução
+- **NÃO INCLUA <h1>** (o título já está no frontmatter!)
+- Comece direto com <p> de introdução
 - Siga a estrutura exata de H2s entregue
 - HTML limpo, sem markdown
 - Sem explicações extras, apenas o código HTML`;
