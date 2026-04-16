@@ -652,14 +652,12 @@ ${designNotes}
    - Palavra-chave natural no primeiro parágrafo
    - Todo parágrafo faz trabalho — nenhum é redundante
 
-5. **FORMATAÇÃO HTML**:
-   \`\`\`html
+5. **FORMATAÇÃO HTML** (HTML PURO, SEM BLOCOS DE CÓDIGO):
    <h1>Título aqui</h1>
    <p>Conteúdo...</p>
    <h2>H2 aqui</h2>
    <p>Parágrafo...</p>
    <strong>destaque crítico</strong>
-   \`\`\`
 
 6. **LINK INTERNO** (no H2 ${briefing.linkH2Index + 1}):
    - Texto âncora natural segundo skill texto-ancora
@@ -684,7 +682,10 @@ RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
   try {
     log(`✍️ Chamando @copywriter-cluster para gerar artigo...`, 'info');
 
-    const html = callClaude(prompt);
+    let html = callClaude(prompt);
+
+    // Limpar blocos de código markdown se Claude os adicionou por engano
+    html = html.replace(/^```html\n?/i, '').replace(/\n?```$/i, '');
 
     if (!html || html.length < 700) {
       log(`⚠️ Artigo gerado muito curto (${html.length} chars)`, 'warn');
