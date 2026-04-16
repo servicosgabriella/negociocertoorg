@@ -527,12 +527,12 @@ async function handleApproval(callbackData) {
   log(`\n📋 Processando ${action} para: ${articleKey}`, 'info');
 
   if (action === 'approve') {
-    log(`✅ Aprovado: ${pending.article.title}`, 'success');
+    log(`✅ Aprovado: ${pending.briefing.title}`, 'success');
     await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.article.title}\n\nPublicando...`);
 
     try {
       // 1. Criar arquivo .astro
-      const pageFile = path.join(CONFIG.PROJECT_ROOT, `src/pages${pending.article.url}.astro`);
+      const pageFile = path.join(CONFIG.PROJECT_ROOT, `src/pages${pending.briefing.url}.astro`);
       const dir = path.dirname(pageFile);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(pageFile, pending.article);
