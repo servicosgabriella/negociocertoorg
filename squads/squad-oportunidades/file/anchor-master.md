@@ -36,3 +36,18 @@ Total de links registrados: [N]
 ```
 
 ---
+
+## /[slug]/
+Palavra-chave alvo: [atualizar]
+Tipo: interna
+
+### Saldo atual
+Target: 1 links usados — 4 disponíveis até 50%
+Brand: 0 links usados — 2 disponíveis até 25%
+Misc: 0 links usados — 2 disponíveis até 25%
+Total de links registrados: 1
+
+### Histórico de âncoras usadas
+| Post de origem | Âncora usada | Tipo | Data |
+|---|---|---|---|
+| /vale-refeicao-vale-alimentacao-diferenca/ | veja nosso guia completo | target | 15/04/2026 |
