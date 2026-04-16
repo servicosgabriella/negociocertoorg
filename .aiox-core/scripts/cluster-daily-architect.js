@@ -946,22 +946,37 @@ async function handleApproval(callbackData) {
       const urlPath = pending.metadata.url.replace(/\/$/, ''); // remove / final se houver
       const slug = urlPath.substring(1); // remove / inicial
       const layout = pending.briefing.layout || 'bloglayout';
-      const filesToCommit = [CONFIG.ANCHOR_MASTER]; // sempre atualiza anchor-master
+      let filesToCommit = [CONFIG.ANCHOR_MASTER]; // sempre atualiza anchor-master
       let filePath, gitPath;
 
       // 1. GERAR IMAGEM (bloglayout e contentlayout obrigatório)
       if (layout === 'bloglayout' || layout === 'contentlayout' || layout === 'reviewlayout') {
-        log(`\n🖼️ Gerando imagem de capa...`, 'info');
+        log(`\n🖼️ Gerando imagem de capa (16:9)...`, 'info');
         const topicVisual = `artigo sobre ${pending.briefing.title}`;
         const imagePath = path.join(CONFIG.PROJECT_ROOT, `public/images/${slug}.png`);
 
         try {
-          // Chamaria npm run gerar-imagem aqui, mas como é VPS sem interface gráfica,
-          // por enquanto registramos que precisa ser gerada
-          log(`   ⚠️ TODO: gerar capa com: npm run gerar-imagem -- --slug "${slug}" --topico "${topicVisual}"`, 'warn');
-          // Em produção, integrar com script gerar-imagem.js
+          // Chamar npm run gerar-imagem com o script oficial
+          const command = `npm run gerar-imagem -- --slug "${slug}" --topico "${topicVisual}" --format "16:9"`;
+          log(`   Executando: ${command}`, 'info');
+
+          const { stdout, stderr } = await execAsync(command, {
+            cwd: CONFIG.PROJECT_ROOT,
+            maxBuffer: 10 * 1024 * 1024, // 10MB para imagens grandes
+          });
+
+          if (fs.existsSync(imagePath)) {
+            log(`   ✅ Imagem gerada: ${imagePath}`, 'success');
+            filesToCommit.push(`public/images/${slug}.png`);
+          } else {
+            log(`   ⚠️ Imagem não encontrada após geração`, 'warn');
+          }
+
+          if (stderr) log(`   Output: ${stderr.substring(0, 200)}`, 'info');
         } catch (e) {
-          log(`   ⚠️ Erro ao gerar imagem: ${e.message} (continuando)`, 'warn');
+          log(`   ⚠️ Erro ao gerar imagem: ${e.message}`, 'warn');
+          log(`   💡 Você pode gerar manualmente depois com:`, 'info');
+          log(`      npm run gerar-imagem -- --slug "${slug}" --topico "${topicVisual}"`, 'info');
         }
       }
 
@@ -973,7 +988,6 @@ async function handleApproval(callbackData) {
         filePath = path.join(blogDir, `${slug}.md`);
         gitPath = `src/content/blog/${slug}.md`;
         filesToCommit.push(gitPath);
-        filesToCommit.push(`public/images/${slug}.png`); // adiciona imagem ao commit
       } else {
         // contentLayout/reviewLayout → src/pages/{slug}/index.astro
         const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
@@ -981,7 +995,6 @@ async function handleApproval(callbackData) {
         gitPath = `src/pages${urlPath}/index.astro`;
         if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
         filesToCommit.push(gitPath);
-        filesToCommit.push(`public/images/${slug}.png`); // adiciona imagem ao commit
       }
 
       fs.writeFileSync(filePath, pending.htmlContent);
