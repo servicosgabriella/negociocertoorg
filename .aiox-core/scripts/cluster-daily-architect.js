@@ -487,43 +487,39 @@ async function callCopywriterCluster(articleData, briefing) {
 
   const prompt = `Você é o Copywriter Cluster — especialista em redação de posts informativos de suporte para pillar pages.
 
+===================================================================================
+REGRA ABSOLUTA: SIGA A SKILL copy-${niche} — TODAS AS DECISÕES DE TOM, VOCABULÁRIO E ESTILO VÊM DAQUI
+===================================================================================
+
+${skillCopyNiche || '⚠️ SKILL NÃO CARREGADA - use padrão negociocerto'}
+
+---
+
 OBJETIVO:
-Redação completa de artigo de 700+ palavras com profundidade real, dados concretos, e otimizações SEO aplicadas.
+Redação completa de artigo de 700+ palavras aplicando EXATAMENTE a skill copy-${niche} acima.
 
 BRIEF DO ARTIGO:
 - Tema/Keyword: ${articleData.title}
 - Pillar page para linkar: ${articleData.pillarUrl}
 - Nicho: ${niche}
-- Tom/Voz: Consulte skill copy-${niche} abaixo
+- Tom/Vocabulário/Estilo: CONFORME skill copy-${niche} ACIMA (não invente variações)
 
 ---
 
-## SKILL DE COPY (copy-${niche}) — APLICAR SEMPRE
-
-${skillCopyNiche || '(Skill não carregada)'}
-
 ---
 
-## SKILL TEXTO-ÂNCORA — PARA O LINK INTERNO
+## SKILLS COMPLEMENTARES (aplique também):
 
-${skillTextoAncora || '(Skill não carregada)'}
-
----
-
-## SKILL OTIMIZADOR-H1
-
+### SKILL OTIMIZADOR-H1 (para o título)
 ${skillOtimizadorH1 || '(Skill não carregada)'}
 
----
-
-## SKILL CONSTRUTOR-SLUG
-
+### SKILL CONSTRUTOR-SLUG (para a URL)
 ${skillConstrutorSlug || '(Skill não carregada)'}
 
----
+### SKILL TEXTO-ÂNCORA (para o link interno)
+${skillTextoAncora || '(Skill não carregada)'}
 
-## SKILL QUALIFICADOR-H2
-
+### SKILL QUALIFICADOR-H2 (para validar H2s)
 ${skillQualificadorH2 || '(Skill não carregada)'}
 
 ---
