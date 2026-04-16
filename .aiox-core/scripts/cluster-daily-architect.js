@@ -253,52 +253,84 @@ async function searchSERP(keyword) {
 // ============================================================================
 
 /**
- * Chama @arquiteto-cluster para gerar estrutura de H2s a partir da SERP
- * Retorna: { h2s: [...], linkContext: string, anchorText: string }
+ * Chama @arquiteto-cluster para gerar estrutura de H2s
+ * @arquiteto-cluster busca SERP direto via ValueSERP API e analisa
+ * Retorna: { h2s: [...], linkH2Index: number, linkReason: string, transitionSuggestion: string }
  */
-async function callArquitetoCluster(articleData, serpResults) {
+async function callArquitetoCluster(articleData) {
   const client = new Anthropic();
 
+  // 1. ARQUITETO BUSCA SERP DIRETO
+  log(`🔍 @arquiteto-cluster buscando SERP para: "${articleData.title}"`, 'info');
+  const serpResults = await searchSERP(articleData.title);
+
+  if (serpResults.length === 0) {
+    log(`⚠️ Nenhum resultado SERP. @arquiteto-cluster trabalhará com estrutura base.`, 'warn');
+  }
+
+  // 2. ARQUITETO ANALISA SERP
   const serpContext = serpResults.length > 0
-    ? serpResults.map((r, i) => `${i + 1}. ${r.title}\n${r.snippet}`).join('\n\n')
-    : 'Nenhum resultado SERP encontrado. Gere H2s baseado na keyword.';
+    ? serpResults.map((r, i) => `
+RESULTADO ${i + 1}:
+Título: ${r.title}
+URL: ${r.url}
+Snippet: ${r.snippet}
+`).join('\n---\n')
+    : 'Nenhum resultado SERP retornou. Gere H2s baseado na keyword.';
 
   const prompt = `Você é o Arquiteto Cluster — especialista em arquitetura ágil de posts de cluster com foco em linkagem estratégica.
 
+MISSÃO:
+Analisar a SERP abaixo para a keyword, extrair H2s dos competitors, qualificar e entregar estrutura pronta.
+
 ARTIGO A ARQUITETAR:
-- Título: ${articleData.title}
-- Keyword: ${articleData.title}
+- Título/Keyword: ${articleData.title}
 - Pillar page: ${articleData.pillarUrl}
 - Links para: ${articleData.linksTo.join(', ')}
 
 RESULTADOS SERP (TOP 3):
 ${serpContext}
 
-TAREFAS:
-1. Analise os resultados da SERP acima e extraia candidatos a H2
-2. Qualifique cada candidato com os 3 filtros:
-   - Gera 2-3 parágrafos de conteúdo útil?
-   - Tem intenção distinta da keyword?
-   - Pertence ao estágio do usuário deste cluster?
-3. Gere MÍNIMO 5 H2s aprovados, ordenados por relevância
-4. Identifique qual H2 é melhor para lincar a pillar page (transição natural)
-5. Entregue em JSON com esta estrutura:
+ANÁLISE OBRIGATÓRIA:
+1. Examine cada resultado e extraia todos os H2s/H3s vistos
+2. Para cada candidato, qualifique com 3 filtros:
+
+   FILTRO 1 — Gera 2-3 parágrafos de conteúdo útil?
+   (Se resposta é 1 frase, é menção no corpo — não H2 próprio)
+
+   FILTRO 2 — Tem intenção distinta da keyword?
+   (Sinônimos da keyword não são H2s novos)
+
+   FILTRO 3 — Pertence ao estágio do usuário deste cluster?
+   (Usuário já conhece o básico, quer saber específico)
+
+3. Aprove MÍNIMO 5 H2s que passaram nos 3 filtros
+4. Ordene por relevância (mais central para a keyword = acima)
+5. Identifique qual H2 é o gancho natural para lincar a pillar
+
+RESPONDA EM JSON (apenas o JSON, sem explicações):
 
 {
-  "h2s": ["H2 1: ...", "H2 2: ...", ...],
-  "linkH2Index": <número do H2 para lincar>,
-  "linkReason": "Por que este H2 é o gancho natural",
-  "transitionSuggestion": "Se você quer [...], veja [pillar page]"
+  "h2s": [
+    "H2 1: [título exato em cauda longa]",
+    "H2 2: [título exato em cauda longa]",
+    "H2 3: [ESTE é para lincar a pillar]",
+    "H2 4: [título exato em cauda longa]",
+    "H2 5: [título exato em cauda longa]"
+  ],
+  "linkH2Index": 2,
+  "linkReason": "Este H2 naturalmente amplia o escopo para [razão específica]",
+  "transitionSuggestion": "Se você quer [contexto específico], veja [pillar name]"
 }
 
-REGRAS:
-- Nunca gere menos de 5 H2s
-- H2s devem vir dos resultados SERP, não ser inventados
-- Link deve ser em H2 que amplia o escopo, não reduz
-- Responda APENAS com o JSON, sem explicações extras`;
+REGRAS ABSOLUTAS:
+- Nunca menos de 5 H2s
+- H2s SEMPRE vêm dos resultados SERP (nunca inventados)
+- Link em H2 que amplia escopo (do específico para geral)
+- JSON válido, sem markdown, sem explicações extras`;
 
   try {
-    log(`🤖 Chamando @arquiteto-cluster para gerar estrutura de H2s...`, 'info');
+    log(`🏗️ @arquiteto-cluster analisando SERP e gerando H2s...`, 'info');
 
     const response = await client.messages.create({
       model: 'claude-opus-4-1-20250805',
@@ -316,14 +348,16 @@ REGRAS:
     // Extrair JSON da resposta
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      log(`⚠️ Resposta do arquiteto não contém JSON válido`, 'warn');
+      log(`⚠️ @arquiteto-cluster retornou resposta inválida`, 'warn');
+      log(`Resposta: ${text.substring(0, 200)}...`, 'warn');
       throw new Error('Invalid JSON from arquitecto-cluster');
     }
 
     const result = JSON.parse(jsonMatch[0]);
 
-    log(`✅ H2s geradas: ${result.h2s.length}`, 'success');
-    log(`📍 Link contextual no H2 ${result.linkH2Index + 1}`, 'info');
+    log(`✅ @arquiteto-cluster gerou ${result.h2s.length} H2s`, 'success');
+    log(`📍 Link será no H2 ${result.linkH2Index + 1}: "${result.h2s[result.linkH2Index]}"`, 'info');
+    log(`   Razão: ${result.linkReason}`, 'info');
 
     return result;
   } catch (e) {
@@ -605,20 +639,13 @@ async function main() {
     log(`Pillar: ${targetArticle.pillarUrl}`, 'info');
     log(`Links para: ${targetArticle.linksTo.join(', ')}`, 'info');
 
-    // 4. Buscar SERP com ValueSERP
-    const serpResults = await searchSERP(targetArticle.title);
-    if (serpResults.length === 0) {
-      log(`⚠️ Nenhum resultado SERP obtido, continuando com estrutura base...`, 'warn');
-    }
-
-    // 5. Chamar @arquiteto-cluster para gerar H2s estruturados
-    log(`\n🏗️ Etapa 1: Arquitetar estrutura de H2s...`, 'info');
+    // 4. Chamar @arquiteto-cluster (que busca SERP internamente)
+    log(`\n🏗️ Etapa 1: @arquiteto-cluster — Buscar SERP + Arquitetar H2s...`, 'info');
     let briefing;
     try {
-      briefing = await callArquitetoCluster(targetArticle, serpResults);
+      briefing = await callArquitetoCluster(targetArticle);
       briefing.title = targetArticle.title;
       briefing.url = targetArticle.url;
-      briefing.serpResults = serpResults;
     } catch (e) {
       log(`⚠️ Falha em @arquiteto-cluster, usando estrutura base`, 'warn');
       briefing = {
