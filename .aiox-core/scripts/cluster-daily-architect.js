@@ -19,9 +19,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
+const { exec, spawnSync } = require('child_process');
 const { promisify } = require('util');
-const Anthropic = require('@anthropic-ai/sdk');
 
 const execAsync = promisify(exec);
 
@@ -35,7 +34,6 @@ const CONFIG = {
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   GITHUB_USER: process.env.GITHUB_USER,
   VALUESERP_API_KEY: process.env.VALUESERP_API_KEY,
-  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
   PROJECT_ROOT: path.join(__dirname, '../../'),
   CLUSTER_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/cluster-master.md'),
   ANCHOR_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/anchor-master.md'),
@@ -45,7 +43,7 @@ const CONFIG = {
 };
 
 // Validar configuração
-const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY', 'ANTHROPIC_API_KEY'];
+const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY'];
 for (const env of requiredEnvs) {
   if (!CONFIG[env]) {
     console.error(`❌ Erro: Configure ${env} como variável de ambiente`);
@@ -280,7 +278,24 @@ async function searchSERP(keyword) {
 }
 
 // ============================================================================
-// ANTHROPIC API CALLS — AGENTES DE CLUSTERING
+// CLAUDE CLI — HELPER
+// ============================================================================
+
+function callClaude(prompt) {
+  const result = spawnSync('claude', ['-p', prompt], {
+    encoding: 'utf-8',
+    maxBuffer: 20 * 1024 * 1024,
+    timeout: 180000,
+  });
+
+  if (result.error) throw new Error(`Erro ao executar claude CLI: ${result.error.message}`);
+  if (result.status !== 0) throw new Error(`claude CLI falhou (exit ${result.status}): ${result.stderr}`);
+
+  return result.stdout.trim();
+}
+
+// ============================================================================
+// CLAUDE CLI CALLS — AGENTES DE CLUSTERING
 // ============================================================================
 
 /**
@@ -289,7 +304,6 @@ async function searchSERP(keyword) {
  * Retorna: { h2s: [...], linkH2Index: number, linkReason: string, transitionSuggestion: string }
  */
 async function callArquitetoCluster(articleData) {
-  const client = new Anthropic();
 
   // 1. ARQUITETO BUSCA SERP DIRETO
   log(`🔍 @arquiteto-cluster buscando SERP para: "${articleData.title}"`, 'info');
@@ -376,18 +390,7 @@ REGRAS ABSOLUTAS:
   try {
     log(`🏗️ @arquiteto-cluster analisando SERP e gerando H2s...`, 'info');
 
-    const response = await client.messages.create({
-      model: 'claude-opus-4-1-20250805',
-      max_tokens: 1000,
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-    });
-
-    const text = response.content[0].type === 'text' ? response.content[0].text : '';
+    const text = callClaude(prompt);
 
     // Extrair JSON da resposta
     const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -420,7 +423,6 @@ REGRAS ABSOLUTAS:
  * Retorna: HTML string do artigo
  */
 async function callCopywriterCluster(articleData, briefing) {
-  const client = new Anthropic();
 
   // CARREGAR SKILLS EXISTENTES
   const skillQualificadorH2 = loadSkill('qualificador-h2');
@@ -563,18 +565,7 @@ RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
   try {
     log(`✍️ Chamando @copywriter-cluster para gerar artigo...`, 'info');
 
-    const response = await client.messages.create({
-      model: 'claude-opus-4-1-20250805',
-      max_tokens: 2500,
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-    });
-
-    const html = response.content[0].type === 'text' ? response.content[0].text : '';
+    const html = callClaude(prompt);
 
     if (!html || html.length < 700) {
       log(`⚠️ Artigo gerado muito curto (${html.length} chars)`, 'warn');
