@@ -709,23 +709,12 @@ RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
     // Limpar blocos de código markdown se Claude os adicionou por engano
     html = html.replace(/^```html\n?/i, '').replace(/\n?```$/i, '');
 
-    // VALIDAÇÃO: Garantir apenas 1 H1
+    // VALIDAÇÃO: Se houver H1s, remover (o título vem do frontmatter)
     const h1Matches = html.match(/<h1[^>]*>.*?<\/h1>/gi) || [];
-    if (h1Matches.length === 0) {
-      throw new Error('❌ ERRO: Artigo não contém <h1>. Claude deve incluir exatamente 1 H1 no início.');
-    }
-    if (h1Matches.length > 1) {
-      log(`⚠️ Artigo tem ${h1Matches.length} H1s (esperado 1) — removendo extras...`, 'warn');
-      // Manter apenas o primeiro H1, converter outros para H2
-      let firstH1Found = false;
-      html = html.replace(/<h1([^>]*)>(.*?)<\/h1>/gi, (match) => {
-        if (!firstH1Found) {
-          firstH1Found = true;
-          return match; // manter primeiro
-        }
-        return match.replace(/<h1/, '<h2').replace(/<\/h1>/, '</h2>'); // converter extras
-      });
-      log(`✅ H1s corrigidos: mantendo apenas 1 H1`, 'success');
+    if (h1Matches.length > 0) {
+      log(`⚠️ Artigo contém ${h1Matches.length} H1(s) — removendo (título vem do frontmatter)...`, 'warn');
+      html = html.replace(/<h1[^>]*>.*?<\/h1>/gi, ''); // remover todos os H1s
+      log(`✅ H1s removidos`, 'success');
     }
 
     if (!html || html.length < 700) {
