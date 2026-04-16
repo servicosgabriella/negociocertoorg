@@ -529,6 +529,9 @@ REGRAS ABSOLUTAS:
       log(`   Notas: ${result.designNotes}`, 'info');
     }
 
+    // Adicionar dados SERP ao retorno para o copywriter ter contexto completo
+    result.serpResults = serpResults;
+
     return result;
   } catch (e) {
     log(`❌ Erro ao chamar @arquiteto-cluster: ${e.message}`, 'error');
@@ -578,6 +581,23 @@ BRIEF DO ARTIGO:
 - Pillar page para linkar: ${articleData.pillarUrl}
 - Nicho: ${niche}
 - Tom/Vocabulário/Estilo: CONFORME skill copy-${niche} ACIMA (não invente variações)
+
+===================================================================================
+📊 CONTEXTO COMPETITIVO (DO @ARQUITETO-CLUSTER)
+===================================================================================
+
+${briefing.serpResults && briefing.serpResults.length > 0 ? briefing.serpResults.map((r, i) => `
+COMPETIDOR ${i + 1}:
+Título: ${r.title}
+URL: ${r.url}
+Snippet: ${r.snippet}
+`).join('\n---\n') : 'Sem dados SERP disponíveis'}
+
+⚠️ INSIGHTS:
+- Use dados concretos dos competitors (taxas, prazos, números) mencionados nos snippets
+- Não copie estrutura dos competitors, mas capture a intenção real do usuário
+- Complemente com informações que faltam nos competitors
+- Mantenha tom diferenciado conforme skill copy-${niche}
 
 ===================================================================================
 ⚠️ ESCOPO ESPECÍFICO DESTE ARTIGO - LEIA COM ATENÇÃO
