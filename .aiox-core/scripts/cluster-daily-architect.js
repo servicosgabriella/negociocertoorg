@@ -113,6 +113,55 @@ function determineLayout(title, isReview = false) {
   return 'bloglayout'; // Posts informativos de cluster → blog
 }
 
+/**
+ * Gera frontmatter YAML para arquivo .md (bloglayout)
+ */
+function generateFrontmatter(data) {
+  const {
+    title = 'Untitled',
+    slug = 'untitled',
+    description = title,
+    keyword = 'keyword',
+    layout = 'bloglayout'
+  } = data;
+
+  const today = new Date().toISOString().split('T')[0];
+  const coverImage = `/images/${slug}.png`;
+
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: title, href: `/blog/${slug}` }
+  ];
+
+  // Construir YAML formatado
+  const yaml = `---
+title: "${title.replace(/"/g, '\\"')}"
+description: "${description.replace(/"/g, '\\"')}"
+keyword: "${keyword.replace(/"/g, '\\"')}"
+layout: "${layout}"
+pubDate: ${today}
+updatedDate: ${today}
+authorName: "Gabriella Fernandes"
+authorRole: "Especialista em Negócios"
+authorImage: "/images/perfil.jpg"
+coverImage: "${coverImage}"
+authorHref: "/autor/gabriella-fernandes"
+breadcrumb:
+  - label: "Home"
+    href: "/"
+  - label: "Blog"
+    href: "/blog"
+  - label: "${title.replace(/"/g, '\\"')}"
+    href: "/blog/${slug}"
+intencao: "Informacional"
+---
+
+`;
+
+  return yaml;
+}
+
 const LAYOUTS = {
   'tabela-comparacao': 'Modelo 1 — Tabela de Comparação com gradiente azul e linhas alternadas',
   'tabela-destacada': 'Modelo 2 — Tabela com coluna em destaque (recomendado)',
@@ -982,12 +1031,22 @@ async function handleApproval(callbackData) {
 
       // 2. CRIAR ARQUIVO NO LOCAL CORRETO
       if (layout === 'bloglayout') {
-        // blogLayout → src/content/blog/{slug}.md
+        // blogLayout → src/content/blog/{slug}.md (com frontmatter YAML)
         const blogDir = path.join(CONFIG.PROJECT_ROOT, 'src/content/blog');
         if (!fs.existsSync(blogDir)) fs.mkdirSync(blogDir, { recursive: true });
         filePath = path.join(blogDir, `${slug}.md`);
         gitPath = `src/content/blog/${slug}.md`;
         filesToCommit.push(gitPath);
+
+        // Gerar frontmatter e prepend ao conteúdo
+        const frontmatter = generateFrontmatter({
+          title: pending.briefing.title,
+          slug: slug,
+          description: pending.briefing.title,
+          keyword: pending.metadata.keyword || pending.briefing.title
+        });
+        const contentWithFrontmatter = frontmatter + pending.htmlContent;
+        fs.writeFileSync(filePath, contentWithFrontmatter);
       } else {
         // contentLayout/reviewLayout → src/pages/{slug}/index.astro
         const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
@@ -995,9 +1054,10 @@ async function handleApproval(callbackData) {
         gitPath = `src/pages${urlPath}/index.astro`;
         if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
         filesToCommit.push(gitPath);
-      }
 
-      fs.writeFileSync(filePath, pending.htmlContent);
+        // Para .astro files, escrever como está (já deve ter estrutura Astro)
+        fs.writeFileSync(filePath, pending.htmlContent);
+      }
       log(`📄 ${layout} criado: ${filePath}`, 'info');
 
       // 3. ATUALIZAR PÁGINA DO AUTOR (apenas para contentlayout/reviewlayout)
