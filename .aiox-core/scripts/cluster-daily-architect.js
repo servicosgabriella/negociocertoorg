@@ -912,16 +912,20 @@ async function handleApproval(callbackData) {
     await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.metadata.title}\n\nPublicando...`);
 
     try {
-      // 1. Criar arquivo .astro
-      const pageFile = path.join(CONFIG.PROJECT_ROOT, `src/pages${pending.metadata.url}.astro`);
-      const dir = path.dirname(pageFile);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      // 1. Criar arquivo .astro no local correto
+      // URL: /bandeiras-voucher-brasil/ → src/pages/bandeiras-voucher-brasil/index.astro
+      const urlPath = pending.metadata.url.replace(/\/$/, ''); // remove / final se houver
+      const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
+      const pageFile = path.join(pageDir, 'index.astro');
+
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
       fs.writeFileSync(pageFile, pending.htmlContent);
+      log(`📄 Arquivo criado: ${pageFile}`, 'info');
 
       // 2. Git commit e push
       const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
       const success = await gitCommitAndPush(commitMsg, [
-        `src/pages${pending.metadata.url}.astro`,
+        `src/pages${urlPath}/index.astro`,
         CONFIG.ANCHOR_MASTER,
       ]);
 
