@@ -29,7 +29,7 @@ const execAsync = promisify(exec);
 // ============================================================================
 
 const CONFIG = {
-  TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
+  TELEGRAM_TOKEN: process.env.CLUSTER_TELEGRAM_TOKEN,
   TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   GITHUB_USER: process.env.GITHUB_USER,
