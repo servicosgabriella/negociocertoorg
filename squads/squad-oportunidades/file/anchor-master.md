@@ -37,17 +37,22 @@ Total de links registrados: [N]
 
 ---
 
-## /[slug]/
-Palavra-chave alvo: [atualizar]
+## /melhores-maquininhas-cartao-voucher-refeicao/
+Palavra-chave alvo: maquininhas de cartão que aceitam voucher
 Tipo: interna
 
 ### Saldo atual
-Target: 1 links usados — 4 disponíveis até 50%
+Target: 2 links usados — 3 disponíveis até 50%
 Brand: 0 links usados — 2 disponíveis até 25%
 Misc: 0 links usados — 2 disponíveis até 25%
-Total de links registrados: 1
+Total de links registrados: 2
 
 ### Histórico de âncoras usadas
 | Post de origem | Âncora usada | Tipo | Data |
 |---|---|---|---|
-| /vale-refeicao-vale-alimentacao-diferenca/ | veja nosso guia completo | target | 15/04/2026 |
+| /mei-aceitar-vale-refeicao/ | veja nosso guia completo | target | 15/04/2026 |
+| /mei-aceitar-vale-refeicao/ | ranking atualizado de maquininhas para cartão e voucher | target | 16/04/2026 |
+
+### Âncoras target já usadas (nunca repetir exatas)
+- "veja nosso guia completo"
+- "ranking atualizado de maquininhas para cartão e voucher"

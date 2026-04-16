@@ -95,4 +95,4 @@ Muita maquininha é habilitada para Sodexo e Ticket, mas não para Alelo. Em R$ 
 
 Para sistema web (se você trabalha online ou híbrido): Stripe, iugu, Mercado Pago aceitam vale-refeição se você integra as bandeiras. Configuração é mais técnica, mas funciona. Gateway (sistema na nuvem) é mais flexível que maquininha POS porque bandeira é ativação de software, não hardware.
 
-Se você quer comparar todas as maquininhas que aceitam vale-refeição com dados atualizados sobre taxa e aceitação por bandeira, confira [nosso guia de melhores maquininhas de cartão](/blog/melhores-maquininhas-voucher/). Lá você vê qual aceita Alelo, qual aceita Sodexo, qual tem menor taxa em vale-refeição e qual é mais prática para seu tipo de negócio.
+A escolha da maquininha certa depende de qual operadora de vale seus clientes usam — e se você quer aceitar voucher por web ou presencial. [Nosso ranking atualizado de maquininhas para cartão e voucher](/blog/melhores-maquininhas-cartao-voucher-refeicao/) mostra qual modelo aceita cada bandeira, qual tem menor taxa em vale-refeição e qual funciona melhor para seu tipo de negócio.
