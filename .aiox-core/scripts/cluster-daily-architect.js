@@ -579,6 +579,29 @@ BRIEF DO ARTIGO:
 - Nicho: ${niche}
 - Tom/Vocabulário/Estilo: CONFORME skill copy-${niche} ACIMA (não invente variações)
 
+===================================================================================
+⚠️ ESCOPO ESPECÍFICO DESTE ARTIGO - LEIA COM ATENÇÃO
+===================================================================================
+
+INTENÇÃO REAL DO USUÁRIO:
+${articleData.title}
+
+RESPONDA APENAS A:
+- Como configurar a maquininha para ACEITAR vale-refeição como PAGAMENTO
+- Quais bandeiras habilitar
+- Quais taxas cobra
+- Como ativar no equipamento
+- O que é vale-refeição vs vale-alimentação (no contexto de pagamento)
+
+❌ NÃO FALE SOBRE (mesmos que a keyword sugira):
+- MEI oferecendo vale-refeição para funcionários (não é o assunto)
+- Benefício corporativo para empregado (fora do escopo)
+- Como funcionário solicita o benefício (irrelevante)
+- Legislação trabalhista sobre benefícios (não é técnico de maquininha)
+
+⚠️ FILTRO DE QUALIDADE:
+Se uma frase não responde diretamente "como ativar na maquininha", DELETE.
+
 ---
 
 ---
