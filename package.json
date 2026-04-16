@@ -7,9 +7,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "gerar-imagem": "node --env-file=.env scripts/gerar-imagem.js"
+    "gerar-imagem": "node --env-file=.env scripts/gerar-imagem.js",
+    "cluster-architect": "node --env-file=.env .aiox-core/scripts/cluster-daily-architect.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
     "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",

@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 const { promisify } = require('util');
+const Anthropic = require('@anthropic-ai/sdk');
 
 const execAsync = promisify(exec);
 
@@ -34,6 +35,7 @@ const CONFIG = {
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   GITHUB_USER: process.env.GITHUB_USER,
   VALUESERP_API_KEY: process.env.VALUESERP_API_KEY,
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
   PROJECT_ROOT: path.join(__dirname, '../../'),
   CLUSTER_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/cluster-master.md'),
   ANCHOR_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/anchor-master.md'),
@@ -43,7 +45,7 @@ const CONFIG = {
 };
 
 // Validar configuração
-const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY'];
+const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY', 'ANTHROPIC_API_KEY'];
 for (const env of requiredEnvs) {
   if (!CONFIG[env]) {
     console.error(`❌ Erro: Configure ${env} como variável de ambiente`);
@@ -247,6 +249,190 @@ async function searchSERP(keyword) {
 }
 
 // ============================================================================
+// ANTHROPIC API CALLS — AGENTES DE CLUSTERING
+// ============================================================================
+
+/**
+ * Chama @arquiteto-cluster para gerar estrutura de H2s a partir da SERP
+ * Retorna: { h2s: [...], linkContext: string, anchorText: string }
+ */
+async function callArquitetoCluster(articleData, serpResults) {
+  const client = new Anthropic();
+
+  const serpContext = serpResults.length > 0
+    ? serpResults.map((r, i) => `${i + 1}. ${r.title}\n${r.snippet}`).join('\n\n')
+    : 'Nenhum resultado SERP encontrado. Gere H2s baseado na keyword.';
+
+  const prompt = `Você é o Arquiteto Cluster — especialista em arquitetura ágil de posts de cluster com foco em linkagem estratégica.
+
+ARTIGO A ARQUITETAR:
+- Título: ${articleData.title}
+- Keyword: ${articleData.title}
+- Pillar page: ${articleData.pillarUrl}
+- Links para: ${articleData.linksTo.join(', ')}
+
+RESULTADOS SERP (TOP 3):
+${serpContext}
+
+TAREFAS:
+1. Analise os resultados da SERP acima e extraia candidatos a H2
+2. Qualifique cada candidato com os 3 filtros:
+   - Gera 2-3 parágrafos de conteúdo útil?
+   - Tem intenção distinta da keyword?
+   - Pertence ao estágio do usuário deste cluster?
+3. Gere MÍNIMO 5 H2s aprovados, ordenados por relevância
+4. Identifique qual H2 é melhor para lincar a pillar page (transição natural)
+5. Entregue em JSON com esta estrutura:
+
+{
+  "h2s": ["H2 1: ...", "H2 2: ...", ...],
+  "linkH2Index": <número do H2 para lincar>,
+  "linkReason": "Por que este H2 é o gancho natural",
+  "transitionSuggestion": "Se você quer [...], veja [pillar page]"
+}
+
+REGRAS:
+- Nunca gere menos de 5 H2s
+- H2s devem vir dos resultados SERP, não ser inventados
+- Link deve ser em H2 que amplia o escopo, não reduz
+- Responda APENAS com o JSON, sem explicações extras`;
+
+  try {
+    log(`🤖 Chamando @arquiteto-cluster para gerar estrutura de H2s...`, 'info');
+
+    const response = await client.messages.create({
+      model: 'claude-opus-4-1-20250805',
+      max_tokens: 1000,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+    });
+
+    const text = response.content[0].type === 'text' ? response.content[0].text : '';
+
+    // Extrair JSON da resposta
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      log(`⚠️ Resposta do arquiteto não contém JSON válido`, 'warn');
+      throw new Error('Invalid JSON from arquitecto-cluster');
+    }
+
+    const result = JSON.parse(jsonMatch[0]);
+
+    log(`✅ H2s geradas: ${result.h2s.length}`, 'success');
+    log(`📍 Link contextual no H2 ${result.linkH2Index + 1}`, 'info');
+
+    return result;
+  } catch (e) {
+    log(`❌ Erro ao chamar @arquiteto-cluster: ${e.message}`, 'error');
+    throw e;
+  }
+}
+
+/**
+ * Chama @copywriter-cluster para gerar o artigo completo
+ * Retorna: HTML string do artigo
+ */
+async function callCopywriterCluster(articleData, briefing) {
+  const client = new Anthropic();
+
+  const h2sFormatted = briefing.h2s
+    .map((h, i) => `${i + 1}. ${h}`)
+    .join('\n');
+
+  const prompt = `Você é o Copywriter Cluster — especialista em redação de posts informativos de suporte para pillar pages.
+
+BRIEFING DO ARTIGO:
+- Título: ${articleData.title}
+- Keyword principal: ${articleData.title}
+- Nicho: negócio (maquininha, cartão, financeiro)
+- Pillar page: ${articleData.pillarUrl}
+
+ESTRUTURA DE H2s (já validada):
+${h2sFormatted}
+
+H2 PARA LINCAR A PILLAR (${briefing.linkH2Index + 1}):
+"${briefing.h2s[briefing.linkH2Index]}"
+
+CONTEXTO DE LINKAGEM:
+${briefing.transitionSuggestion}
+
+INSTRUÇÕES DE REDAÇÃO:
+1. Escreva introdução com 3 movimentos:
+   - Pergunta/situação que o usuário trouxe
+   - Resposta imediata ou promessa de escopo
+   - Conexão com o que vem a seguir
+
+2. Desenvolva cada H2 com:
+   - Frase de abertura conectada ao H2
+   - Conteúdo com profundidade real
+   - OBRIGATÓRIO: dado concreto (taxa, prazo, número, exemplo)
+   - Transição suave para o próximo
+
+3. REGRAS DE REDAÇÃO OBRIGATÓRIAS:
+   - Parágrafos ultracurtos (máximo 2 linhas em desktop)
+   - Voz ativa sempre (Sujeito + Ação + Objeto)
+   - Eliminar palavras desnecessárias ("basicamente", "é importante destacar")
+   - Palavra-chave natural no primeiro parágrafo
+   - Nenhum parágrafo que não faz trabalho
+
+4. No H2 ${briefing.linkH2Index + 1}, insira link natural:
+   "<a href='${articleData.pillarUrl}'>veja nosso guia completo</a>"
+   Faça soar como transição natural, não desvio.
+
+5. Extensão: MÍNIMO 700 palavras + 5 H2s
+   Qualidade > volume. Profundidade = cobertura + dados, não comprimento.
+
+6. Formatação:
+   - Marque H2s com <h2>título</h2>
+   - Parágrafos em <p></p>
+   - Use <strong> para destacar dado crítico
+   - Não use <table> (será gerada depois se necessário)
+
+ANTI-PADRÕES (NUNCA FAZER):
+- Voz passiva
+- Genericidade sem dados
+- Parágrafos longos
+- Introdução que não entrega resposta rápida
+- Links forçados ou no final
+- Qualquer parágrafo que poderia estar em qualquer artigo
+- Menos de 5 H2s
+- Menos de 700 palavras
+
+RESPONDA APENAS COM O HTML DO ARTIGO, sem explicações extras.`;
+
+  try {
+    log(`✍️ Chamando @copywriter-cluster para gerar artigo...`, 'info');
+
+    const response = await client.messages.create({
+      model: 'claude-opus-4-1-20250805',
+      max_tokens: 2500,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+    });
+
+    const html = response.content[0].type === 'text' ? response.content[0].text : '';
+
+    if (!html || html.length < 700) {
+      log(`⚠️ Artigo gerado muito curto (${html.length} chars)`, 'warn');
+    }
+
+    log(`✅ Artigo gerado: ${html.length} caracteres`, 'success');
+    return html;
+  } catch (e) {
+    log(`❌ Erro ao chamar @copywriter-cluster: ${e.message}`, 'error');
+    throw e;
+  }
+}
+
+// ============================================================================
 // DETECÇÃO DE ELEMENTOS VISUAIS
 // ============================================================================
 
@@ -425,33 +611,44 @@ async function main() {
       log(`⚠️ Nenhum resultado SERP obtido, continuando com estrutura base...`, 'warn');
     }
 
-    // 5. Nota: Aqui você chamaria @arquiteto-cluster, @copywriter-cluster, etc.
-    // Por enquanto, simulamos o resultado
-    const briefing = {
-      title: targetArticle.title,
-      url: targetArticle.url,
-      serpResults,
-      h2s: [
-        `H2 1: [Título em cauda longa sobre ${targetArticle.title}]`,
-        `H2 2: [Subtópico relevante]`,
-        `H2 3: [Contexto para linkar: ${targetArticle.pillarUrl}]`,
-        `H2 4: [Aprofundamento]`,
-        `H2 5: [Conclusão ou dica prática]`,
-      ],
-      linkContext: targetArticle.pillarUrl,
-      anchorText: 'veja nosso guia completo',
-    };
+    // 5. Chamar @arquiteto-cluster para gerar H2s estruturados
+    log(`\n🏗️ Etapa 1: Arquitetar estrutura de H2s...`, 'info');
+    let briefing;
+    try {
+      briefing = await callArquitetoCluster(targetArticle, serpResults);
+      briefing.title = targetArticle.title;
+      briefing.url = targetArticle.url;
+      briefing.serpResults = serpResults;
+    } catch (e) {
+      log(`⚠️ Falha em @arquiteto-cluster, usando estrutura base`, 'warn');
+      briefing = {
+        title: targetArticle.title,
+        url: targetArticle.url,
+        serpResults,
+        h2s: [
+          `Qual é a melhor opção para ${targetArticle.title}?`,
+          `Comparação com alternativas`,
+          `Como escolher a opção certa?`,
+          `Casos de uso específicos`,
+          `Conclusão e próximos passos`,
+        ],
+        linkH2Index: 3,
+        linkReason: 'Ponto natural de expansão para pillar',
+        transitionSuggestion: `Se você quer explorar todas as opções disponíveis, veja nosso guia sobre ${targetArticle.pillarUrl}`,
+      };
+    }
 
-    // 6. Simular artigo gerado
-    const article = `
-<h2>${briefing.title}</h2>
-<p>Conteúdo do artigo aqui...</p>
-<table>
-  <thead><tr><th>Coluna 1</th><th>Coluna 2</th></tr></thead>
-  <tbody><tr><td>Dado 1</td><td>Dado 2</td></tr></tbody>
-</table>
-<p>Se você quer aprofundar, <a href="${targetArticle.pillarUrl}">${briefing.anchorText}</a>.</p>
-`;
+    // 6. Chamar @copywriter-cluster para gerar o artigo completo
+    log(`\n✍️ Etapa 2: Gerar conteúdo do artigo...`, 'info');
+    let article;
+    try {
+      article = await callCopywriterCluster(targetArticle, briefing);
+    } catch (e) {
+      log(`❌ Falha ao gerar artigo: ${e.message}`, 'error');
+      await sendTelegram(`❌ <b>Erro na Redação</b>\n\nNão foi possível gerar o artigo. Verifique os logs.`);
+      saveState(state);
+      return;
+    }
 
     // 7. Detectar elementos visuais
     const visualElements = detectVisualElements(article);
@@ -480,7 +677,8 @@ async function main() {
 ${briefing.h2s.map((h, i) => `${i + 1}. ${h}`).join('\n')}
 
 <b>Link Contextual:</b>
-H2 3 → Pillar (texto âncora: "${briefing.anchorText}")
+H2 ${briefing.linkH2Index + 1} → Pillar
+${briefing.transitionSuggestion}
 
 <b>Elementos Visuais:</b>
 ${visualElements.hasTable ? '📊 Tabelas detectadas' : 'Sem tabelas'}
@@ -492,9 +690,9 @@ Aprova para publicar ou quer fazer ajustes?
 
     // 10. Salvar como pendente de aprovação
     state.pendingApprovals[targetArticle.url] = {
-      article: targetArticle,
+      metadata: targetArticle,
       briefing,
-      article: article,
+      htmlContent: article,
       visualElements,
       timestamp: new Date().toISOString(),
     };
@@ -528,19 +726,19 @@ async function handleApproval(callbackData) {
 
   if (action === 'approve') {
     log(`✅ Aprovado: ${pending.briefing.title}`, 'success');
-    await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.article.title}\n\nPublicando...`);
+    await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.metadata.title}\n\nPublicando...`);
 
     try {
       // 1. Criar arquivo .astro
-      const pageFile = path.join(CONFIG.PROJECT_ROOT, `src/pages${pending.briefing.url}.astro`);
+      const pageFile = path.join(CONFIG.PROJECT_ROOT, `src/pages${pending.metadata.url}.astro`);
       const dir = path.dirname(pageFile);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(pageFile, pending.article);
+      fs.writeFileSync(pageFile, pending.htmlContent);
 
       // 2. Git commit e push
       const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
       const success = await gitCommitAndPush(commitMsg, [
-        `src/pages${pending.briefing.url}.astro`,
+        `src/pages${pending.metadata.url}.astro`,
         CONFIG.ANCHOR_MASTER,
       ]);
 
@@ -557,7 +755,7 @@ async function handleApproval(callbackData) {
         saveState(state);
 
         await sendTelegram(
-          `✅ <b>Publicado com Sucesso!</b>\n\n📄 ${pending.briefing.title}\n🔗 ${pending.article.url}\n\nPróximo artigo em 24h.`
+          `✅ <b>Publicado com Sucesso!</b>\n\n📄 ${pending.briefing.title}\n🔗 ${pending.metadata.url}\n\nPróximo artigo em 24h.`
         );
       } else {
         throw new Error('Falha no git push');
@@ -576,7 +774,7 @@ async function handleApproval(callbackData) {
   } else if (action === 'preview') {
     log(`👁️ Preview solicitado: ${pending.briefing.title}`, 'info');
     await sendTelegram(
-      `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: http://localhost:${CONFIG.LOCALHOST_PORT}${pending.briefing.urll}/\n\nVolte ao menu anterior para aprovação.`
+      `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: http://localhost:${CONFIG.LOCALHOST_PORT}${pending.metadata.url}/\n\nVolte ao menu anterior para aprovação.`
     );
   }
 }
