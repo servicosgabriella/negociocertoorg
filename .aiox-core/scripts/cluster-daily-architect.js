@@ -334,7 +334,7 @@ async function gitCommitAndPush(message, files = []) {
     );
 
     // Push
-    const origin = `https://${CONFIG.GITHUB_USER}:${CONFIG.GITHUB_TOKEN}@github.com/${CONFIG.GITHUB_USER}/negociocerto.org.git`;
+    const origin = `https://${CONFIG.GITHUB_USER}:${CONFIG.GITHUB_TOKEN}@github.com/${CONFIG.GITHUB_USER}/negociocertoorg.git`;
     await execAsync(`git push ${origin} HEAD:main`, {
       cwd: CONFIG.PROJECT_ROOT,
       stdio: 'pipe',
