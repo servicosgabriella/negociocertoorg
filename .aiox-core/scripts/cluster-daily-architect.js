@@ -234,6 +234,30 @@ function parseClusterMaster() {
 }
 
 // ============================================================================
+// KEYWORD EXTRACTION
+// ============================================================================
+
+function extractKeywords(title) {
+  const stopwords = new Set([
+    'quais', 'são', 'as', 'os', 'um', 'uma', 'de', 'do', 'da', 'em', 'e', 'o', 'a',
+    'para', 'com', 'por', 'por', 'que', 'qual', 'quando', 'onde', 'como', 'é', 'foi',
+    'está', 'está', 'existem', 'existe', 'tem', 'têm', 'há', 'pode', 'podem', 'devo',
+    'devem', 'posso', 'posso', 'deve', 'devem', 'este', 'esse', 'aquele', 'outro',
+    'mais', 'menos', 'todo', 'todos', 'muito', 'vários', 'ao', 'aos', 'à', 'às',
+    'ele', 'ela', 'eles', 'elas', 'nós', 'vós', 'seu', 'sua', 'seus', 'suas',
+    'nosso', 'nossa', 'nossos', 'nossas', 'vosso', 'vossa', 'vossos', 'vossas',
+  ]);
+
+  const words = title
+    .toLowerCase()
+    .replace(/[^\w\s]/g, '')
+    .split(/\s+/)
+    .filter(word => word.length > 2 && !stopwords.has(word));
+
+  return words.slice(0, 5).join(' ');
+}
+
+// ============================================================================
 // VALUESERP API
 // ============================================================================
 
@@ -307,7 +331,9 @@ async function callArquitetoCluster(articleData) {
 
   // 1. ARQUITETO BUSCA SERP DIRETO
   log(`🔍 @arquiteto-cluster buscando SERP para: "${articleData.title}"`, 'info');
-  const serpResults = await searchSERP(articleData.title);
+  const keywords = extractKeywords(articleData.title);
+  log(`   Keywords extraídas: "${keywords}"`, 'info');
+  const serpResults = await searchSERP(keywords);
 
   if (serpResults.length === 0) {
     log(`⚠️ Nenhum resultado SERP. @arquiteto-cluster trabalhará com estrutura base.`, 'warn');
