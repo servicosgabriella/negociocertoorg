@@ -87,6 +87,32 @@ function detectNiche(title) {
   }
 }
 
+/**
+ * Determina o layout Astro baseado na intenção de busca e tipo de review
+ * Segue a matriz de decisão do squad-conteudo: orquestrar-pauta.md
+ */
+function determineLayout(title, isReview = false) {
+  // Posts de cluster são sempre Informativos
+  // Intenção: Informacional → Layout: bloglayout
+  // (MAS verificar se é review para futuro suporte a reviewlayout)
+
+  const reviewKeywords = ['melhor', 'melhores', 'top ', 'comparativo', 'vs', 'qual escolher', 'versus', 'benchmark'];
+  const titleLower = title.toLowerCase();
+
+  const hasReviewKeyword = reviewKeywords.some(kw => titleLower.includes(kw));
+
+  // Posts de cluster são SEMPRE informativos por natureza
+  // Se tiverem review keyword, poderiam ser reviewlayout no futuro
+  // Por enquanto: sempre bloglayout
+  if (hasReviewKeyword) {
+    log(`   Keyword contém 'review': ${reviewKeywords.find(kw => titleLower.includes(kw))}`, 'info');
+    // TODO: Se cluster tiver tabelas de comparação, considerar reviewlayout
+    return 'bloglayout'; // Por enquanto mantém como blog
+  }
+
+  return 'bloglayout'; // Posts informativos de cluster → blog
+}
+
 const LAYOUTS = {
   'tabela-comparacao': 'Modelo 1 — Tabela de Comparação com gradiente azul e linhas alternadas',
   'tabela-destacada': 'Modelo 2 — Tabela com coluna em destaque (recomendado)',
@@ -796,13 +822,18 @@ async function main() {
     log(`Pillar: ${targetArticle.pillarUrl}`, 'info');
     log(`Links para: ${targetArticle.linksTo.join(', ')}`, 'info');
 
-    // 4. Chamar @arquiteto-cluster (que busca SERP internamente)
+    // 4. Determinar layout Astro
+    const layout = determineLayout(targetArticle.title);
+    log(`\n📐 Layout determinado: ${layout}`, 'info');
+
+    // 5. Chamar @arquiteto-cluster (que busca SERP internamente)
     log(`\n🏗️ Etapa 1: @arquiteto-cluster — Buscar SERP + Arquitetar H2s...`, 'info');
     let briefing;
     try {
       briefing = await callArquitetoCluster(targetArticle);
       briefing.title = targetArticle.title;
       briefing.url = targetArticle.url;
+      briefing.layout = layout;
     } catch (e) {
       log(`⚠️ Falha em @arquiteto-cluster, usando estrutura base`, 'warn');
       briefing = {
@@ -912,20 +943,32 @@ async function handleApproval(callbackData) {
     await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.metadata.title}\n\nPublicando...`);
 
     try {
-      // 1. Criar arquivo .astro no local correto
-      // URL: /bandeiras-voucher-brasil/ → src/pages/bandeiras-voucher-brasil/index.astro
+      // 1. Criar arquivo no local correto baseado no layout
       const urlPath = pending.metadata.url.replace(/\/$/, ''); // remove / final se houver
-      const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
-      const pageFile = path.join(pageDir, 'index.astro');
+      const layout = pending.briefing.layout || 'bloglayout';
+      let filePath, gitPath;
 
-      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
-      fs.writeFileSync(pageFile, pending.htmlContent);
-      log(`📄 Arquivo criado: ${pageFile}`, 'info');
+      if (layout === 'bloglayout') {
+        // blogLayout → src/content/blog/{slug}.md
+        const blogDir = path.join(CONFIG.PROJECT_ROOT, 'src/content/blog');
+        if (!fs.existsSync(blogDir)) fs.mkdirSync(blogDir, { recursive: true });
+        filePath = path.join(blogDir, `${urlPath.substring(1)}.md`); // remove / inicial
+        gitPath = `src/content/blog/${urlPath.substring(1)}.md`;
+      } else {
+        // contentLayout/reviewLayout → src/pages/{slug}/index.astro
+        const pageDir = path.join(CONFIG.PROJECT_ROOT, `src/pages${urlPath}`);
+        filePath = path.join(pageDir, 'index.astro');
+        gitPath = `src/pages${urlPath}/index.astro`;
+        if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      }
+
+      fs.writeFileSync(filePath, pending.htmlContent);
+      log(`📄 ${layout} criado: ${filePath}`, 'info');
 
       // 2. Git commit e push
       const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
       const success = await gitCommitAndPush(commitMsg, [
-        `src/pages${urlPath}/index.astro`,
+        gitPath,
         CONFIG.ANCHOR_MASTER,
       ]);
 
