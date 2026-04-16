@@ -54,6 +54,37 @@ for (const env of requiredEnvs) {
 }
 
 // ============================================================================
+// SKILLS & LAYOUTS
+// ============================================================================
+
+/**
+ * Carrega uma skill do disco
+ */
+function loadSkill(skillName) {
+  try {
+    const skillPath = path.join(CONFIG.PROJECT_ROOT, `squads/squad-oportunidades/skill/${skillName}.md`);
+    if (fs.existsSync(skillPath)) {
+      return fs.readFileSync(skillPath, 'utf-8');
+    }
+    log(`⚠️ Skill não encontrada: ${skillName}`, 'warn');
+    return null;
+  } catch (e) {
+    log(`⚠️ Erro ao carregar skill ${skillName}: ${e.message}`, 'warn');
+    return null;
+  }
+}
+
+const LAYOUTS = {
+  'tabela-comparacao': 'Modelo 1 — Tabela de Comparação com gradiente azul e linhas alternadas',
+  'tabela-destacada': 'Modelo 2 — Tabela com coluna em destaque (recomendado)',
+  'tabela-features': 'Modelo 3 — Tabela de features com ✓/✗',
+  'tabela-dados': 'Modelo 4 — Tabela de dados simples (taxas, prazos)',
+  'caixa-destaque': 'Caixa com fundo #eff6ff e ícone + texto',
+  'grid-cards': 'Grid de cards para listar opções lado a lado',
+  'faq-accordeon': 'FAQ em formato de acordeão (<details>)',
+};
+
+// ============================================================================
 // UTILS
 // ============================================================================
 
@@ -268,7 +299,10 @@ async function callArquitetoCluster(articleData) {
     log(`⚠️ Nenhum resultado SERP. @arquiteto-cluster trabalhará com estrutura base.`, 'warn');
   }
 
-  // 2. ARQUITETO ANALISA SERP
+  // 2. CARREGAR SKILL qualificador-h2
+  const skillQualificadorH2 = loadSkill('qualificador-h2');
+
+  // 3. ARQUITETO ANALISA SERP
   const serpContext = serpResults.length > 0
     ? serpResults.map((r, i) => `
 RESULTADO ${i + 1}:
@@ -277,6 +311,8 @@ URL: ${r.url}
 Snippet: ${r.snippet}
 `).join('\n---\n')
     : 'Nenhum resultado SERP retornou. Gere H2s baseado na keyword.';
+
+  const layoutsDesc = Object.entries(LAYOUTS).map(([k, v]) => `- **${k}**: ${v}`).join('\n');
 
   const prompt = `Você é o Arquiteto Cluster — especialista em arquitetura ágil de posts de cluster com foco em linkagem estratégica.
 
@@ -291,22 +327,26 @@ ARTIGO A ARQUITETAR:
 RESULTADOS SERP (TOP 3):
 ${serpContext}
 
+SKILL QUALIFICADOR-H2 (use obrigatoriamente):
+${skillQualificadorH2 ? skillQualificadorH2.substring(0, 2000) : 'Filtro 1: Gera 2-3 parágrafos úteis? | Filtro 2: Intenção distinta? | Filtro 3: Estágio do usuário?'}
+
 ANÁLISE OBRIGATÓRIA:
 1. Examine cada resultado e extraia todos os H2s/H3s vistos
-2. Para cada candidato, qualifique com 3 filtros:
-
-   FILTRO 1 — Gera 2-3 parágrafos de conteúdo útil?
-   (Se resposta é 1 frase, é menção no corpo — não H2 próprio)
-
-   FILTRO 2 — Tem intenção distinta da keyword?
-   (Sinônimos da keyword não são H2s novos)
-
-   FILTRO 3 — Pertence ao estágio do usuário deste cluster?
-   (Usuário já conhece o básico, quer saber específico)
-
+2. Para cada candidato, aplique os 3 filtros da skill qualificador-h2:
+   - Gera 2-3 parágrafos de conteúdo útil?
+   - Tem intenção distinta da keyword?
+   - Pertence ao estágio do usuário deste cluster?
 3. Aprove MÍNIMO 5 H2s que passaram nos 3 filtros
 4. Ordene por relevância (mais central para a keyword = acima)
 5. Identifique qual H2 é o gancho natural para lincar a pillar
+6. **AVALIAR ELEMENTOS VISUAIS**: O artigo vai precisar de:
+   - Tabelas? (comparação, dados, features)
+   - Grid de cards ou caixas?
+   - FAQ em acordeão?
+   Se sim, indique qual layout(s) no JSON.
+
+LAYOUTS DISPONÍVEIS:
+${layoutsDesc}
 
 RESPONDA EM JSON (apenas o JSON, sem explicações):
 
@@ -320,13 +360,17 @@ RESPONDA EM JSON (apenas o JSON, sem explicações):
   ],
   "linkH2Index": 2,
   "linkReason": "Este H2 naturalmente amplia o escopo para [razão específica]",
-  "transitionSuggestion": "Se você quer [contexto específico], veja [pillar name]"
+  "transitionSuggestion": "Se você quer [contexto específico], veja [pillar name]",
+  "needsDesignReview": false,
+  "suggestedLayouts": ["tabela-comparacao"],
+  "designNotes": "Descreva quais elementos visuais o copywriter deve incluir"
 }
 
 REGRAS ABSOLUTAS:
 - Nunca menos de 5 H2s
 - H2s SEMPRE vêm dos resultados SERP (nunca inventados)
 - Link em H2 que amplia escopo (do específico para geral)
+- needsDesignReview: true se tem tabelas, grids ou elementos complexos
 - JSON válido, sem markdown, sem explicações extras`;
 
   try {
@@ -358,6 +402,11 @@ REGRAS ABSOLUTAS:
     log(`✅ @arquiteto-cluster gerou ${result.h2s.length} H2s`, 'success');
     log(`📍 Link será no H2 ${result.linkH2Index + 1}: "${result.h2s[result.linkH2Index]}"`, 'info');
     log(`   Razão: ${result.linkReason}`, 'info');
+
+    if (result.needsDesignReview) {
+      log(`🎨 Design review necessário para: ${result.suggestedLayouts.join(', ')}`, 'info');
+      log(`   Notas: ${result.designNotes}`, 'info');
+    }
 
     return result;
   } catch (e) {
