@@ -773,7 +773,6 @@ async function main() {
       briefing = {
         title: targetArticle.title,
         url: targetArticle.url,
-        serpResults,
         h2s: [
           `Qual é a melhor opção para ${targetArticle.title}?`,
           `Comparação com alternativas`,
