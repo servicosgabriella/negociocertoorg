@@ -538,7 +538,7 @@ async function handleApproval(callbackData) {
       fs.writeFileSync(pageFile, pending.article);
 
       // 2. Git commit e push
-      const commitMsg = `feat: publica artigo cluster '${pending.article.title}' + atualiza anchor-master`;
+      const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
       const success = await gitCommitAndPush(commitMsg, [
         `src/pages${pending.article.url}.astro`,
         CONFIG.ANCHOR_MASTER,
