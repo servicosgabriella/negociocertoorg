@@ -72,6 +72,21 @@ function loadSkill(skillName) {
   }
 }
 
+/**
+ * Detecta o nicho do artigo baseado na keyword/título
+ */
+function detectNiche(title) {
+  const titleLower = title.toLowerCase();
+
+  if (titleLower.includes('maquinh') || titleLower.includes('cartão') || titleLower.includes('débito') || titleLower.includes('voucher') || titleLower.includes('vale')) {
+    return 'maquininha';
+  } else if (titleLower.includes('contabil') || titleLower.includes('imposto') || titleLower.includes('nf-e') || titleLower.includes('fiscal')) {
+    return 'contabilidade';
+  } else {
+    return 'negociocerto';
+  }
+}
+
 const LAYOUTS = {
   'tabela-comparacao': 'Modelo 1 — Tabela de Comparação com gradiente azul e linhas alternadas',
   'tabela-destacada': 'Modelo 2 — Tabela com coluna em destaque (recomendado)',
@@ -452,11 +467,16 @@ REGRAS ABSOLUTAS:
  */
 async function callCopywriterCluster(articleData, briefing) {
 
+  // DETECTAR NICHO E CARREGAR SKILLS ESPECÍFICAS
+  const niche = detectNiche(articleData.title);
+  log(`   Nicho detectado: ${niche}`, 'info');
+
   // CARREGAR SKILLS EXISTENTES
   const skillQualificadorH2 = loadSkill('qualificador-h2');
   const skillConstrutorSlug = loadSkill('construtor-slug');
   const skillOtimizadorH1 = loadSkill('otimizador-h1');
   const skillTextoAncora = loadSkill('texto-ancora');
+  const skillCopyNiche = loadSkill(`copy-${niche}`);  // copy-maquininha, copy-contabilidade, copy-negociocerto
 
   const h2sFormatted = briefing.h2s
     .map((h, i) => `${i + 1}. ${h}`)
@@ -473,66 +493,66 @@ Redação completa de artigo de 700+ palavras com profundidade real, dados concr
 BRIEF DO ARTIGO:
 - Tema/Keyword: ${articleData.title}
 - Pillar page para linkar: ${articleData.pillarUrl}
-- Nicho: negócio (maquininha, cartão, financeiro)
+- Nicho: ${niche}
+- Tom/Voz: Consulte skill copy-${niche} abaixo
 
-ESTRUTURA DE H2s (já validada pelo @arquiteto-cluster):
+---
+
+## SKILL DE COPY (copy-${niche}) — APLICAR SEMPRE
+
+${skillCopyNiche || '(Skill não carregada)'}
+
+---
+
+## SKILL TEXTO-ÂNCORA — PARA O LINK INTERNO
+
+${skillTextoAncora || '(Skill não carregada)'}
+
+---
+
+## SKILL OTIMIZADOR-H1
+
+${skillOtimizadorH1 || '(Skill não carregada)'}
+
+---
+
+## SKILL CONSTRUTOR-SLUG
+
+${skillConstrutorSlug || '(Skill não carregada)'}
+
+---
+
+## SKILL QUALIFICADOR-H2
+
+${skillQualificadorH2 || '(Skill não carregada)'}
+
+---
+
+## ESTRUTURA DE H2s (já validada):
+
 ${h2sFormatted}
 
-H2 QUE DEVE LINCAR A PILLAR (índice ${briefing.linkH2Index + 1}):
-"${briefing.h2s[briefing.linkH2Index]}"
+## LINK INTERNO (H2 ${briefing.linkH2Index + 1}):
 
-TRANSIÇÃO SUGERIDA:
-${briefing.transitionSuggestion}
+H2: "${briefing.h2s[briefing.linkH2Index]}"
+Contexto sugerido: ${briefing.transitionSuggestion}
+URL: ${articleData.pillarUrl}
+
+**INSTRUÇÃO CRÍTICA PARA O LINK:**
+Use a skill TEXTO-ÂNCORA para escolher o melhor texto. O link deve:
+- Soar ABSOLUTAMENTE NATURAL na frase
+- Nunca parecer forçado ou inserido
+- Seguir proporção 50% Target / 25% Brand / 25% Misc
+- NÃO usar: "clique aqui", "leia também", "veja mais"
+- SIM usar: contexto real que leva naturalmente ao link
+
+Exemplo RUIM:
+"...e essas são as opções principais. <a href='...'>Clique aqui para ver mais</a>"
+
+Exemplo BOM:
+"...e essas são as opções principais. Se você quer uma análise completa comparando todas as marcas com dados atualizados, <a href='...'>confira nosso guia de melhores maquininhas de cartão</a>."
 
 ${designNotes}
-
----
-
-## SKILL 1: OTIMIZADOR-H1 (criar título do artigo)
-
-${skillOtimizadorH1 ? skillOtimizadorH1.substring(0, 1500) : 'Gerar H1 com 50-60 chars, curto e direto, com sinal de atualização se relevante.'}
-
-TAREFA: Gere o H1 deste artigo seguindo a skill. Deve ser:
-- 50-60 caracteres máximo
-- Padrão: [Keyword + modificador] (Atualizado 2026)
-- Curto, direto, diferenciado
-
----
-
-## SKILL 2: CONSTRUTOR-SLUG (criar URL)
-
-${skillConstrutorSlug ? skillConstrutorSlug.substring(0, 1000) : 'Slug sem data, sem acentos, sem preposições.'}
-
-TAREFA: Gere o slug da URL seguindo a skill:
-- Sem datas
-- Sem acentos/cedilha
-- Minúsculas com hífens
-- Sem preposições (para, de, com, em, por)
-- Exemplo CERTO: /maquininha-mei/ (não: /maquininha-para-mei/)
-
----
-
-## SKILL 3: QUALIFICADOR-H2 (validar que H2s precisam existir)
-
-${skillQualificadorH2 ? skillQualificadorH2.substring(0, 1500) : 'Validar se cada H2 gera 2-3 parágrafos úteis, tem intenção distinta e pertence ao estágio.'}
-
-TAREFA: Antes de redacionar cada H2, valide mentalmente:
-- Gera 2-3 parágrafos de conteúdo útil?
-- Tem intenção distinta da keyword?
-- Pertence ao estágio do usuário deste cluster?
-Se não passar, já é indicação de problema na estrutura.
-
----
-
-## SKILL 4: TEXTO-ÂNCORA (definir link interno)
-
-${skillTextoAncora ? skillTextoAncora.substring(0, 1200) : 'Link com texto natural, 50% Target / 25% Brand / 25% Misc.'}
-
-TAREFA: No H2 ${briefing.linkH2Index + 1}, crie um link usando a skill:
-- URL: ${articleData.pillarUrl}
-- Tipo: link interno
-- Deve soar natural na frase (não forçado, não "clique aqui")
-- Proporção: 50% keyword alvo, 25% brand, 25% genérico
 
 ---
 
