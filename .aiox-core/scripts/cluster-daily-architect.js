@@ -246,6 +246,7 @@ function extractKeywords(title) {
     'mais', 'menos', 'todo', 'todos', 'muito', 'vários', 'ao', 'aos', 'à', 'às',
     'ele', 'ela', 'eles', 'elas', 'nós', 'vós', 'seu', 'sua', 'seus', 'suas',
     'nosso', 'nossa', 'nossos', 'nossas', 'vosso', 'vossa', 'vossos', 'vossas',
+    'existentes', 'existente', 'negócio', 'precisa', 'aceitar', 'fazer', 'ter', 'usar',
   ]);
 
   const words = title
