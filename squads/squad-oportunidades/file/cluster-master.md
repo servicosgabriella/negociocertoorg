@@ -10,10 +10,6 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
 
 ### Posts de Suporte
 
-#### Como funciona o vale refeição na maquininha: o que o lojista precisa configurar
-URL: /como-funciona-vale-refeicao-maquininha/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/ + /taxa-voucher-maquininha/
-
 #### MEI pode aceitar vale refeição e vale alimentação? Entenda as regras
 URL: /mei-aceitar-vale-refeicao/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /como-funciona-vale-refeicao-maquininha/
