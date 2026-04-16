@@ -22,10 +22,6 @@ linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 URL: /como-funciona-vale-refeicao-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/ + /taxa-voucher-maquininha/
 
-#### Taxa de voucher na maquininha: quanto custa processar VR e VA
-URL: /taxa-voucher-maquininha/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /como-funciona-vale-refeicao-maquininha/
-
 #### Por que a maquininha não aceita o cartão de benefício? Causas e como resolver
 URL: /maquininha-nao-aceita-cartao-beneficio/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/ + /como-funciona-vale-refeicao-maquininha/
