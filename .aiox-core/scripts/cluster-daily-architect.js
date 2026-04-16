@@ -422,70 +422,143 @@ REGRAS ABSOLUTAS:
 async function callCopywriterCluster(articleData, briefing) {
   const client = new Anthropic();
 
+  // CARREGAR SKILLS EXISTENTES
+  const skillQualificadorH2 = loadSkill('qualificador-h2');
+  const skillConstrutorSlug = loadSkill('construtor-slug');
+  const skillOtimizadorH1 = loadSkill('otimizador-h1');
+  const skillTextoAncora = loadSkill('texto-ancora');
+
   const h2sFormatted = briefing.h2s
     .map((h, i) => `${i + 1}. ${h}`)
     .join('\n');
 
+  const layoutsDesc = Object.entries(LAYOUTS).map(([k, v]) => `- **${k}**: ${v}`).join('\n');
+  const designNotes = briefing.designNotes ? `\nNOTAS DE DESIGN DO ARQUITETO:\n${briefing.designNotes}` : '';
+
   const prompt = `Você é o Copywriter Cluster — especialista em redação de posts informativos de suporte para pillar pages.
 
-BRIEFING DO ARTIGO:
-- Título: ${articleData.title}
-- Keyword principal: ${articleData.title}
-- Nicho: negócio (maquininha, cartão, financeiro)
-- Pillar page: ${articleData.pillarUrl}
+OBJETIVO:
+Redação completa de artigo de 700+ palavras com profundidade real, dados concretos, e otimizações SEO aplicadas.
 
-ESTRUTURA DE H2s (já validada):
+BRIEF DO ARTIGO:
+- Tema/Keyword: ${articleData.title}
+- Pillar page para linkar: ${articleData.pillarUrl}
+- Nicho: negócio (maquininha, cartão, financeiro)
+
+ESTRUTURA DE H2s (já validada pelo @arquiteto-cluster):
 ${h2sFormatted}
 
-H2 PARA LINCAR A PILLAR (${briefing.linkH2Index + 1}):
+H2 QUE DEVE LINCAR A PILLAR (índice ${briefing.linkH2Index + 1}):
 "${briefing.h2s[briefing.linkH2Index]}"
 
-CONTEXTO DE LINKAGEM:
+TRANSIÇÃO SUGERIDA:
 ${briefing.transitionSuggestion}
 
-INSTRUÇÕES DE REDAÇÃO:
-1. Escreva introdução com 3 movimentos:
-   - Pergunta/situação que o usuário trouxe
+${designNotes}
+
+---
+
+## SKILL 1: OTIMIZADOR-H1 (criar título do artigo)
+
+${skillOtimizadorH1 ? skillOtimizadorH1.substring(0, 1500) : 'Gerar H1 com 50-60 chars, curto e direto, com sinal de atualização se relevante.'}
+
+TAREFA: Gere o H1 deste artigo seguindo a skill. Deve ser:
+- 50-60 caracteres máximo
+- Padrão: [Keyword + modificador] (Atualizado 2026)
+- Curto, direto, diferenciado
+
+---
+
+## SKILL 2: CONSTRUTOR-SLUG (criar URL)
+
+${skillConstrutorSlug ? skillConstrutorSlug.substring(0, 1000) : 'Slug sem data, sem acentos, sem preposições.'}
+
+TAREFA: Gere o slug da URL seguindo a skill:
+- Sem datas
+- Sem acentos/cedilha
+- Minúsculas com hífens
+- Sem preposições (para, de, com, em, por)
+- Exemplo CERTO: /maquininha-mei/ (não: /maquininha-para-mei/)
+
+---
+
+## SKILL 3: QUALIFICADOR-H2 (validar que H2s precisam existir)
+
+${skillQualificadorH2 ? skillQualificadorH2.substring(0, 1500) : 'Validar se cada H2 gera 2-3 parágrafos úteis, tem intenção distinta e pertence ao estágio.'}
+
+TAREFA: Antes de redacionar cada H2, valide mentalmente:
+- Gera 2-3 parágrafos de conteúdo útil?
+- Tem intenção distinta da keyword?
+- Pertence ao estágio do usuário deste cluster?
+Se não passar, já é indicação de problema na estrutura.
+
+---
+
+## SKILL 4: TEXTO-ÂNCORA (definir link interno)
+
+${skillTextoAncora ? skillTextoAncora.substring(0, 1200) : 'Link com texto natural, 50% Target / 25% Brand / 25% Misc.'}
+
+TAREFA: No H2 ${briefing.linkH2Index + 1}, crie um link usando a skill:
+- URL: ${articleData.pillarUrl}
+- Tipo: link interno
+- Deve soar natural na frase (não forçado, não "clique aqui")
+- Proporção: 50% keyword alvo, 25% brand, 25% genérico
+
+---
+
+## INSTRUÇÕES GERAIS DE REDAÇÃO:
+
+1. **COMECE COM H1**:
+   \`\`\`html
+   <h1>Seu H1 otimizado aqui</h1>
+   \`\`\`
+
+2. **INTRODUÇÃO** (3 movimentos):
+   - Pergunta específica que o usuário trouxe
    - Resposta imediata ou promessa de escopo
    - Conexão com o que vem a seguir
 
-2. Desenvolva cada H2 com:
+3. **CADA H2** deve ter:
    - Frase de abertura conectada ao H2
-   - Conteúdo com profundidade real
+   - Conteúdo com profundidade (2-3 parágrafos mínimo)
    - OBRIGATÓRIO: dado concreto (taxa, prazo, número, exemplo)
-   - Transição suave para o próximo
+   - Transição suave para próximo H2
 
-3. REGRAS DE REDAÇÃO OBRIGATÓRIAS:
+4. **REGRAS ABSOLUTAS**:
    - Parágrafos ultracurtos (máximo 2 linhas em desktop)
-   - Voz ativa sempre (Sujeito + Ação + Objeto)
-   - Eliminar palavras desnecessárias ("basicamente", "é importante destacar")
+   - Voz ativa: "A Ton cobra taxa" (não "a taxa é cobrada")
+   - Eliminar: "basicamente", "é importante destacar", "vale ressaltar"
    - Palavra-chave natural no primeiro parágrafo
-   - Nenhum parágrafo que não faz trabalho
+   - Todo parágrafo faz trabalho — nenhum é redundante
 
-4. No H2 ${briefing.linkH2Index + 1}, insira link natural:
-   "<a href='${articleData.pillarUrl}'>veja nosso guia completo</a>"
-   Faça soar como transição natural, não desvio.
+5. **FORMATAÇÃO HTML**:
+   \`\`\`html
+   <h1>Título aqui</h1>
+   <p>Conteúdo...</p>
+   <h2>H2 aqui</h2>
+   <p>Parágrafo...</p>
+   <strong>destaque crítico</strong>
+   \`\`\`
 
-5. Extensão: MÍNIMO 700 palavras + 5 H2s
-   Qualidade > volume. Profundidade = cobertura + dados, não comprimento.
+6. **LINK INTERNO** (no H2 ${briefing.linkH2Index + 1}):
+   - Texto âncora natural segundo skill texto-ancora
+   - Deve parecer transição, não desvio
+   - URL: \`<a href="${articleData.pillarUrl}">seu-texto-ancora-aqui</a>\`
 
-6. Formatação:
-   - Marque H2s com <h2>título</h2>
-   - Parágrafos em <p></p>
-   - Use <strong> para destacar dado crítico
-   - Não use <table> (será gerada depois se necessário)
+7. **LAYOUTS** (se necessário incluir elementos visuais):
+${layoutsDesc}
 
-ANTI-PADRÕES (NUNCA FAZER):
-- Voz passiva
-- Genericidade sem dados
-- Parágrafos longos
-- Introdução que não entrega resposta rápida
-- Links forçados ou no final
-- Qualquer parágrafo que poderia estar em qualquer artigo
-- Menos de 5 H2s
-- Menos de 700 palavras
+8. **MÍNIMO OBRIGATÓRIO**:
+   - 700+ palavras
+   - 5+ H2s (estrutura já entregue)
+   - Cada H2 com dado concreto
+   - Qualidade > volume sempre
 
-RESPONDA APENAS COM O HTML DO ARTIGO, sem explicações extras.`;
+RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
+- Inclua <h1> + <p> de introdução
+- Siga a estrutura exata de H2s entregue
+- HTML limpo, sem markdown
+- Sem explicações extras, apenas o código HTML`;
 
   try {
     log(`✍️ Chamando @copywriter-cluster para gerar artigo...`, 'info');
