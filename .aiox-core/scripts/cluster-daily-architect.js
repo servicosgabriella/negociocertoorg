@@ -284,12 +284,12 @@ async function searchSERP(keyword) {
 
     const data = await response.json();
 
-    if (!data.organic || data.organic.length === 0) {
+    if (!data.organic_results || data.organic_results.length === 0) {
       log(`⚠️ Nenhum resultado SERP encontrado para: ${keyword}`, 'warn');
       return [];
     }
 
-    const top3 = data.organic.slice(0, 3).map(r => ({
+    const top3 = data.organic_results.slice(0, 3).map(r => ({
       title: r.title,
       url: r.url,
       snippet: r.snippet,
