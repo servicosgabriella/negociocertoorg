@@ -994,6 +994,15 @@ async function handleApproval(callbackData) {
     try {
       const urlPath = pending.metadata.url.replace(/\/$/, ''); // remove / final se houver
       const slug = urlPath.substring(1); // remove / inicial
+
+      // VALIDAÇÃO: garantir que slug é válido antes de criar arquivos
+      if (!slug || slug === 'undefined' || slug.trim() === '') {
+        const errorMsg = `❌ ERRO: slug inválido "${slug}" — artigo NÃO foi publicado`;
+        log(errorMsg, 'error');
+        await sendTelegram(`❌ <b>Erro na Publicação</b>\n\nSlug inválido: "${slug}"\n\nVerifique metadata.url no estado do artigo.`);
+        return;
+      }
+
       const layout = pending.briefing.layout || 'bloglayout';
       let filesToCommit = [CONFIG.ANCHOR_MASTER]; // sempre atualiza anchor-master
       let filePath, gitPath;
