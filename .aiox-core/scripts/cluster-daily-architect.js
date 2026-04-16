@@ -34,7 +34,6 @@ const CONFIG = {
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   GITHUB_USER: process.env.GITHUB_USER,
   VALUESERP_API_KEY: process.env.VALUESERP_API_KEY,
-  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
   PROJECT_ROOT: path.join(__dirname, '../../'),
   CLUSTER_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/cluster-master.md'),
   ANCHOR_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/anchor-master.md'),
@@ -44,7 +43,7 @@ const CONFIG = {
 };
 
 // Validar configuração
-const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY', 'ANTHROPIC_API_KEY'];
+const requiredEnvs = ['TELEGRAM_TOKEN', 'TELEGRAM_CHAT_ID', 'GITHUB_TOKEN', 'GITHUB_USER', 'VALUESERP_API_KEY'];
 for (const env of requiredEnvs) {
   if (!CONFIG[env]) {
     console.error(`❌ Erro: Configure ${env} como variável de ambiente`);
