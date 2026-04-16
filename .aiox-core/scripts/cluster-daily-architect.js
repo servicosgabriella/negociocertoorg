@@ -540,13 +540,13 @@ async function handleApproval(callbackData) {
       // 2. Git commit e push
       const commitMsg = `feat: publica artigo cluster '${pending.briefing.title}' + atualiza anchor-master`;
       const success = await gitCommitAndPush(commitMsg, [
-        `src/pages${pending.article.url}.astro`,
+        `src/pages${pending.briefing.url}.astro`,
         CONFIG.ANCHOR_MASTER,
       ]);
 
       if (success) {
         // 3. Remover de cluster-master
-        removeArticleFromClusterMaster(pending.article.title);
+        removeArticleFromClusterMaster(pending.briefing.title);
 
         // 4. Commit final
         await gitCommitAndPush(`docs: remove artigo publicado de cluster-master`, [CONFIG.CLUSTER_MASTER]);
@@ -557,7 +557,7 @@ async function handleApproval(callbackData) {
         saveState(state);
 
         await sendTelegram(
-          `✅ <b>Publicado com Sucesso!</b>\n\n📄 ${pending.article.title}\n🔗 ${pending.article.url}\n\nPróximo artigo em 24h.`
+          `✅ <b>Publicado com Sucesso!</b>\n\n📄 ${pending.briefing.title}\n🔗 ${pending.article.url}\n\nPróximo artigo em 24h.`
         );
       } else {
         throw new Error('Falha no git push');
@@ -568,15 +568,15 @@ async function handleApproval(callbackData) {
     }
 
   } else if (action === 'reject') {
-    log(`❌ Rejeitado: ${pending.article.title}`, 'warn');
-    await sendTelegram(`❌ <b>Artigo Rejeitado</b>\n\n${pending.article.title}\n\nAguardando próximo ciclo...`);
+    log(`❌ Rejeitado: ${pending.briefing.title}`, 'warn');
+    await sendTelegram(`❌ <b>Artigo Rejeitado</b>\n\n${pending.briefing.title}\n\nAguardando próximo ciclo...`);
     delete state.pendingApprovals[articleKey];
     saveState(state);
 
   } else if (action === 'preview') {
-    log(`👁️ Preview solicitado: ${pending.article.title}`, 'info');
+    log(`👁️ Preview solicitado: ${pending.briefing.title}`, 'info');
     await sendTelegram(
-      `👀 <b>Preview</b>\n\n${pending.article.title}\n\nURL: http://localhost:${CONFIG.LOCALHOST_PORT}${pending.article.url}/\n\nVolte ao menu anterior para aprovação.`
+      `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: http://localhost:${CONFIG.LOCALHOST_PORT}${pending.briefing.urll}/\n\nVolte ao menu anterior para aprovação.`
     );
   }
 }
