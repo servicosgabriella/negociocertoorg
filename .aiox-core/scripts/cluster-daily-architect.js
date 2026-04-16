@@ -1047,7 +1047,10 @@ async function handleApproval(callbackData) {
             log(`   ✅ Imagem gerada: ${imagePath}`, 'success');
             filesToCommit.push(`public/images/${slug}.png`);
           } else {
-            log(`   ⚠️ Imagem não encontrada após geração`, 'warn');
+            const errorMsg = `❌ ERRO: Imagem não foi gerada — artigo NÃO será publicado`;
+            log(errorMsg, 'error');
+            await sendTelegram(`❌ <b>Erro ao Gerar Imagem</b>\n\nNão foi possível gerar a imagem de capa para "${pending.briefing.title}".\n\nVerifique se o Google Gemini API está funcionando.\n\nArtigo NÃO foi publicado.`);
+            return;
           }
 
           if (stderr) log(`   Output: ${stderr.substring(0, 200)}`, 'info');
