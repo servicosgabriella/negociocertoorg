@@ -110,7 +110,7 @@ FASE 6 — PUBLICAÇÃO (se aprovado)
 | Arquivo | Propósito |
 |---------|-----------|
 | `file/cluster-master.md` | Fila de artigos a publicar |
-| `file/anchor-master.md` | Histórico de âncoras (proporcionalidade SEO) |
+| `squad-oportunidades/file/anchor-master.md` | Histórico de âncoras — compartilhado entre squads |
 | `.aiox/cluster-architect-state.json` | Artigos processados + aprovações pendentes |
 | `.aiox-core/logs/cluster-architect.log` | Log de execução |
 

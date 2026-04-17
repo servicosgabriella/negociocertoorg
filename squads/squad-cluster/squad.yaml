@@ -28,7 +28,7 @@ data:
 
 files:
   - file/cluster-master.md
-  - file/anchor-master.md
+  - ../squad-oportunidades/file/anchor-master.md  # compartilhado entre os dois squads
 
 scripts:
   - ../../.aiox-core/scripts/cluster-daily-architect.js
