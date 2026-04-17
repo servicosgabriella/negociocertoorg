@@ -329,18 +329,21 @@ const breadcrumbSchema = {
       text-align: left;
     }
     .breadcrumb-nav {
-      display: none;
+      display: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
     }
     @media (min-width: 768px) {
       .breadcrumb-nav {
-        display: flex !important;
+        display: block !important;
       }
     }
     .blog-hero nav {
       padding: 0 !important;
       margin: 0 !important;
       display: block !important;
-      width: 100%;
+      width: 100% !important;
     }
     .blog-hero nav ol {
       padding: 0 !important;
