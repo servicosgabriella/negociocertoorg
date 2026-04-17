@@ -18,10 +18,6 @@ Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 URL: /taxa-voucher-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 
-#### Bandeiras de Voucher Aceitas no Brasil (2026)
-URL: /bandeira-voucher-brasil/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
-
 #### Como funciona o vale refeição na maquininha: o que o lojista precisa configurar
 URL: /como-funciona-vale-refeicao-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /taxa-voucher-maquininha/
