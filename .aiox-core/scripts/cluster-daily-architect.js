@@ -92,6 +92,22 @@ function loadAgent(agentName) {
 }
 
 /**
+ * Carrega o anchor-master.md (centralizado em squad-oportunidades)
+ */
+function loadAnchorMasterContent() {
+  try {
+    if (fs.existsSync(CONFIG.ANCHOR_MASTER)) {
+      return fs.readFileSync(CONFIG.ANCHOR_MASTER, 'utf-8');
+    }
+    log(`⚠️ anchor-master.md não encontrado`, 'warn');
+    return null;
+  } catch (e) {
+    log(`⚠️ Erro ao carregar anchor-master.md: ${e.message}`, 'warn');
+    return null;
+  }
+}
+
+/**
  * Carrega os modelos HTML de referência visual
  */
 function loadModeloHtml() {
@@ -603,6 +619,7 @@ async function callCopywriterCluster(articleData, briefing) {
   const skillOtimizadorH1 = loadSkill('otimizador-h1');
   const skillConstrutorSlug = loadSkill('construtor-slug');
   const modeloHtml = loadModeloHtml();
+  const anchorMasterContent = loadAnchorMasterContent();
 
   if (!agentContext) {
     throw new Error('Agente @copywriter-cluster não encontrado em squad-cluster/agents/');
@@ -640,6 +657,17 @@ ${skillCopyNiche || loadSkill('copy-negociocerto') || '(skill de tom não carreg
 Use para escolher o texto âncora do link interno obrigatório.
 
 ${skillTextoAncora || '(skill não carregada)'}
+
+---
+
+## ANCHOR-MASTER (histórico de âncoras já usadas)
+
+Este é o estado atual das âncoras registradas para cada pillar page.
+Consulte obrigatoriamente antes de definir o texto âncora do link interno.
+Siga os passos da skill texto-ancora.md: calcule o saldo disponível por tipo (Target/Brand/Misc),
+escolha o tipo com saldo positivo, nunca repita uma âncora target exata já usada.
+
+${anchorMasterContent || '(anchor-master.md não encontrado — use âncora target na primeira ocorrência)'}
 
 ---
 
