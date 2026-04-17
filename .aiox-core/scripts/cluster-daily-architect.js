@@ -739,22 +739,48 @@ Nunca usar o caractere — (travessão / em-dash) em nenhuma frase do artigo.
 Substituir sempre por vírgula, ponto final ou ponto e vírgula.
 Esta é a regra mais verificada antes da publicação.
 
-Responda com APENAS o HTML do artigo:
-- Sua PRIMEIRA linha deve ser uma tag HTML (ex: <p> ou <h2>)
-- Sem preamble, sem notas de redação, sem decisões internas
+**REGRA ABSOLUTA — DATAS REAIS:**
+Nunca usar datas futuras como se já ocorreram. Verifique: a data atual é ${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}.
+
+**REGRA ABSOLUTA — CONECTIVOS E CLICHÊS PROIBIDOS:**
+Nunca iniciar parágrafo com: "Vale ressaltar", "É importante notar", "Além disso", "Em suma", "Dessa forma", "Nesse sentido".
+Nunca usar: "No cenário digital de hoje", "Como todos sabemos", "Crucial", "solução", "ecossistema".
+
+Responda com EXATAMENTE este formato — duas linhas de cabeçalho, depois o HTML:
+
+DESCRIPTION: [meta description SEO real, máximo 155 caracteres, diferente do título, descreve o que o leitor vai aprender]
+---
+[HTML do artigo começa aqui — primeira tag deve ser <p> ou <h2>]
+
+Regras do HTML:
+- Sem preamble, sem notas de redação
 - Sem blocos de código markdown (sem \`\`\`html)
 - HTML limpo, sem atributos de estilo inline desnecessários
-- O checklist do @copywriter-cluster deve ser cumprido internamente — não escreva o checklist no output`;
+- O checklist do @copywriter-cluster deve ser cumprido internamente`;
 
   try {
     log(`✍️ @copywriter-cluster gerando artigo com agente + ${Object.keys({skillCopyNiche, skillTextoAncora, skillTabelaResponsiva}).filter(k => eval(k)).length} skills carregadas...`, 'info');
 
-    let html = callClaude(prompt);
+    let raw = callClaude(prompt);
 
     // 1. Remover blocos de código markdown
-    html = html.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
+    raw = raw.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
 
-    // 2. Remover preamble — qualquer texto antes do primeiro tag HTML
+    // 2. Extrair description do cabeçalho (formato: "DESCRIPTION: ...\n---\n[HTML]")
+    let description = null;
+    const descMatch = raw.match(/^DESCRIPTION:\s*(.+)/i);
+    if (descMatch) {
+      description = descMatch[1].trim().substring(0, 155);
+      log(`✅ Meta description extraída: "${description}"`, 'success');
+      // Remover cabeçalho (DESCRIPTION: ... e separador ---)
+      raw = raw.replace(/^DESCRIPTION:.*\n?-{3,}\n?/i, '').trim();
+    } else {
+      log(`⚠️ DESCRIPTION não encontrada no output — será gerada a partir do título`, 'warn');
+    }
+
+    let html = raw;
+
+    // 3. Remover preamble — qualquer texto antes do primeiro tag HTML
     const firstTagIndex = html.search(/<[a-zA-Z]/);
     if (firstTagIndex > 0) {
       const preamble = html.substring(0, firstTagIndex).trim();
@@ -803,7 +829,7 @@ Responda com APENAS o HTML do artigo:
     }
 
     log(`✅ Artigo gerado: ${html.length} caracteres`, 'success');
-    return html;
+    return { html, description };
   } catch (e) {
     log(`❌ Erro ao chamar @copywriter-cluster: ${e.message}`, 'error');
     throw e;
@@ -1106,9 +1132,11 @@ async function main() {
 
     // 6. Chamar @copywriter-cluster para gerar o artigo completo
     log(`\n✍️ Etapa 2: Gerar conteúdo do artigo...`, 'info');
-    let article;
+    let article, articleDescription;
     try {
-      article = await callCopywriterCluster(targetArticle, briefing);
+      const result = await callCopywriterCluster(targetArticle, briefing);
+      article = result.html;
+      articleDescription = result.description;
     } catch (e) {
       log(`❌ Falha ao gerar artigo: ${e.message}`, 'error');
       await sendTelegram(`❌ <b>Erro na Redação</b>\n\nNão foi possível gerar o artigo. Verifique os logs.`);
@@ -1156,6 +1184,7 @@ Aprova para publicar ou quer fazer ajustes?
       metadata: targetArticle,
       briefing,
       htmlContent: article,
+      description: articleDescription,
       visualElements,
       timestamp: new Date().toISOString(),
     };
@@ -1254,7 +1283,7 @@ async function handleApproval(callbackData) {
         const frontmatter = generateFrontmatter({
           title: pending.briefing.title,
           slug: slug,
-          description: pending.briefing.title,
+          description: pending.description || pending.briefing.title,
           keyword: pending.metadata.keyword || pending.briefing.title
         });
         const contentWithFrontmatter = frontmatter + pending.htmlContent;

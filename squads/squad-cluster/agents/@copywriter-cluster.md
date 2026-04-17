@@ -314,6 +314,19 @@ maquininhas de cartão — tem análise de 10+ opções com dados atualizados."
 
 ---
 
+## REGRA ABSOLUTA — Datas reais
+
+Nunca escrever datas futuras como se já tivessem ocorrido.
+Verificar sempre a data atual antes de afirmar que algo "entrou em vigor" ou "aconteceu".
+
+```
+✗ "Em novembro de 2026, a regulamentação entrou em vigor." (se estamos em abril/2026)
+✓ "A regulamentação está prevista para novembro de 2026."
+✓ "Em 2025, a regulamentação entrou em vigor." (se já ocorreu)
+```
+
+---
+
 ## REGRA ABSOLUTA — Vocabulário acessível
 
 O leitor é dono de pequeno negócio, MEI ou autônomo. Não é técnico, não é acadêmico.
@@ -359,6 +372,88 @@ Esta regra se aplica a **todo o artigo**, independente do nicho ou skill de tom 
 
 ---
 
+## Ritmo Visual — Anti-Efeito Escada
+
+Nunca encadear frases curtas isoladas em sequência. Cansa visualmente e parece lista disfarçada.
+
+```
+✗ EFEITO ESCADA (PROIBIDO):
+A Ton aceita débito.
+A Stone aceita crédito.
+A SumUp aceita voucher.
+
+✓ RITMO CORRETO:
+A Ton aceita débito com uma das menores taxas do mercado, 0,57%.
+A Stone e a SumUp cobrem crédito e voucher, mas com taxas diferentes dependendo do volume.
+
+Frase de impacto curta quando necessário.
+
+Bloco desenvolvido continuando o raciocínio com contexto suficiente.
+```
+
+Padrão: **bloco (2-3 linhas) → impacto (1 linha) → bloco → impacto**. Nunca 2 frases de impacto seguidas.
+
+---
+
+## Conclusão — Próximo Passo Concreto
+
+A conclusão termina com um próximo passo real para o leitor. Nunca com frases de encerramento genéricas.
+
+```
+✗ NUNCA usar:
+"Esperamos ter ajudado!"
+"Agora você sabe tudo sobre..."
+"Como você pode ver..."
+"Em conclusão..."
+"Gostou? Compartilhe!"
+
+✓ USAR:
+Um próximo passo concreto com link interno relevante
+Uma ressalva importante que o leitor precisa saber
+Uma pergunta que provoque reflexão real
+```
+
+---
+
+## Blacklist — Palavras e Conectivos Proibidos
+
+### Conectivos proibidos no início de parágrafo
+
+| Proibido | Usar em vez |
+|----------|-------------|
+| "Vale ressaltar" | Escreva diretamente o ponto |
+| "É importante notar" | Escreva diretamente o ponto |
+| "Cabe destacar" | Escreva diretamente o ponto |
+| "Além disso" (início de parágrafo) | "E tem mais:" / "Outra coisa:" |
+| "Em suma" | Escreva a síntese sem marcador |
+| "Dessa forma" | "Por isso mesmo" |
+| "Assim sendo" | Reescreva a frase |
+| "Nesse sentido" | Escreva diretamente a conexão |
+| "No que diz respeito a" | Escreva diretamente o tema |
+
+### Clichês corporativos — veto imediato
+
+- "No cenário digital de hoje"
+- "No mundo acelerado em que vivemos"
+- "Na era da transformação digital"
+- "Em tempos de constante mudança"
+- "Como todos sabemos"
+- "É fundamental que"
+- "Crucial" → usar "importante", "decisivo", "que faz diferença"
+
+### Vocabulário corporativo — substituir
+
+| ❌ Evitar | ✅ Usar |
+|-----------|---------|
+| executar | fazer |
+| implementar | colocar em prática |
+| solução | resposta / saída |
+| potencializar | melhorar |
+| ecossistema | mercado, área |
+| interoperabilidade | capacidade de aceitar/integrar (explicar) |
+
+---
+
 ## Anti-padrões — o que este skill nunca faz
 
 - **Nunca usa travessão (—)** — proibido em qualquer parágrafo, sem exceção
@@ -392,4 +487,9 @@ Esta regra se aplica a **todo o artigo**, independente do nicho ou skill de tom 
 - [ ] **Texto âncora foi definido com `texto-ancora.md`**
 - [ ] **Nenhum travessão (—) usado em qualquer parágrafo**
 - [ ] **Palavras técnicas inevitáveis têm explicação entre parênteses**
+- [ ] **Nenhuma data futura tratada como passada**
+- [ ] **Ritmo anti-escada respeitado (bloco → impacto → bloco)**
+- [ ] **Conclusão termina com próximo passo concreto, sem "Esperamos ter ajudado"**
+- [ ] **Nenhum conectivo proibido da blacklist no início de parágrafo**
+- [ ] **description é meta description real (≤160 chars, diferente do título)**
 - [ ] Post é complementar à pillar, não concorrente
