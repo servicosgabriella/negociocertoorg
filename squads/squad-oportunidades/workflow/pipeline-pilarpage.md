@@ -245,7 +245,7 @@ de pesquisa, estrutura e revisão — reduzindo custo em ~70%.
 
 ## Notas importantes
 
-- **Cluster não faz parte deste pipeline** — workflow separado sob demanda com `@cluster-pilarpage`
+- **Cluster não faz parte deste pipeline** — gerenciado pelo `squad-cluster` com execução automática diária via `cluster-daily-architect.js`
 - **Handoff-ativo.md é sobrescrito a cada fase** — manter apenas o output mais recente
 - **Links internos** são responsabilidade do copywriter (Fase 3), não do arquiteto
 - **Nenhum agente escreve antes do Gate 2** — redação sem estrutura aprovada gera retrabalho

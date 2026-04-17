@@ -8,10 +8,7 @@ agents:
   - agents/@estrategista-buscas.md
   - agents/@arquiteto-pilarpage.md
   - agents/@copywriter-pilarpage.md
-  - agents/@arquiteto-cluster.md
-  - agents/@copywriter-cluster.md
-  - agents/@cluster-pilarpage.md
-  - agents/@redator-cluster.md
+  - agents/@revisor-design.md
   - agents/@espec-links-int.md
 
 tasks:
@@ -21,8 +18,7 @@ tasks:
   - task/criar-url.md
   - task/construcao-h2.md
   - task/redigir-artigo.md
-  - task/criar-cluster.md
-  - task/redigir-cluster.md
+  - task/revisar-design.md
 
 skills:
   - skill/otimizador-h1.md
@@ -46,6 +42,5 @@ config:
 
 files:
   - file/anchor-master.md
-  - file/cluster-master.md
   - file/handoff-ativo.md
   - file/handoff-template.md
