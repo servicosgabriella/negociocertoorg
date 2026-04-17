@@ -503,9 +503,17 @@ import { estrutura } from '../data/estrutura';
     transition: opacity 0.2s, visibility 0.2s;
     z-index: 200;
   }
-  .dropdown-menu.open {
+  .dropdown-menu.open,
+  .nav-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
+  }
+  .nav-dropdown:hover .nav-link {
+    border-bottom-color: #facc15;
+  }
+  .nav-dropdown:hover .nav-arrow {
+    transform: rotate(180deg);
+    opacity: 1;
   }
 
   .megamenu-cols {
