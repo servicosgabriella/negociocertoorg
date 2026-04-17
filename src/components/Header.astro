@@ -607,8 +607,8 @@ import { estrutura } from '../data/estrutura';
     height: 100%;
     width: 320px;
     max-width: 85vw;
-    background: #0f0f0f;
-    border-left: 1px solid #333;
+    background: #ffffff;
+    border-left: 1px solid #e5e7eb;
     z-index: 150;
     padding: 24px;
     overflow-y: auto;
@@ -623,8 +623,8 @@ import { estrutura } from '../data/estrutura';
     justify-content: space-between;
     margin-bottom: 24px;
   }
-  .mobile-sidebar-title { font-size: 15px; font-weight: 600; color: #fff; }
-  .mobile-close { cursor: pointer; font-size: 24px; color: #fff; line-height: 1; }
+  .mobile-sidebar-title { font-size: 15px; font-weight: 600; color: #111; }
+  .mobile-close { cursor: pointer; font-size: 24px; color: #111; line-height: 1; }
   .mobile-close:hover { color: #facc15; }
 
   .mobile-nav { display: flex; flex-direction: column; gap: 12px; }
@@ -637,34 +637,34 @@ import { estrutura } from '../data/estrutura';
     padding: 10px 0;
     font-size: 14px;
     font-weight: 600;
-    color: #fff !important;
+    color: #111 !important;
     text-decoration: none;
     background: none;
     border: none;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #e5e7eb;
     cursor: pointer;
     font-family: inherit;
     text-align: left;
   }
   .mobile-section-arrow {
     width: 16px; height: 16px;
-    color: #6b7280;
+    color: #9ca3af;
     transition: transform 0.2s;
     flex-shrink: 0;
   }
-  .mobile-blog-link { border-bottom: 1px solid #333; }
-  .mobile-blog-link:hover { color: #facc15 !important; }
+  .mobile-blog-link { border-bottom: 1px solid #e5e7eb; }
+  .mobile-blog-link:hover { color: #111 !important; }
 
   .mobile-section-items {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    background: #1a1a1a;
+    background: #f9fafb;
     border-radius: 6px;
   }
   .mobile-section-items.open {
     max-height: 600px;
-    border: 1px solid #333;
+    border: 1px solid #e5e7eb;
   }
 
   .mobile-item {
@@ -674,35 +674,36 @@ import { estrutura } from '../data/estrutura';
     width: 100%;
     padding: 12px 16px;
     font-size: 13px;
-    color: #d1d5db !important;
+    color: #374151 !important;
     text-decoration: none;
     border: none;
     background: none;
     cursor: pointer;
     font-family: inherit;
     text-align: left;
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid #e5e7eb;
     transition: color 0.15s;
   }
   .mobile-item:last-child { border-bottom: none; }
-  .mobile-item:hover { color: #facc15 !important; }
+  .mobile-item:hover { color: #111 !important; }
 
   .mobile-subcat-title {
     display: block;
     padding: 10px 16px;
     font-size: 12px;
     font-weight: 700;
-    color: #facc15 !important;
+    color: #111 !important;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f3f4f6;
   }
   .mobile-sub-item {
     padding-left: 32px;
     font-size: 12px;
-    color: #9ca3af !important;
-    border-bottom: 1px solid #222;
+    color: #6b7280 !important;
+    border-bottom: 1px solid #e5e7eb;
   }
-  .mobile-sub-item:hover { color: #facc15 !important; }
+  .mobile-sub-item:hover { color: #111 !important; }
 </style>
