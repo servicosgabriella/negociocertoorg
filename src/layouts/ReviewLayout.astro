@@ -145,7 +145,7 @@ const itemListSchema =
 	<body>
 		<Header />
 		<section class="review-hero">
-			<div style="max-width: 1200px; margin: 0 auto;">
+			<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
 				<nav aria-label="Breadcrumb" class="hidden md:flex" style="font-size: 13px; margin-bottom: 16px;">
 				  <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
 				    {breadcrumb.map((item, index) => (
@@ -826,12 +826,12 @@ const itemListSchema =
 			.faq-answer ul li { font-size: 14px; color: #374151; margin-bottom: 4px; }
 
 			/* Review Layout Mobile Optimizations */
-			.review-hero { background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px 80px; }
+			.review-hero { background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 0 80px; }
 			.review-hero-title { font-size: 2.25rem; }
 			.review-main-container { max-width: 1200px; margin: 0 auto; padding: 40px; display: flex; gap: 40px; margin-top: 48px; }
 
 			@media (max-width: 768px) {
-				.review-hero { padding: 48px 24px 40px !important; }
+				.review-hero { padding: 48px 0 40px !important; }
 				.review-main-container { padding: 24px !important; }
 			}
 
