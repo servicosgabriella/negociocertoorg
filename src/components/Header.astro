@@ -44,106 +44,87 @@ import { estrutura } from '../data/estrutura';
           </div>
           <nav class="mobile-nav">
 
+            <!-- FINANÇAS -->
             <div class="mobile-section">
               <button class="mobile-section-title" onclick="toggleMobileSection(this)">
                 Finanças
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
               <div class="mobile-section-items">
-                <a href={estrutura.financas.subcategorias.erp.href} class="mobile-item">ERP / Sistema de Gestão</a>
-                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                  Maquininha de Cartão
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="mobile-sub-menu">
-                  {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
-                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                  ))}
-                </div>
-                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                  Contabilidade Online
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="mobile-sub-menu">
-                  {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
-                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                  ))}
-                </div>
+                <a href={estrutura.financas.subcategorias.erp.href} class="mobile-subcat-title">ERP / Sistema de Gestão</a>
+                <a href={estrutura.financas.subcategorias.maquininhas.href} class="mobile-subcat-title">Maquininhas de Cartão</a>
+                {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+                <a href={estrutura.financas.subcategorias.contabilidade.href} class="mobile-subcat-title">Contabilidade Online</a>
+                {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
               </div>
             </div>
 
+            <!-- PLANEJAMENTO -->
             <div class="mobile-section">
               <button class="mobile-section-title" onclick="toggleMobileSection(this)">
                 Planejamento
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
               <div class="mobile-section-items">
-                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                  Plano de Negócios
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="mobile-sub-menu">
-                  {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
-                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                  ))}
-                </div>
-                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                  Registro de Marca
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="mobile-sub-menu">
-                  {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
-                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                  ))}
-                </div>
+                <a href={estrutura.planejamento.subcategorias.plano_negocios.href} class="mobile-subcat-title">Plano de Negócios</a>
+                {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+                <a href={estrutura.planejamento.subcategorias.registro_marca.href} class="mobile-subcat-title">Registro de Marca</a>
+                {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
               </div>
             </div>
 
+            <!-- GESTÃO -->
             <div class="mobile-section">
               <button class="mobile-section-title" onclick="toggleMobileSection(this)">
                 Gestão
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
               <div class="mobile-section-items">
-                <a href={estrutura.gestao.subcategorias.pdv.href} class="mobile-item">Sistema PDV</a>
+                <a href={estrutura.gestao.subcategorias.pdv.href} class="mobile-subcat-title">Sistema PDV</a>
                 {estrutura.gestao.subcategorias.pdv.paginas.map(p => (
                   <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
                 ))}
-                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                  Nota Fiscal Eletrônica
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="mobile-sub-menu">
-                  {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
-                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                  ))}
-                </div>
+                <a href={estrutura.gestao.subcategorias.nfe.href} class="mobile-subcat-title">Nota Fiscal Eletrônica</a>
+                {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
               </div>
             </div>
 
+            <!-- RH -->
             <div class="mobile-section">
               <button class="mobile-section-title" onclick="toggleMobileSection(this)">
                 RH
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
               <div class="mobile-section-items">
-                <a href={estrutura.rh.subcategorias.recrutamento.href} class="mobile-item">Plataforma de Recrutamento</a>
-                <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="mobile-item">Folha de Pagamento Online</a>
+                <a href={estrutura.rh.subcategorias.recrutamento.href} class="mobile-subcat-title">Plataforma de Recrutamento</a>
+                <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="mobile-subcat-title">Folha de Pagamento Online</a>
               </div>
             </div>
 
+            <!-- CALCULADORAS -->
             <div class="mobile-section">
               <button class="mobile-section-title" onclick="toggleMobileSection(this)">
                 Calculadoras
                 <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
               <div class="mobile-section-items">
-                <a href={estrutura.calculadoras.subcategorias.financeiras.href} class="mobile-item">Calculadoras Financeiras</a>
-                <a href={estrutura.calculadoras.subcategorias.trabalhistas.href} class="mobile-item">Calculadoras Trabalhistas</a>
-                <a href={estrutura.calculadoras.subcategorias.emprestimo.href} class="mobile-item">Calculadora de Empréstimo</a>
-                <a href={estrutura.calculadoras.subcategorias.datas.href} class="mobile-item">Calculadora de Datas</a>
+                <a href={estrutura.calculadoras.subcategorias.financeiras.href} class="mobile-subcat-title">Calculadoras Financeiras</a>
+                <a href={estrutura.calculadoras.subcategorias.trabalhistas.href} class="mobile-subcat-title">Calculadoras Trabalhistas</a>
+                <a href={estrutura.calculadoras.subcategorias.emprestimo.href} class="mobile-subcat-title">Calculadora de Empréstimo</a>
+                <a href={estrutura.calculadoras.subcategorias.datas.href} class="mobile-subcat-title">Calculadora de Datas</a>
               </div>
             </div>
+
             <a href={estrutura.seguros.href} class="mobile-section-title mobile-blog-link">Seguros</a>
             <a href={estrutura.ferramentas.href} class="mobile-section-title mobile-blog-link">Ferramentas</a>
             <a href={estrutura.blog.href} class="mobile-section-title mobile-blog-link">Blog</a>
@@ -358,13 +339,7 @@ import { estrutura } from '../data/estrutura';
     }
   }
 
-  function toggleMobileSub(btn) {
-    const subMenu = btn.nextElementSibling;
-    const arrow = btn.querySelector('.mobile-sub-arrow');
-    const isOpen = subMenu.classList.contains('open');
-    subMenu.classList.toggle('open', !isOpen);
-    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
-  }
+
 </script>
 
 <style is:global>
@@ -711,20 +686,17 @@ import { estrutura } from '../data/estrutura';
   .mobile-item:last-child { border-bottom: none; }
   .mobile-item:hover { color: #facc15 !important; }
 
-  .mobile-sub-trigger { font-weight: 500; }
-  .mobile-sub-arrow {
-    width: 14px; height: 14px;
-    color: #6b7280;
-    transition: transform 0.2s;
-    flex-shrink: 0;
+  .mobile-subcat-title {
+    display: block;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #facc15 !important;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #2a2a2a;
   }
-  .mobile-sub-menu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.25s ease;
-    background: #111;
-  }
-  .mobile-sub-menu.open { max-height: 400px; }
   .mobile-sub-item {
     padding-left: 32px;
     font-size: 12px;
