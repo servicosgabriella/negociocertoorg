@@ -5,6 +5,7 @@ description: >
   Fluxo: extração do cluster-master → busca SERP → arquitetura H2s → redação completa → aprovação Telegram → publicação.
 
 agents:
+  - agents/@cluster-pilarpage.md
   - agents/@arquiteto-cluster.md
   - agents/@copywriter-cluster.md
   - agents/@revisor-design.md
@@ -18,6 +19,9 @@ skills:
   - skill/copy-contabilidade.md
   - skill/copy-negociocerto.md
   - skill/tabela-responsiva.md
+
+tasks:
+  - task/criar-cluster.md
 
 data:
   - data/modelo-html.md
