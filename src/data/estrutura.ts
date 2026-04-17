@@ -108,6 +108,21 @@ export const estrutura = {
       }
     }
   },
+  calculadoras: {
+    label: "Calculadoras",
+    href: "/calculadoras/",
+    subcategorias: {}
+  },
+  seguros: {
+    label: "Seguros",
+    href: "/seguros/",
+    subcategorias: {}
+  },
+  ferramentas: {
+    label: "Ferramentas",
+    href: "/ferramentas/",
+    subcategorias: {}
+  },
   blog: {
     label: "Blog",
     href: "/blog/",
