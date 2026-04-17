@@ -111,7 +111,28 @@ export const estrutura = {
   calculadoras: {
     label: "Calculadoras",
     href: "/calculadoras/",
-    subcategorias: {}
+    subcategorias: {
+      financeiras: {
+        label: "Calculadoras Financeiras",
+        href: "/calculadoras/financeiras/",
+        paginas: [] as Pagina[]
+      },
+      trabalhistas: {
+        label: "Calculadoras Trabalhistas",
+        href: "/calculadoras/trabalhistas/",
+        paginas: [] as Pagina[]
+      },
+      emprestimo: {
+        label: "Calculadora de Empréstimo",
+        href: "/calculadoras/emprestimo/",
+        paginas: [] as Pagina[]
+      },
+      datas: {
+        label: "Calculadora de Datas",
+        href: "/calculadoras/datas/",
+        paginas: [] as Pagina[]
+      }
+    }
   },
   seguros: {
     label: "Seguros",
