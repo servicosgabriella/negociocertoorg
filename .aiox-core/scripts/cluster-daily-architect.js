@@ -723,6 +723,12 @@ ${designSection}
 
 O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no conteúdo.
 
+**OBRIGATÓRIO — FAQ NO FINAL DO ARTIGO:**
+Todo artigo deve terminar com FAQ em formato acordeão HTML (<details>/<summary>).
+Mínimo 5 perguntas reais que o leitor digitaria no Google.
+Respostas diretas de 2-4 frases. Exemplo de estrutura:
+<details><summary>Pergunta real aqui?</summary><p>Resposta direta e objetiva.</p></details>
+
 **REGRA ABSOLUTA — VOCABULÁRIO ACESSÍVEL:**
 O leitor é dono de pequeno negócio. Palavras técnicas difíceis devem ser substituídas por equivalentes simples.
 Se a palavra técnica for inevitável, explicar entre parênteses de forma amigável.
@@ -774,7 +780,19 @@ Responda com APENAS o HTML do artigo:
       log(`✅ Travessões substituídos por vírgula`, 'success');
     }
 
-    // 6. Validar link interno
+    // 6. Validar FAQ obrigatório
+    const hasFaq = html.includes('<details') && html.includes('<summary');
+    if (!hasFaq) {
+      log(`⚠️ FAQ não encontrado no artigo — obrigatório mínimo 5 perguntas em <details>`, 'warn');
+    } else {
+      const faqCount = (html.match(/<details/g) || []).length;
+      log(`✅ FAQ presente: ${faqCount} perguntas`, 'success');
+      if (faqCount < 5) {
+        log(`⚠️ FAQ com apenas ${faqCount} pergunta(s) — mínimo obrigatório é 5`, 'warn');
+      }
+    }
+
+    // 7. Validar link interno
     if (!html.includes(`href="${articleData.pillarUrl}"`)) {
       log(`⚠️ Link para pillar "${articleData.pillarUrl}" não encontrado no HTML`, 'warn');
     }
