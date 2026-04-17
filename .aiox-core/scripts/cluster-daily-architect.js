@@ -451,8 +451,9 @@ async function searchSERP(keyword) {
 // ============================================================================
 
 function callClaude(prompt) {
-  const result = spawnSync('claude', ['-p', prompt], {
+  const result = spawnSync('claude', ['-p'], {
     encoding: 'utf-8',
+    input: prompt,
     maxBuffer: 20 * 1024 * 1024,
     timeout: 180000,
   });
