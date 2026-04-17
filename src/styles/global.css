@@ -174,7 +174,7 @@ ol {
 }
 
 ul:not(.info-list):not(.bullet-list):not(.plan-list):not(#custom-toc-list) li,
-ol li {
+ol:not(.breadcrumb-list) li {
   font-size: 16px;
   margin-left: 1.25em;
 }
