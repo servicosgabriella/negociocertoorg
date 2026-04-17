@@ -3,270 +3,263 @@ import { estrutura } from '../data/estrutura';
 ---
 
 <header class="site-header">
-  <div class="header-inner">
-    <!-- LOGO -->
-    <a href="/" class="header-logo">
-      <span class="logo-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-      </span>
-      <span class="logo-text">
-        <span class="logo-white">negócio</span><span class="logo-yellow">certo</span>
-      </span>
-    </a>
 
-    <!-- DESKTOP NAV -->
-    <div class="desktop-nav">
-      <nav class="nav-items">
-
-        <!-- FINANÇAS -->
-        <div class="nav-dropdown">
-          <a href={estrutura.financas.href} class="nav-link" onclick="handleNavClick(event, this)">
-            Finanças
-            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <div class="dropdown-menu">
-            <div class="megamenu-cols">
-              <div class="megamenu-col">
-                <a href={estrutura.financas.subcategorias.erp.href} class="megamenu-col-title">ERP e Sistemas de Gestão</a>
-              </div>
-              <div class="megamenu-col">
-                <a href={estrutura.financas.subcategorias.maquininhas.href} class="megamenu-col-title">Maquininhas de Cartão</a>
-                {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-              <div class="megamenu-col">
-                <a href={estrutura.financas.subcategorias.contabilidade.href} class="megamenu-col-title">Contabilidade Online</a>
-                {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PLANEJAMENTO -->
-        <div class="nav-dropdown">
-          <a href={estrutura.planejamento.href} class="nav-link" onclick="handleNavClick(event, this)">
-            Planejamento
-            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <div class="dropdown-menu">
-            <div class="megamenu-cols">
-              <div class="megamenu-col">
-                <a href={estrutura.planejamento.subcategorias.plano_negocios.href} class="megamenu-col-title">Plano de Negócios</a>
-                {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-              <div class="megamenu-col">
-                <a href={estrutura.planejamento.subcategorias.registro_marca.href} class="megamenu-col-title">Registro de Marca</a>
-                {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GESTÃO -->
-        <div class="nav-dropdown">
-          <a href={estrutura.gestao.href} class="nav-link" onclick="handleNavClick(event, this)">
-            Gestão
-            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <div class="dropdown-menu">
-            <div class="megamenu-cols">
-              <div class="megamenu-col">
-                <a href={estrutura.gestao.subcategorias.pdv.href} class="megamenu-col-title">Sistema PDV</a>
-                {estrutura.gestao.subcategorias.pdv.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-              <div class="megamenu-col">
-                <a href={estrutura.gestao.subcategorias.nfe.href} class="megamenu-col-title">Nota Fiscal Eletrônica</a>
-                {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
-                  <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RH -->
-        <div class="nav-dropdown">
-          <a href={estrutura.rh.href} class="nav-link" onclick="handleNavClick(event, this)">
-            RH
-            <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <div class="dropdown-menu">
-            <div class="megamenu-cols">
-              <div class="megamenu-col">
-                <a href={estrutura.rh.subcategorias.recrutamento.href} class="megamenu-col-title">Plataforma de Recrutamento</a>
-              </div>
-              <div class="megamenu-col">
-                <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="megamenu-col-title">Folha de Pagamento Online</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOG -->
-        <a href={estrutura.blog.href} class="nav-link nav-link-simple">Blog</a>
-      </nav>
-
-      <!-- BUSCA -->
-      <a href="#" class="search-icon" aria-label="Buscar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
-        </svg>
+  <!-- LINHA 1: Logo + Busca -->
+  <div class="header-top">
+    <div class="header-top-inner">
+      <a href="/" class="header-logo">
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span class="logo-text">
+          <span class="logo-white">negócio</span><span class="logo-yellow">certo</span>
+        </span>
       </a>
-    </div>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-toggle-wrapper">
-      <input id="mobile-menu-toggle" type="checkbox" class="peer sr-only" />
-      <label for="mobile-menu-toggle" class="mobile-hamburger" aria-label="Abrir menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </label>
+      <!-- BUSCA DESKTOP -->
+      <form class="search-form" action="/busca" method="get" role="search">
+        <input class="search-input" type="search" name="q" placeholder="Buscar artigos, comparativos..." aria-label="Buscar" />
+        <button class="search-btn" type="submit" aria-label="Buscar">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
+          </svg>
+        </button>
+      </form>
 
-      <label for="mobile-menu-toggle" class="mobile-overlay" aria-label="Fechar menu"></label>
+      <!-- HAMBURGER MOBILE -->
+      <div class="mobile-toggle-wrapper">
+        <input id="mobile-menu-toggle" type="checkbox" class="peer sr-only" />
+        <label for="mobile-menu-toggle" class="mobile-hamburger" aria-label="Abrir menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+        <label for="mobile-menu-toggle" class="mobile-overlay" aria-label="Fechar menu"></label>
+        <aside class="mobile-sidebar">
+          <div class="mobile-sidebar-header">
+            <span class="mobile-sidebar-title">Navegação</span>
+            <label for="mobile-menu-toggle" class="mobile-close" aria-label="Fechar menu">×</label>
+          </div>
+          <nav class="mobile-nav">
 
-      <aside class="mobile-sidebar">
-        <div class="mobile-sidebar-header">
-          <span class="mobile-sidebar-title">Navegação</span>
-          <label for="mobile-menu-toggle" class="mobile-close" aria-label="Fechar menu">×</label>
-        </div>
-
-        <nav class="mobile-nav">
-
-          <!-- FINANÇAS -->
-          <div class="mobile-section">
-            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
-              Finanças
-              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="mobile-section-items">
-              <a href={estrutura.financas.subcategorias.erp.href} class="mobile-item">ERP / Sistema de Gestão</a>
-              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                Maquininha de Cartão
-                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <div class="mobile-section">
+              <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+                Finanças
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
-              <div class="mobile-sub-menu">
-                {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
-                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                ))}
-              </div>
-              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                Contabilidade Online
-                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-              </button>
-              <div class="mobile-sub-menu">
-                {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
-                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                ))}
+              <div class="mobile-section-items">
+                <a href={estrutura.financas.subcategorias.erp.href} class="mobile-item">ERP / Sistema de Gestão</a>
+                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                  Maquininha de Cartão
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="mobile-sub-menu">
+                  {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
+                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                  ))}
+                </div>
+                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                  Contabilidade Online
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="mobile-sub-menu">
+                  {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
+                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- PLANEJAMENTO -->
-          <div class="mobile-section">
-            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
-              Planejamento
-              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="mobile-section-items">
-              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                Plano de Negócios
-                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <div class="mobile-section">
+              <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+                Planejamento
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
               </button>
-              <div class="mobile-sub-menu">
-                {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
-                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                ))}
-              </div>
-              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                Registro de Marca
-                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-              </button>
-              <div class="mobile-sub-menu">
-                {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
-                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <!-- GESTÃO -->
-          <div class="mobile-section">
-            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
-              Gestão
-              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="mobile-section-items">
-              <a href={estrutura.gestao.subcategorias.pdv.href} class="mobile-item">Sistema PDV</a>
-              {estrutura.gestao.subcategorias.pdv.paginas.map(p => (
-                <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-              ))}
-              <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
-                Nota Fiscal Eletrônica
-                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-              </button>
-              <div class="mobile-sub-menu">
-                {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
-                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
-                ))}
+              <div class="mobile-section-items">
+                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                  Plano de Negócios
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="mobile-sub-menu">
+                  {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
+                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                  ))}
+                </div>
+                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                  Registro de Marca
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="mobile-sub-menu">
+                  {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
+                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- RH -->
-          <div class="mobile-section">
-            <button class="mobile-section-title" onclick="toggleMobileSection(this)">
-              RH
-              <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </button>
-            <div class="mobile-section-items">
-              <a href={estrutura.rh.subcategorias.recrutamento.href} class="mobile-item">Plataforma de Recrutamento</a>
-              <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="mobile-item">Folha de Pagamento Online</a>
+            <div class="mobile-section">
+              <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+                Gestão
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="mobile-section-items">
+                <a href={estrutura.gestao.subcategorias.pdv.href} class="mobile-item">Sistema PDV</a>
+                {estrutura.gestao.subcategorias.pdv.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
+                <button class="mobile-item mobile-sub-trigger" onclick="toggleMobileSub(this)">
+                  Nota Fiscal Eletrônica
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mobile-sub-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                <div class="mobile-sub-menu">
+                  {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
+                    <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
 
-          <a href={estrutura.blog.href} class="mobile-section-title mobile-blog-link">Blog</a>
+            <div class="mobile-section">
+              <button class="mobile-section-title" onclick="toggleMobileSection(this)">
+                RH
+                <svg xmlns="http://www.w3.org/2000/svg" class="mobile-section-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              <div class="mobile-section-items">
+                <a href={estrutura.rh.subcategorias.recrutamento.href} class="mobile-item">Plataforma de Recrutamento</a>
+                <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="mobile-item">Folha de Pagamento Online</a>
+              </div>
+            </div>
 
-          <a href="#" class="mobile-item" aria-label="Buscar" style="margin-top: 8px;">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
-            </svg>
-          </a>
-        </nav>
-      </aside>
+            <a href={estrutura.blog.href} class="mobile-section-title mobile-blog-link">Blog</a>
+          </nav>
+        </aside>
+      </div>
     </div>
   </div>
+
+  <!-- LINHA 2: Categorias full-width (desktop only) -->
+  <div class="header-nav">
+    <nav class="header-nav-inner">
+
+      <div class="nav-dropdown">
+        <button class="nav-link" onclick="handleNavClick(event, this)" data-href={estrutura.financas.href}>
+          Finanças
+          <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="megamenu-cols">
+            <div class="megamenu-col">
+              <a href={estrutura.financas.subcategorias.erp.href} class="megamenu-col-title">ERP e Sistemas de Gestão</a>
+            </div>
+            <div class="megamenu-col">
+              <a href={estrutura.financas.subcategorias.maquininhas.href} class="megamenu-col-title">Maquininhas de Cartão</a>
+              {estrutura.financas.subcategorias.maquininhas.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+            <div class="megamenu-col">
+              <a href={estrutura.financas.subcategorias.contabilidade.href} class="megamenu-col-title">Contabilidade Online</a>
+              {estrutura.financas.subcategorias.contabilidade.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-link" onclick="handleNavClick(event, this)" data-href={estrutura.planejamento.href}>
+          Planejamento
+          <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="megamenu-cols">
+            <div class="megamenu-col">
+              <a href={estrutura.planejamento.subcategorias.plano_negocios.href} class="megamenu-col-title">Plano de Negócios</a>
+              {estrutura.planejamento.subcategorias.plano_negocios.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+            <div class="megamenu-col">
+              <a href={estrutura.planejamento.subcategorias.registro_marca.href} class="megamenu-col-title">Registro de Marca</a>
+              {estrutura.planejamento.subcategorias.registro_marca.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-link" onclick="handleNavClick(event, this)" data-href={estrutura.gestao.href}>
+          Gestão
+          <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="megamenu-cols">
+            <div class="megamenu-col">
+              <a href={estrutura.gestao.subcategorias.pdv.href} class="megamenu-col-title">Sistema PDV</a>
+              {estrutura.gestao.subcategorias.pdv.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+            <div class="megamenu-col">
+              <a href={estrutura.gestao.subcategorias.nfe.href} class="megamenu-col-title">Nota Fiscal Eletrônica</a>
+              {estrutura.gestao.subcategorias.nfe.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-link" onclick="handleNavClick(event, this)" data-href={estrutura.rh.href}>
+          RH
+          <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div class="dropdown-menu">
+          <div class="megamenu-cols">
+            <div class="megamenu-col">
+              <a href={estrutura.rh.subcategorias.recrutamento.href} class="megamenu-col-title">Plataforma de Recrutamento</a>
+            </div>
+            <div class="megamenu-col">
+              <a href={estrutura.rh.subcategorias.folha_pagamento.href} class="megamenu-col-title">Folha de Pagamento Online</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href={estrutura.blog.href} class="nav-link nav-link-simple">Blog</a>
+    </nav>
+  </div>
+
 </header>
 
 <!-- SCRIPTS -->
 <script is:inline>
-  function handleNavClick(event, link) {
-    const dropdown = link.closest('.nav-dropdown');
+  function handleNavClick(event, btn) {
+    const dropdown = btn.closest('.nav-dropdown');
     const menu = dropdown.querySelector('.dropdown-menu');
     if (!menu.classList.contains('open')) {
       event.preventDefault();
       closeAllDropdowns();
       menu.classList.add('open');
-      link.classList.add('active');
+      btn.classList.add('active');
+    } else {
+      // segundo clique: navega para a categoria
+      const href = btn.getAttribute('data-href');
+      if (href) window.location.href = href;
     }
   }
 
@@ -310,26 +303,34 @@ import { estrutura } from '../data/estrutura';
   /* ===================== HEADER BASE ===================== */
   .site-header {
     background: #0f0f0f;
-    padding: 16px 0;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 100;
   }
-  .header-inner {
+
+  /* ===================== LINHA 1: LOGO + BUSCA ===================== */
+  .header-top {
+    background: #0f0f0f;
+    border-bottom: 1px solid #222;
+  }
+  .header-top-inner {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
   }
 
-  /* ===================== LOGO ===================== */
+  /* LOGO */
   .header-logo {
     display: flex;
     align-items: center;
     gap: 8px;
     text-decoration: none;
+    flex-shrink: 0;
   }
   .logo-icon {
     width: 28px;
@@ -349,57 +350,105 @@ import { estrutura } from '../data/estrutura';
   .logo-white { color: #fff; }
   .logo-yellow { color: #facc15; }
 
-  /* ===================== DESKTOP NAV ===================== */
-  .desktop-nav {
+  /* BARRA DE BUSCA */
+  .search-form {
     display: none;
     align-items: center;
-    gap: 32px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 520px;
   }
   @media (min-width: 768px) {
-    .desktop-nav { display: flex; }
+    .search-form { display: flex; }
   }
-  .nav-items {
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #111;
+    background: transparent;
+  }
+  .search-input::placeholder { color: #9ca3af; }
+  .search-btn {
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    padding: 0 14px;
+    height: 100%;
+    background: #facc15;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    transition: background 0.15s;
+    min-height: 40px;
   }
+  .search-btn:hover { background: #eab308; }
+
+  /* ===================== LINHA 2: NAV CATEGORIAS ===================== */
+  .header-nav {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: relative;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .header-nav { display: block; }
+  }
+  .header-nav-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  /* NAV LINKS */
+  .nav-dropdown { position: static; }
   .nav-link {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 8px 16px;
+    gap: 5px;
+    padding: 14px 18px;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 600;
-    color: #fff !important;
+    color: #1f2937 !important;
     text-decoration: none;
-    transition: background 0.15s;
+    background: none;
+    border: none;
     cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
   }
   .nav-link:hover, .nav-link.active {
-    background: rgba(255,255,255,0.08);
-    color: #fff !important;
+    color: #111 !important;
+    border-bottom-color: #facc15;
   }
   .nav-arrow {
-    width: 14px;
-    height: 14px;
-    opacity: 0.7;
+    width: 13px;
+    height: 13px;
+    opacity: 0.5;
     transition: transform 0.2s;
+    flex-shrink: 0;
   }
-  .nav-link.active .nav-arrow { transform: rotate(180deg); }
+  .nav-link.active .nav-arrow { transform: rotate(180deg); opacity: 1; }
+  .nav-link-simple {
+    border-bottom: 3px solid transparent;
+  }
   .nav-link-simple:hover {
-    color: #facc15 !important;
-    background: transparent;
+    color: #111 !important;
+    border-bottom-color: #facc15;
   }
-  .search-icon {
-    color: #fff !important;
-    transition: color 0.15s;
-  }
-  .search-icon:hover { color: #facc15 !important; }
 
   /* ===================== MEGAMENU FULL-WIDTH ===================== */
-  /* nav-dropdown é static para o megamenu se posicionar relativo ao .site-header */
-  .nav-dropdown { position: static; }
-
   .dropdown-menu {
     position: absolute;
     left: 0;
@@ -407,7 +456,8 @@ import { estrutura } from '../data/estrutura';
     top: 100%;
     width: 100%;
     background: #ffffff;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    border-top: 2px solid #facc15;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s, visibility 0.2s;
@@ -418,7 +468,6 @@ import { estrutura } from '../data/estrutura';
     visibility: visible;
   }
 
-  /* Colunas de subcategorias — centralizadas no max-width do header */
   .megamenu-cols {
     display: flex;
     gap: 0;
@@ -435,11 +484,8 @@ import { estrutura } from '../data/estrutura';
     padding-right: 0;
     border-right: none;
   }
-  .megamenu-col:not(:first-child) {
-    padding-left: 28px;
-  }
+  .megamenu-col:not(:first-child) { padding-left: 28px; }
 
-  /* Título da subcategoria */
   .megamenu-col-title {
     display: block;
     font-family: Arial, sans-serif;
@@ -454,7 +500,6 @@ import { estrutura } from '../data/estrutura';
   }
   .megamenu-col-title:hover { color: #2d6a9f !important; }
 
-  /* Artigos dentro da coluna */
   .megamenu-article {
     display: block;
     font-family: Arial, sans-serif;
