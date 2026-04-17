@@ -289,24 +289,42 @@ async function sendTelegramWithButtons(message, articleKey, buttons = []) {
 
 function parseClusterMaster() {
   try {
-    const content = fs.readFileSync(CONFIG.CLUSTER_MASTER, 'utf-8');
+    let content = fs.readFileSync(CONFIG.CLUSTER_MASTER, 'utf-8');
     const articles = [];
 
-    const postRegex = /^#### (.+?)\nURL: (.+?)\nLinka para: (.+?)$/gm;
+    // Remover blocos de comentário HTML para evitar parsear template/instruções
+    content = content.replace(/<!--[\s\S]*?-->/g, '');
+
+    // Case-insensitive para "Linka para:" / "linka para:"
+    const postRegex = /^#### (.+?)\nURL: (.+?)\n[Ll]inka para: (.+?)$/gm;
     const moneyPageRegex = /^## Money Page: (.+?)\nURL da pillar: (.+?)$/gm;
 
-    let currentMoneyPage = null;
-    let currentPillarUrl = null;
-
+    // Mapear cada artigo à sua money page correta (suporte a múltiplas money pages)
+    const moneyPages = [];
     let match;
     while ((match = moneyPageRegex.exec(content)) !== null) {
-      currentMoneyPage = match[1];
-      currentPillarUrl = match[2];
+      moneyPages.push({
+        name: match[1],
+        pillarUrl: match[2],
+        index: match.index,
+      });
     }
 
     postRegex.lastIndex = 0;
     while ((match = postRegex.exec(content)) !== null) {
       const [, title, url, linksTo] = match;
+
+      // Encontrar a money page mais próxima antes deste artigo
+      const articleIndex = match.index;
+      let currentMoneyPage = null;
+      let currentPillarUrl = null;
+      for (const mp of moneyPages) {
+        if (mp.index <= articleIndex) {
+          currentMoneyPage = mp.name;
+          currentPillarUrl = mp.pillarUrl;
+        }
+      }
+
       articles.push({
         title: title.trim(),
         url: url.trim(),
@@ -606,23 +624,9 @@ Snippet: ${r.snippet}
 INTENÇÃO REAL DO USUÁRIO:
 ${articleData.title}
 
-RESPONDA APENAS A:
-- Como configurar a maquininha para ACEITAR vale-refeição como PAGAMENTO
-- Quais bandeiras habilitar
-- Quais taxas cobra
-- Como ativar no equipamento
-- O que é vale-refeição vs vale-alimentação (no contexto de pagamento)
-
-❌ NÃO FALE SOBRE (mesmos que a keyword sugira):
-- MEI oferecendo vale-refeição para funcionários (não é o assunto)
-- Benefício corporativo para empregado (fora do escopo)
-- Como funcionário solicita o benefício (irrelevante)
-- Legislação trabalhista sobre benefícios (não é técnico de maquininha)
-
-⚠️ FILTRO DE QUALIDADE:
-Se uma frase não responde diretamente "como ativar na maquininha", DELETE.
-
----
+Responda exatamente o que o usuário quer saber ao buscar esse termo.
+Use os snippets SERP dos competitors para identificar a intenção real.
+Não extrapole para tópicos fora do escopo da keyword.
 
 ---
 

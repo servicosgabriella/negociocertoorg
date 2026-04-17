@@ -10,21 +10,17 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
 
 ### Posts de Suporte
 
-#### MEI pode aceitar vale refeição e vale alimentação? Entenda as regras
-URL: /mei-aceitar-vale-refeicao/
-linka para: /melhores-maquininhas-cartao-voucher-refeicao/
-
 #### Bandeiras de Voucher Aceitas no Brasil (2026)
 URL: /bandeira-voucher-brasil/
-linka para: /melhores-maquininhas-cartao-voucher-refeicao/
+Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 
 #### Como funciona o vale refeição na maquininha: o que o lojista precisa configurar
 URL: /como-funciona-vale-refeicao-maquininha/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/ + /taxa-voucher-maquininha/
+Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /taxa-voucher-maquininha/
 
 #### Por que a maquininha não aceita o cartão de benefício? Causas e como resolver
 URL: /maquininha-nao-aceita-cartao-beneficio/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeiras-voucher-brasil/ + /como-funciona-vale-refeicao-maquininha/
+Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /como-funciona-vale-refeicao-maquininha/
 
 ---
 
