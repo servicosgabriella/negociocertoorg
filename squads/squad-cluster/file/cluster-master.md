@@ -10,6 +10,14 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
 
 ### Posts de Suporte
 
+#### MEI pode aceitar vale refeição e vale alimentação? Entenda as regras
+URL: /mei-aceitar-vale-refeicao/
+Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
+
+#### Taxa de voucher na maquininha: quanto custa processar VR e VA
+URL: /taxa-voucher-maquininha/
+Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
+
 #### Bandeiras de Voucher Aceitas no Brasil (2026)
 URL: /bandeira-voucher-brasil/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
