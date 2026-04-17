@@ -808,31 +808,122 @@ function loadAnchorMaster() {
   return '';
 }
 
+/**
+ * Extrai o texto âncora real do HTML gerado pelo copywriter.
+ * Busca o primeiro <a href="pillarUrl">TEXTO</a> no artigo.
+ */
+function extractAnchorTextFromHtml(html, pillarUrl) {
+  const escapedUrl = pillarUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`<a[^>]+href=["']${escapedUrl}["'][^>]*>([^<]+)<\\/a>`, 'i');
+  const match = html.match(regex);
+  if (match) {
+    return match[1].trim();
+  }
+  log(`⚠️ Âncora não encontrada no HTML para URL: ${pillarUrl}`, 'warn');
+  return null;
+}
+
+/**
+ * Determina o tipo de âncora (target/brand/misc) com base no texto.
+ * Heurística simples baseada nas regras da skill texto-ancora.md.
+ */
+function determineAnchorType(anchorText, pillarUrl) {
+  const text = anchorText.toLowerCase();
+  // Brand: contém domínio ou URL
+  if (text.includes('negociocerto') || text.includes('http') || text.includes('.com')) {
+    return 'brand';
+  }
+  // Misc: âncoras genéricas
+  const miscPatterns = ['clique aqui', 'saiba mais', 'leia', 'veja aqui', 'acesse', 'confira aqui'];
+  if (miscPatterns.some(p => text.includes(p))) {
+    return 'misc';
+  }
+  // Target: contém palavras-chave da pillar
+  return 'target';
+}
+
+/**
+ * Atualiza o anchor-master.md com a nova âncora usada.
+ * Adiciona linha no histórico e recalcula o saldo a partir do histórico real.
+ */
 function updateAnchorMaster(targetPage, anchorText, type, sourceSlug) {
   try {
     let content = loadAnchorMaster();
-
-    // Procurar pela seção da página de destino
-    const sectionRegex = new RegExp(`## ${targetPage.replace(/\//g, '\\/')}(.*?)(?=## |$)`, 's');
+    const date = new Date().toLocaleDateString('pt-BR');
+    const newRow = `| ${sourceSlug} | ${anchorText} | ${type} | ${date} |`;
 
     if (!content.includes(`## ${targetPage}`)) {
-      // Criar nova seção se não existir
-      const newSection = `\n## ${targetPage}\nPalavra-chave alvo: [atualizar]\nTipo: interna\n\n### Saldo atual\nTarget: 1 links usados — 4 disponíveis até 50%\nBrand: 0 links usados — 2 disponíveis até 25%\nMisc: 0 links usados — 2 disponíveis até 25%\nTotal de links registrados: 1\n\n### Histórico de âncoras usadas\n| Post de origem | Âncora usada | Tipo | Data |\n|---|---|---|---|\n| ${sourceSlug} | ${anchorText} | ${type} | ${new Date().toLocaleDateString('pt-BR')} |\n`;
+      // Seção não existe — criar do zero
+      const newSection = [
+        `\n## ${targetPage}`,
+        `Palavra-chave alvo: [atualizar]`,
+        `Tipo: interna`,
+        ``,
+        `### Saldo atual`,
+        `Target: 1 links usados — 4 disponíveis até 50%`,
+        `Brand: 0 links usados — 2 disponíveis até 25%`,
+        `Misc: 0 links usados — 2 disponíveis até 25%`,
+        `Total de links registrados: 1`,
+        ``,
+        `### Histórico de âncoras usadas`,
+        `| Post de origem | Âncora usada | Tipo | Data |`,
+        `|---|---|---|---|`,
+        newRow,
+        ``,
+        `### Âncoras target já usadas (nunca repetir exatas)`,
+        type === 'target' ? `- "${anchorText}"` : '',
+      ].join('\n');
       content += newSection;
     } else {
-      // Atualizar seção existente
-      const match = sectionRegex.exec(content);
-      if (match) {
-        const section = match[1];
-        // Adicionar nova linha na tabela do histórico
-        const newEntry = `| ${sourceSlug} | ${anchorText} | ${type} | ${new Date().toLocaleDateString('pt-BR')} |`;
-        const updatedSection = section.replace(/(\| \[data\] \|)/, `| ${new Date().toLocaleDateString('pt-BR')} |\n${newEntry}`);
-        content = content.replace(section, updatedSection);
+      // Seção existe — appenda nova linha na tabela do histórico
+      // Encontra o separador da tabela (|---|---|---|---|) e insere após a última linha de dados
+      const sectionStart = content.indexOf(`## ${targetPage}`);
+      const nextSectionStart = content.indexOf('\n## ', sectionStart + 1);
+      const sectionEnd = nextSectionStart === -1 ? content.length : nextSectionStart;
+      let section = content.substring(sectionStart, sectionEnd);
+
+      // Inserir nova linha após o último | da tabela
+      const lastRowIndex = section.lastIndexOf('\n|');
+      if (lastRowIndex !== -1) {
+        section = section.substring(0, lastRowIndex + 1) + newRow + '\n' + section.substring(lastRowIndex + 1);
+      } else {
+        // Tabela não encontrada na seção — append ao final da seção
+        section += `\n${newRow}\n`;
       }
+
+      // Recalcular saldo a partir das linhas da tabela
+      const rows = [...section.matchAll(/^\| .+ \| .+ \| (target|brand|misc) \| .+ \|$/gm)];
+      const total = rows.length;
+      const countTarget = rows.filter(r => r[1] === 'target').length;
+      const countBrand = rows.filter(r => r[1] === 'brand').length;
+      const countMisc = rows.filter(r => r[1] === 'misc').length;
+      const maxTarget = Math.floor(total * 0.5);
+      const maxBrand = Math.floor(total * 0.25);
+      const maxMisc = Math.floor(total * 0.25);
+
+      section = section
+        .replace(/Target: \d+ links usados — \d+ disponíveis até 50%/, `Target: ${countTarget} links usados — ${Math.max(0, maxTarget - countTarget)} disponíveis até 50%`)
+        .replace(/Brand: \d+ links usados — \d+ disponíveis até 25%/, `Brand: ${countBrand} links usados — ${Math.max(0, maxBrand - countBrand)} disponíveis até 25%`)
+        .replace(/Misc: \d+ links usados — \d+ disponíveis até 25%/, `Misc: ${countMisc} links usados — ${Math.max(0, maxMisc - countMisc)} disponíveis até 25%`)
+        .replace(/Total de links registrados: \d+/, `Total de links registrados: ${total}`);
+
+      // Adicionar âncora target usada à lista de "nunca repetir"
+      if (type === 'target') {
+        if (section.includes('### Âncoras target já usadas')) {
+          section = section.replace(
+            /### Âncoras target já usadas \(nunca repetir exatas\)\n/,
+            `### Âncoras target já usadas (nunca repetir exatas)\n- "${anchorText}"\n`
+          );
+        } else {
+          section += `\n### Âncoras target já usadas (nunca repetir exatas)\n- "${anchorText}"\n`;
+        }
+      }
+
+      content = content.substring(0, sectionStart) + section + content.substring(sectionEnd);
     }
 
     fs.writeFileSync(CONFIG.ANCHOR_MASTER, content);
-    log(`✅ anchor-master.md atualizado`, 'success');
+    log(`✅ anchor-master.md atualizado — âncora "${anchorText}" (${type}) registrada`, 'success');
     return true;
   } catch (e) {
     log(`❌ Erro ao atualizar anchor-master.md: ${e.message}`, 'error');
@@ -1000,10 +1091,7 @@ async function main() {
       log(`⚠️ Artigo contém elementos visuais - chamaria @revisor-design em produção`, 'warn');
     }
 
-    // 8. Atualizar anchor-master
-    updateAnchorMaster(targetArticle.pillarUrl, briefing.anchorText, 'target', targetArticle.url);
-
-    // 9. Enviar preview para Telegram
+    // 8. Enviar preview para Telegram
     const previewMessage = `
 <b>🏗️ Rascunho Pronto para Aprovação</b>
 
@@ -1080,7 +1168,7 @@ async function handleApproval(callbackData) {
       }
 
       const layout = pending.briefing.layout || 'bloglayout';
-      let filesToCommit = [CONFIG.ANCHOR_MASTER]; // sempre atualiza anchor-master
+      let filesToCommit = [];
       let filePath, gitPath;
 
       // 1. GERAR IMAGEM (bloglayout e contentlayout obrigatório)
@@ -1182,11 +1270,21 @@ async function handleApproval(callbackData) {
       const success = await gitCommitAndPush(commitMsg, filesToCommit);
 
       if (success) {
-        // 3. Remover de cluster-master
+        // 3. Extrair âncora do HTML e atualizar anchor-master
+        const anchorText = extractAnchorTextFromHtml(pending.htmlContent, pending.metadata.pillarUrl);
+        if (anchorText) {
+          const anchorType = determineAnchorType(anchorText, pending.metadata.pillarUrl);
+          updateAnchorMaster(pending.metadata.pillarUrl, anchorText, anchorType, pending.metadata.url);
+          log(`📎 Âncora registrada: "${anchorText}" (${anchorType}) → ${pending.metadata.pillarUrl}`, 'info');
+        } else {
+          log(`⚠️ Âncora não encontrada no HTML — anchor-master.md não atualizado`, 'warn');
+        }
+
+        // 4. Remover de cluster-master
         removeArticleFromClusterMaster(pending.briefing.title);
 
-        // 4. Commit final
-        await gitCommitAndPush(`docs: remove artigo publicado de cluster-master`, [CONFIG.CLUSTER_MASTER]);
+        // 5. Commit final (anchor-master + cluster-master)
+        await gitCommitAndPush(`docs: remove artigo publicado de cluster-master`, [CONFIG.CLUSTER_MASTER, CONFIG.ANCHOR_MASTER]);
 
         // 5. Marcar como processado
         state.processedArticles.push(articleKey);
