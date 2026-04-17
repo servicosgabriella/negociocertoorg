@@ -35,8 +35,8 @@ const CONFIG = {
   GITHUB_USER: process.env.GITHUB_USER,
   VALUESERP_API_KEY: process.env.VALUESERP_API_KEY,
   PROJECT_ROOT: path.join(__dirname, '../../'),
-  CLUSTER_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/cluster-master.md'),
-  ANCHOR_MASTER: path.join(__dirname, '../../squads/squad-oportunidades/file/anchor-master.md'),
+  CLUSTER_MASTER: path.join(__dirname, '../../squads/squad-cluster/file/cluster-master.md'),
+  ANCHOR_MASTER: path.join(__dirname, '../../squads/squad-cluster/file/anchor-master.md'),
   LOG_FILE: path.join(__dirname, '../../.aiox-core/logs/cluster-architect.log'),
   STATE_FILE: path.join(__dirname, '../../.aiox/cluster-architect-state.json'),
   LOCALHOST_PORT: process.env.LOCAL_DEV_PORT || 4321,
@@ -60,7 +60,7 @@ for (const env of requiredEnvs) {
  */
 function loadSkill(skillName) {
   try {
-    const skillPath = path.join(CONFIG.PROJECT_ROOT, `squads/squad-oportunidades/skill/${skillName}.md`);
+    const skillPath = path.join(CONFIG.PROJECT_ROOT, `squads/squad-cluster/skill/${skillName}.md`);
     if (fs.existsSync(skillPath)) {
       return fs.readFileSync(skillPath, 'utf-8');
     }

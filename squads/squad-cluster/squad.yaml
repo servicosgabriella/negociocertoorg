@@ -1,0 +1,37 @@
+name: squad-cluster
+version: "1.0.0"
+description: >
+  Squad dedicado à produção automática diária de posts de cluster para o negociocerto.org.
+  Fluxo: extração do cluster-master → busca SERP → arquitetura H2s → redação completa → aprovação Telegram → publicação.
+
+agents:
+  - agents/@arquiteto-cluster.md
+  - agents/@copywriter-cluster.md
+  - agents/@revisor-design.md
+
+skills:
+  - skill/qualificador-h2.md
+  - skill/texto-ancora.md
+  - skill/construtor-slug.md
+  - skill/otimizador-h1.md
+  - skill/copy-maquininha.md
+  - skill/copy-contabilidade.md
+  - skill/copy-negociocerto.md
+  - skill/tabela-responsiva.md
+
+data:
+  - data/modelo-html.md
+
+files:
+  - file/cluster-master.md
+  - file/anchor-master.md
+
+scripts:
+  - ../../.aiox-core/scripts/cluster-daily-architect.js
+
+config:
+  valueserp_api_key: env:VALUESERP_API_KEY
+  telegram_token: env:CLUSTER_TELEGRAM_TOKEN
+  telegram_chat_id: env:TELEGRAM_CHAT_ID
+  github_token: env:GITHUB_TOKEN
+  github_user: env:GITHUB_USER
