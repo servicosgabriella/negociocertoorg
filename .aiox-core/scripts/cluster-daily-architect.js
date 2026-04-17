@@ -73,6 +73,41 @@ function loadSkill(skillName) {
 }
 
 /**
+ * Carrega o arquivo .md de um agente do squad-cluster
+ */
+function loadAgent(agentName) {
+  try {
+    const agentPath = path.join(CONFIG.PROJECT_ROOT, `squads/squad-cluster/agents/@${agentName}.md`);
+    if (fs.existsSync(agentPath)) {
+      const content = fs.readFileSync(agentPath, 'utf-8');
+      log(`✅ Agente carregado: @${agentName} (${content.length} chars)`, 'info');
+      return content;
+    }
+    log(`⚠️ Agente não encontrado: @${agentName}`, 'warn');
+    return null;
+  } catch (e) {
+    log(`⚠️ Erro ao carregar agente @${agentName}: ${e.message}`, 'warn');
+    return null;
+  }
+}
+
+/**
+ * Carrega os modelos HTML de referência visual
+ */
+function loadModeloHtml() {
+  try {
+    const modeloPath = path.join(CONFIG.PROJECT_ROOT, 'squads/squad-cluster/data/modelo-html.md');
+    if (fs.existsSync(modeloPath)) {
+      return fs.readFileSync(modeloPath, 'utf-8');
+    }
+    return null;
+  } catch (e) {
+    log(`⚠️ Erro ao carregar modelo-html.md: ${e.message}`, 'warn');
+    return null;
+  }
+}
+
+/**
  * Detecta o nicho do artigo baseado na keyword/título
  */
 function detectNiche(title) {
@@ -434,12 +469,12 @@ function callClaude(prompt) {
 
 /**
  * Chama @arquiteto-cluster para gerar estrutura de H2s
- * @arquiteto-cluster busca SERP direto via ValueSERP API e analisa
+ * Carrega o agente @arquiteto-cluster.md do disco e injeta como contexto.
  * Retorna: { h2s: [...], linkH2Index: number, linkReason: string, transitionSuggestion: string }
  */
 async function callArquitetoCluster(articleData) {
 
-  // 1. ARQUITETO BUSCA SERP DIRETO
+  // 1. BUSCAR SERP
   log(`🔍 @arquiteto-cluster buscando SERP para: "${articleData.title}"`, 'info');
   const keywords = extractKeywords(articleData.title);
   log(`   Keywords extraídas: "${keywords}"`, 'info');
@@ -449,107 +484,98 @@ async function callArquitetoCluster(articleData) {
     log(`⚠️ Nenhum resultado SERP. @arquiteto-cluster trabalhará com estrutura base.`, 'warn');
   }
 
-  // 2. CARREGAR SKILL qualificador-h2
+  // 2. CARREGAR AGENTE E SKILLS DO DISCO
+  const agentContext = loadAgent('arquiteto-cluster');
   const skillQualificadorH2 = loadSkill('qualificador-h2');
 
-  // 3. ARQUITETO ANALISA SERP
+  if (!agentContext) {
+    throw new Error('Agente @arquiteto-cluster não encontrado em squad-cluster/agents/');
+  }
+
+  // 3. MONTAR CONTEXTO SERP
   const serpContext = serpResults.length > 0
-    ? serpResults.map((r, i) => `
-RESULTADO ${i + 1}:
-Título: ${r.title}
-URL: ${r.url}
-Snippet: ${r.snippet}
-`).join('\n---\n')
-    : 'Nenhum resultado SERP retornou. Gere H2s baseado na keyword.';
+    ? serpResults.map((r, i) => `RESULTADO ${i + 1}:\nTítulo: ${r.title}\nURL: ${r.url}\nSnippet: ${r.snippet}`).join('\n---\n')
+    : 'Nenhum resultado SERP retornou. Gere H2s baseado na keyword e no contexto do artigo.';
 
   const layoutsDesc = Object.entries(LAYOUTS).map(([k, v]) => `- **${k}**: ${v}`).join('\n');
 
-  const prompt = `Você é o Arquiteto Cluster — especialista em arquitetura ágil de posts de cluster com foco em linkagem estratégica.
+  // 4. PROMPT = AGENTE COMPLETO + SKILL + DADOS DA TAREFA
+  const prompt = `${agentContext}
 
-MISSÃO:
-Analisar a SERP abaixo para a keyword, extrair H2s dos competitors, qualificar e entregar estrutura pronta.
+---
 
-ARTIGO A ARQUITETAR:
+## SKILL CARREGADA: qualificador-h2.md
+
+${skillQualificadorH2 || '(skill não encontrada — use filtros: volume/intenção/estágio)'}
+
+---
+
+## TAREFA
+
+Execute a Sequência de Execução Obrigatória (PASSOS 1-6) para o artigo abaixo.
+
+ARTIGO:
 - Título/Keyword: ${articleData.title}
-- Pillar page: ${articleData.pillarUrl}
+- Pillar page (receberá o link): ${articleData.pillarUrl}
 - Links para: ${articleData.linksTo.join(', ')}
 
-RESULTADOS SERP (TOP 3):
+SERP COLETADA (use como se fossem os resultados reais do Google — top 3):
 ${serpContext}
 
-SKILL QUALIFICADOR-H2 (use obrigatoriamente):
-${skillQualificadorH2 ? skillQualificadorH2.substring(0, 2000) : 'Filtro 1: Gera 2-3 parágrafos úteis? | Filtro 2: Intenção distinta? | Filtro 3: Estágio do usuário?'}
-
-ANÁLISE OBRIGATÓRIA:
-1. Examine cada resultado e extraia todos os H2s/H3s vistos
-2. Para cada candidato, aplique os 3 filtros da skill qualificador-h2:
-   - Gera 2-3 parágrafos de conteúdo útil?
-   - Tem intenção distinta da keyword?
-   - Pertence ao estágio do usuário deste cluster?
-3. Aprove MÍNIMO 5 H2s que passaram nos 3 filtros
-4. Ordene por relevância (mais central para a keyword = acima)
-5. Identifique qual H2 é o gancho natural para lincar a pillar
-6. **AVALIAR ELEMENTOS VISUAIS**: O artigo vai precisar de:
-   - Tabelas? (comparação, dados, features)
-   - Grid de cards ou caixas?
-   - FAQ em acordeão?
-   Se sim, indique qual layout(s) no JSON.
-
-LAYOUTS DISPONÍVEIS:
+LAYOUTS VISUAIS DISPONÍVEIS (avalie se o artigo vai precisar):
 ${layoutsDesc}
 
-RESPONDA EM JSON (apenas o JSON, sem explicações):
+---
+
+## OUTPUT OBRIGATÓRIO
+
+Responda APENAS com JSON válido. Sem texto antes, sem texto depois, sem markdown.
 
 {
   "h2s": [
-    "H2 1: [título exato em cauda longa]",
-    "H2 2: [título exato em cauda longa]",
-    "H2 3: [ESTE é para lincar a pillar]",
-    "H2 4: [título exato em cauda longa]",
-    "H2 5: [título exato em cauda longa]"
+    "H2 1 em cauda longa",
+    "H2 2 em cauda longa",
+    "H2 3 em cauda longa",
+    "H2 4 em cauda longa",
+    "H2 5 em cauda longa"
   ],
-  "linkH2Index": 2,
-  "linkReason": "Este H2 naturalmente amplia o escopo para [razão específica]",
-  "transitionSuggestion": "Se você quer [contexto específico], veja [pillar name]",
+  "linkH2Index": 3,
+  "linkReason": "Por que este H2 é o gancho natural para a pillar",
+  "transitionSuggestion": "Frase de transição sugerida para inserir o link",
   "needsDesignReview": false,
-  "suggestedLayouts": ["tabela-comparacao"],
-  "designNotes": "Descreva quais elementos visuais o copywriter deve incluir"
-}
-
-REGRAS ABSOLUTAS:
-- Nunca menos de 5 H2s
-- H2s SEMPRE vêm dos resultados SERP (nunca inventados)
-- Link em H2 que amplia escopo (do específico para geral)
-- needsDesignReview: true se tem tabelas, grids ou elementos complexos
-- JSON válido, sem markdown, sem explicações extras`;
+  "suggestedLayouts": [],
+  "designNotes": "Descreva elementos visuais necessários, ou deixe vazio"
+}`;
 
   try {
-    log(`🏗️ @arquiteto-cluster analisando SERP e gerando H2s...`, 'info');
+    log(`🏗️ @arquiteto-cluster executando sequência obrigatória (PASSOS 1-6)...`, 'info');
 
     const text = callClaude(prompt);
 
-    // Extrair JSON da resposta
+    // Extrair JSON da resposta (agente pode produzir texto antes do JSON)
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      log(`⚠️ @arquiteto-cluster retornou resposta inválida`, 'warn');
-      log(`Resposta: ${text.substring(0, 200)}...`, 'warn');
-      throw new Error('Invalid JSON from arquitecto-cluster');
+      log(`⚠️ @arquiteto-cluster retornou resposta sem JSON válido`, 'warn');
+      log(`Resposta (200 chars): ${text.substring(0, 200)}...`, 'warn');
+      throw new Error('JSON não encontrado na resposta do @arquiteto-cluster');
     }
 
     const result = JSON.parse(jsonMatch[0]);
 
+    if (!result.h2s || result.h2s.length < 5) {
+      throw new Error(`@arquiteto-cluster retornou apenas ${result.h2s?.length || 0} H2s (mínimo: 5)`);
+    }
+
     log(`✅ @arquiteto-cluster gerou ${result.h2s.length} H2s`, 'success');
-    log(`📍 Link será no H2 ${result.linkH2Index + 1}: "${result.h2s[result.linkH2Index]}"`, 'info');
+    log(`📍 Link no H2 ${result.linkH2Index + 1}: "${result.h2s[result.linkH2Index]}"`, 'info');
     log(`   Razão: ${result.linkReason}`, 'info');
 
     if (result.needsDesignReview) {
-      log(`🎨 Design review necessário para: ${result.suggestedLayouts.join(', ')}`, 'info');
+      log(`🎨 Design review necessário: ${result.suggestedLayouts.join(', ')}`, 'info');
       log(`   Notas: ${result.designNotes}`, 'info');
     }
 
-    // Adicionar dados SERP ao retorno para o copywriter ter contexto completo
     result.serpResults = serpResults;
-
     return result;
   } catch (e) {
     log(`❌ Erro ao chamar @arquiteto-cluster: ${e.message}`, 'error');
@@ -559,188 +585,154 @@ REGRAS ABSOLUTAS:
 
 /**
  * Chama @copywriter-cluster para gerar o artigo completo
- * Retorna: HTML string do artigo
+ * Carrega o agente @copywriter-cluster.md e todas as skills do disco.
+ * Retorna: HTML string do artigo (sem H1, sem preamble)
  */
 async function callCopywriterCluster(articleData, briefing) {
 
-  // DETECTAR NICHO E CARREGAR SKILLS ESPECÍFICAS
+  // DETECTAR NICHO
   const niche = detectNiche(articleData.title);
   log(`   Nicho detectado: ${niche}`, 'info');
 
-  // CARREGAR SKILLS EXISTENTES
-  const skillQualificadorH2 = loadSkill('qualificador-h2');
-  const skillConstrutorSlug = loadSkill('construtor-slug');
-  const skillOtimizadorH1 = loadSkill('otimizador-h1');
+  // CARREGAR AGENTE E TODAS AS SKILLS DO DISCO
+  const agentContext = loadAgent('copywriter-cluster');
+  const skillCopyNiche = loadSkill(`copy-${niche}`);
   const skillTextoAncora = loadSkill('texto-ancora');
-  const skillCopyNiche = loadSkill(`copy-${niche}`);  // copy-maquininha, copy-contabilidade, copy-negociocerto
+  const skillTabelaResponsiva = loadSkill('tabela-responsiva');
+  const skillOtimizadorH1 = loadSkill('otimizador-h1');
+  const skillConstrutorSlug = loadSkill('construtor-slug');
+  const modeloHtml = loadModeloHtml();
 
-  const h2sFormatted = briefing.h2s
-    .map((h, i) => `${i + 1}. ${h}`)
-    .join('\n');
+  if (!agentContext) {
+    throw new Error('Agente @copywriter-cluster não encontrado em squad-cluster/agents/');
+  }
+  if (!skillCopyNiche) {
+    log(`⚠️ Skill copy-${niche} não encontrada, usando copy-negociocerto como fallback`, 'warn');
+  }
 
-  const layoutsDesc = Object.entries(LAYOUTS).map(([k, v]) => `- **${k}**: ${v}`).join('\n');
-  const designNotes = briefing.designNotes ? `\nNOTAS DE DESIGN DO ARQUITETO:\n${briefing.designNotes}` : '';
+  const h2sFormatted = briefing.h2s.map((h, i) => `${i + 1}. ${h}`).join('\n');
 
-  const prompt = `Você é o Copywriter Cluster — especialista em redação de posts informativos de suporte para pillar pages.
+  const serpContext = briefing.serpResults && briefing.serpResults.length > 0
+    ? briefing.serpResults.map((r, i) => `COMPETIDOR ${i + 1}:\nTítulo: ${r.title}\nURL: ${r.url}\nSnippet: ${r.snippet}`).join('\n---\n')
+    : 'Sem dados SERP disponíveis.';
 
-===================================================================================
-REGRA ABSOLUTA: SIGA A SKILL copy-${niche} — TODAS AS DECISÕES DE TOM, VOCABULÁRIO E ESTILO VÊM DAQUI
-===================================================================================
+  const designSection = briefing.designNotes
+    ? `\n## NOTAS DE DESIGN DO @ARQUITETO-CLUSTER\n${briefing.designNotes}\n`
+    : '';
 
-${skillCopyNiche || '⚠️ SKILL NÃO CARREGADA - use padrão negociocerto'}
-
----
-
-OBJETIVO:
-Redação completa de artigo de 700+ palavras aplicando EXATAMENTE a skill copy-${niche} acima.
-
-BRIEF DO ARTIGO:
-- Tema/Keyword: ${articleData.title}
-- Pillar page para linkar: ${articleData.pillarUrl}
-- Nicho: ${niche}
-- Tom/Vocabulário/Estilo: CONFORME skill copy-${niche} ACIMA (não invente variações)
-
-===================================================================================
-📊 CONTEXTO COMPETITIVO (DO @ARQUITETO-CLUSTER)
-===================================================================================
-
-${briefing.serpResults && briefing.serpResults.length > 0 ? briefing.serpResults.map((r, i) => `
-COMPETIDOR ${i + 1}:
-Título: ${r.title}
-URL: ${r.url}
-Snippet: ${r.snippet}
-`).join('\n---\n') : 'Sem dados SERP disponíveis'}
-
-⚠️ INSIGHTS:
-- Use dados concretos dos competitors (taxas, prazos, números) mencionados nos snippets
-- Não copie estrutura dos competitors, mas capture a intenção real do usuário
-- Complemente com informações que faltam nos competitors
-- Mantenha tom diferenciado conforme skill copy-${niche}
-
-===================================================================================
-⚠️ ESCOPO ESPECÍFICO DESTE ARTIGO - LEIA COM ATENÇÃO
-===================================================================================
-
-INTENÇÃO REAL DO USUÁRIO:
-${articleData.title}
-
-Responda exatamente o que o usuário quer saber ao buscar esse termo.
-Use os snippets SERP dos competitors para identificar a intenção real.
-Não extrapole para tópicos fora do escopo da keyword.
+  // PROMPT = AGENTE COMPLETO + TODAS AS SKILLS + BRIEFING DO ARQUITETO
+  const prompt = `${agentContext}
 
 ---
 
-## SKILLS COMPLEMENTARES (aplique também):
+## SKILL ATIVA DE TOM: copy-${niche}.md
 
-### SKILL OTIMIZADOR-H1 (para o título)
-${skillOtimizadorH1 || '(Skill não carregada)'}
+Toda decisão de tom, vocabulário, argumentação e estilo vem desta skill.
+NÃO invente variações. Siga exatamente.
 
-### SKILL CONSTRUTOR-SLUG (para a URL)
-${skillConstrutorSlug || '(Skill não carregada)'}
-
-### SKILL TEXTO-ÂNCORA (para o link interno)
-${skillTextoAncora || '(Skill não carregada)'}
-
-### SKILL QUALIFICADOR-H2 (para validar H2s)
-${skillQualificadorH2 || '(Skill não carregada)'}
+${skillCopyNiche || loadSkill('copy-negociocerto') || '(skill de tom não carregada)'}
 
 ---
 
-## ESTRUTURA DE H2s (já validada):
+## SKILL: texto-ancora.md
 
+Use para escolher o texto âncora do link interno obrigatório.
+
+${skillTextoAncora || '(skill não carregada)'}
+
+---
+
+## SKILL: tabela-responsiva.md
+
+Use se o artigo precisar de tabelas.
+
+${skillTabelaResponsiva || '(skill não carregada)'}
+
+---
+
+## SKILL: otimizador-h1.md
+
+${skillOtimizadorH1 || '(skill não carregada)'}
+
+---
+
+## SKILL: construtor-slug.md
+
+${skillConstrutorSlug || '(skill não carregada)'}
+
+---
+
+## REFERÊNCIA DE MODELOS HTML (data/modelo-html.md)
+
+Use EXATAMENTE esses padrões para tabelas. Nunca markdown, sempre HTML inline.
+
+${modeloHtml || '(modelos não carregados)'}
+
+---
+
+## BRIEFING DO @ARQUITETO-CLUSTER
+
+Keyword: ${articleData.title}
+Pillar page (receberá o link): ${articleData.pillarUrl}
+Nicho: ${niche}
+
+Estrutura de H2s aprovada:
 ${h2sFormatted}
 
-## LINK INTERNO (H2 ${briefing.linkH2Index + 1}):
+Link obrigatório:
+- H2 de linkagem (índice ${briefing.linkH2Index}): "${briefing.h2s[briefing.linkH2Index]}"
+- Razão: ${briefing.linkReason}
+- Transição sugerida pelo arquiteto: "${briefing.transitionSuggestion}"
+- URL do link: ${articleData.pillarUrl}
 
-H2: "${briefing.h2s[briefing.linkH2Index]}"
-Contexto sugerido: ${briefing.transitionSuggestion}
-URL: ${articleData.pillarUrl}
-
-**INSTRUÇÃO CRÍTICA PARA O LINK:**
-Use a skill TEXTO-ÂNCORA para escolher o melhor texto. O link deve:
-- Soar ABSOLUTAMENTE NATURAL na frase
-- Nunca parecer forçado ou inserido
-- Seguir proporção 50% Target / 25% Brand / 25% Misc
-- NÃO usar: "clique aqui", "leia também", "veja mais"
-- SIM usar: contexto real que leva naturalmente ao link
-
-Exemplo RUIM:
-"...e essas são as opções principais. <a href='...'>Clique aqui para ver mais</a>"
-
-Exemplo BOM:
-"...e essas são as opções principais. Se você quer uma análise completa comparando todas as marcas com dados atualizados, <a href='...'>confira nosso guia de melhores maquininhas de cartão</a>."
-
-${designNotes}
-
+Contexto competitivo (SERP coletada pelo @arquiteto-cluster):
+${serpContext}
+${designSection}
 ---
 
-## INSTRUÇÕES GERAIS DE REDAÇÃO:
+## INSTRUÇÃO DE OUTPUT
 
-⚠️ **IMPORTANTE**: O título (H1) JÁ ESTÁ NO FRONTMATTER. Você NÃO deve incluir <h1> no conteúdo!
+O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no conteúdo.
 
-1. **COMECE DIRETO COM INTRODUÇÃO** (sem H1):
-   - Pergunta específica que o usuário trouxe
-   - Resposta imediata ou promessa de escopo
-   - Conexão com o que vem a seguir
-   - (3-5 parágrafos curtos)
-
-2. **CADA H2** deve ter:
-   - Frase de abertura conectada ao H2
-   - Conteúdo com profundidade (2-3 parágrafos mínimo)
-   - OBRIGATÓRIO: dado concreto (taxa, prazo, número, exemplo)
-   - Transição suave para próximo H2
-
-3. **REGRAS ABSOLUTAS**:
-   - Parágrafos ultracurtos (máximo 2 linhas em desktop)
-   - Voz ativa: "A Ton cobra taxa" (não "a taxa é cobrada")
-   - Eliminar: "basicamente", "é importante destacar", "vale ressaltar"
-   - Palavra-chave natural no primeiro parágrafo
-   - Todo parágrafo faz trabalho — nenhum é redundante
-
-4. **FORMATAÇÃO HTML** (HTML PURO, SEM BLOCOS DE CÓDIGO):
-   <p>Parágrafo de introdução...</p>
-   <p>Outro parágrafo...</p>
-   <h2>H2 aqui</h2>
-   <p>Parágrafo...</p>
-   <strong>destaque crítico</strong>
-
-5. **LINK INTERNO** (no H2 ${briefing.linkH2Index + 1}):
-   - Texto âncora natural segundo skill texto-ancora
-   - Deve parecer transição, não desvio
-   - URL: \`<a href="${articleData.pillarUrl}">seu-texto-ancora-aqui</a>\`
-
-6. **LAYOUTS** (se necessário incluir elementos visuais):
-${layoutsDesc}
-
-7. **MÍNIMO OBRIGATÓRIO**:
-   - 700+ palavras
-   - 5+ H2s (estrutura já entregue)
-   - Cada H2 com dado concreto
-   - Qualidade > volume sempre
-
-RESPONDA APENAS COM O HTML COMPLETO DO ARTIGO:
-- **NÃO INCLUA <h1>** (o título já está no frontmatter!)
-- Comece direto com <p> de introdução
-- Siga a estrutura exata de H2s entregue
-- HTML limpo, sem markdown
-- Sem explicações extras, apenas o código HTML`;
+Responda com APENAS o HTML do artigo:
+- Sua PRIMEIRA linha deve ser uma tag HTML (ex: <p> ou <h2>)
+- Sem preamble, sem notas de redação, sem decisões internas
+- Sem blocos de código markdown (sem \`\`\`html)
+- HTML limpo, sem atributos de estilo inline desnecessários
+- O checklist do @copywriter-cluster deve ser cumprido internamente — não escreva o checklist no output`;
 
   try {
-    log(`✍️ Chamando @copywriter-cluster para gerar artigo...`, 'info');
+    log(`✍️ @copywriter-cluster gerando artigo com agente + ${Object.keys({skillCopyNiche, skillTextoAncora, skillTabelaResponsiva}).filter(k => eval(k)).length} skills carregadas...`, 'info');
 
     let html = callClaude(prompt);
 
-    // Limpar blocos de código markdown se Claude os adicionou por engano
-    html = html.replace(/^```html\n?/i, '').replace(/\n?```$/i, '');
+    // 1. Remover blocos de código markdown
+    html = html.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
 
-    // VALIDAÇÃO: Se houver H1s, remover (o título vem do frontmatter)
-    const h1Matches = html.match(/<h1[^>]*>.*?<\/h1>/gi) || [];
-    if (h1Matches.length > 0) {
-      log(`⚠️ Artigo contém ${h1Matches.length} H1(s) — removendo (título vem do frontmatter)...`, 'warn');
-      html = html.replace(/<h1[^>]*>.*?<\/h1>/gi, ''); // remover todos os H1s
-      log(`✅ H1s removidos`, 'success');
+    // 2. Remover preamble — qualquer texto antes do primeiro tag HTML
+    const firstTagIndex = html.search(/<[a-zA-Z]/);
+    if (firstTagIndex > 0) {
+      const preamble = html.substring(0, firstTagIndex).trim();
+      if (preamble.length > 0) {
+        log(`⚠️ Preamble detectado (${preamble.length} chars) — removendo...`, 'warn');
+        log(`   Preview: "${preamble.substring(0, 100)}"`, 'warn');
+        html = html.substring(firstTagIndex);
+      }
     }
 
+    // 3. Remover H1s (título vem do frontmatter)
+    const h1Matches = html.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || [];
+    if (h1Matches.length > 0) {
+      log(`⚠️ ${h1Matches.length} H1(s) detectados — removendo (título está no frontmatter)...`, 'warn');
+      html = html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/gi, '').trim();
+    }
+
+    // 4. Validar link interno
+    if (!html.includes(`href="${articleData.pillarUrl}"`)) {
+      log(`⚠️ Link para pillar "${articleData.pillarUrl}" não encontrado no HTML`, 'warn');
+    }
+
+    // 5. Validar comprimento mínimo
     if (!html || html.length < 700) {
       log(`⚠️ Artigo gerado muito curto (${html.length} chars)`, 'warn');
     }
