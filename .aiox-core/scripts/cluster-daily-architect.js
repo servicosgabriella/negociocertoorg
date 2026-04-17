@@ -723,6 +723,11 @@ ${designSection}
 
 O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no conteúdo.
 
+**REGRA ABSOLUTA — VOCABULÁRIO ACESSÍVEL:**
+O leitor é dono de pequeno negócio. Palavras técnicas difíceis devem ser substituídas por equivalentes simples.
+Se a palavra técnica for inevitável, explicar entre parênteses de forma amigável.
+Exemplo: "interoperabilidade (capacidade de aceitar diferentes bandeiras)"
+
 **REGRA ABSOLUTA — TRAVESSÃO PROIBIDO:**
 Nunca usar o caractere — (travessão / em-dash) em nenhuma frase do artigo.
 Substituir sempre por vírgula, ponto final ou ponto e vírgula.

@@ -314,6 +314,34 @@ maquininhas de cartão — tem análise de 10+ opções com dados atualizados."
 
 ---
 
+## REGRA ABSOLUTA — Vocabulário acessível
+
+O leitor é dono de pequeno negócio, MEI ou autônomo. Não é técnico, não é acadêmico.
+
+**Regra 1 — Evitar palavras difíceis sempre que possível.**
+Substituir por equivalente simples antes de qualquer outra solução.
+
+```
+✗ "A interoperabilidade entre as bandeiras é limitada."
+✓ "Nem todas as maquininhas aceitam todas as bandeiras."
+
+✗ "O estabelecimento deve verificar a parametrização do terminal."
+✓ "O lojista deve verificar as configurações da maquininha."
+```
+
+**Regra 2 — Se a palavra técnica for inevitável, explicar entre parênteses.**
+A explicação deve ser curta, direta e em linguagem do dia a dia.
+
+```
+✓ "A interoperabilidade (capacidade de uma maquininha aceitar diferentes bandeiras) varia por modelo."
+✓ "O MDR (taxa cobrada a cada transação) varia entre 0,5% e 3% dependendo da modalidade."
+✓ "O Fator R (cálculo que pode reduzir seu imposto no Simples Nacional) depende do seu faturamento."
+```
+
+**Teste rápido:** se um vizinho dono de padaria não entende a palavra sem contexto, ela precisa de explicação entre parênteses ou deve ser substituída.
+
+---
+
 ## REGRA ABSOLUTA — Travessão proibido
 
 **Nunca usar travessão (—) em nenhum parágrafo do artigo.**
@@ -362,4 +390,5 @@ Esta regra se aplica a **todo o artigo**, independente do nicho ou skill de tom 
 - [ ] **Link interno foi colocado no H2 designado pelo briefing**
 - [ ] **Texto âncora foi definido com `texto-ancora.md`**
 - [ ] **Nenhum travessão (—) usado em qualquer parágrafo**
+- [ ] **Palavras técnicas inevitáveis têm explicação entre parênteses**
 - [ ] Post é complementar à pillar, não concorrente
