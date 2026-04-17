@@ -314,8 +314,26 @@ maquininhas de cartão — tem análise de 10+ opções com dados atualizados."
 
 ---
 
+## REGRA ABSOLUTA — Travessão proibido
+
+**Nunca usar travessão (—) em nenhum parágrafo do artigo.**
+Substituir sempre por vírgula, ponto final ou ponto e vírgula.
+
+```
+✗ "A Ton cobra 0,57% no débito — uma das menores taxas do mercado."
+✓ "A Ton cobra 0,57% no débito, uma das menores taxas do mercado."
+
+✗ "Para MEI — especialmente quem vende em feira — a taxa fixa é vantajosa."
+✓ "Para MEI, especialmente quem vende em feira, a taxa fixa é vantajosa."
+```
+
+Esta regra se aplica a **todo o artigo**, independente do nicho ou skill de tom ativa.
+
+---
+
 ## Anti-padrões — o que este skill nunca faz
 
+- **Nunca usa travessão (—)** — proibido em qualquer parágrafo, sem exceção
 - **Nunca escreve parágrafo que não faz trabalho**
 - **Nunca usa voz passiva**
 - **Nunca força keyword exata se quebra a naturalidade**
@@ -343,4 +361,5 @@ maquininhas de cartão — tem análise de 10+ opções com dados atualizados."
 - [ ] Título segue padrão `otimizador-h1.md`
 - [ ] **Link interno foi colocado no H2 designado pelo briefing**
 - [ ] **Texto âncora foi definido com `texto-ancora.md`**
+- [ ] **Nenhum travessão (—) usado em qualquer parágrafo**
 - [ ] Post é complementar à pillar, não concorrente

@@ -723,6 +723,11 @@ ${designSection}
 
 O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no conteúdo.
 
+**REGRA ABSOLUTA — TRAVESSÃO PROIBIDO:**
+Nunca usar o caractere — (travessão / em-dash) em nenhuma frase do artigo.
+Substituir sempre por vírgula, ponto final ou ponto e vírgula.
+Esta é a regra mais verificada antes da publicação.
+
 Responda com APENAS o HTML do artigo:
 - Sua PRIMEIRA linha deve ser uma tag HTML (ex: <p> ou <h2>)
 - Sem preamble, sem notas de redação, sem decisões internas
@@ -756,12 +761,20 @@ Responda com APENAS o HTML do artigo:
       html = html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/gi, '').trim();
     }
 
-    // 4. Validar link interno
+    // 4. Validar e remover travessões (regra absoluta)
+    const emdashCount = (html.match(/—/g) || []).length;
+    if (emdashCount > 0) {
+      log(`⚠️ ${emdashCount} travessão(ões) detectado(s) — removendo e substituindo por vírgula...`, 'warn');
+      html = html.replace(/\s*—\s*/g, ', ');
+      log(`✅ Travessões substituídos por vírgula`, 'success');
+    }
+
+    // 6. Validar link interno
     if (!html.includes(`href="${articleData.pillarUrl}"`)) {
       log(`⚠️ Link para pillar "${articleData.pillarUrl}" não encontrado no HTML`, 'warn');
     }
 
-    // 5. Validar comprimento mínimo
+    // 7. Validar comprimento mínimo
     if (!html || html.length < 700) {
       log(`⚠️ Artigo gerado muito curto (${html.length} chars)`, 'warn');
     }
