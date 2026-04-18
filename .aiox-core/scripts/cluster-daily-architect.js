@@ -165,7 +165,26 @@ function determineLayout(title, isReview = false) {
 }
 
 /**
+ * Extrai perguntas e respostas do FAQ em HTML para formato YAML
+ * Busca por <details><summary>...</summary><p>...</p></details>
+ */
+function extractFaqFromHtml(html) {
+  const faqItems = [];
+  const detailsRegex = /<details[^>]*>[\s\n]*<summary[^>]*>([^<]+)<\/summary>[\s\n]*<p[^>]*>([^<]+)<\/p>[\s\n]*<\/details>/gi;
+
+  let match;
+  while ((match = detailsRegex.exec(html)) !== null) {
+    faqItems.push({
+      question: match[1].trim(),
+      answer: match[2].trim()
+    });
+  }
+  return faqItems;
+}
+
+/**
  * Gera frontmatter YAML para arquivo .md (bloglayout)
+ * Inclui FAQ se fornecido
  */
 function generateFrontmatter(data) {
   const {
@@ -173,20 +192,15 @@ function generateFrontmatter(data) {
     slug = 'untitled',
     description = title,
     keyword = 'keyword',
-    layout = 'bloglayout'
+    layout = 'bloglayout',
+    faq = []
   } = data;
 
   const today = new Date().toISOString().split('T')[0];
   const coverImage = `/images/${slug}.png`;
 
-  const breadcrumbs = [
-    { label: 'Home', href: '/' },
-    { label: 'Blog', href: '/blog' },
-    { label: title, href: `/blog/${slug}` }
-  ];
-
   // Construir YAML formatado
-  const yaml = `---
+  let yaml = `---
 title: "${title.replace(/"/g, '\\"')}"
 description: "${description.replace(/"/g, '\\"')}"
 keyword: "${keyword.replace(/"/g, '\\"')}"
@@ -205,10 +219,18 @@ breadcrumb:
     href: "/blog"
   - label: "${title.replace(/"/g, '\\"')}"
     href: "/blog/${slug}"
-intencao: "Informacional"
----
+intencao: "Informacional"`;
 
-`;
+  // Adicionar FAQ ao YAML se fornecido
+  if (faq && faq.length > 0) {
+    yaml += `\nfaq:`;
+    for (const item of faq) {
+      yaml += `\n  - question: "${item.question.replace(/"/g, '\\"')}"`;
+      yaml += `\n    answer: "${item.answer.replace(/"/g, '\\"')}"`;
+    }
+  }
+
+  yaml += `\n---\n\n`;
 
   return yaml;
 }
@@ -723,11 +745,11 @@ ${designSection}
 
 O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no conteúdo.
 
-**OBRIGATÓRIO — FAQ NO FINAL DO ARTIGO:**
-Todo artigo deve terminar com FAQ em formato acordeão HTML (<details>/<summary>).
-Mínimo 5 perguntas reais que o leitor digitaria no Google.
-Respostas diretas de 2-4 frases. Exemplo de estrutura:
-<details><summary>Pergunta real aqui?</summary><p>Resposta direta e objetiva.</p></details>
+**OBRIGATÓRIO — FAQ:**
+Incluir FAQ com mínimo 5 perguntas reais que o leitor digitaria no Google.
+Respostas diretas de 2-4 frases.
+Formato: <details><summary>Pergunta aqui?</summary><p>Resposta.</p></details>
+O script extrai automaticamente para o frontmatter YAML (não inclua uma seção H2 "FAQ" antes dele).
 
 **REGRA ABSOLUTA — VOCABULÁRIO ACESSÍVEL:**
 O leitor é dono de pequeno negócio. Palavras técnicas difíceis devem ser substituídas por equivalentes simples.
@@ -1279,14 +1301,25 @@ async function handleApproval(callbackData) {
         gitPath = `src/content/blog/${slug}.md`;
         filesToCommit.push(gitPath);
 
+        // EXTRAIR FAQ DO HTML E REMOVER DO CONTEÚDO
+        const faqItems = extractFaqFromHtml(pending.htmlContent);
+        let cleanHtml = pending.htmlContent;
+
+        if (faqItems.length > 0) {
+          // Remover seção de FAQ do HTML (tudo desde <h2>Perguntas Frequentes até o último </details>)
+          cleanHtml = cleanHtml.replace(/<h2>Perguntas Frequentes<\/h2>[\s\S]*?<\/details>/i, '').trim();
+          log(`✅ FAQ extraído: ${faqItems.length} perguntas`, 'success');
+        }
+
         // Gerar frontmatter e prepend ao conteúdo
         const frontmatter = generateFrontmatter({
           title: pending.briefing.title,
           slug: slug,
           description: pending.description || pending.briefing.title,
-          keyword: pending.metadata.keyword || pending.briefing.title
+          keyword: pending.metadata.keyword || pending.briefing.title,
+          faq: faqItems
         });
-        const contentWithFrontmatter = frontmatter + pending.htmlContent;
+        const contentWithFrontmatter = frontmatter + cleanHtml;
         fs.writeFileSync(filePath, contentWithFrontmatter);
       } else {
         // contentLayout/reviewLayout → src/pages/{slug}/index.astro

@@ -13,6 +13,17 @@ authorHref: "/autor/gabriella-fernandes"
 category: "Finanças"
 categoryHref: "/financas/"
 intencao: "Informacional"
+faq:
+  - question: "Por que minha maquininha parou de aceitar voucher do nada?"
+    answer: "Na maioria das vezes porque a bandeira de voucher expirou de compatibilidade no servidor (raramente), ou porque alguém desabilitou ela acidentalmente no menu da maquininha. Verifique as configurações da maquininha primeiro antes de chamar suporte."
+  - question: "Como saber se o problema é da maquininha ou do cartão do cliente?"
+    answer: "Teste com seu próprio cartão de débito no mesmo cliente. Se funciona, a maquininha está ok. Se não funciona, o problema é o aparelho. Também tente com outro voucher (se tiver) para confirmar se é bandeira específica."
+  - question: "Vale-refeição expirado causa rejeição na maquininha?"
+    answer: "Sim. Se o cartão tem data de validade anterior a hoje, a maquininha vai rejeitar automaticamente. A culpa não é do aparelho, é do cartão que venceu. O cliente precisa solicitar renovação à empresa."
+  - question: "Qual maquininha aceita todos os tipos de vale?"
+    answer: "As maquininhas modernas (2023 em diante) da Ton, Stone, Moderninha e SumUp aceitam Alelo, Sodexo, Ticket e VR Benefícios. Se precisa de compatibilidade máxima, essas são suas opções seguras. Confira nosso ranking para ver taxas e qual vale a pena para seu volume."
+  - question: "Quanto tempo demora para habilitar um novo voucher na maquininha?"
+    answer: "Se você fizer no menu da maquininha manualmente, é imediato, alguns segundos. Se precisar de suporte remoto do fabricante, normalmente 24 a 48 horas. Alguns fabricantes conseguem fazer em menos de 1 hora se você ligar e disser que é urgente."
 ---
 
 <p>Você está recusando pagamentos em vale-alimentação porque a maquininha não aceita? Essa é uma pergunta que muitos lojistas fazem quando veem uma rejeição de benefício na tela do terminal.</p>
@@ -89,29 +100,3 @@ intencao: "Informacional"
 
 <p>Depois que estiver habilitado, teste com o cliente de novo. Se passar, a maquininha estava apenas não configurada.</p>
 
-<h2>FAQ</h2>
-
-<details>
-  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c;">Por que minha maquininha parou de aceitar voucher do nada?</summary>
-  <p style="margin:12px 0 0 0; color:#374151;">Na maioria das vezes porque a bandeira de voucher expirou de compatibilidade no servidor (raramente), ou porque alguém desabilitou ela acidentalmente no menu da maquininha. Verifique as configurações da maquininha primeiro antes de chamar suporte.</p>
-</details>
-
-<details>
-  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Como saber se o problema é da maquininha ou do cartão do cliente?</summary>
-  <p style="margin:12px 0 0 0; color:#374151;">Teste com seu próprio cartão de débito no mesmo cliente. Se funciona, a maquininha está ok. Se não funciona, o problema é o aparelho. Também tente com outro voucher (se tiver) para confirmar se é bandeira específica.</p>
-</details>
-
-<details>
-  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Vale-refeição expirado causa rejeição na maquininha?</summary>
-  <p style="margin:12px 0 0 0; color:#374151;">Sim. Se o cartão tem data de validade anterior a hoje, a maquininha vai rejeitar automaticamente. A culpa não é do aparelho, é do cartão que venceu. O cliente precisa solicitar renovação à empresa.</p>
-</details>
-
-<details>
-  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Qual maquininha aceita todos os tipos de vale?</summary>
-  <p style="margin:12px 0 0 0; color:#374151;">As maquininhas modernas (2023 em diante) da Ton, Stone, Moderninha e SumUp aceitam Alelo, Sodexo, Ticket e VR Benefícios. Se precisa de compatibilidade máxima, essas são suas opções seguras. Confira nosso ranking para ver taxas e qual vale a pena para seu volume.</p>
-</details>
-
-<details>
-  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Quanto tempo demora para habilitar um novo voucher na maquininha?</summary>
-  <p style="margin:12px 0 0 0; color:#374151;">Se você fizer no menu da maquininha manualmente, é imediato, alguns segundos. Se precisar de suporte remoto do fabricante, normalmente 24 a 48 horas. Alguns fabricantes conseguem fazer em menos de 1 hora se você ligar e disser que é urgente.</p>
-</details>

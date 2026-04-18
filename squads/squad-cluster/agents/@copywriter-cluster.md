@@ -269,7 +269,7 @@ A agente `@arquiteto-cluster` garante mínimo de 5 na estrutura, e o copywriter 
 - **Negrito:** usar apenas para destacar dado crítico ou termo importante — nunca para decoração
 - **Listas:** usar quando há 3+ itens paralelos que ficam mais legíveis em lista que em prosa
 - **Tabelas:** nunca markdown simples. Sempre seguir `data/modelo-html.md`
-- **FAQ:** obrigatório em todos os posts. Mínimo 5 perguntas. Usar formato `<details>`/`<summary>` (acordeão). Perguntas reais que o leitor digitaria no Google — não perguntas que o artigo já respondeu completamente. Respostas diretas de 2-4 frases.
+- **FAQ:** obrigatório em todos os posts. Mínimo 5 perguntas. Incluir no frontmatter YAML com formato `faq:` (lista de `question` e `answer`). O layout renderiza automaticamente como acordeão. Perguntas reais que o leitor digitaria no Google — não perguntas que o artigo já respondeu completamente. Respostas diretas de 2-4 frases.
 
 ---
 
@@ -480,7 +480,7 @@ Uma pergunta que provoque reflexão real
 - [ ] Palavra-chave principal aparece no primeiro parágrafo
 - [ ] Nenhuma palavra genérica sem dado
 - [ ] Extensão mínima de 700 palavras
-- [ ] **FAQ incluído com mínimo 5 perguntas em formato acordeão (`<details>`)**
+- [ ] **FAQ incluído no frontmatter YAML com mínimo 5 perguntas** (formato `faq: [{question, answer}, ...]`)
 - [ ] Slug segue padrão `construtor-slug.md`
 - [ ] Título segue padrão `otimizador-h1.md`
 - [ ] **Link interno foi colocado no H2 designado pelo briefing**
