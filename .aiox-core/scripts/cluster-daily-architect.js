@@ -790,6 +790,12 @@ Responda APENAS com JSON válido. Sem texto antes, sem texto depois, sem markdow
       throw new Error(`@arquiteto-cluster retornou apenas ${result.h2s?.length || 0} H2s (mínimo: 5)`);
     }
 
+    // Garantir que linkH2Index está dentro dos bounds do array
+    if (typeof result.linkH2Index !== 'number' || result.linkH2Index < 0 || result.linkH2Index >= result.h2s.length) {
+      log(`⚠️ linkH2Index inválido (${result.linkH2Index}) — usando índice ${result.h2s.length - 2}`, 'warn');
+      result.linkH2Index = result.h2s.length - 2;
+    }
+
     log(`✅ @arquiteto-cluster gerou ${result.h2s.length} H2s`, 'success');
     log(`📍 Link no H2 ${result.linkH2Index + 1}: "${result.h2s[result.linkH2Index]}"`, 'info');
     log(`   Razão: ${result.linkReason}`, 'info');
