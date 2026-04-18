@@ -19,7 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { exec, spawnSync } = require('child_process');
+const { exec, spawn, spawnSync } = require('child_process');
 const { promisify } = require('util');
 
 const execAsync = promisify(exec);
@@ -354,6 +354,191 @@ async function sendTelegramWithButtons(message, articleKey, buttons = []) {
     log(`❌ Erro ao enviar com botões: ${e.message}`, 'error');
     return false;
   }
+}
+
+// ============================================================================
+// PREVIEW SERVERS — ASTRO + NGROK
+// ============================================================================
+
+async function writePreviewFile(metadata, briefing, htmlContent, description) {
+  const urlPath = metadata.url.replace(/\/$/, '');
+  const slug = urlPath.substring(1);
+
+  if (!slug || slug === 'undefined' || slug.trim() === '') {
+    throw new Error(`Slug inválido para preview: "${slug}"`);
+  }
+
+  const blogDir = path.join(CONFIG.PROJECT_ROOT, 'src/content/blog');
+  if (!fs.existsSync(blogDir)) fs.mkdirSync(blogDir, { recursive: true });
+
+  const filePath = path.join(blogDir, `${slug}.md`);
+  const gitPath = `src/content/blog/${slug}.md`;
+
+  const faqItems = extractFaqFromHtml(htmlContent);
+  let cleanHtml = htmlContent;
+  if (faqItems.length > 0) {
+    cleanHtml = cleanHtml.replace(/<h2>Perguntas Frequentes<\/h2>[\s\S]*?<\/details>/i, '').trim();
+  }
+
+  const frontmatter = generateFrontmatter({
+    title: briefing.title,
+    slug,
+    description: description || briefing.title,
+    keyword: metadata.keyword || briefing.title,
+    faq: faqItems,
+  });
+
+  fs.writeFileSync(filePath, frontmatter + cleanHtml);
+  log(`✅ Arquivo de preview escrito: ${gitPath}`, 'success');
+  return { filePath, gitPath, slug };
+}
+
+async function startNgrok(port) {
+  log(`🌐 Iniciando ngrok na porta ${port}...`, 'info');
+
+  // Encerrar ngrok existente
+  try {
+    await execAsync('pkill -f "ngrok http" 2>/dev/null || true');
+    await new Promise(r => setTimeout(r, 1000));
+  } catch (_) {}
+
+  const proc = spawn('ngrok', ['http', String(port)], {
+    detached: true,
+    stdio: 'ignore',
+  });
+
+  let ngrokStartError = null;
+  proc.on('error', (err) => { ngrokStartError = err; });
+  proc.unref();
+
+  // Aguardar API do ngrok estar pronta
+  const startTime = Date.now();
+  while (Date.now() - startTime < 30000) {
+    await new Promise(r => setTimeout(r, 1000));
+    if (ngrokStartError) throw new Error(`ngrok não encontrado: ${ngrokStartError.message}`);
+    try {
+      const res = await fetch('http://localhost:4040/api/tunnels');
+      if (res.ok) {
+        const data = await res.json();
+        const tunnel = data.tunnels?.find(t => t.proto === 'https') || data.tunnels?.[0];
+        if (tunnel?.public_url) {
+          log(`✅ ngrok URL: ${tunnel.public_url}`, 'success');
+          return { pid: proc.pid, url: tunnel.public_url };
+        }
+      }
+    } catch (_) {}
+  }
+
+  throw new Error('Timeout aguardando ngrok iniciar (30s)');
+}
+
+const ASTRO_CONFIG_PATH = path.join(__dirname, '../../astro.config.mjs');
+
+function patchAstroConfig(ngrokDomain) {
+  const original = fs.readFileSync(ASTRO_CONFIG_PATH, 'utf-8');
+
+  let patched;
+  if (original.includes('allowedHosts')) {
+    patched = original.replace(/allowedHosts:\s*\[.*?\]/, `allowedHosts: ['${ngrokDomain}']`);
+  } else if (original.includes('server:')) {
+    patched = original.replace(/server:\s*\{/, `server: {\n    allowedHosts: ['${ngrokDomain}'],`);
+  } else {
+    patched = original.replace(/vite:/, `server: {\n    host: true,\n    allowedHosts: ['${ngrokDomain}'],\n  },\n  vite:`);
+  }
+
+  fs.writeFileSync(ASTRO_CONFIG_PATH, patched);
+  log(`✅ astro.config.mjs atualizado com allowedHosts: ${ngrokDomain}`, 'success');
+  return original;
+}
+
+function restoreAstroConfig(originalContent) {
+  if (!originalContent) return;
+  try {
+    fs.writeFileSync(ASTRO_CONFIG_PATH, originalContent);
+    log(`✅ astro.config.mjs restaurado`, 'success');
+  } catch (e) {
+    log(`⚠️ Erro ao restaurar astro.config.mjs: ${e.message}`, 'warn');
+  }
+}
+
+async function startAstroServer(port) {
+  log(`🚀 Iniciando servidor Astro na porta ${port}...`, 'info');
+
+  // Liberar porta se estiver em uso
+  try {
+    await execAsync(`fuser -k ${port}/tcp 2>/dev/null || true`);
+    await new Promise(r => setTimeout(r, 500));
+  } catch (_) {}
+
+  return new Promise((resolve, reject) => {
+    const proc = spawn('npm', ['run', 'dev', '--', '--host', '0.0.0.0', '--port', String(port)], {
+      cwd: CONFIG.PROJECT_ROOT,
+      detached: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+
+    let resolved = false;
+    let actualPort = port;
+
+    const onData = (data) => {
+      const text = data.toString();
+      const portMatch = text.match(/localhost:(\d+)/);
+      if (portMatch) actualPort = parseInt(portMatch[1]);
+
+      if (!resolved && (
+        text.includes('Local') ||
+        text.includes('ready in') ||
+        text.includes('started in') ||
+        text.includes('watching for')
+      )) {
+        resolved = true;
+        proc.unref();
+        log(`✅ Servidor Astro pronto na porta ${actualPort}`, 'success');
+        resolve({ pid: proc.pid, port: actualPort });
+      }
+    };
+
+    proc.stdout.on('data', onData);
+    proc.stderr.on('data', onData);
+    proc.on('error', reject);
+
+    setTimeout(() => {
+      if (!resolved) {
+        resolved = true;
+        proc.unref();
+        log(`⚠️ Astro não confirmou ready — assumindo porta ${actualPort}`, 'warn');
+        resolve({ pid: proc.pid, port: actualPort });
+      }
+    }, 45000);
+  });
+}
+
+async function stopPreviewServers(state) {
+  const servers = state.previewServers;
+  if (!servers) return;
+
+  const port = servers.port || CONFIG.LOCALHOST_PORT;
+
+  try {
+    await execAsync(`fuser -k ${port}/tcp 2>/dev/null || true`);
+    log(`🛑 Servidor Astro (porta ${port}) encerrado`, 'info');
+  } catch (e) {
+    log(`⚠️ Aviso ao encerrar Astro: ${e.message}`, 'warn');
+  }
+
+  try {
+    await execAsync('pkill -f "ngrok http" 2>/dev/null || true');
+    log(`🛑 ngrok encerrado`, 'info');
+  } catch (e) {
+    log(`⚠️ Aviso ao encerrar ngrok: ${e.message}`, 'warn');
+  }
+
+  if (servers.originalAstroConfig) {
+    restoreAstroConfig(servers.originalAstroConfig);
+  }
+
+  delete state.previewServers;
+  saveState(state);
 }
 
 // ============================================================================
@@ -1177,7 +1362,57 @@ async function main() {
       log(`⚠️ Artigo contém elementos visuais - chamaria @revisor-design em produção`, 'warn');
     }
 
-    // 8. Enviar preview para Telegram
+    // 8. Subir servidores de preview e enviar link no Telegram
+    let previewUrl = null;
+
+    try {
+      const targetPort = parseInt(CONFIG.LOCALHOST_PORT);
+
+      // 8a. Iniciar ngrok primeiro para obter o domínio público
+      log(`\n🌐 Iniciando ngrok na porta ${targetPort}...`, 'info');
+      const ngrokResult = await startNgrok(targetPort);
+      const ngrokDomain = new URL(ngrokResult.url).hostname;
+
+      // 8b. Atualizar astro.config.mjs com o domínio do ngrok
+      log(`\n⚙️ Atualizando astro.config.mjs com domínio ngrok...`, 'info');
+      const originalAstroConfig = patchAstroConfig(ngrokDomain);
+
+      // 8c. Escrever arquivo de preview no disco
+      log(`\n📝 Escrevendo arquivo de preview...`, 'info');
+      const previewFile = await writePreviewFile(targetArticle, briefing, article, articleDescription);
+
+      // 8d. Iniciar Astro e aguardar estar pronto
+      log(`\n🚀 Iniciando servidor Astro...`, 'info');
+      const astroResult = await startAstroServer(targetPort);
+
+      // Se Astro subiu em porta diferente, reiniciar ngrok na porta correta
+      if (astroResult.port !== targetPort) {
+        log(`⚠️ Astro subiu na porta ${astroResult.port} — reiniciando ngrok...`, 'warn');
+        const ngrokNew = await startNgrok(astroResult.port);
+        const newNgrokDomain = new URL(ngrokNew.url).hostname;
+        patchAstroConfig(newNgrokDomain);
+        ngrokResult.url = ngrokNew.url;
+        ngrokResult.pid = ngrokNew.pid;
+      }
+
+      previewUrl = `${ngrokResult.url}${targetArticle.url}/`;
+
+      state.previewServers = {
+        port: astroResult.port,
+        ngrokUrl: ngrokResult.url,
+        originalAstroConfig,
+        previewFile: previewFile.gitPath,
+      };
+
+      log(`✅ Preview disponível: ${previewUrl}`, 'success');
+    } catch (e) {
+      log(`⚠️ Servidores de preview indisponíveis: ${e.message}`, 'warn');
+      // Cleanup parcial
+      try { await execAsync('pkill -f "ngrok http" 2>/dev/null || true'); } catch (_) {}
+    }
+
+    // 9. Enviar preview para Telegram
+    const previewLine = previewUrl ? `\n🌐 <b>Preview:</b> ${previewUrl}` : '';
     const previewMessage = `
 <b>🏗️ Rascunho Pronto para Aprovação</b>
 
@@ -1185,7 +1420,7 @@ async function main() {
 <b>URL:</b> ${targetArticle.url}
 <b>Money Page:</b> ${targetArticle.moneyPage}
 <b>Pillar:</b> ${targetArticle.pillarUrl}
-
+${previewLine}
 <b>Estrutura H2s:</b>
 ${briefing.h2s.map((h, i) => `${i + 1}. ${h}`).join('\n')}
 
@@ -1240,6 +1475,10 @@ async function handleApproval(callbackData) {
 
   if (action === 'approve') {
     log(`✅ Aprovado: ${pending.briefing.title}`, 'success');
+
+    // Encerrar servidores de preview antes de publicar
+    await stopPreviewServers(state);
+
     await sendTelegram(`✅ <b>Artigo Aprovado!</b>\n\n📝 ${pending.metadata.title}\n\nPublicando...`);
 
     try {
@@ -1402,14 +1641,30 @@ async function handleApproval(callbackData) {
 
   } else if (action === 'reject') {
     log(`❌ Rejeitado: ${pending.briefing.title}`, 'warn');
+
+    // Remover arquivo de preview do disco antes de encerrar servidores
+    const previewFilePath = state.previewServers?.previewFile
+      ? path.join(CONFIG.PROJECT_ROOT, state.previewServers.previewFile)
+      : null;
+    if (previewFilePath && fs.existsSync(previewFilePath)) {
+      fs.unlinkSync(previewFilePath);
+      log(`🗑️ Arquivo de preview removido: ${state.previewServers.previewFile}`, 'info');
+    }
+
+    // Encerrar servidores e restaurar astro.config.mjs
+    await stopPreviewServers(state);
+
     await sendTelegram(`❌ <b>Artigo Rejeitado</b>\n\n${pending.briefing.title}\n\nAguardando próximo ciclo...`);
     delete state.pendingApprovals[articleKey];
     saveState(state);
 
   } else if (action === 'preview') {
     log(`👁️ Preview solicitado: ${pending.briefing.title}`, 'info');
+    const previewLink = state.previewServers?.ngrokUrl
+      ? `${state.previewServers.ngrokUrl}${pending.metadata.url}/`
+      : `http://localhost:${CONFIG.LOCALHOST_PORT}${pending.metadata.url}/`;
     await sendTelegram(
-      `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: http://localhost:${CONFIG.LOCALHOST_PORT}${pending.metadata.url}/\n\nVolte ao menu anterior para aprovação.`
+      `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: ${previewLink}\n\nVolte ao menu anterior para aprovação.`
     );
   }
 }
