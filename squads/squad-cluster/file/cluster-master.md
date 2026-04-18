@@ -22,10 +22,6 @@ Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 URL: /como-funciona-vale-refeicao-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /taxa-voucher-maquininha/
 
-#### Por que a maquininha não aceita o cartão de benefício? Causas e como resolver
-URL: /maquininha-nao-aceita-cartao-beneficio/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /como-funciona-vale-refeicao-maquininha/
-
 ---
 
 <!--
