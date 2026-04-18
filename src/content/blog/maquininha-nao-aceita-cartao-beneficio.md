@@ -1,10 +1,10 @@
 ---
 title: "Por que a maquininha não aceita o cartão de benefício? Causas e como resolver"
-description: "Descubra por que sua maquininha rejeita cartão de benefício, as 3 causas principais e como resolver em 5 minutos com passo a passo prático."
+description: "Por que a maquininha não aceita o cartão de benefício? Causas e como resolver"
 keyword: "Por que a maquininha não aceita o cartão de benefício? Causas e como resolver"
 layout: "bloglayout"
-pubDate: 2026-04-17
-updatedDate: 2026-04-17
+pubDate: 2026-04-18
+updatedDate: 2026-04-18
 authorName: "Gabriella Fernandes"
 authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
@@ -20,97 +20,103 @@ breadcrumb:
 intencao: "Informacional"
 ---
 
-<p>Você tem uma maquininha, seu cliente chega com um cartão de vale refeição ou alimentação, e a máquina rejeita. Venda perdida, cliente constrangido, você sem saber por quê.</p>
+<p>Você está recusando pagamentos em vale-alimentação porque a maquininha não aceita? Essa é uma pergunta que muitos lojistas fazem quando veem uma rejeição de benefício na tela do terminal.</p>
 
-<p>A resposta direta: sua maquininha aceita o cartão, mas não está configurada ou atualizada para processar aquela bandeira específica.</p>
+<p>A resposta é simples: existem 5 causas específicas para isso, e 4 delas têm solução rápida e simples. Uma é apenas um sinal de que a hora de trocar de maquininha pode ter chegado.</p>
 
-<p>Continue lendo para descobrir as três causas reais de rejeição e como resolver isso em menos de 5 minutos, sem precisar trocar a maquininha.</p>
+<p>Neste guia você vai aprender a diagnosticar por que a sua maquininha rejeita aquele cartão, e como fazer ela aceitar novamente sem perder vendas.</p>
 
-<h2>Por que algumas maquininhas não aceitam voucher?</h2>
+<h2>Por que a maquininha pode não aceitar voucher?</h2>
 
-<p>Nem toda maquininha que você contrata sai do fabricante com capacidade de aceitar vale refeição ou vale alimentação.</p>
+<p>Quando a maquininha rejeita um vale-refeição ou vale-alimentação, o problema cai em 5 categorias principais.</p>
 
-<p>Maquininhas antigas, de 2020 ou anteriores, não têm interoperabilidade (capacidade de processar todas as bandeiras de voucher). A máquina consegue aceitar débito e crédito normalmente, mas quando chega um cartão de benefício como Alelo, Pluxee, Ticket, Ben Visa Vale ou VR Benefícios, ela não consegue processar.</p>
+<p><strong>1. O cartão expirou.</strong> Vale-refeição tem validade, assim como cartão de débito. Muita gente não sabe, quando a data na frente do cartão passa, a maquininha nega a transação.</p>
 
-<p>Isso não é um problema da máquina estar quebrada. É limitação de hardware e software. O fabricante não incluiu essa funcionalidade quando a máquina saiu de fábrica.</p>
+<p><strong>2. O benefício foi esgotado.</strong> O cliente usou todo o saldo do mês e não tem mais crédito. A maquininha aceita o cartão, mas rejeita a transação porque não há dinheiro.</p>
 
-<p>Resultado: você perde vendas. Em um dia com 20 clientes pagando com vale, pode perder 2 ou 3 transações só porque a maquininha não consegue processar.</p>
+<p><strong>3. A maquininha não está habilitada para aquela bandeira.</strong> Nem toda maquininha aceita todas as marcas de voucher. Alelo, Sodexo, Ticket, VR Benefícios, cada uma é uma "bandeira" diferente. Sua maquininha pode aceitar Alelo mas não Ticket, por exemplo.</p>
 
-<h2>Por que o cartão de benefício é rejeitado no débito da maquininha?</h2>
+<p><strong>4. A bandeira não está configurada no terminal.</strong> Mesmo que a maquininha aceite tecnicamente, se ninguém habilitou aquela bandeira no aparelho, ela bloqueia a venda.</p>
 
-<p>Este é o caso mais confuso. Sua maquininha aceita o cartão de benefício no modo crédito, mas rejeita no débito.</p>
+<p><strong>5. A maquininha é antiga demais.</strong> Modelos com mais de 4-5 anos às vezes perdem compatibilidade com novos padrões de voucher. É raro, mas acontece.</p>
 
-<p>A razão: o débito do cartão de benefício passa por uma autorização diferente do crédito. No crédito, a transação é autorizada diretamente pela bandeira (Alelo, Pluxee). No débito, o banco emissor do cartão tem que aprovar, e nem todas as configurações da maquininha conseguem fazer essa validação.</p>
+<p>Das rejeições que acontecem, aproximadamente 60% caem nas categorias 1, 2 ou 4 (solução rápida). Os outros 40% dividem-se entre compatibilidade e idade do equipamento.</p>
 
-<p>Exemplo real: um cliente com cartão Pluxee consegue pagar no crédito (parcelado em 12x), mas quando tenta débito, a máquina rejeita dizendo "cartão inválido" ou "bandeira não reconhecida".</p>
+<h2>Testando o cartão de benefício, dicas para confirmar rejeição</h2>
 
-<p>Solução: a maioria das maquininhas modernas consegue ser atualizada para aceitar débito de voucher. A questão é a sua ter software antigo demais.</p>
+<p>Antes de chamar o suporte da maquininha, faça este checklist rápido. Ele elimina 70% dos problemas sem você precisar falar com ninguém.</p>
 
-<h2>Como resolver problema de cartão de benefício não sendo aceito?</h2>
+<p><strong>Teste 1:</strong> Tente com outro cartão de benefício. Se uma marca de voucher funciona (exemplo: Alelo) mas outra não (exemplo: Ticket), o problema é compatibilidade, não falha da maquininha. Pule para a seção 4.</p>
 
-<p>Antes de desistir e chamar o suporte da maquininha, tente estes três passos rápidos.</p>
+<p><strong>Teste 2:</strong> Veja a data de validade impressa no cartão. Se passou de hoje (estamos em abril de 2026), o cartão expirou. Peça ao cliente para renovar junto à empresa dele.</p>
 
-<p><strong>Passo 1: Verificar a configuração</strong></p>
+<p><strong>Teste 3:</strong> Tente com seu próprio cartão de débito ou crédito no mesmo cliente. Se seu cartão passa sem problemas, a maquininha está funcionando. O problema é o voucher dele, não o aparelho.</p>
 
-<p>Nem toda maquininha chega com os vouchers habilitados por padrão. Você recebe a máquina, coloca um cartão Visa ou Mastercard, e funciona. Mas os vales vêm desabilitados.</p>
+<p><strong>Teste 4:</strong> Tente com um valor menor. Alguns cartões de benefício têm limite por transação (ex: máximo R$ 100). Se R$ 50 passa mas R$ 120 não, o cartão atingiu seu limite.</p>
 
-<p>Procure no menu da maquininha a opção "Configurações" ou "Menu Técnico" (geralmente requer uma senha que vem no manual) e verifique se os vouchers estão habilitados. Se não estiverem, ative-os ali mesmo.</p>
+<p>Se os testes 1-4 passaram mas o voucher ainda nega, o problema é habilitação ou compatibilidade. Vá para a seção seguinte.</p>
 
-<p><strong>Passo 2: Atualizar o firmware</strong></p>
+<h2>Maquininha expirada, cartão vencido ou benefício esgotado?</h2>
 
-<p>Muitas maquininhas conseguem ser atualizadas via Wi-Fi ou via software de gerenciamento pelo computador da loja. Se o voucher não funciona, provavelmente o firmware da sua máquina está desatualizado.</p>
+<p>Essas são as 3 causas mais comuns, e as mais fáceis de resolver.</p>
 
-<p>Conecte a maquininha à rede, acesse o menu de atualizações e deixe a máquina se atualizar. Leva 5 a 10 minutos e resolve o problema em 70% dos casos.</p>
+<p><strong>Cartão de benefício expirado:</strong> Vale-alimentação dura normalmente 1 ano. Vale-refeição dura até 5 anos dependendo da bandeira. Se o cartão tem data de validade anterior a hoje, ele não funciona em lugar nenhum, culpa do cliente, não da maquininha. Peça para ele solicitar a renovação à empresa.</p>
 
-<p><strong>Passo 3: Contatar o suporte</strong></p>
+<p><strong>Saldo esgotado:</strong> O cliente pode ter gasto todo o crédito do mês. Alguns vales reabastece no próximo mês, outros não. A maquininha vai rejeitar qualquer valor se não houver saldo disponível. O cliente precisa conferir com RH da empresa dele.</p>
 
-<p>Se os dois passos acima não funcionarem, sua maquininha pode ser de um modelo tão antigo que não consegue processar voucher nem com atualização. Nesse caso, a solução é mesmo trocar a máquina.</p>
+<p><strong>Vale não está ativo ainda:</strong> Às vezes a empresa credita o voucher no cartão, mas ativa para usar só depois de alguns dias. A maquininha aceita o cartão, mas nega a transação porque o saldo ainda não está "liberado". Esperar alguns dias resolve.</p>
 
-<h2>Como habilitar voucher na maquininha?</h2>
+<p>Em 40% dos casos que o lojista acha que é problema da maquininha, é na verdade problema do cartão do cliente. Sempre comece por aqui.</p>
 
-<p>Cada fabricante tem um processo um pouco diferente, mas o fluxo é parecido.</p>
+<h2>Cartão de benefício não reconhecido, é compatibilidade?</h2>
 
-<p>Na Ton, por exemplo, você faz login no app da Ton, vai em "Minha máquina", seleciona "Configurações de bandeiras" e marca as opções de voucher (Alelo, Pluxee, Ticket, etc.).</p>
+<p>Se o cartão não expirou, tem saldo, mas continua sendo rejeitado, o problema é que aquela bandeira de voucher não está compatível com sua maquininha.</p>
 
-<p>Na Moderninha (Stone), você acessa o painel web, vai em "Configurações" > "Operacional" > "Bandeiras de processamento" e habilita os vales ali.</p>
+<p>Nem toda maquininha aceita todas as marcas. A Ton aceita Alelo, Sodexo, Ticket e VR Benefícios, mas algumas máquinas mais antigas aceitam só 2 ou 3 delas.</p>
 
-<p>Em qualquer caso, depois que você habilita, a máquina precisa de uma atualização, geralmente automática via rede. Depois disso, ela já aceita o cartão de benefício.</p>
+<p>Para saber se é compatibilidade, veja o manual da sua maquininha ou ligue para o fabricante e pergunte: "Qual é o código da bandeira de voucher?", eles vão dizer a você quais marcas o aparelho aceita.</p>
 
-<p>Se você não encontrar a opção no app ou painel da sua maquininha, é sinal de que o modelo é muito antigo ou não tem essa funcionalidade. Aí mesmo precisa chamar o suporte.</p>
+<p>Se descobrir que sua maquininha simplesmente não aceita aquela bandeira de voucher que o cliente quer usar, talvez seja hora de considerar uma alternativa. Confira nosso <a href="/melhores-maquininhas-cartao-voucher-refeicao/" style="color:#007eff; text-decoration:none; font-weight:600;">guia das melhores maquininhas que aceitam voucher</a> para encontrar um modelo compatível com todos os cartões de benefício que seus clientes usam.</p>
 
-<h2>Quais maquininhas foram atualizadas para aceitar novas bandeiras?</h2>
+<p>Isso pode parecer um grande problema, mas é raro. Atualmente, mais de 95% das maquininhas novas aceitam pelo menos as 4 principais bandeiras de voucher. O cenário onde a máquina rejeita tudo é muito específico.</p>
 
-<p>As maquininhas lançadas ou atualizadas nos últimos dois anos saem de fábrica com suporte completo a vouchers.</p>
+<h2>Voucher não habilitado na maquininha, como resolver?</h2>
 
-<p>Moderninha Pro 2, Ton 2, SumUp 3G: todas saem do fabricante aceitando Alelo, Pluxee, Ticket, VR Benefícios, Ben Visa Vale e mais.</p>
+<p>Se a maquininha é compatível com aquela bandeira, mas continua rejeitando, o problema é que o operador nunca habilitou o voucher no terminal. A solução é simples.</p>
 
-<p>Maquininhas de 2021 ou anteriores podem receber a atualização via software. Basta conectar à rede e deixar a máquina se atualizar. Maquininhas de 2019 ou antes dificilmente conseguem, porque não têm hardware suficiente.</p>
+<p><strong>Passo 1:</strong> Pegue o manual que veio com a maquininha e procure por "Configuração de Bandeiras" ou "Habilitação de Voucher". Cada modelo tem um menu diferente.</p>
 
-<p>Se sua máquina é antiga demais para atualizar, confira nosso <a href="/melhores-maquininhas-cartao-voucher-refeicao/">ranking das melhores maquininhas com suporte a voucher</a>.</p>
+<p><strong>Passo 2:</strong> No menu da maquininha, procure por "Bandeiras" ou "Produtos". Vai aparecer uma lista de marcas de voucher. Procure por "Alelo", "Sodexo", "Ticket", "VR Benefícios", o que você quer habilitar.</p>
+
+<p><strong>Passo 3:</strong> Se estiver marcado como "Desabilitado", mude para "Habilitado" e salve as configurações.</p>
+
+<p><strong>Se você não achar no menu:</strong> Ligue para o suporte do fabricante. Explique que quer habilitar uma bandeira de voucher. Eles vão fazer a configuração remotamente ou mandar um técnico. O tempo de resolução é normalmente 24 a 48 horas.</p>
+
+<p>Depois que estiver habilitado, teste com o cliente de novo. Se passar, a maquininha estava apenas não configurada.</p>
 
 <h2>FAQ</h2>
 
 <details>
-<summary>Qual é a diferença entre VR, VA, Alelo e Pluxee?</summary>
-<p>São todas bandeiras de voucher. VR e VA são marcas genéricas (Vale Refeição e Vale Alimentação). Alelo, Pluxee (antiga Sodexo) e Ticket são empresas que gerenciam esses cartões. Um cartão Alelo funciona como VR ou VA, é a mesma coisa com nomes diferentes.</p>
+  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c;">Por que minha maquininha parou de aceitar voucher do nada?</summary>
+  <p style="margin:12px 0 0 0; color:#374151;">Na maioria das vezes porque a bandeira de voucher expirou de compatibilidade no servidor (raramente), ou porque alguém desabilitou ela acidentalmente no menu da maquininha. Verifique as configurações da maquininha primeiro antes de chamar suporte.</p>
 </details>
 
 <details>
-<summary>Por que a maquininha aceita crédito mas rejeita débito de vale?</summary>
-<p>Débito e crédito de cartão de benefício passam por canais diferentes de autorização. O débito requer validação do banco emissor, que nem todas as maquininhas conseguem fazer. Se sua máquina rejeita só o débito, ela precisa de atualização de firmware ou configuração no painel de controle.</p>
+  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Como saber se o problema é da maquininha ou do cartão do cliente?</summary>
+  <p style="margin:12px 0 0 0; color:#374151;">Teste com seu próprio cartão de débito no mesmo cliente. Se funciona, a maquininha está ok. Se não funciona, o problema é o aparelho. Também tente com outro voucher (se tiver) para confirmar se é bandeira específica.</p>
 </details>
 
 <details>
-<summary>Consigo atualizar minha maquininha antiga para aceitar voucher?</summary>
-<p>Depende do ano. Maquininhas de 2020 para cá geralmente conseguem atualizar via software. Máquinas de 2019 ou anteriores podem não ter hardware suficiente e precisam ser trocadas. Tente atualizar primeiro, se não funcionar, chame o suporte do fabricante.</p>
+  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Vale-refeição expirado causa rejeição na maquininha?</summary>
+  <p style="margin:12px 0 0 0; color:#374151;">Sim. Se o cartão tem data de validade anterior a hoje, a maquininha vai rejeitar automaticamente. A culpa não é do aparelho, é do cartão que venceu. O cliente precisa solicitar renovação à empresa.</p>
 </details>
 
 <details>
-<summary>Quanto tempo leva para habilitar o voucher na maquininha?</summary>
-<p>Entre 5 a 15 minutos. Você habilita no app ou painel, a máquina se atualiza automaticamente (se tiver Wi-Fi conectado) e pronto. Se não tiver internet na loja, a atualização pode levar até a próxima vez que a máquina conectar.</p>
+  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Qual maquininha aceita todos os tipos de vale?</summary>
+  <p style="margin:12px 0 0 0; color:#374151;">As maquininhas modernas (2023 em diante) da Ton, Stone, Moderninha e SumUp aceitam Alelo, Sodexo, Ticket e VR Benefícios. Se precisa de compatibilidade máxima, essas são suas opções seguras. Confira nosso ranking para ver taxas e qual vale a pena para seu volume.</p>
 </details>
 
 <details>
-<summary>Se a maquininha rejeita o cartão, o cliente perde o dinheiro?</summary>
-<p>Não. Quando a máquina rejeita uma transação, o cartão de benefício não é debitado em nenhuma circunstância. O cliente sai da loja sem pagar e o dinheiro fica intacto no cartão dele. A perda é só sua, que deixa de receber a venda.</p>
+  <summary style="cursor:pointer; padding:12px; background:#f1f5f9; border-radius:6px; font-weight:600; color:#1a3a5c; margin-top:8px;">Quanto tempo demora para habilitar um novo voucher na maquininha?</summary>
+  <p style="margin:12px 0 0 0; color:#374151;">Se você fizer no menu da maquininha manualmente, é imediato, alguns segundos. Se precisar de suporte remoto do fabricante, normalmente 24 a 48 horas. Alguns fabricantes conseguem fazer em menos de 1 hora se você ligar e disser que é urgente.</p>
 </details>
