@@ -674,11 +674,11 @@ async function searchSERP(keyword) {
 // ============================================================================
 
 function callClaude(prompt) {
-  const result = spawnSync('claude', ['-p'], {
+  const result = spawnSync('claude', ['-p', '--dangerously-skip-permissions'], {
     encoding: 'utf-8',
     input: prompt,
     maxBuffer: 20 * 1024 * 1024,
-    timeout: 180000,
+    timeout: 300000,
   });
 
   if (result.error) throw new Error(`Erro ao executar claude CLI: ${result.error.message}`);
