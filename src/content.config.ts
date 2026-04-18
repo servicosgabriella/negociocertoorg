@@ -15,6 +15,8 @@ const blog = defineCollection({
 			authorImage: z.string().optional(),
 			authorHref: z.string().optional(),
 			categoria: z.string().optional(),
+			category: z.string().optional(),
+			categoryHref: z.string().optional(),
 			thumb: z.string().optional(),
 			heroImage: image().optional(),
 			coverImage: z.string().optional(),

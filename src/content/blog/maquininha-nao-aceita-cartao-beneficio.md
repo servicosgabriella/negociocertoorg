@@ -10,13 +10,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/maquininha-nao-aceita-cartao-beneficio.png"
 authorHref: "/autor/gabriella-fernandes"
-breadcrumb:
-  - label: "Home"
-    href: "/"
-  - label: "Blog"
-    href: "/blog"
-  - label: "Por que a maquininha não aceita o cartão de benefício? Causas e como resolver"
-    href: "/blog/maquininha-nao-aceita-cartao-beneficio"
+category: "Finanças"
+categoryHref: "/financas/"
 intencao: "Informacional"
 ---
 

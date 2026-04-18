@@ -54,7 +54,9 @@ interface Props {
   authorHref?: string;
   coverImage: string;
   coverAlt: string;
-  breadcrumb: { label: string; href?: string }[];
+  breadcrumb?: { label: string; href?: string }[];
+  category?: string;
+  categoryHref?: string;
   faq?: { question: string; answer: string }[];
 }
 
@@ -69,9 +71,20 @@ const {
   authorHref = '',
   coverImage,
   coverAlt,
-  breadcrumb,
+  breadcrumb: customBreadcrumb = [],
+  category,
+  categoryHref,
   faq = [],
 } = Astro.props;
+
+// Generate breadcrumb: if category is provided, show Home > Category
+// Otherwise fall back to custom breadcrumb
+const breadcrumb = category && categoryHref
+  ? [
+      { label: 'Home', href: '/' },
+      { label: category, href: categoryHref }
+    ]
+  : customBreadcrumb;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const coverImageAbsolute = new URL(coverImage, Astro.site).href;
