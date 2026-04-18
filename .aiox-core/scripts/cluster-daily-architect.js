@@ -674,7 +674,7 @@ async function searchSERP(keyword) {
 // ============================================================================
 
 function callClaude(prompt) {
-  const result = spawnSync('claude', ['-p', '--dangerously-skip-permissions'], {
+  const result = spawnSync('claude', ['-p', '--allowedTools', ''], {
     encoding: 'utf-8',
     input: prompt,
     maxBuffer: 20 * 1024 * 1024,
