@@ -13,6 +13,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   server: {
     host: true,
+ allowedHosts: ['dedicator-primarily-compel.ngrok-free.dev'],
   },
   vite: {
     plugins: [tailwindcss()],

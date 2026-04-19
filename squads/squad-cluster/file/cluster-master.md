@@ -10,6 +10,12 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
 
 ### Posts de Suporte
 
+## Quando devo mudar para Simples?: passo a passo completo
+
+ URL: /migrar-simples-nacional/
+ Pillar: /contabilidade-online-mei/
+ Links para: /contabilidade-online-mei/, /melhores-contabilidades-online/
+
 #### MEI pode aceitar vale refeição e vale alimentação? Entenda as regras
 URL: /mei-aceitar-vale-refeicao/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/

@@ -1402,7 +1402,7 @@ async function main() {
         ngrokResult.pid = ngrokNew.pid;
       }
 
-      previewUrl = `${ngrokResult.url}${targetArticle.url}/`;
+      previewUrl = `${ngrokResult.url}${targetArticle.url}/`.replace(/\/+/g, '/');
 
       state.previewServers = {
         port: astroResult.port,
@@ -1668,8 +1668,8 @@ async function handleApproval(callbackData) {
   } else if (action === 'preview') {
     log(`👁️ Preview solicitado: ${pending.briefing.title}`, 'info');
     const previewLink = state.previewServers?.ngrokUrl
-      ? `${state.previewServers.ngrokUrl}${pending.metadata.url}/`
-      : `http://localhost:${CONFIG.LOCALHOST_PORT}${pending.metadata.url}/`;
+      ? `${state.previewServers.ngrokUrl}${pending.metadata.url}/`.replace(/\/+/g, '/')
+      : `http://localhost:${CONFIG.LOCALHOST_PORT}${pending.metadata.url}/`.replace(/\/+/g, '/');
     await sendTelegram(
       `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: ${previewLink}\n\nVolte ao menu anterior para aprovação.`
     );
