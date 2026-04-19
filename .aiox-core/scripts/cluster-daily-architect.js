@@ -679,6 +679,7 @@ function callClaude(prompt) {
     input: prompt,
     maxBuffer: 20 * 1024 * 1024,
     timeout: 300000,
+    env: { ...process.env, HOME: '/root' },
   });
 
   if (result.error) throw new Error(`Erro ao executar claude CLI: ${result.error.message}`);
