@@ -960,7 +960,22 @@ Nunca usar datas futuras como se já ocorreram. Verifique: a data atual é ${new
 Nunca iniciar parágrafo com: "Vale ressaltar", "É importante notar", "Além disso", "Em suma", "Dessa forma", "Nesse sentido".
 Nunca usar: "No cenário digital de hoje", "Como todos sabemos", "Crucial", "solução", "ecossistema".
 
-Responda com EXATAMENTE este formato — duas linhas de cabeçalho, depois o HTML:
+⚠️ INSTRUÇÃO OBRIGATÓRIA — RESPONDA APENAS COM O CONTEÚDO DO ARTIGO
+
+Sua resposta deve conter APENAS e EXCLUSIVAMENTE:
+1. Uma linha "DESCRIPTION: [meta description]"
+2. Uma linha separadora "---"
+3. O HTML do artigo (iniciando com <p> ou <h2>)
+
+NÃO INCLUIR:
+- Nenhum comentário antes do DESCRIPTION
+- Nenhuma explicação ou relatório de trabalho
+- Nenhuma confirmação do checklist
+- Nenhuma nota ou observação
+- Nenhum texto APÓS o último </p>, </h2>, </details> ou </div>
+- Nenhum resumo ou rodapé
+
+Formato EXATO (e ÚNICO esperado):
 
 DESCRIPTION: [meta description SEO real, máximo 155 caracteres, diferente do título, descreve o que o leitor vai aprender]
 ---
