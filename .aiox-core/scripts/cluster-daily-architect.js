@@ -325,7 +325,10 @@ async function sendTelegramWithButtons(message, articleKey, buttons = []) {
       { text: '✅ Aprovar e Publicar', callback_data: `approve_${articleKey}` },
       { text: '👁️ Ver Preview', callback_data: `preview_${articleKey}` },
     ],
-    [{ text: '❌ Rejeitar', callback_data: `reject_${articleKey}` }],
+    [
+      { text: '✏️ Editar', callback_data: `edit_${articleKey}` },
+      { text: '❌ Rejeitar', callback_data: `reject_${articleKey}` },
+    ],
   ];
 
   const payload = {
@@ -1703,6 +1706,178 @@ async function handleApproval(callbackData) {
     await sendTelegram(
       `👀 <b>Preview</b>\n\n${pending.briefing.title}\n\nURL: ${previewLink}\n\nVolte ao menu anterior para aprovação.`
     );
+  } else if (action === 'edit') {
+    log(`✏️ Edição solicitada: ${pending.briefing.title}`, 'info');
+    state.editingState = {
+      articleKey,
+      title: pending.briefing.title,
+      timestamp: new Date().toISOString(),
+    };
+    saveState(state);
+    await sendTelegram(
+      `✏️ <b>Modo Edição Ativo</b>\n\n${pending.briefing.title}\n\nDigite a instrução de edição. Exemplo:\n"Expandir seção sobre segurança"\n"Adicionar mais exemplos práticos"\n"Simplificar linguagem técnica"\n\nExecute:\n<code>node .aiox-core/scripts/cluster-daily-architect.js --edit-instruction "${articleKey}" "SUA INSTRUÇÃO AQUI"</code>`
+    );
+  }
+}
+
+// ============================================================================
+// HANDLER DE EDIÇÃO
+// ============================================================================
+
+async function handleEditInstruction(articleKey, editInstruction) {
+  const state = loadState();
+  const pending = state.pendingApprovals[articleKey];
+
+  if (!pending) {
+    log(`❌ Artigo não encontrado para edição: ${articleKey}`, 'error');
+    return;
+  }
+
+  log(`\n✏️ Processando edição: ${pending.briefing.title}`, 'info');
+  log(`   Instrução: ${editInstruction}`, 'info');
+
+  try {
+    // 1. CHAMAR COPYWRITER COM INSTRUÇÕES DE EDIÇÃO
+    const niche = detectNiche(pending.metadata.title);
+    const agentContext = loadAgent('copywriter-cluster');
+    const skillCopyNiche = loadSkill(`copy-${niche}`);
+
+    if (!agentContext) {
+      throw new Error('Agente @copywriter-cluster não encontrado');
+    }
+
+    const h2sFormatted = pending.briefing.h2s.map((h, i) => `${i + 1}. ${h}`).join('\n');
+    const serpContext = pending.briefing.serpResults && pending.briefing.serpResults.length > 0
+      ? pending.briefing.serpResults.map((r, i) => `COMPETIDOR ${i + 1}:\nTítulo: ${r.title}\nURL: ${r.url}\nSnippet: ${r.snippet}`).join('\n---\n')
+      : 'Sem dados SERP disponíveis.';
+
+    const editPrompt = `${agentContext}
+
+---
+
+## CONTEXTO: EDIÇÃO DE ARTIGO EXISTENTE
+
+ARTIGO ATUAL:
+${pending.htmlContent.substring(0, 2000)}...
+
+INSTRUÇÃO DE EDIÇÃO DO USUÁRIO:
+"${editInstruction}"
+
+---
+
+Você é o @copywriter-cluster. O usuário pediu uma edição específica no artigo.
+
+**Reescreva o artigo completo** aplicando a instrução de edição.
+
+MANTER:
+- Mesma estrutura de H2s (não alterar)
+- Mesma pillar page link
+- Mesmos requisitos de FAQ (mínimo 5)
+
+APLICAR:
+- A instrução de edição fornecida
+- Todas as regras de qualidade do copywriter-cluster
+
+Responda com:
+DESCRIPTION: [nova meta description se alterada, ou mantida]
+---
+[HTML revisado do artigo]`;
+
+    log(`\n✍️ Reenviando para copywriter-cluster com instrução de edição...`, 'info');
+    let raw = callClaude(editPrompt);
+
+    // Remover markdown wrappers
+    raw = raw.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
+
+    // Extrair nova description se houver
+    let newDescription = pending.description;
+    const descMatch = raw.match(/^DESCRIPTION:\s*(.+)/i);
+    if (descMatch) {
+      newDescription = descMatch[1].trim().substring(0, 155);
+      log(`✅ Nova description: "${newDescription}"`, 'success');
+      raw = raw.replace(/^DESCRIPTION:.*\n?-{3,}\n?/i, '').trim();
+    }
+
+    let newHtml = raw;
+
+    // Remover H1s se houver
+    const h1Matches = newHtml.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || [];
+    if (h1Matches.length > 0) {
+      log(`⚠️ ${h1Matches.length} H1(s) removido(s)`, 'warn');
+      newHtml = newHtml.replace(/<h1[^>]*>[\s\S]*?<\/h1>/gi, '').trim();
+    }
+
+    // Validar e remover travessões
+    const emdashCount = (newHtml.match(/—/g) || []).length;
+    if (emdashCount > 0) {
+      log(`⚠️ ${emdashCount} travessão(ões) removido(s)`, 'warn');
+      newHtml = newHtml.replace(/\s*—\s*/g, ', ');
+    }
+
+    // 2. ATUALIZAR ARQUIVO DE PREVIEW
+    const urlPath = pending.metadata.url.replace(/\/$/, '');
+    const slug = urlPath.substring(1);
+    const blogDir = path.join(CONFIG.PROJECT_ROOT, 'src/content/blog');
+    const filePath = path.join(blogDir, `${slug}.md`);
+
+    const faqItems = extractFaqFromHtml(newHtml);
+    let cleanHtml = newHtml;
+
+    if (faqItems.length > 0) {
+      for (const item of faqItems) {
+        const escapedQuestion = item.question.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedAnswer = item.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const detailsRegex = new RegExp(`<details[^>]*>\\s*<summary[^>]*>${escapedQuestion}<\\/summary>\\s*<p[^>]*>${escapedAnswer}<\\/p>\\s*<\\/details>`, 'i');
+        cleanHtml = cleanHtml.replace(detailsRegex, '');
+      }
+      cleanHtml = cleanHtml.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
+    }
+
+    const frontmatter = generateFrontmatter({
+      title: pending.briefing.title,
+      slug: slug,
+      description: newDescription,
+      keyword: pending.metadata.keyword || pending.briefing.title,
+      faq: faqItems
+    });
+
+    fs.writeFileSync(filePath, frontmatter + cleanHtml);
+    log(`✅ Preview atualizado: ${filePath}`, 'success');
+
+    // 3. ATUALIZAR ESTADO
+    pending.htmlContent = newHtml;
+    pending.description = newDescription;
+    pending.timestamp = new Date().toISOString();
+    state.pendingApprovals[articleKey] = pending;
+    delete state.editingState;
+    saveState(state);
+
+    // 4. ENVIAR NOVO PREVIEW PARA TELEGRAM
+    const previewUrl = state.previewServers?.ngrokUrl
+      ? `${state.previewServers.ngrokUrl}/blog${pending.metadata.url}/`.replace(/([^:]\/)\/+/g, '$1')
+      : `http://localhost:${CONFIG.LOCALHOST_PORT}/blog${pending.metadata.url}/`.replace(/([^:]\/)\/+/g, '$1');
+
+    const visualElements = detectVisualElements(newHtml);
+    const updatedMessage = `
+<b>✏️ Artigo Editado</b>
+
+<b>Artigo:</b> ${pending.briefing.title}
+<b>Edição:</b> ${editInstruction}
+
+🌐 <b>Preview Atualizado:</b> ${previewUrl}
+
+<b>Estrutura H2s:</b>
+${pending.briefing.h2s.map((h, i) => `${i + 1}. ${h}`).join('\n')}
+
+Aprova a edição ou quer mais ajustes?
+`;
+
+    await sendTelegramWithButtons(updatedMessage, articleKey);
+    log(`\n✅ Edição concluída e preview enviado para Telegram`, 'success');
+
+  } catch (e) {
+    log(`❌ Erro ao editar artigo: ${e.message}`, 'error');
+    await sendTelegram(`❌ <b>Erro na Edição</b>\n\n${pending.briefing.title}\n\n${e.message}`);
   }
 }
 
@@ -1713,6 +1888,17 @@ async function handleApproval(callbackData) {
 if (process.argv[2] === '--webhook') {
   const callbackData = process.argv[3];
   handleApproval(callbackData);
+} else if (process.argv[2] === '--edit-instruction') {
+  const articleKey = process.argv[3];
+  const editInstruction = process.argv[4];
+  if (!articleKey || !editInstruction) {
+    console.error('❌ Uso: node cluster-daily-architect.js --edit-instruction <articleKey> "<instrução>"');
+    process.exit(1);
+  }
+  handleEditInstruction(articleKey, editInstruction).catch(e => {
+    log(`❌ Erro não tratado na edição: ${e.message}`, 'error');
+    process.exit(1);
+  });
 } else {
   main().catch(e => {
     log(`❌ Erro não tratado: ${e.message}`, 'error');
