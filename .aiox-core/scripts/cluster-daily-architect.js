@@ -940,13 +940,14 @@ O título (H1) já está no frontmatter do arquivo .md. NÃO inclua <h1> no cont
 **OBRIGATÓRIO — FAQ:**
 Incluir FAQ com mínimo 5 perguntas reais que o leitor digitaria no Google.
 Respostas diretas de 2-4 frases.
-Formato: <details><summary>Pergunta aqui?</summary><p>Resposta.</p></details>
+Estrutura obrigatória:
+<h2>Perguntas Frequentes</h2>
+<details><summary>Pergunta aqui?</summary><p>Resposta.</p></details>
+<details><summary>Pergunta aqui?</summary><p>Resposta.</p></details>
+[mais details...]
 
-⚠️ REGRA ABSOLUTA DE FAQ:
-- Gerar APENAS um bloco de FAQ no final do artigo
-- SEM H2 "Perguntas Frequentes" ou qualquer título antes
-- Colocar os <details> um após o outro, sem nenhuma outra coisa entre eles
-- O script extrai automaticamente para o frontmatter YAML
+O script extrai automaticamente os <details> para o frontmatter YAML.
+O H2 "Perguntas Frequentes" permanece no artigo.
 
 **REGRA ABSOLUTA — VOCABULÁRIO ACESSÍVEL:**
 O leitor é dono de pequeno negócio. Palavras técnicas difíceis devem ser substituídas por equivalentes simples.
@@ -1572,12 +1573,8 @@ async function handleApproval(callbackData) {
         let cleanHtml = pending.htmlContent;
 
         if (faqItems.length > 0) {
-          // Remover seção de FAQ do HTML com precisão:
-          // 1. Opcionalmente remover <h2>Perguntas Frequentes</h2> se houver
-          // 2. Remover todos os blocos <details> que foram extraídos
-          cleanHtml = cleanHtml.replace(/<h2>Perguntas Frequentes<\/h2>\s*/i, '');
-
-          // Remover cada <details> que foi extraído (para evitar duplicação)
+          // Remover apenas os blocos <details> que foram extraídos
+          // O H2 "Perguntas Frequentes" permanece no artigo para renderização do layout
           for (const item of faqItems) {
             const escapedQuestion = item.question.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const escapedAnswer = item.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -1585,8 +1582,9 @@ async function handleApproval(callbackData) {
             cleanHtml = cleanHtml.replace(detailsRegex, '');
           }
 
-          cleanHtml = cleanHtml.trim();
-          log(`✅ FAQ extraído: ${faqItems.length} perguntas — removido do HTML`, 'success');
+          // Remover linhas vazias extras deixadas pelos <details> removidos
+          cleanHtml = cleanHtml.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
+          log(`✅ FAQ extraído: ${faqItems.length} perguntas para frontmatter YAML — H2 mantido no artigo`, 'success');
         }
 
         // Gerar frontmatter e prepend ao conteúdo
