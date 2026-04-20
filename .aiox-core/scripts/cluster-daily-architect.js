@@ -380,7 +380,14 @@ async function writePreviewFile(metadata, briefing, htmlContent, description) {
   const faqItems = extractFaqFromHtml(htmlContent);
   let cleanHtml = htmlContent;
   if (faqItems.length > 0) {
-    cleanHtml = cleanHtml.replace(/<h2>Perguntas Frequentes<\/h2>[\s\S]*?<\/details>/i, '').trim();
+    // Remove apenas os <details>, mantém o H2 "Perguntas Frequentes"
+    for (const item of faqItems) {
+      const escapedQuestion = item.question.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const escapedAnswer = item.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const detailsRegex = new RegExp(`<details[^>]*>\\s*<summary[^>]*>${escapedQuestion}<\\/summary>\\s*<p[^>]*>${escapedAnswer}<\\/p>\\s*<\\/details>`, 'i');
+      cleanHtml = cleanHtml.replace(detailsRegex, '');
+    }
+    cleanHtml = cleanHtml.replace(/\n\s*\n\s*\n/g, '\n\n').trim();
   }
 
   const frontmatter = generateFrontmatter({
