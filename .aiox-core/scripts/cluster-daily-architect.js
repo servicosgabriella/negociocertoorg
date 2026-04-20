@@ -1248,32 +1248,20 @@ async function gitCommitAndPush(message, files = []) {
   try {
     log(`📝 Fazendo commit: ${message}`, 'info');
 
-    // 1. Pull primeiro para sincronizar
-    log(`   Sincronizando com repositório remoto...`, 'info');
-    try {
-      await execAsync(`git pull --rebase`, {
-        cwd: CONFIG.PROJECT_ROOT,
-      });
-      log(`   ✅ Repositório sincronizado`, 'success');
-    } catch (e) {
-      log(`   ⚠️ Aviso ao sincronizar: ${e.message}`, 'warn');
-      // Continua mesmo se falhar (pode estar já sincronizado)
-    }
-
-    // 2. Stage files
+    // 1. Stage files
     if (files.length > 0) {
       await execAsync(`git add ${files.map(f => `"${f}"`).join(' ')}`, {
         cwd: CONFIG.PROJECT_ROOT,
       });
     }
 
-    // 3. Commit
+    // 2. Commit
     await execAsync(
       `git commit -m "${message.replace(/"/g, '\\"')}\n\nCo-Authored-By: Cluster Daily Architect <cluster@negociocerto.org>"`,
       { cwd: CONFIG.PROJECT_ROOT }
     );
 
-    // 4. Push com retry (até 3 tentativas)
+    // 3. Push com retry (até 3 tentativas) + rebase se necessário
     const origin = `https://${CONFIG.GITHUB_USER}:${CONFIG.GITHUB_TOKEN}@github.com/${CONFIG.GITHUB_USER}/negociocertoorg.git`;
     let pushSuccess = false;
     let lastError = null;
@@ -1291,15 +1279,20 @@ async function gitCommitAndPush(message, files = []) {
       } catch (e) {
         lastError = e;
         if (attempt < 3) {
-          log(`   ⚠️ Falha na tentativa ${attempt} — aguardando 2s antes da próxima...`, 'warn');
+          log(`   ⚠️ Falha na tentativa ${attempt}: ${e.message.split('\n')[0]}`, 'warn');
+          log(`   Aguardando 2s e sincronizando com rebase...`, 'info');
           await new Promise(r => setTimeout(r, 2000));
 
-          // Tentar rebase novamente
+          // Sincronizar com rebase antes da próxima tentativa
           try {
-            await execAsync(`git pull --rebase`, {
+            await execAsync(`git pull --rebase origin main`, {
               cwd: CONFIG.PROJECT_ROOT,
             });
-          } catch (_) {}
+            log(`   ✅ Rebase realizado, tentando push novamente...`, 'info');
+          } catch (rebaseError) {
+            log(`   ⚠️ Erro no rebase: ${rebaseError.message.split('\n')[0]}`, 'warn');
+            // Continua mesmo se rebase falhar
+          }
         }
       }
     }
