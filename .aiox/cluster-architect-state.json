@@ -1,66 +1,7 @@
 {
-  "processedArticles": [],
-  "pendingApprovals": {
-    "/mei-aceitar-vale-refeicao/": {
-      "metadata": {
-        "title": "MEI pode aceitar vale refeição e vale alimentação? Entenda as regras",
-        "url": "/mei-aceitar-vale-refeicao/",
-        "linksTo": [
-          "/melhores-maquininhas-cartao-voucher-refeicao/"
-        ],
-        "moneyPage": "Maquininhas que aceitam voucher e vale refeição (2026)",
-        "pillarUrl": "/melhores-maquininhas-cartao-voucher-refeicao/"
-      },
-      "briefing": {
-        "h2s": [
-          "Qual CNAE precisa para aceitar vale-refeição? Confira a classificação necessária",
-          "Vale-refeição para MEI: funciona diferente para proprietário e funcionário?",
-          "Vale alimentação vs vale-refeição: qual bandeira MEI precisa aceitar",
-          "MEI prestador de serviços: pode oferecer vale-refeição como benefício?",
-          "Aceitar vale-refeição aumenta a taxa da maquininha? Confira o custo real",
-          "Como habilitar vale-refeição na maquininha: passo a passo prático"
-        ],
-        "linkH2Index": 4,
-        "linkReason": "H2 5 aborda a preocupação financeira do MEI após decidir aceitar VR. O usuário que resolveu 'posso fazer?' passa para 'vale a pena?'. Aqui é natural ampliar para uma comparação de maquininhas com melhores condições para voucher, criando ponte natural para a pillar page.",
-        "transitionSuggestion": "Se você decidiu aceitar vale-refeição mas quer garantir que não afete suas margens, é essencial escolher uma maquininha com boas taxas de processamento. Confira nosso guia completo com as melhores maquininhas que aceitam voucher e vale-refeição, com comparação de taxas reais.",
-        "needsDesignReview": false,
-        "suggestedLayouts": [],
-        "designNotes": "",
-        "serpResults": [
-          {
-            "title": "MEI pode aceitar vale-refeição? Saiba como solicitar o ...",
-            "snippet": "Aug 3, 2022 — Vamos responder de vez à questão: MEI pode aceitar vale-refeição, mas precisa ser do ramo alimentício. Isto é, na Classificação Nacional de ...Read more"
-          },
-          {
-            "title": "MEI pode aceitar vale refeição? Descubra!",
-            "snippet": "Jan 3, 2024 — Se o Microempreendedor Individual (MEI) prestar serviços, o contratante pode oferecer vale-refeição como benefício. Entenda!"
-          },
-          {
-            "title": "Como funciona o vale-refeição para MEIs? - Pluxee",
-            "snippet": "Aug 29, 2022 — Por que oferecer o vale-refeição para o funcionário do MEI? · Satisfação do trabalhador; · Aumento da produtividade; · Comprometimento; · Mais saúde ...Read more"
-          }
-        ],
-        "title": "MEI pode aceitar vale refeição e vale alimentação? Entenda as regras",
-        "url": "/mei-aceitar-vale-refeicao/",
-        "layout": "bloglayout"
-      },
-      "htmlContent": "Preciso de sua permissão para escrever no arquivo. Autoriza a edição do arquivo de blog para aplicar a remoção do primeiro FAQ?",
-      "description": "Descubra quais CNAEs de MEI podem aceitar vale-refeição, entenda a diferença entre VR e VA, confira o custo real na maquininha e aprenda como ativar esse b",
-      "visualElements": {
-        "hasTable": false,
-        "hasContainerGrid": false,
-        "hasBox": false,
-        "hasFAQ": true,
-        "hasAnyVisualElement": true
-      },
-      "timestamp": "2026-04-20T23:07:30.503Z"
-    }
-  },
-  "lastRun": "2026-04-20T22:59:49.636Z",
-  "previewServers": {
-    "port": 4321,
-    "ngrokUrl": "https://dedicator-primarily-compel.ngrok-free.dev",
-    "originalAstroConfig": "// @ts-check\n\nimport mdx from '@astrojs/mdx';\nimport sitemap from '@astrojs/sitemap';\nimport { defineConfig } from 'astro/config';\n\nimport tailwindcss from '@tailwindcss/vite';\n\n// https://astro.build/config\nexport default defineConfig({\n  site: 'https://negociocerto.org',\n  trailingSlash: 'always',\n  integrations: [mdx(), sitemap()],\n  server: {\n    host: true,\n allowedHosts: ['dedicator-primarily-compel.ngrok-free.dev'],\n  },\n  vite: {\n    plugins: [tailwindcss()],\n  },\n});\n",
-    "previewFile": "src/content/blog/mei-aceitar-vale-refeicao.md"
-  }
+  "processedArticles": [
+    "/mei-aceitar-vale-refeicao/"
+  ],
+  "pendingApprovals": {},
+  "lastRun": "2026-04-20T23:14:10.266Z"
 }
