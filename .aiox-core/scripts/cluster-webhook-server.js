@@ -5,6 +5,7 @@ const path = require('path');
 
 const TOKEN = process.env.CLUSTER_TELEGRAM_TOKEN;
 const PROJECT_ROOT = '/root/negociocertoorg';
+const STATE_FILE = path.join(PROJECT_ROOT, '.aiox/cluster-architect-state.json');
 
 if (!TOKEN) {
   console.error('❌ CLUSTER_TELEGRAM_TOKEN não configurado');
@@ -12,6 +13,15 @@ if (!TOKEN) {
 }
 
 let offset = 0;
+
+function loadState() {
+  try {
+    if (fs.existsSync(STATE_FILE)) {
+      return JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8'));
+    }
+  } catch (e) {}
+  return { pendingApprovals: {}, editingState: null };
+}
 
 function log(msg) {
   console.log(`[${new Date().toISOString()}] ${msg}`);
@@ -70,13 +80,50 @@ async function processCallback(callbackQuery) {
   }
 }
 
+async function processMessage(message) {
+  const chatId = message.chat.id;
+  const text = message.text;
+
+  log(`📨 Mensagem recebida: "${text}"`);
+
+  try {
+    const state = loadState();
+
+    // Verificar se estamos em modo de edição
+    if (state.editingState) {
+      const { articleKey } = state.editingState;
+      log(`✏️ Modo edição ativo para artigo: ${articleKey}`);
+
+      // Chamar handler de edição com a instrução
+      const result = execSync(
+        `cd ${PROJECT_ROOT} && export $(grep -v '^#' .env | xargs) && node .aiox-core/scripts/cluster-daily-architect.js --edit-instruction "${articleKey}" "${text.replace(/"/g, '\\"')}"`,
+        { encoding: 'utf8', timeout: 600000 }
+      );
+
+      log(`✅ Edição processada`);
+    } else {
+      log(`⚠️ Nenhuma edição em progresso`);
+      await telegramRequest('sendMessage', {
+        chat_id: chatId,
+        text: `⚠️ Nenhuma edição em progresso.\n\nClique em "Editar" numa mensagem de preview para ativar o modo de edição.`
+      });
+    }
+  } catch (e) {
+    log(`❌ Erro ao processar mensagem: ${e.message}`);
+    await telegramRequest('sendMessage', {
+      chat_id: chatId,
+      text: `❌ Erro ao processar edição: ${e.message.substring(0, 100)}`
+    });
+  }
+}
+
 async function poll() {
   while (true) {
     try {
       const res = await telegramRequest('getUpdates', {
         offset,
         timeout: 30,
-        allowed_updates: ['callback_query']
+        allowed_updates: ['callback_query', 'message']
       });
 
       if (res.ok && res.result.length > 0) {
@@ -84,6 +131,8 @@ async function poll() {
           offset = update.update_id + 1;
           if (update.callback_query) {
             await processCallback(update.callback_query);
+          } else if (update.message && update.message.text) {
+            await processMessage(update.message);
           }
         }
       }
