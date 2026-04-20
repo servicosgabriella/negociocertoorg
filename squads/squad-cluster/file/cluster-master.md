@@ -16,10 +16,6 @@ URL da pillar: /melhores-maquininhas-cartao-voucher-refeicao/
  Pillar: /contabilidade-online-mei/
  Links para: /contabilidade-online-mei/, /melhores-contabilidades-online/
 
-#### MEI pode aceitar vale refeição e vale alimentação? Entenda as regras
-URL: /mei-aceitar-vale-refeicao/
-Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
-
 #### Taxa de voucher na maquininha: quanto custa processar VR e VA
 URL: /taxa-voucher-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
