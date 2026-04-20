@@ -677,12 +677,14 @@ async function searchSERP(keyword) {
 // ============================================================================
 
 function callClaude(prompt) {
-  const result = spawnSync('claude', ['-p', '--allowedTools', ''], {
+  // Use npm exec to ensure claude is found
+  const result = spawnSync('npm', ['exec', '--', 'claude', '-p', '--allowedTools', ''], {
     encoding: 'utf-8',
     input: prompt,
     maxBuffer: 20 * 1024 * 1024,
     timeout: 300000,
     env: { ...process.env, HOME: '/root' },
+    cwd: CONFIG.PROJECT_ROOT,
   });
 
   if (result.error) throw new Error(`Erro ao executar claude CLI: ${result.error.message}`);
