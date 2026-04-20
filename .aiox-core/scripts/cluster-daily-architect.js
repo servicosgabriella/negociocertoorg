@@ -1796,15 +1796,17 @@ async function handleEditInstruction(articleKey, editInstruction) {
 
 ---
 
-## CONTEXTO: EDIÇÃO DE ARTIGO EXISTENTE
+## 🚨 CONTEXTO: EDIÇÃO DE ARTIGO EXISTENTE
 
-⚠️ **INSTRUÇÕES CRÍTICAS:**
-1. PRESERVE 95% do artigo original
-2. Faça APENAS a edição solicitada pelo usuário
-3. NÃO reescreva seções intactas
-4. Mantenha EXATAMENTE a mesma estrutura, tom e qualidade
+⚠️ **INSTRUÇÕES CRÍTICAS - LEIA COM ATENÇÃO:**
 
-ARTIGO ATUAL (COMPLETO):
+1. ✅ RETORNE O ARTIGO COMPLETO (não apenas um snippet)
+2. ✅ Faça APENAS a edição solicitada pelo usuário
+3. ✅ Mantenha 95% do artigo original intacto
+4. ✅ NÃO reescreva seções que não precisam de edição
+5. ✅ Mantenha EXATAMENTE a mesma estrutura, tom e qualidade
+
+ARTIGO ATUAL (COMPLETO - ${pending.htmlContent.length} caracteres):
 ${pending.htmlContent}
 
 ---
@@ -1814,26 +1816,34 @@ INSTRUÇÃO DE EDIÇÃO DO USUÁRIO:
 
 ---
 
-## DIRETRIZES DE EDIÇÃO
+## PROCESSO DE EDIÇÃO
 
 Você é o @copywriter-cluster em modo de revisão cirúrgica.
 
-**Abordagem:**
-1. Identifique EXATAMENTE qual(is) seção(ões) precisa(m) ser editada(s)
-2. Faça apenas essa edição
-3. Retorne o artigo completo com APENAS essa mudança aplicada
-4. Não altere nenhuma outra parte do artigo
+**Passo a passo:**
+1. Leia o artigo COMPLETO acima
+2. Identifique EXATAMENTE qual(is) seção(ões) precisa(m) ser editada(s)
+3. Faça APENAS essa edição específica
+4. **RETORNE O ARTIGO 100% COMPLETO com a edição aplicada**
+5. Não altere nenhuma outra parte
 
-**OBRIGATÓRIO:**
-- Mesma estrutura de H2s (IMUTÁVEL)
-- Mesma pillar page link (IMUTÁVEL)
-- Mesmos requisitos de FAQ (IMUTÁVEL)
-- Mesma qualidade de redação
+**O QUE DEVE PERMANECER IDÊNTICO:**
+- ✅ Estrutura de H2s (não alterar títulos)
+- ✅ Pillar page link (URL deve permanecer igual)
+- ✅ FAQ obrigatório (mínimo 5 perguntas)
+- ✅ Qualidade e tom da redação (onde não há edição)
 
-**Responda com:**
-DESCRIPTION: [meta description — manter se não alterada]
+**⚠️ CRÍTICO - FORMATO DE RESPOSTA:**
+
+Sua resposta DEVE ter exatamente este formato:
+
+DESCRIPTION: [meta description SEO — manter se não foi alterada, mudar se relevante]
 ---
-[HTML do artigo COMPLETO com APENAS a edição aplicada]`;
+[HTML DO ARTIGO COMPLETO - cada parágrafo, seção, tudo deve estar aqui]
+[O artigo deve ter PELO MENOS ${Math.round(pending.htmlContent.length * 0.8)} caracteres — caso contrário não será aceito]
+
+**Se você retornar um snippet ou apenas a seção editada, será rejeitado.**
+**Você DEVE retornar o artigo inteiro com a edição aplicada.**`;
 
     log(`\n✍️ Reenviando para copywriter-cluster com instrução de edição (artigo COMPLETO)...`, 'info');
     let raw = callClaude(editPrompt);
@@ -1852,11 +1862,43 @@ DESCRIPTION: [meta description — manter se não alterada]
 
     let newHtml = raw;
 
+    // VALIDAÇÃO CRÍTICA: verificar se o HTML retornado tem tamanho mínimo
+    const minSize = Math.round(pending.htmlContent.length * 0.8);
+    if (newHtml.length < minSize) {
+      log(`\n❌ ERRO: Artigo retornado muito curto (${newHtml.length} chars vs ${minSize} esperados)`, 'error');
+      log(`   Parece que apenas um snippet foi retornado ao invés do artigo completo.`, 'error');
+      log(`   O copywriter retornou:`, 'error');
+      log(`   "${newHtml.substring(0, 200)}..."`, 'error');
+
+      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nO copywriter retornou apenas um snippet ao invés do artigo completo.\n\nArticle returned: ${newHtml.length} chars (expected: ${minSize}+)\n\nTente novamente com uma instrução mais clara.`);
+      return;
+    }
+
     // Remover H1s se houver
     const h1Matches = newHtml.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || [];
     if (h1Matches.length > 0) {
       log(`⚠️ ${h1Matches.length} H1(s) removido(s)`, 'warn');
       newHtml = newHtml.replace(/<h1[^>]*>[\s\S]*?<\/h1>/gi, '').trim();
+    }
+
+    // VALIDAÇÃO: Verificar se todos os H2s principais estão presentes
+    const h2Count = (newHtml.match(/<h2[^>]*>/gi) || []).length;
+    if (h2Count < pending.briefing.h2s.length * 0.8) {
+      log(`\n❌ ERRO: Faltam H2s principais no artigo editado`, 'error');
+      log(`   Esperado: ${pending.briefing.h2s.length} H2s`, 'error');
+      log(`   Encontrado: ${h2Count} H2s`, 'error');
+
+      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nO artigo editado está faltando seções (H2s).\n\nEsperado: ${pending.briefing.h2s.length} H2s\nEncontrado: ${h2Count} H2s\n\nTente novamente ou revise a instrução de edição.`);
+      return;
+    }
+
+    // VALIDAÇÃO: Verificar se o link da pillar está presente
+    if (!newHtml.includes(`href="${pending.metadata.pillarUrl}"`)) {
+      log(`\n❌ ERRO: Link para pillar foi removido na edição`, 'error');
+      log(`   URL esperada: ${pending.metadata.pillarUrl}`, 'error');
+
+      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nO link para a pillar page foi removido na edição.\n\nEsso não é permitido. Tente novamente.`);
+      return;
     }
 
     // Validar e remover travessões
@@ -1865,6 +1907,11 @@ DESCRIPTION: [meta description — manter se não alterada]
       log(`⚠️ ${emdashCount} travessão(ões) removido(s)`, 'warn');
       newHtml = newHtml.replace(/\s*—\s*/g, ', ');
     }
+
+    log(`\n✅ Validações de integridade passaram:`, 'success');
+    log(`   - Tamanho do artigo: ${newHtml.length} chars (mín: ${minSize})`, 'info');
+    log(`   - H2s presentes: ${h2Count} (esperado: ${pending.briefing.h2s.length})`, 'info');
+    log(`   - Link da pillar: presente`, 'info');
 
     // 2. ATUALIZAR ARQUIVO DE PREVIEW
     const urlPath = pending.metadata.url.replace(/\/$/, '');
