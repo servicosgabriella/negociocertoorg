@@ -1248,27 +1248,66 @@ async function gitCommitAndPush(message, files = []) {
   try {
     log(`📝 Fazendo commit: ${message}`, 'info');
 
-    // Stage files
+    // 1. Pull primeiro para sincronizar
+    log(`   Sincronizando com repositório remoto...`, 'info');
+    try {
+      await execAsync(`git pull --rebase`, {
+        cwd: CONFIG.PROJECT_ROOT,
+      });
+      log(`   ✅ Repositório sincronizado`, 'success');
+    } catch (e) {
+      log(`   ⚠️ Aviso ao sincronizar: ${e.message}`, 'warn');
+      // Continua mesmo se falhar (pode estar já sincronizado)
+    }
+
+    // 2. Stage files
     if (files.length > 0) {
       await execAsync(`git add ${files.map(f => `"${f}"`).join(' ')}`, {
         cwd: CONFIG.PROJECT_ROOT,
       });
     }
 
-    // Commit
+    // 3. Commit
     await execAsync(
       `git commit -m "${message.replace(/"/g, '\\"')}\n\nCo-Authored-By: Cluster Daily Architect <cluster@negociocerto.org>"`,
       { cwd: CONFIG.PROJECT_ROOT }
     );
 
-    // Push
+    // 4. Push com retry (até 3 tentativas)
     const origin = `https://${CONFIG.GITHUB_USER}:${CONFIG.GITHUB_TOKEN}@github.com/${CONFIG.GITHUB_USER}/negociocertoorg.git`;
-    await execAsync(`git push ${origin} HEAD:main`, {
-      cwd: CONFIG.PROJECT_ROOT,
-      stdio: 'pipe',
-    });
+    let pushSuccess = false;
+    let lastError = null;
 
-    log(`✅ Git commit e push realizado`, 'success');
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        log(`   Tentativa ${attempt}/3 de push...`, 'info');
+        await execAsync(`git push ${origin} HEAD:main`, {
+          cwd: CONFIG.PROJECT_ROOT,
+          stdio: 'pipe',
+        });
+        pushSuccess = true;
+        log(`✅ Git commit e push realizado (tentativa ${attempt})`, 'success');
+        break;
+      } catch (e) {
+        lastError = e;
+        if (attempt < 3) {
+          log(`   ⚠️ Falha na tentativa ${attempt} — aguardando 2s antes da próxima...`, 'warn');
+          await new Promise(r => setTimeout(r, 2000));
+
+          // Tentar rebase novamente
+          try {
+            await execAsync(`git pull --rebase`, {
+              cwd: CONFIG.PROJECT_ROOT,
+            });
+          } catch (_) {}
+        }
+      }
+    }
+
+    if (!pushSuccess) {
+      throw lastError || new Error('Falha em todas as tentativas de push');
+    }
+
     return true;
   } catch (e) {
     log(`❌ Erro em git operation: ${e.message}`, 'error');
