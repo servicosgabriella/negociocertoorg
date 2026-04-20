@@ -1778,7 +1778,7 @@ async function handleEditInstruction(articleKey, editInstruction) {
   log(`   Instrução: ${editInstruction}`, 'info');
 
   try {
-    // 1. CHAMAR COPYWRITER COM INSTRUÇÕES DE EDIÇÃO
+    // 1. CHAMAR COPYWRITER COM INSTRUÇÕES DE EDIÇÃO (ARTIGO COMPLETO)
     const niche = detectNiche(pending.metadata.title);
     const agentContext = loadAgent('copywriter-cluster');
     const skillCopyNiche = loadSkill(`copy-${niche}`);
@@ -1798,33 +1798,44 @@ async function handleEditInstruction(articleKey, editInstruction) {
 
 ## CONTEXTO: EDIÇÃO DE ARTIGO EXISTENTE
 
-ARTIGO ATUAL:
-${pending.htmlContent.substring(0, 2000)}...
+⚠️ **INSTRUÇÕES CRÍTICAS:**
+1. PRESERVE 95% do artigo original
+2. Faça APENAS a edição solicitada pelo usuário
+3. NÃO reescreva seções intactas
+4. Mantenha EXATAMENTE a mesma estrutura, tom e qualidade
+
+ARTIGO ATUAL (COMPLETO):
+${pending.htmlContent}
+
+---
 
 INSTRUÇÃO DE EDIÇÃO DO USUÁRIO:
 "${editInstruction}"
 
 ---
 
-Você é o @copywriter-cluster. O usuário pediu uma edição específica no artigo.
+## DIRETRIZES DE EDIÇÃO
 
-**Reescreva o artigo completo** aplicando a instrução de edição.
+Você é o @copywriter-cluster em modo de revisão cirúrgica.
 
-MANTER:
-- Mesma estrutura de H2s (não alterar)
-- Mesma pillar page link
-- Mesmos requisitos de FAQ (mínimo 5)
+**Abordagem:**
+1. Identifique EXATAMENTE qual(is) seção(ões) precisa(m) ser editada(s)
+2. Faça apenas essa edição
+3. Retorne o artigo completo com APENAS essa mudança aplicada
+4. Não altere nenhuma outra parte do artigo
 
-APLICAR:
-- A instrução de edição fornecida
-- Todas as regras de qualidade do copywriter-cluster
+**OBRIGATÓRIO:**
+- Mesma estrutura de H2s (IMUTÁVEL)
+- Mesma pillar page link (IMUTÁVEL)
+- Mesmos requisitos de FAQ (IMUTÁVEL)
+- Mesma qualidade de redação
 
-Responda com:
-DESCRIPTION: [nova meta description se alterada, ou mantida]
+**Responda com:**
+DESCRIPTION: [meta description — manter se não alterada]
 ---
-[HTML revisado do artigo]`;
+[HTML do artigo COMPLETO com APENAS a edição aplicada]`;
 
-    log(`\n✍️ Reenviando para copywriter-cluster com instrução de edição...`, 'info');
+    log(`\n✍️ Reenviando para copywriter-cluster com instrução de edição (artigo COMPLETO)...`, 'info');
     let raw = callClaude(editPrompt);
 
     // Remover markdown wrappers
