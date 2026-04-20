@@ -1,1 +1,10 @@
-{}
+{
+  "permissions": {
+    "allow": [
+      "Write(src/content/blog/*)",
+      "Write(.aiox/*)",
+      "Write(squads/squad-oportunidades/file/*)",
+      "Bash(npm *)"
+    ]
+  }
+}
