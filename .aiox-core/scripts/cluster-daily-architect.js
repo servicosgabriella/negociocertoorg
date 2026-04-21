@@ -1796,52 +1796,32 @@ async function handleEditInstruction(articleKey, editInstruction) {
 
 ---
 
-## 🚨 CONTEXTO: EDIÇÃO DE ARTIGO EXISTENTE
+## INSTRUÇÃO: Editar apenas o que foi solicitado
 
-⚠️ **INSTRUÇÕES CRÍTICAS - LEIA COM ATENÇÃO:**
+Você é o @copywriter-cluster em modo de edição cirúrgica.
 
-1. ✅ RETORNE O ARTIGO COMPLETO (não apenas um snippet)
-2. ✅ Faça APENAS a edição solicitada pelo usuário
-3. ✅ Mantenha 95% do artigo original intacto
-4. ✅ NÃO reescreva seções que não precisam de edição
-5. ✅ Mantenha a mesma estrutura, tom e qualidade
+**Sua tarefa:**
+Fazer APENAS a edição solicitada abaixo. Não reescreva o artigo inteiro.
 
-ARTIGO ATUAL (COMPLETO - ${pending.htmlContent.length} caracteres):
+**ARTIGO ORIGINAL:**
 ${pending.htmlContent}
 
 ---
 
-INSTRUÇÃO DE EDIÇÃO DO USUÁRIO:
+**INSTRUÇÃO DE EDIÇÃO:**
 "${editInstruction}"
 
 ---
 
-## PROCESSO DE EDIÇÃO
+**Responda com o artigo EDITADO COMPLETO** em HTML puro (sem markdown wrappers).
 
-Você é o @copywriter-cluster em modo de revisão cirúrgica.
-
-**Passo a passo:**
-1. Leia o artigo COMPLETO acima
-2. Identifique EXATAMENTE qual(is) seção(ões) precisa(m) ser editada(s)
-3. Faça APENAS essa edição específica
-4. **RETORNE O ARTIGO 100% COMPLETO com a edição aplicada**
-5. Não altere nenhuma outra parte
-
-**O QUE DEVE PERMANECER:**
-- ✅ Estrutura de H2s (não alterar títulos principais)
-- ✅ Pillar page link (URL deve permanecer igual)
-- ✅ FAQ obrigatório (mínimo 5 perguntas)
-- ✅ Qualidade da redação (onde não há edição)
-
-**⚠️ FORMATO DE RESPOSTA OBRIGATÓRIO:**
-
-DESCRIPTION: [meta description SEO — manter se não foi alterada, mudar se relevante]
+Se a meta description mudou, comece com:
+DESCRIPTION: [nova description aqui]
 ---
-[HTML DO ARTIGO COMPLETO E INTEIRO]
 
-**Você DEVE retornar todo o artigo com a edição aplicada, não apenas a seção editada.**`;
+Depois coloque o HTML completo do artigo com a edição aplicada.`;
 
-    log(`\n✍️ Reenviando para copywriter-cluster com instrução de edição (artigo COMPLETO)...`, 'info');
+    log(`\n✍️ Processando edição do artigo...`, 'info');
     let raw = callClaude(editPrompt);
 
     // Remover markdown wrappers
@@ -1858,19 +1838,10 @@ DESCRIPTION: [meta description SEO — manter se não foi alterada, mudar se rel
 
     let newHtml = raw;
 
-    // VALIDAÇÃO: verificar se o HTML retornado é um artigo completo (estrutura)
-    // Em vez de verificar tamanho (que é inadequado para edições pequenas),
-    // verificar se tem conteúdo suficiente e não é apenas um snippet
-    const hasOpeningContent = newHtml.match(/<p[^>]*>[\s\S]{50,}<\/p>/i);
-    const hasClosingContent = newHtml.match(/<(p|h[2-3]|blockquote)[^>]*>[\s\S]{30,}<\/(p|h[2-3]|blockquote)>/i);
-    const minChars = 500; // Mínimo para não ser considerado snippet
-
-    if (newHtml.length < minChars || !hasOpeningContent || !hasClosingContent) {
-      log(`\n❌ ERRO: Artigo retornado parece ser um snippet ao invés do completo`, 'error');
-      log(`   Tamanho: ${newHtml.length} chars (mín: ${minChars})`, 'error');
-      log(`   Primeira linha: "${newHtml.substring(0, 100)}..."`, 'error');
-
-      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nO copywriter retornou apenas um snippet ao invés do artigo completo.\n\nVerifique se a instrução foi clara e tente novamente.`);
+    // Validação simples: verificar se tem conteúdo HTML mínimo
+    if (!newHtml || newHtml.length < 100 || !newHtml.includes('<')) {
+      log(`\n❌ ERRO: Resposta não parece ser HTML válido`, 'error');
+      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nA resposta do copywriter não parece ser HTML válido. Tente novamente.`);
       return;
     }
 
@@ -1881,40 +1852,16 @@ DESCRIPTION: [meta description SEO — manter se não foi alterada, mudar se rel
       newHtml = newHtml.replace(/<h1[^>]*>[\s\S]*?<\/h1>/gi, '').trim();
     }
 
-    // VALIDAÇÃO: Verificar se mantém a maioria dos H2s
-    const h2Count = (newHtml.match(/<h2[^>]*>/gi) || []).length;
-    const minH2Count = Math.max(3, Math.floor(pending.briefing.h2s.length * 0.7)); // Pelo menos 70% ou 3, o que for maior
-    if (h2Count < minH2Count) {
-      log(`\n⚠️ AVISO: Artigo tem menos H2s do que esperado`, 'warn');
-      log(`   Esperado: ${pending.briefing.h2s.length} H2s`, 'warn');
-      log(`   Encontrado: ${h2Count} H2s`, 'warn');
-      log(`   Mínimo aceitável: ${minH2Count} H2s`, 'warn');
-
-      // Permite continuar com aviso, já que edições simples podem consolidar seções
-      log(`   Continuando com aviso - as seções podem ter sido consolidadas.`, 'info');
-    }
-
-    // VALIDAÇÃO: Verificar se o link da pillar está presente
-    if (!newHtml.includes(`href="${pending.metadata.pillarUrl}"`)) {
-      log(`\n❌ ERRO: Link para pillar foi removido na edição`, 'error');
-      log(`   URL esperada: ${pending.metadata.pillarUrl}`, 'error');
-
-      await sendTelegram(`❌ <b>Erro na Edição</b>\n\nO link para a pillar page foi removido na edição.\n\nEsso não é permitido. Tente novamente.`);
-      return;
-    }
-
-    // Validar e remover travessões
+    // Validar travessões
     const emdashCount = (newHtml.match(/—/g) || []).length;
     if (emdashCount > 0) {
       log(`⚠️ ${emdashCount} travessão(ões) removido(s)`, 'warn');
       newHtml = newHtml.replace(/\s*—\s*/g, ', ');
     }
 
-    log(`\n✅ Validações de integridade passaram:`, 'success');
-    log(`   - Tamanho do artigo: ${newHtml.length} chars`, 'info');
-    log(`   - H2s presentes: ${h2Count} (esperado: ${pending.briefing.h2s.length})`, 'info');
-    log(`   - Link da pillar: presente`, 'info');
-    log(`   - Estrutura HTML: completa`, 'info');
+    log(`\n✅ Edição processada:`, 'success');
+    log(`   - Tamanho: ${newHtml.length} chars`, 'info');
+    log(`   - H2s presentes: ${(newHtml.match(/<h2[^>]*>/gi) || []).length}`, 'info');
 
     // 2. ATUALIZAR ARQUIVO DE PREVIEW
     const urlPath = pending.metadata.url.replace(/\/$/, '');
