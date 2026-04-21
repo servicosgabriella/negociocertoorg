@@ -21,8 +21,14 @@ const fs = require('fs');
 const path = require('path');
 const { exec, spawn, spawnSync } = require('child_process');
 const { promisify } = require('util');
+const Anthropic = require('@anthropic-ai/sdk');
 
 const execAsync = promisify(exec);
+
+// Inicializar cliente Anthropic
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 // ============================================================================
 // CONFIGURAÇÃO
@@ -683,21 +689,23 @@ async function searchSERP(keyword) {
 // CLAUDE CLI — HELPER
 // ============================================================================
 
-function callClaude(prompt) {
-  // Use npm exec to ensure claude is found
-  const result = spawnSync('npm', ['exec', '--', 'claude', '-p', '--allowedTools', ''], {
-    encoding: 'utf-8',
-    input: prompt,
-    maxBuffer: 20 * 1024 * 1024,
-    timeout: 300000,
-    env: { ...process.env, HOME: '/root' },
-    cwd: CONFIG.PROJECT_ROOT,
-  });
+async function callClaude(prompt) {
+  try {
+    const response = await anthropic.messages.create({
+      model: 'claude-opus-4-7',
+      max_tokens: 8000,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+    });
 
-  if (result.error) throw new Error(`Erro ao executar claude CLI: ${result.error.message}`);
-  if (result.status !== 0) throw new Error(`claude CLI falhou (exit ${result.status}): ${result.stderr}`);
-
-  return result.stdout.trim();
+    return response.content[0].type === 'text' ? response.content[0].text : '';
+  } catch (error) {
+    throw new Error(`Erro ao chamar Claude API: ${error.message}`);
+  }
 }
 
 // ============================================================================
@@ -787,7 +795,7 @@ Responda APENAS com JSON válido. Sem texto antes, sem texto depois, sem markdow
   try {
     log(`🏗️ @arquiteto-cluster executando sequência obrigatória (PASSOS 1-6)...`, 'info');
 
-    const text = callClaude(prompt);
+    const text = await callClaude(prompt);
 
     // Extrair JSON da resposta (agente pode produzir texto antes do JSON)
     const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -1008,7 +1016,7 @@ Regras do HTML:
   try {
     log(`✍️ @copywriter-cluster gerando artigo com agente + ${Object.keys({skillCopyNiche, skillTextoAncora, skillTabelaResponsiva}).filter(k => eval(k)).length} skills carregadas...`, 'info');
 
-    let raw = callClaude(prompt);
+    let raw = await callClaude(prompt);
 
     // 1. Remover blocos de código markdown
     raw = raw.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
@@ -1822,7 +1830,7 @@ DESCRIPTION: [nova description aqui]
 Depois coloque o HTML completo do artigo com a edição aplicada.`;
 
     log(`\n✍️ Processando edição do artigo...`, 'info');
-    let raw = callClaude(editPrompt);
+    let raw = await callClaude(editPrompt);
 
     // Remover markdown wrappers
     raw = raw.replace(/^```html\n?/i, '').replace(/\n?```$/i, '').trim();
