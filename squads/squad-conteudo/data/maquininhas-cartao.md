@@ -742,10 +742,10 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 
 ## Link de afiliado: 
 
-* Moderninha ProFit: https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=Q2hlY2tvdXQgUHJvRml0&affRedir=https%3A%2F%2Fcarrinho.pagbank.com.br%2F%3Fer%3D64c363fbb5eca1e5%26promo%3Dsupermax058profit%26aff_source%3Df787086478e94354b90efc861dfcf89b
-* Moderninha Pro 2: https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TW9kZXJuaW5oYSBQcm8gMiAtIExhbmRpbmcgUGFnZQ==&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-pro%3Faff_source%3Df787086478e94354b90efc861dfcf89b 
-* Minizinha Chip 3: https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TWluaXppbmhhIENoaXAgMyBMYW5kaW5nIFBhZ2U=&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fminizinha-chip-3%3Faff_source%3Df787086478e94354b90efc861dfcf89b
-* Moderninha Smart 2: https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TFAtbW9kZXJuaW5oYS1zbWFydDI=&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-smart-2%3Faff_source%3Df787086478e94354b90efc861dfcf89b
+* Moderninha ProFit: https://dub.sh/moderninhaprofit
+* Moderninha Pro 2: https://dub.sh/moderninhapro2
+* Minizinha Chip 3: https://dub.sh/minizinhachip3
+* Moderninha Smart 2: https://dub.sh/moderninhasmart2
 
 ## Fonte confiaveis para consultar: 
 
@@ -771,7 +771,7 @@ Internet ilimitada com chip 4G grátis e WiFi | 3 dias de bateria 3300 Mah 7.2V 
 
 
 ## Recebimento:
-Mercado pago conta com a opção de recebimento em até 1 hora após a venda, todos os dias, incluindo final de semana e feriados. 
+Mercado pago conta com a opção de recebimento em até 1 hora após a venda, todos os dias, incluindo final de semana e feriados. As taxas do mercado pago são iguais para todas as bandeiras
 
 ## Bandeiras: 
 
@@ -1037,7 +1037,7 @@ A infinitepay não tem diversos planos e tambem não trabalha com taxas promocio
 
 ## Link de Afiliado
 
-http://buy.infinitepay.io/smart?rid=fernandes-gabriella-73s
+https://dub.sh/infinitepaynegocio
 
 ## Fontes confiaveis 
 
@@ -1283,7 +1283,7 @@ O recebimento da SumUp tem duas opções, na hora ou em 1 dia útil
 
 ## Link de Afiliado
 
-https://join.sumup.com/Bd2nwiFS?share_id=tc3wwuUbd2nwifs
+https://dub.sh/sumupnegocio
 
 ## Fontes confiaveis 
 

@@ -36,7 +36,7 @@ indiponivel no momento (colocar o link do site mesmo)
 https://www.bling.com.br/
 
 ## link afiliado: 
-https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO
+https://dub.sh/bling
 
 ## logo
 
@@ -61,7 +61,7 @@ indiponivel no momento (colocar o link do site mesmo)
 https://www.kyteapp.com/
 
 ## link afiliado: 
-https://pos.auth.kyteapp.com?via=gabriella37
+https://dub.sh/kyteapp
 
 ## logo
 /Users/vitormuller/negociocertoorg/public/images/kyte logo.png
