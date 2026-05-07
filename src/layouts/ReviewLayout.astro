@@ -524,10 +524,8 @@ const itemListSchema =
 			}
 			.show-more-button:hover { background: #276fbd; color: #ffffff; }
 			.content-hidden { position: relative; }
-			/* Esconde cards 4, 5 e 6 — mostra apenas os 3 primeiros */
-			.content-hidden .contabilidade-container:nth-child(4),
-			.content-hidden .contabilidade-container:nth-child(5),
-			.content-hidden .contabilidade-container:nth-child(6) { display: none; }
+			/* Esconde cards do 4º em diante — mostra apenas os 3 primeiros */
+			.content-hidden .contabilidade-container:nth-child(n+4) { display: none; }
 
 			@media (max-width: 968px) {
 				.contabilidade-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
