@@ -13,7 +13,7 @@ utilize essas informações quando for fazer um artigo
 https://spedy.com.br/
 
 ## link afiliado: 
-https://spedy.com.br?ref=Muu1KqSP
+https://dub.sh/spedynegociocerto
 
 ## logo
 public/images/spedy nf logo png .png
@@ -26,7 +26,7 @@ public/images/spedy nf logo png .png
 https://www.bling.com.br/
 
 ## link afiliado: 
-https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO
+https://dub.sh/bling
 
 ## logo
 public/images/bling logo png .png

@@ -13,7 +13,7 @@ utilize essas informações quando for fazer um artigo
 https://gestaoclick.com.br/
 
 ## link afiliado: 
-gestao.click/1335524
+https://dub.sh/gestaoclick
 
 ## logo
 /Users/vitormuller/negociocertoorg/public/images/gestao click logo png .webp
