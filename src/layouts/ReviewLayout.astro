@@ -499,8 +499,9 @@ const itemListSchema =
 			.visit-button:hover { background: #2a9180; color: #fff; }
 			.button-caption { font-size: 10px; color: #6b7280; text-align: center; }
 			.fade-overlay {
-				position: relative;
-				height: 150px;
+				position: absolute;
+				left: 0; right: 0; bottom: 0;
+				height: 180px;
 				background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0.95) 60%, rgba(255,255,255,1) 100%);
 				display: flex;
 				align-items: center;
@@ -523,8 +524,7 @@ const itemListSchema =
 			}
 			.show-more-button:hover { background: #276fbd; color: #ffffff; }
 			.content-hidden { position: relative; }
-			/* Mostra apenas 2 primeiros cards — esconde Kyte em diante */
-			.content-hidden .contabilidade-container:nth-child(3),
+			/* Esconde cards 4, 5 e 6 — mostra apenas os 3 primeiros */
 			.content-hidden .contabilidade-container:nth-child(4),
 			.content-hidden .contabilidade-container:nth-child(5),
 			.content-hidden .contabilidade-container:nth-child(6) { display: none; }
@@ -588,7 +588,7 @@ const itemListSchema =
 				.info-list li { font-size: 14px; }
 				.button-column { width: 100%; }
 				.visit-button { width: 100%; box-sizing: border-box; }
-				.fade-overlay { height: 140px; }
+				.fade-overlay { height: 160px; }
 			}
 
 			#custom-toc-widget {
