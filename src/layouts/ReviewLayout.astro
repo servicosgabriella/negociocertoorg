@@ -523,13 +523,8 @@ const itemListSchema =
 				box-shadow: 0 4px 12px rgba(39,111,189,0.2);
 			}
 			.show-more-button:hover { background: #276fbd; color: #ffffff; }
-			.content-hidden { position: relative; overflow: hidden; }
-			/* Mostra apenas 2 cards completos + 3º card parcialmente */
-			.content-hidden .contabilidade-container:nth-child(3) {
-				opacity: 0.4;
-				max-height: 120px;
-				overflow: hidden;
-			}
+			.content-hidden { position: relative; }
+			/* Esconde cards 4, 5 e 6 — mostra apenas os 3 primeiros */
 			.content-hidden .contabilidade-container:nth-child(4),
 			.content-hidden .contabilidade-container:nth-child(5),
 			.content-hidden .contabilidade-container:nth-child(6) { display: none; }
