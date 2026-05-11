@@ -36,7 +36,7 @@ Mas a escolha certa depende do tamanho e do momento do negócio. Um MEI que cont
 
 Neste guia você vê o que cada sistema faz de verdade, quando um basta e quando faz sentido ter os dois trabalhando juntos.
 
-##O que é PDV e para que serve no dia a dia
+## O que é PDV e para que serve no dia a dia
 
 PDV é a sigla para Ponto de Venda.
 
@@ -48,7 +48,7 @@ O PDV cuida da frente do negócio. É por onde o dinheiro entra.
 
 Mas cuidar da entrada do dinheiro é só parte da operação. Entender o que acontece com ele depois é o que diferencia o ERP.
 
-##O que é ERP e por que vai além do caixa
+## O que é ERP e por que vai além do caixa
 
 ERP vem do inglês Enterprise Resource Planning: planejamento dos recursos da empresa.
 
@@ -60,7 +60,7 @@ O ERP cuida do que acontece por trás do balcão. É por onde o negócio se orga
 
 A diferença prática entre os dois sistemas fica mais clara quando você compara função a função.
 
-##Diferença entre ERP e PDV na prática
+## Diferença entre ERP e PDV na prática
 
 A forma mais direta de entender é comparar o que cada um faz no dia a dia:
 
@@ -127,7 +127,7 @@ O PDV é especialista em vendas. O ERP é generalista em gestão.
 
 Muitos ERPs incluem um módulo de PDV, mas a maioria dos PDVs não tem as funções de gestão do ERP. Isso importa na hora de escolher: saber o que o seu negócio realmente usa evita pagar por funcionalidades que ficam paradas.
 
-##PDV basta para o seu negócio?
+## PDV basta para o seu negócio?
 
 Para a maioria dos pequenos negócios, um PDV bem configurado resolve tudo o que precisa ser resolvido.
 
@@ -141,7 +141,7 @@ PDVs básicos custam a partir de **R$ 60 por mês**. Para emissão de NFC-e inte
 
 Quando o negócio cresce além de um ponto e uma planilha, o PDV começa a mostrar seus limites.
 
-##Quando faz sentido ter um ERP
+## Quando faz sentido ter um ERP
 
 O ERP começa a fazer sentido quando o negócio cresce além do que um caixa e uma planilha conseguem controlar. Três situações indicam que chegou a hora:
 
@@ -155,7 +155,7 @@ Negócios com **5 ou mais funcionários**, múltiplos fornecedores e faturamento
 
 E quando o negócio precisa dos dois ao mesmo tempo, a integração faz toda a diferença.
 
-##ERP e PDV podem trabalhar juntos?
+## ERP e PDV podem trabalhar juntos?
 
 Podem e frequentemente trabalham.
 
@@ -167,7 +167,7 @@ Mas nem sempre faz sentido ter tudo junto. Um negócio pequeno pode ter um PDV s
 
 Antes de decidir, vale entender quanto cada opção custa em 2026.
 
-##Quanto custa um PDV e um ERP em 2026
+## Quanto custa um PDV e um ERP em 2026
 
 Os preços variam, mas aqui está uma referência prática:
 
@@ -219,7 +219,7 @@ A conta que vale fazer: quanto custa o problema que o sistema resolve?
 
 Se você está perdendo estoque por falta de controle ou errando no financeiro todo mês, o custo do ERP paga em poucos meses. Se o negócio está começando e a operação é simples, o PDV resolve por muito menos.
 
-##Qual sistema escolher para MEI ou pequena empresa
+## Qual sistema escolher para MEI ou pequena empresa
 
 A resposta depende do tipo de negócio. Aqui vai um guia rápido:
 
