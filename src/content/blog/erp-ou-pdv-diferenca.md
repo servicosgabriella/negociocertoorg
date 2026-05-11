@@ -139,6 +139,8 @@ Você fecha o dia, imprime o relatório de vendas por forma de pagamento, vê o 
 
 PDVs básicos custam a partir de **R$ 60 por mês**. Para emissão de NFC-e integrada, o piso sobe para **R$ 80/mês**. Existe até opção gratuita com recursos limitados, como o Frente de Caixa da NF-e (ferramenta oficial da Sefaz).
 
+Se você ainda não escolheu o seu, veja a comparação dos [melhores sistemas de PDV](/melhores-sistemas-pdv/) com preços e funcionalidades atualizados para 2026.
+
 Quando o negócio cresce além de um ponto e uma planilha, o PDV começa a mostrar seus limites.
 
 ## Quando faz sentido ter um ERP
