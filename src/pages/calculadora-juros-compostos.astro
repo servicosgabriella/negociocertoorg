@@ -29,23 +29,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 <body>
   <Header />
 
-  <!-- HERO -->
-  <section class="calc-hero">
-    <div class="calc-hero-inner">
-      <nav aria-label="Breadcrumb" class="calc-breadcrumb">
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li><span aria-hidden="true">›</span></li>
-          <li><a href="/calculadoras/">Calculadoras</a></li>
-          <li><span aria-hidden="true">›</span></li>
-          <li><span class="current">Calculadora de Juros Compostos</span></li>
-        </ol>
-      </nav>
-      <h1 class="calc-hero-title">Calculadora de Juros Compostos</h1>
-      <p class="calc-hero-desc">Descubra quanto seu dinheiro pode render ao longo do tempo com o poder dos juros compostos.</p>
-    </div>
-  </section>
-
   <!-- FERRAMENTA -->
   <main class="calc-main">
     <div class="calc-tool">
@@ -600,34 +583,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
   <style is:global>
 
-    /* ===== HERO ===== */
-    .calc-hero {
-      background: linear-gradient(to right, #1a3a5c, #2d6a9f);
-      padding: 36px 0 44px;
-    }
-    .calc-hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .calc-breadcrumb ol {
-      list-style: none;
-      padding: 0; margin: 0 0 16px;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-      font-size: 13px;
-    }
-    .calc-breadcrumb li { display: flex; align-items: center; gap: 6px; margin: 0; }
-    .calc-breadcrumb a { color: #bfdbfe; text-decoration: none; }
-    .calc-breadcrumb a:hover { text-decoration: underline; }
-    .calc-breadcrumb span { color: #bfdbfe; }
-    .calc-breadcrumb span.current { color: #fff; font-weight: 500; }
-    .calc-hero-title {
-      color: #fff;
-      font-size: 2.25rem; font-weight: 800; line-height: 1.2;
-      margin: 0 0 10px;
-    }
-    .calc-hero-desc { color: #bfdbfe; font-size: 1.05rem; margin: 0; max-width: 600px; }
-
     /* ===== MAIN ===== */
     .calc-main {
       max-width: 1200px;
@@ -1081,7 +1036,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
-      .calc-hero-title { font-size: 1.6rem; }
       .calc-main { padding: 20px 16px 48px; }
       .calc-chart-total { font-size: 1.6rem; }
       .calc-chart-area { min-height: 180px; }
