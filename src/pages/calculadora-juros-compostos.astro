@@ -74,9 +74,12 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           </label>
           <div class="calc-input-wrap">
             <input id="inp-periodo" class="calc-input" type="text" inputmode="numeric" value="10" />
-            <div class="calc-input-toggle">
-              <button class="calc-itoggle active" data-group="periodo" data-value="years" type="button">Anos</button>
-              <button class="calc-itoggle" data-group="periodo" data-value="months" type="button">Meses</button>
+            <div class="calc-unit-sel-wrap">
+              <select id="sel-periodo" class="calc-unit-sel">
+                <option value="years">Anos</option>
+                <option value="months">Meses</option>
+              </select>
+              <span class="calc-unit-sel-arrow" aria-hidden="true">▼</span>
             </div>
           </div>
         </div>
@@ -91,9 +94,12 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           </label>
           <div class="calc-input-wrap">
             <input id="inp-taxa" class="calc-input" type="text" inputmode="decimal" value="12" />
-            <div class="calc-input-toggle">
-              <button class="calc-itoggle active" data-group="taxa" data-value="annual" type="button">Anual</button>
-              <button class="calc-itoggle" data-group="taxa" data-value="monthly" type="button">Mensal</button>
+            <div class="calc-unit-sel-wrap">
+              <select id="sel-taxa" class="calc-unit-sel">
+                <option value="annual">Anual</option>
+                <option value="monthly">Mensal</option>
+              </select>
+              <span class="calc-unit-sel-arrow" aria-hidden="true">▼</span>
             </div>
           </div>
         </div>
@@ -347,8 +353,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
     /* ---------- leitura dos inputs ---------- */
     function lerInputs() {
-      var taxaFreq    = (document.querySelector('.calc-itoggle[data-group="taxa"].active') || { dataset: {} }).dataset.value || 'annual';
-      var periodoUnit = (document.querySelector('.calc-itoggle[data-group="periodo"].active') || { dataset: {} }).dataset.value || 'years';
+      var taxaFreq    = (document.getElementById('sel-taxa') || { value: 'annual' }).value;
+      var periodoUnit = (document.getElementById('sel-periodo') || { value: 'years' }).value;
       var periodoVal  = Math.max(1, Math.round(parseVal(document.getElementById('inp-periodo').value)));
       var taxaVal     = parseVal(document.getElementById('inp-taxa').value);
 
@@ -582,15 +588,10 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         });
       });
 
-      document.querySelectorAll('.calc-itoggle').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var group = btn.dataset.group;
-          document.querySelectorAll('.calc-itoggle[data-group="' + group + '"]').forEach(function (b) {
-            b.classList.remove('active');
-          });
-          btn.classList.add('active');
-          atualizar();
-        });
+      ['sel-periodo', 'sel-taxa'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('change', atualizar);
       });
     });
 
@@ -835,33 +836,41 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       pointer-events: none;
     }
 
-    /* Inline input toggle (Anos/Meses, Anual/Mensal) */
-    .calc-input-toggle {
+    /* Seletor inline dentro do input (Anos/Meses, Anual/Mensal) */
+    .calc-unit-sel-wrap {
+      position: relative;
       display: flex;
-      height: 42px;
+      align-items: center;
       flex-shrink: 0;
       border-left: 1px solid #e5e7eb;
-    }
-    .calc-itoggle {
+      background: #f9fafb;
       height: 42px;
-      padding: 0 10px;
+    }
+    .calc-unit-sel {
+      appearance: none;
+      -webkit-appearance: none;
       border: none;
-      border-right: 1px solid #e5e7eb;
-      background: #fff;
-      font-size: 12px;
+      outline: none;
+      background: transparent;
+      padding: 0 28px 0 10px;
+      height: 42px;
+      font-size: 13px;
       font-weight: 600;
-      color: #6b7280;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
+      color: #374151;
       font-family: Arial, sans-serif;
-      white-space: nowrap;
+      cursor: pointer;
+      min-width: 72px;
     }
-    .calc-itoggle:last-child { border-right: none; }
-    .calc-itoggle.active {
-      background: #1a3a5c;
-      color: #fff;
+    .calc-unit-sel:focus { color: #1a3a5c; }
+    .calc-unit-sel-arrow {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 9px;
+      color: #6b7280;
+      pointer-events: none;
     }
-    .calc-itoggle:not(.active):hover { background: #f3f4f6; }
 
     /* Toggle buttons */
     .calc-toggle-group {
