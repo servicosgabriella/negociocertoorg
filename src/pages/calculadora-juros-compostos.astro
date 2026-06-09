@@ -351,6 +351,52 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       }
     }
 
+    /* ---------- tooltip externo ---------- */
+    function customTooltip(context) {
+      var chart   = context.chart;
+      var tooltip = context.tooltip;
+
+      var el = document.getElementById('calc-tooltip');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'calc-tooltip';
+        chart.canvas.parentNode.style.position = 'relative';
+        chart.canvas.parentNode.appendChild(el);
+      }
+
+      if (tooltip.opacity === 0) {
+        el.style.opacity = '0';
+        return;
+      }
+
+      var pts       = tooltip.dataPoints || [];
+      var principal = 0, total = 0;
+      pts.forEach(function(p) {
+        if (p.datasetIndex === 0) principal = p.parsed.y;
+        if (p.datasetIndex === 1) total     = p.parsed.y;
+      });
+      var juros = total - principal;
+      var label = tooltip.title && tooltip.title[0] ? tooltip.title[0] : '';
+      var titulo = label === 'Agora' ? 'Agora' : 'Ano ' + label;
+
+      el.innerHTML =
+        '<div class="ct-title">' + titulo + '</div>' +
+        '<div class="ct-row ct-bold"><span>Saldo total</span><span>' + BRL.format(total) + '</span></div>' +
+        '<div class="ct-row"><span><span class="ct-dash" style="background:#2d6a9f"></span>Principal total</span><span>' + BRL.format(principal) + '</span></div>' +
+        '<div class="ct-row"><span><span class="ct-dash" style="background:#1a3a5c"></span>Juros acumulados</span><span>' + BRL.format(juros) + '</span></div>';
+
+      // Posição relativa ao canvas
+      var caret   = tooltip.caretX;
+      var canvasW = chart.canvas.offsetWidth;
+      var tipW    = 230;
+      var left    = caret + 12;
+      if (left + tipW > canvasW) left = caret - tipW - 12;
+
+      el.style.opacity    = '1';
+      el.style.left       = left + 'px';
+      el.style.top        = (tooltip.caretY - 20) + 'px';
+    }
+
     /* ---------- inicializa gráfico ---------- */
     function initChart() {
       var canvas = document.getElementById('grafico');
@@ -369,6 +415,10 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
               borderColor: 'transparent',
               borderWidth: 0,
               pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#2d6a9f',
+              pointHoverBorderColor: '#fff',
+              pointHoverBorderWidth: 2,
               tension: 0.2,
               order: 2,
             },
@@ -380,6 +430,10 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
               borderColor: '#1a3a5c',
               borderWidth: 2.5,
               pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '#1a3a5c',
+              pointHoverBorderColor: '#fff',
+              pointHoverBorderWidth: 2,
               tension: 0.2,
               order: 1,
             },
@@ -392,17 +446,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#fff',
-              borderColor: '#e5e7eb',
-              borderWidth: 1,
-              titleColor: '#111827',
-              bodyColor: '#374151',
-              padding: 12,
-              callbacks: {
-                label: function (ctx) {
-                  return ' ' + ctx.dataset.label + ': ' + BRL.format(ctx.parsed.y);
-                },
-              },
+              enabled: false,
+              external: customTooltip,
             },
           },
           scales: {
@@ -668,8 +713,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       padding: 0 12px;
       height: 42px;
       font-size: 15px;
-      font-weight: 600;
-      color: #111827;
+      font-weight: 400;
+      color: #374151;
       font-family: Arial, sans-serif;
       min-width: 0;
     }
@@ -696,8 +741,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       padding: 0 36px 0 12px;
       height: 42px;
       font-size: 15px;
-      font-weight: 600;
-      color: #111827;
+      font-weight: 400;
+      color: #374151;
       font-family: Arial, sans-serif;
       cursor: pointer;
     }
@@ -890,6 +935,62 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       color: #4b5563;
     }
     .calc-formula-vars strong { color: #1a3a5c; }
+
+    /* ===== TOOLTIP EXTERNO ===== */
+    #calc-tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      padding: 12px 14px;
+      min-width: 210px;
+      z-index: 20;
+      font-family: Arial, sans-serif;
+    }
+    .ct-title {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .ct-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: #374151;
+      padding: 3px 0;
+    }
+    .ct-row span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+    .ct-row span:last-child {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .ct-bold {
+      font-weight: 700;
+      color: #111827;
+      font-size: 14px;
+      border-bottom: 1px solid #f3f4f6;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+    .ct-dash {
+      display: inline-block;
+      width: 14px;
+      height: 2.5px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
