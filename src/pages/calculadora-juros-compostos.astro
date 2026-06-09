@@ -31,6 +31,19 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
   <!-- FERRAMENTA -->
   <main class="calc-main">
+
+    <nav aria-label="Breadcrumb" class="calc-breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><a href="/calculadoras/">Calculadoras</a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><span class="current">Calculadora de Juros Compostos</span></li>
+      </ol>
+    </nav>
+    <h1 class="calc-page-title">Calculadora de Juros Compostos</h1>
+    <p class="calc-page-desc">Descubra quanto seu dinheiro pode render ao longo do tempo com o poder dos juros compostos.</p>
+
     <div class="calc-tool">
 
       <!-- PAINEL ESQUERDO: FORM -->
@@ -582,6 +595,31 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
   </script>
 
   <style is:global>
+
+    /* ===== BREADCRUMB + TÍTULO ===== */
+    .calc-breadcrumb ol {
+      list-style: none;
+      padding: 0; margin: 0 0 10px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+      font-size: 13px;
+    }
+    .calc-breadcrumb li { display: flex; align-items: center; gap: 6px; margin: 0; }
+    .calc-breadcrumb a { color: #2d6a9f; text-decoration: none; }
+    .calc-breadcrumb a:hover { text-decoration: underline; }
+    .calc-breadcrumb span { color: #9ca3af; }
+    .calc-breadcrumb span.current { color: #374151; font-weight: 500; }
+    .calc-page-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin: 0 0 8px;
+    }
+    .calc-page-desc {
+      font-size: 1rem;
+      color: #6b7280;
+      margin: 0 0 24px;
+    }
 
     /* ===== MAIN ===== */
     .calc-main {
