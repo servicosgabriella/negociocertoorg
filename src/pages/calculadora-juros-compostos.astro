@@ -188,24 +188,217 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       </div>
     </div>
 
-    <!-- EXPLICAÇÃO -->
-    <div class="calc-info">
-      <div class="calc-info-text">
-        <h2>O que são juros compostos?</h2>
-        <p>Juros compostos são calculados sobre o capital inicial somado aos juros já acumulados — é o chamado <strong>"juros sobre juros"</strong>. Quanto mais tempo o dinheiro fica investido, mais rápido ele cresce de forma exponencial.</p>
-        <h3>Fórmula utilizada</h3>
-        <div class="calc-formula-block">
-          <code>M = P × (1 + i/n)<sup>n×t</sup> + C × [(1 + i/n)<sup>n×t</sup> − 1] / (i/n)</code>
-        </div>
-        <div class="calc-formula-vars">
-          <div><strong>M</strong> — Montante final</div>
-          <div><strong>P</strong> — Capital inicial</div>
-          <div><strong>i</strong> — Taxa de juros anual</div>
-          <div><strong>n</strong> — Frequência de capitalização/ano</div>
-          <div><strong>t</strong> — Prazo em anos</div>
-          <div><strong>C</strong> — Aporte periódico</div>
+    <!-- CONTEÚDO EDUCATIVO -->
+    <div class="calc-content">
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>O que são juros compostos?</h2>
+          <p>Juros compostos são aqueles calculados sobre o capital inicial <strong>mais os juros já acumulados</strong> nos períodos anteriores. É o famoso "juros sobre juros" — cada ciclo de rendimento se incorpora ao saldo e passa a render também.</p>
+          <p>Na prática: se você investe R$ 1.000 a 1% ao mês, no primeiro mês ganha R$ 10. No segundo mês, você não ganha 1% sobre R$ 1.000 — ganha 1% sobre R$ 1.010. No terceiro mês, sobre R$ 1.020,10. E assim por diante, em progressão geométrica.</p>
+          <p>É por isso que Albert Einstein (supostamente) teria chamado os juros compostos de <strong>"a oitava maravilha do mundo"</strong> — quem entende, ganha. Quem não entende, paga.</p>
+
+          <h3>Fórmula utilizada nesta calculadora</h3>
+          <div class="calc-formula-block">
+            <code>M = P × (1 + i/n)<sup>n×t</sup> + C × [(1 + i/n)<sup>n×t</sup> − 1] / (i/n)</code>
+          </div>
+          <div class="calc-formula-vars">
+            <div><strong>M</strong> — Montante final</div>
+            <div><strong>P</strong> — Capital inicial (depósito inicial)</div>
+            <div><strong>i</strong> — Taxa de juros anual</div>
+            <div><strong>n</strong> — Frequência de capitalização por ano</div>
+            <div><strong>t</strong> — Prazo em anos</div>
+            <div><strong>C</strong> — Aporte periódico</div>
+          </div>
         </div>
       </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Juros compostos vs. juros simples: qual a diferença real?</h2>
+          <p>No regime de <strong>juros simples</strong>, os juros incidem sempre sobre o capital inicial. Se você emprestou R$ 1.000 a 10% ao ano, recebe R$ 100 por ano — sempre o mesmo valor, independente do tempo.</p>
+          <p>Nos <strong>juros compostos</strong>, os juros de cada período são somados ao saldo antes do próximo cálculo. O rendimento cresce sobre si mesmo.</p>
+          <p>Veja a diferença de R$ 10.000 investidos a 10% ao ano por 20 anos:</p>
+
+          <div class="calc-compare-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Prazo</th>
+                  <th>Juros Simples</th>
+                  <th>Juros Compostos</th>
+                  <th>Diferença</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>5 anos</td><td>R$ 15.000</td><td>R$ 16.105</td><td>+R$ 1.105</td></tr>
+                <tr><td>10 anos</td><td>R$ 20.000</td><td>R$ 25.937</td><td>+R$ 5.937</td></tr>
+                <tr><td>20 anos</td><td>R$ 30.000</td><td>R$ 67.275</td><td>+R$ 37.275</td></tr>
+                <tr class="highlight"><td>30 anos</td><td>R$ 40.000</td><td>R$ 174.494</td><td>+R$ 134.494</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Perceba: em 30 anos, os juros compostos rendem <strong>4,3 vezes mais</strong> que os simples. Essa diferença aumenta exponencialmente com o tempo — é o efeito bola de neve.</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Por que a frequência de capitalização muda tudo?</h2>
+          <p>A mesma taxa anual de 12% pode render valores diferentes dependendo de quantas vezes os juros são calculados por ano. Quanto mais frequente a capitalização, maior o rendimento real — pois os juros passam a render mais cedo.</p>
+          <p>Veja o impacto para R$ 10.000 com taxa de 12% ao ano por 10 anos:</p>
+
+          <div class="calc-compare-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Capitalização</th>
+                  <th>Montante Final</th>
+                  <th>Taxa Efetiva Anual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Anual</td><td>R$ 31.058</td><td>12,00%</td></tr>
+                <tr><td>Semestral</td><td>R$ 32.071</td><td>12,36%</td></tr>
+                <tr><td>Trimestral</td><td>R$ 32.620</td><td>12,55%</td></tr>
+                <tr><td>Mensal</td><td>R$ 33.004</td><td>12,68%</td></tr>
+                <tr class="highlight"><td>Diária</td><td>R$ 33.194</td><td>12,75%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>A maioria dos investimentos brasileiros — CDB, Tesouro Selic, fundos de renda fixa — usa <strong>capitalização diária ou mensal</strong>. Por isso, ao simular seus investimentos reais, prefira selecionar "Mensal" ou "Diária" nesta calculadora.</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Quanto rende R$ 10.000 investidos por 10 anos?</h2>
+          <p>A taxa de retorno é o fator com maior impacto no resultado final. Veja como o mesmo capital inicial se comporta com diferentes taxas, mantendo aportes mensais de R$ 500 por 10 anos (capitalização mensal):</p>
+
+          <div class="calc-compare-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Taxa Anual</th>
+                  <th>Referência</th>
+                  <th>Total Investido</th>
+                  <th>Montante Final</th>
+                  <th>Juros Ganhos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>6% a.a.</td><td>Poupança (~atual)</td><td>R$ 70.000</td><td>R$ 95.416</td><td>R$ 25.416</td></tr>
+                <tr><td>10% a.a.</td><td>CDB conservador</td><td>R$ 70.000</td><td>R$ 116.170</td><td>R$ 46.170</td></tr>
+                <tr><td>12% a.a.</td><td>CDB/Tesouro bom</td><td>R$ 70.000</td><td>R$ 130.287</td><td>R$ 60.287</td></tr>
+                <tr class="highlight"><td>15% a.a.</td><td>Renda variável*</td><td>R$ 70.000</td><td>R$ 162.173</td><td>R$ 92.173</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="calc-table-note">* Retornos em renda variável não são garantidos. A taxa é usada apenas para fins de comparação.</p>
+          <p>A diferença entre 6% e 12% ao ano não é o dobro do resultado — é <strong>quase três vezes mais juros</strong>. Cada ponto percentual a mais na taxa tem um impacto enorme no longo prazo.</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>O poder dos aportes mensais: por que consistência bate capital</h2>
+          <p>Muita gente acha que precisa de um grande capital inicial para investir. Os números mostram o contrário — <strong>aportes mensais regulares frequentemente superam uma grande quantia investida de uma vez</strong>.</p>
+          <p>Comparação com taxa de 12% ao ano por 20 anos:</p>
+
+          <div class="calc-compare-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Estratégia</th>
+                  <th>Investimento Inicial</th>
+                  <th>Aporte Mensal</th>
+                  <th>Total Investido</th>
+                  <th>Montante Final</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Grande aporte inicial</td><td>R$ 50.000</td><td>R$ 0</td><td>R$ 50.000</td><td>R$ 482.314</td></tr>
+                <tr><td>Só aportes mensais</td><td>R$ 0</td><td>R$ 500</td><td>R$ 120.000</td><td>R$ 494.636</td></tr>
+                <tr class="highlight"><td>Combinado</td><td>R$ 10.000</td><td>R$ 300</td><td>R$ 82.000</td><td>R$ 386.136</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Quem investe R$ 500/mês do zero chega ao mesmo patamar que quem colocou R$ 50.000 de uma vez — e investiu R$ 70.000 a mais no total. O segredo: <strong>disciplina e tempo</strong>, não o capital inicial.</p>
+          <p>Além disso, aportes mensais criam o hábito de poupar e protegem contra o risco de investir na hora errada (estratégia de custo médio).</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Juros compostos nas dívidas: o lado perigoso</h2>
+          <p>O mesmo mecanismo que faz seu investimento crescer exponencialmente é o que faz sua dívida sair do controle. E no crédito brasileiro, as taxas são brutais.</p>
+          <p>Veja como R$ 5.000 de dívida no cartão cresce se você pagar só o mínimo:</p>
+
+          <div class="calc-compare-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Modalidade de Crédito</th>
+                  <th>Taxa Mensal Média</th>
+                  <th>Dívida em 1 ano</th>
+                  <th>Dívida em 2 anos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Crédito pessoal banco</td><td>3,5% a.m.</td><td>R$ 7.228</td><td>R$ 10.489</td></tr>
+                <tr><td>Cheque especial</td><td>7,5% a.m.</td><td>R$ 12.041</td><td>R$ 28.993</td></tr>
+                <tr class="highlight"><td>Cartão de crédito rotativo</td><td>14,5% a.m.</td><td>R$ 27.474</td><td>R$ 150.885</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Uma dívida de R$ 5.000 no rotativo do cartão pode se tornar <strong>R$ 150.885 em dois anos</strong> — um crescimento de 30 vezes. Não é erro de digitação.</p>
+          <p>Por isso, a regra financeira mais importante é: <strong>quite dívidas com juros altos antes de investir</strong>. Não existe investimento no Brasil que pague 14,5% ao mês. Nenhum.</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Como usar esta calculadora para planejar seus investimentos</h2>
+
+          <h3>Para simular um CDB ou Tesouro Selic</h3>
+          <p>Use capitalização <strong>Mensal</strong> (ou Diária para o Tesouro Selic). A taxa Selic atual está em torno de 13,75% a.a. — mas CDBs de bancos menores costumam oferecer 110–130% do CDI, o que equivale a aproximadamente 14–18% a.a. Coloque sua taxa estimada, defina o prazo e veja o resultado.</p>
+
+          <h3>Para simular a poupança</h3>
+          <p>A poupança rende 70% da Selic quando a taxa está acima de 8,5% a.a. Com Selic a 13,75%, a poupança rende cerca de 9,6% a.a. Use capitalização <strong>Mensal</strong> e essa taxa para comparar com outras alternativas.</p>
+
+          <h3>Para simular renda variável (ações, FIIs)</h3>
+          <p>O histórico do Ibovespa médio fica em torno de 13–15% a.a. em reais no longo prazo. Mas lembre: renda variável tem oscilações — o resultado real pode ser muito maior ou menor. Use a simulação como referência de longo prazo, não como garantia.</p>
+
+          <h3>Para planejar a aposentadoria</h3>
+          <p>Defina quanto você quer ter ao se aposentar, calcule quantos anos faltam, e use a calculadora ao contrário: ajuste o aporte mensal até o montante final chegar no valor desejado. Use uma taxa conservadora (8–10% a.a.) para não depender de cenários otimistas.</p>
+        </div>
+      </div>
+
+      <div class="calc-info">
+        <div class="calc-info-text">
+          <h2>Perguntas frequentes sobre juros compostos</h2>
+
+          <h3>Qual a diferença entre taxa nominal e taxa efetiva?</h3>
+          <p>A <strong>taxa nominal</strong> é a declarada no contrato — por exemplo, "12% ao ano". A <strong>taxa efetiva</strong> considera a frequência de capitalização. Com capitalização mensal, 12% a.a. nominal equivale a 12,68% a.a. efetiva. Esta calculadora trabalha com taxa nominal anual.</p>
+
+          <h3>O imposto de renda afeta o rendimento final?</h3>
+          <p>Sim. Em investimentos como CDB e Tesouro Direto, o IR incide sobre os juros com alíquotas regressivas: 22,5% até 180 dias, 20% até 360 dias, 17,5% até 720 dias, e 15% acima de 720 dias. A calculadora mostra o rendimento bruto — para o líquido, desconte o IR dos juros calculados.</p>
+
+          <h3>Inflação reduz o rendimento real?</h3>
+          <p>Sim. Se sua aplicação rende 12% a.a. e a inflação está em 5% a.a., seu ganho real é de aproximadamente 6,7% a.a. (não simplesmente 7%). A fórmula correta é: taxa real = (1 + taxa nominal) / (1 + inflação) − 1. Para simulações de longo prazo, use a taxa real para ter uma visão mais conservadora e realista.</p>
+
+          <h3>Aportes no início ou no final do período rendem diferente?</h3>
+          <p>Sim. Aportes feitos no <strong>início</strong> de cada período (antecipado) rendem mais que aportes feitos no <strong>final</strong> (postecipado), pois ficam mais tempo aplicados. Esta calculadora considera aportes no início de cada período — o que é mais favorável e reflete melhor investimentos com débito automático configurado no começo do mês.</p>
+
+          <h3>Quanto devo poupar por mês para me aposentar com R$ 1 milhão?</h3>
+          <p>Depende de quanto tempo você tem. Com taxa de 10% a.a. e capitalização mensal: se faltam 30 anos, basta R$ 442/mês. Se faltam 20 anos, são R$ 1.317/mês. Se faltam 10 anos, R$ 4.882/mês. O tempo é o maior aliado — cada ano que você posterga exige um esforço mensal muito maior.</p>
+        </div>
+      </div>
+
     </div>
 
   </main>
@@ -890,12 +1083,63 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     }
     .calc-table tr.highlight td:first-child { color: #1a3a5c; }
 
+    /* ===== CONTENT WRAPPER ===== */
+    .calc-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
     /* ===== INFO ===== */
     .calc-info {
       background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       padding: 32px;
+    }
+
+    /* ===== COMPARE TABLE ===== */
+    .calc-compare-table {
+      overflow-x: auto;
+      margin: 20px 0 16px;
+    }
+    .calc-compare-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .calc-compare-table th {
+      background: #f9fafb;
+      padding: 10px 16px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .calc-compare-table th:first-child { text-align: left; }
+    .calc-compare-table td {
+      padding: 11px 16px;
+      text-align: right;
+      color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .calc-compare-table td:first-child { text-align: left; font-weight: 500; }
+    .calc-compare-table tbody tr:hover { background: #f9fafb; }
+    .calc-compare-table tr.highlight td {
+      background: #eff6ff;
+      color: #1a3a5c;
+      font-weight: 700;
+    }
+    .calc-table-note {
+      font-size: 12px !important;
+      color: #9ca3af !important;
+      margin-top: 0 !important;
     }
     .calc-info-text h2 {
       font-size: 1.2rem;
