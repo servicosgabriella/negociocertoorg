@@ -191,67 +191,104 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     <!-- CONTEÚDO EDUCATIVO -->
     <article class="calc-article">
 
-      <h2>O que são juros compostos?</h2>
-      <p>Juros compostos são aqueles calculados sobre o capital inicial <strong>mais os juros já acumulados</strong> nos períodos anteriores. É o famoso "juros sobre juros" — cada ciclo de rendimento se incorpora ao saldo e passa a render também no próximo período.</p>
-      <p>Na prática: se você investe R$ 1.000 a 1% ao mês, no primeiro mês ganha R$ 10. No segundo mês, você não ganha 1% sobre R$ 1.000 — ganha 1% sobre R$ 1.010. No terceiro mês, sobre R$ 1.020,10. E assim por diante, em progressão geométrica.</p>
-      <p>É por isso que Albert Einstein (supostamente) teria chamado os juros compostos de <strong>"a oitava maravilha do mundo"</strong>: quem entende, ganha. Quem não entende, paga.</p>
-
-      <h3>Fórmula utilizada nesta calculadora</h3>
+      <h2>Como calcular juros compostos: fórmula e exemplo passo a passo</h2>
+      <p>Juros compostos são aqueles calculados sobre o capital inicial <strong>mais os juros já acumulados</strong> nos períodos anteriores — o famoso "juros sobre juros". A fórmula completa, que esta calculadora usa, é:</p>
       <div class="calc-formula-block">
         <code>M = P × (1 + i/n)<sup>n×t</sup> + C × [(1 + i/n)<sup>n×t</sup> − 1] / (i/n)</code>
       </div>
       <div class="calc-formula-vars">
         <div><strong>M</strong> — Montante final</div>
-        <div><strong>P</strong> — Capital inicial (depósito inicial)</div>
+        <div><strong>P</strong> — Capital inicial</div>
         <div><strong>i</strong> — Taxa de juros anual</div>
         <div><strong>n</strong> — Frequência de capitalização por ano</div>
         <div><strong>t</strong> — Prazo em anos</div>
         <div><strong>C</strong> — Aporte periódico</div>
       </div>
+      <p>Sem aportes mensais, a fórmula simplifica para <strong>M = P × (1 + i)<sup>t</sup></strong> — e é com ela que vamos fazer um exemplo manual.</p>
+      <p>Suponha que você investe R$ 5.000 a uma taxa de 10% ao ano por 3 anos, sem aportes adicionais e com capitalização anual:</p>
+      <ul>
+        <li><strong>Ano 1:</strong> R$ 5.000 × 1,10 = R$ 5.500</li>
+        <li><strong>Ano 2:</strong> R$ 5.500 × 1,10 = R$ 6.050</li>
+        <li><strong>Ano 3:</strong> R$ 6.050 × 1,10 = R$ 6.655</li>
+      </ul>
+      <p>Perceba que os juros crescem a cada ano: R$ 500 no primeiro, R$ 550 no segundo, R$ 605 no terceiro. Isso é o efeito composto em ação — cada ano você ganha juros sobre um saldo maior do que o anterior. Com capitalização mensal, a mesma lógica se aplica mês a mês, e o resultado final é ligeiramente maior.</p>
 
-      <h2>Juros compostos vs. juros simples: qual a diferença real?</h2>
-      <p>No regime de <strong>juros simples</strong>, os juros incidem sempre sobre o capital inicial. Se você investiu R$ 10.000 a 10% ao ano, ganha R$ 1.000 por ano — sempre o mesmo valor, independente do tempo. Em 10 anos, termina com R$ 20.000.</p>
-      <p>Nos <strong>juros compostos</strong>, os juros de cada período são somados ao saldo antes do próximo cálculo. Esses mesmos R$ 10.000 a 10% ao ano em regime composto viram R$ 25.937 em 10 anos — quase R$ 6.000 a mais. Em 30 anos, a diferença é brutal: juros simples dariam R$ 40.000, enquanto os compostos chegam a R$ 174.494.</p>
-      <p>A diferença não é linear — ela explode com o tempo. É exatamente esse efeito exponencial que torna o longo prazo tão poderoso nos investimentos (e tão perigoso nas dívidas).</p>
+      <h2>Quanto rende R$ 10.000 em juros compostos? Simulações com taxas reais</h2>
+      <p>Nada ilustra melhor o poder dos juros compostos do que ver números concretos. Veja quanto R$ 10.000 investidos hoje viram ao longo do tempo com aportes mensais de R$ 300, em diferentes taxas de retorno:</p>
+      <p><strong>A 6% ao ano</strong> (referência da poupança): em 10 anos você acumula cerca de R$ 82.000. Em 20 anos, R$ 193.000. Em 30 anos, R$ 390.000. Você colocou R$ 118.000 do próprio bolso — o restante são juros.</p>
+      <p><strong>A 10% ao ano</strong> (CDB conservador, próximo ao CDI): em 10 anos você tem R$ 98.000. Em 20 anos, R$ 282.000. Em 30 anos, R$ 726.000 — quase R$ 600.000 de juros sobre R$ 118.000 investidos.</p>
+      <p><strong>A 12% ao ano</strong> (CDB de banco médio ou Tesouro IPCA+ bom): em 10 anos você chega a R$ 110.000. Em 20 anos, R$ 360.000. Em 30 anos, quase R$ 1.050.000 — o primeiro milhão, com aporte de R$ 300 por mês.</p>
+      <p>A diferença entre 6% e 12% ao ano não é o dobro do resultado — em 30 anos é quase <strong>três vezes mais</strong>. Cada ponto percentual a mais na taxa tem impacto exponencial no longo prazo. Por isso vale tanto pesquisar e comparar antes de escolher onde investir.</p>
 
-      <h2>Por que a frequência de capitalização importa?</h2>
-      <p>A mesma taxa anual de 12% pode render valores diferentes dependendo de quantas vezes os juros são calculados por ano. Quanto mais frequente a capitalização, mais cedo os juros passam a render — e maior o montante final.</p>
-      <p>Com R$ 10.000 a 12% ao ano por 10 anos, a capitalização anual resulta em R$ 31.058. A mensal chega a R$ 33.004, e a diária a R$ 33.194. A diferença parece pequena em 10 anos, mas cresce muito em prazos maiores.</p>
-      <p>A maioria dos investimentos brasileiros — CDB, Tesouro Selic, fundos de renda fixa — usa capitalização diária ou mensal. Por isso, ao simular seus investimentos reais nesta calculadora, prefira selecionar "Mensal" ou "Diária".</p>
+      <h2>Juros compostos vs juros simples: por que a diferença explode no longo prazo</h2>
+      <p>No regime de <strong>juros simples</strong>, os juros incidem sempre sobre o capital original. Se você investiu R$ 10.000 a 10% ao ano, recebe R$ 1.000 por ano — o mesmo valor, todo ano, até o final. Em 20 anos: R$ 30.000.</p>
+      <p>Nos <strong>juros compostos</strong>, os juros de cada período são incorporados ao saldo e passam a render também. Os mesmos R$ 10.000 a 10% ao ano em regime composto chegam a R$ 67.275 em 20 anos — mais do que o dobro.</p>
+      <p>Em 5 anos a diferença é pequena: R$ 15.000 vs R$ 16.105. Em 10 anos já é significativa: R$ 20.000 vs R$ 25.937. Em 30 anos é brutal: R$ 40.000 vs R$ 174.494. A distância cresce de forma exponencial — quanto mais tempo, mais o regime composto se distancia do simples.</p>
+      <p>Na prática, quase todos os investimentos financeiros — CDB, Tesouro Direto, fundos, poupança — operam em regime composto. Os juros simples aparecem principalmente em cálculos comerciais básicos e algumas modalidades de empréstimo de curto prazo.</p>
 
-      <h2>O efeito do tempo: por que começar cedo muda tudo</h2>
-      <p>O tempo é a variável mais poderosa nos juros compostos — mais do que a taxa ou o valor dos aportes. Isso porque os juros compostos crescem exponencialmente, e a maior parte do crescimento acontece nos anos finais.</p>
-      <p>Imagine duas pessoas investindo R$ 300 por mês a 10% ao ano. Ana começa aos 25 anos e para aos 35 — investe por 10 anos e não coloca mais nada. Bruno começa aos 35 e investe até os 65 — 30 anos de aportes. Aos 65 anos, Ana tem mais dinheiro do que Bruno, mesmo tendo investido apenas 1/3 do tempo.</p>
-      <p>Isso porque o dinheiro de Ana ficou investido por 40 anos, enquanto o de Bruno ficou, em média, por 15 anos. Os juros compostos transformam tempo em dinheiro de forma desproporcional.</p>
+      <h2>Como a frequência de capitalização afeta o seu rendimento final</h2>
+      <p>A mesma taxa anual de 12% pode resultar em montantes diferentes dependendo de quantas vezes os juros são apurados por ano. Isso acontece porque, quanto mais frequente a capitalização, mais cedo os juros passam a render sobre si mesmos.</p>
+      <p>Com R$ 10.000 a 12% ao ano por 10 anos: capitalização anual resulta em R$ 31.058. Semestral, R$ 32.071. Trimestral, R$ 32.620. Mensal, R$ 33.004. Diária, R$ 33.194. A diferença entre anual e diária parece pequena em 10 anos, mas em 30 anos representa dezenas de milhares de reais.</p>
+      <p>No mercado brasileiro, o Tesouro Selic e os fundos de renda fixa capitalizam <strong>diariamente</strong>. CDBs, LCIs e LCAs geralmente capitalizam de forma diária também, mas pagam na data de vencimento. A poupança capitaliza <strong>mensalmente</strong>, na data de aniversário da aplicação. Para simular qualquer um desses produtos aqui, selecione a frequência correspondente.</p>
 
-      <h2>O poder dos aportes mensais regulares</h2>
-      <p>Muita gente acha que precisa de um grande capital inicial para investir. Os juros compostos mostram o contrário: <strong>aportes mensais regulares frequentemente superam uma grande quantia investida de uma vez</strong>.</p>
-      <p>Quem investe R$ 500 por mês durante 20 anos a 12% ao ano chega a quase R$ 500.000 — tendo colocado apenas R$ 120.000 do próprio bolso. Quem investiu R$ 50.000 de uma vez no mesmo prazo e taxa chega a um valor parecido, mas colocou menos dinheiro no total.</p>
-      <p>Além disso, aportes mensais têm outro benefício: criam o hábito de poupar e eliminam o risco de "entrar na hora errada". Em renda variável, isso se chama estratégia de custo médio — você compra mais cotas quando o preço está baixo e menos quando está alto, sem precisar tentar acertar o melhor momento.</p>
+      <h2>Por que começar a investir 10 anos antes pode dobrar seu patrimônio</h2>
+      <p>O tempo é a variável mais poderosa nos juros compostos — mais do que a taxa de retorno ou o valor dos aportes. A razão é simples: o crescimento exponencial precisa de tempo para se manifestar. A maior parte do rendimento acontece nos últimos anos do período, não nos primeiros.</p>
+      <p>Considere duas pessoas, ambas investindo R$ 300 por mês a 10% ao ano. Ana começa aos 25 e para completamente aos 35 — 10 anos de aportes, depois não coloca mais nada. Bruno começa aos 35 e investe até os 65 — 30 anos de aportes regulares. Aos 65 anos, Ana tem <strong>mais dinheiro do que Bruno</strong>, mesmo tendo investido apenas um terço do tempo total.</p>
+      <p>O dinheiro de Ana ficou aplicado por 40 anos. O de Bruno ficou, em média, por 15 anos. Os últimos anos de um investimento composto valem muito mais do que os primeiros — é como o último quarto de uma bola de neve descendo uma montanha, que cresce mais do que os três quartos anteriores somados.</p>
+      <p>Cada ano que você posterga o início de um investimento não atrasa só um ano o resultado — reduz o montante final de forma desproporcional. Simule na calculadora acima a diferença entre começar hoje com R$ 100 e começar daqui a 5 anos com R$ 500. O resultado vai surpreender.</p>
 
-      <h2>Juros compostos nas dívidas: o lado que ninguém quer ver</h2>
-      <p>O mesmo mecanismo que faz seu patrimônio crescer é o que faz sua dívida sair do controle. E no Brasil, as taxas do crédito são entre as mais altas do mundo.</p>
-      <p>Uma dívida de R$ 5.000 no rotativo do cartão de crédito — que cobra em média 14% ao mês — não para de crescer. Em 12 meses, sem pagar nada, essa dívida passa de R$ 27.000. Em dois anos, ultrapassa R$ 150.000. Não é exagero: é matemática.</p>
-      <p>O cheque especial, o crédito pessoal de banco e o parcelamento de fatura também operam no mesmo regime. A regra financeira mais importante que existe é: <strong>quite primeiro as dívidas com juros altos, antes de pensar em investir</strong>. Não existe nenhum investimento em renda fixa no Brasil que pague 14% ao mês. Nenhum.</p>
+      <h2>Aportes mensais ou capital inicial: o que rende mais no longo prazo?</h2>
+      <p>Existe um mito de que você precisa de um capital inicial alto para ter resultados expressivos com juros compostos. Os números mostram o contrário: <strong>a consistência dos aportes mensais frequentemente supera a vantagem de um grande capital inicial</strong>.</p>
+      <p>Comparando dois cenários a 12% ao ano por 20 anos: quem investe R$ 50.000 de uma vez, sem aportes, chega a cerca de R$ 482.000. Quem começa do zero mas deposita R$ 500 por mês chega a aproximadamente R$ 494.000 — e colocou apenas R$ 120.000 do próprio bolso ao longo do tempo. Quem tem mais dinheiro ao final? Quem fez aportes mensais.</p>
+      <p>Isso acontece porque os aportes mensais também se beneficiam dos juros compostos. Cada R$ 500 depositado no mês 1 rende por 240 meses. O depositado no mês 12 rende por 228 meses. Mesmo o último aporte, no mês 240, ainda rende alguma coisa. A soma desses pequenos rendimentos ao longo do tempo supera a força de um capital inicial estático.</p>
+      <p>A lição prática: não espere juntar uma quantia "suficiente" para começar. Comece com o que tem agora — mesmo que seja R$ 50 ou R$ 100 por mês. O tempo trabalhando a seu favor vale mais do que o valor do primeiro aporte.</p>
 
-      <h2>Como usar esta calculadora para planejar seus investimentos</h2>
-      <p>Para simular um <strong>CDB ou Tesouro Direto</strong>, use capitalização Mensal e coloque a taxa anual do papel. CDBs de bancos menores costumam oferecer entre 110% e 130% do CDI — com o CDI próximo à Selic, isso representa uma taxa real bastante competitiva.</p>
-      <p>Para simular a <strong>poupança</strong>, use capitalização Mensal e a taxa equivalente a 70% da Selic (quando a Selic está acima de 8,5% ao ano). O resultado vai mostrar por que a poupança perde feio para praticamente qualquer outro investimento no longo prazo.</p>
-      <p>Para <strong>planejar a aposentadoria</strong>, faça o raciocínio ao contrário: defina o montante que você quer ter, o prazo em anos e uma taxa conservadora (8% a 10% ao ano). Ajuste o aporte mensal até o resultado bater no seu objetivo. Isso te diz exatamente quanto você precisa guardar por mês hoje.</p>
+      <h2>Rendimento bruto vs rendimento líquido: o que esta calculadora não mostra automaticamente</h2>
+      <p>Esta calculadora exibe o <strong>rendimento bruto</strong> — o valor total antes de qualquer desconto de impostos ou taxas. Na hora de planejar seus investimentos, é fundamental entender a diferença para não se surpreender na hora do resgate.</p>
+      <p>O rendimento líquido é o que efetivamente entra no seu bolso. Para chegar nele, você precisa subtrair dois fatores principais: o Imposto de Renda (quando aplicável) e a inflação do período.</p>
+      <p>Para estimar o rendimento líquido a partir dos resultados desta calculadora: pegue o valor de "Juros acumulados" mostrado no resultado, aplique a alíquota de IR correspondente ao prazo, subtraia esse valor dos juros, e some com o total investido. O número que sobra é seu rendimento líquido nominal. Para o real, desconte ainda a inflação acumulada no período.</p>
+      <p>Em simulações de longo prazo — acima de 15 ou 20 anos — a diferença entre rendimento bruto e líquido real pode ser enorme. Uma taxa de 12% ao ano bruta, com IR de 15% sobre os juros e inflação de 5% ao ano, resulta em um rendimento real líquido de pouco mais de 5% ao ano. Ainda positivo, mas bem diferente dos 12% nominais.</p>
+
+      <h2>Imposto de renda em investimentos: como calcular o quanto você paga de verdade</h2>
+      <p>O IR em investimentos de renda fixa no Brasil funciona com <strong>tabela regressiva</strong>: quanto mais tempo você mantém o investimento, menor a alíquota. As faixas são:</p>
+      <ul>
+        <li>Até 180 dias: <strong>22,5%</strong> sobre os rendimentos</li>
+        <li>De 181 a 360 dias: <strong>20%</strong> sobre os rendimentos</li>
+        <li>De 361 a 720 dias: <strong>17,5%</strong> sobre os rendimentos</li>
+        <li>Acima de 720 dias: <strong>15%</strong> sobre os rendimentos</li>
+      </ul>
+      <p>O IR incide <strong>somente sobre os juros</strong>, não sobre o capital investido. Se você aplicou R$ 10.000 e resgatou R$ 13.000 após 2 anos, o IR de 15% incide apenas sobre os R$ 3.000 de rendimento — você paga R$ 450 de imposto e recebe R$ 12.550 líquidos.</p>
+      <p>Alguns investimentos são <strong>isentos de IR para pessoa física</strong>: LCI, LCA, CRI, CRA e debêntures incentivadas. A poupança também é isenta. Por isso, ao comparar um CDB com uma LCI, não basta olhar a taxa bruta — você precisa comparar as taxas líquidas. Uma LCI que paga 10% ao ano pode ser mais vantajosa do que um CDB que paga 12% ao ano, dependendo do prazo.</p>
+      <p>Para calcular a equivalência: divida a taxa da LCI por (1 menos a alíquota de IR). Com alíquota de 15%, uma LCI de 10% equivale a um CDB de 11,76% (10 ÷ 0,85). Se o CDB oferecer menos que isso, a LCI ganha.</p>
+
+      <h2>Juros compostos no cartão de crédito e cheque especial: quanto sua dívida cresce</h2>
+      <p>O mesmo mecanismo que faz seu patrimônio crescer exponencialmente é o que faz suas dívidas saírem do controle. E no crédito brasileiro, as taxas são brutais — entre as mais altas do mundo.</p>
+      <p>O rotativo do cartão de crédito cobra, em média, <strong>14% ao mês</strong>. Isso não é erro de digitação: quatorze por cento ao mês. Em termos anuais, equivale a mais de 400% ao ano. Uma dívida de R$ 5.000 que você decide "pagar depois" cresce para R$ 27.000 em um ano — sem que você tome mais nenhum crédito.</p>
+      <p>O cheque especial não é muito diferente. Com taxas médias de 7% a 8% ao mês, R$ 5.000 usados por dois anos viram quase R$ 30.000. O crédito pessoal de banco grande cobra entre 3% e 5% ao mês — o que parece razoável até você calcular que R$ 10.000 em 3 anos viram R$ 26.000 a 35.000.</p>
+      <p>A conclusão é matemática: <strong>não existe investimento no Brasil que pague o suficiente para compensar juros de cartão de crédito ou cheque especial</strong>. Quitar uma dívida a 14% ao mês equivale a encontrar um investimento que rende 14% ao mês — algo que simplesmente não existe em renda fixa. Por isso, a ordem correta é sempre: quite as dívidas caras primeiro, construa uma reserva de emergência depois, e então comece a investir o excedente.</p>
+
+      <h2>Como simular CDB, Tesouro Selic e poupança nesta calculadora</h2>
+      <p>Para simular um <strong>CDB</strong>, use a taxa anual informada pelo banco (geralmente expressa como percentual do CDI) e selecione capitalização Mensal. Se o CDB paga 110% do CDI e o CDI está em 13,65% ao ano, a taxa a usar é 15,01% ao ano. Lembre que o resultado será bruto — para o líquido, desconte o IR conforme o prazo.</p>
+      <p>Para simular o <strong>Tesouro Selic</strong>, use a taxa Selic atual e selecione capitalização Diária. O Tesouro Selic rende aproximadamente Selic menos 0,1% ao ano (taxa de custódia), então subtraia isso da taxa. O IR segue a tabela regressiva e incide no resgate ou vencimento.</p>
+      <p>Para simular a <strong>poupança</strong>, use capitalização Mensal e a taxa de 70% da Selic quando a Selic estiver acima de 8,5% ao ano — ou 0,5% ao mês mais TR quando estiver abaixo. A poupança é isenta de IR, mas o rendimento líquido real costuma ser inferior ao de praticamente qualquer CDB ou Tesouro disponível no mercado.</p>
+      <p>Para <strong>planejar a aposentadoria</strong>, defina o montante desejado, estime quantos anos faltam e use uma taxa conservadora entre 8% e 10% ao ano. Ajuste o aporte mensal na calculadora até o resultado atingir seu objetivo. Esse número — o aporte mensal necessário — é o quanto você precisa guardar todos os meses a partir de hoje para chegar lá.</p>
 
       <h2>Perguntas frequentes sobre juros compostos</h2>
 
-      <h3>Qual a diferença entre taxa nominal e taxa efetiva?</h3>
-      <p>A taxa nominal é a declarada no contrato — por exemplo, "12% ao ano". A taxa efetiva considera a frequência de capitalização e é sempre maior que a nominal quando a capitalização é mais frequente que anual. Com capitalização mensal, 12% a.a. nominal equivale a 12,68% a.a. efetiva. Esta calculadora trabalha com taxa nominal anual.</p>
+      <h3>Qual a diferença entre taxa nominal e taxa efetiva nos juros compostos?</h3>
+      <p>A taxa nominal é a declarada no contrato — por exemplo, "12% ao ano". A taxa efetiva considera a frequência de capitalização e é sempre maior que a nominal quando os juros são calculados mais de uma vez por ano. Com capitalização mensal, uma taxa nominal de 12% ao ano equivale a uma taxa efetiva de 12,68% ao ano. Esta calculadora trabalha com taxa nominal anual — ao inserir 12%, ela divide internamente por 12 para calcular os juros mensais.</p>
 
-      <h3>O imposto de renda afeta o rendimento final?</h3>
-      <p>Sim. Em investimentos como CDB e Tesouro Direto, o IR incide sobre os juros com alíquotas regressivas: 22,5% até 180 dias, 20% até 360 dias, 17,5% até 720 dias, e 15% acima de 720 dias. Esta calculadora mostra o rendimento bruto — para calcular o líquido, você precisa descontar o IR dos juros gerados.</p>
+      <h3>LCI e LCA entram na calculadora da mesma forma que CDB?</h3>
+      <p>Sim, o cálculo de juros compostos é o mesmo. A diferença está na tributação: LCI e LCA são isentas de IR para pessoa física, então o valor final calculado já é o líquido. Para comparar com um CDB tributável, calcule o rendimento bruto do CDB e subtraia o IR correspondente ao prazo. Se o CDB líquido ficar abaixo da LCI, a LCI é melhor — mesmo que a taxa bruta do CDB seja maior.</p>
 
-      <h3>A inflação precisa ser considerada?</h3>
-      <p>Para simulações de curto prazo, não faz muita diferença. Para o longo prazo, sim — a inflação corrói o poder de compra do seu dinheiro. Se sua aplicação rende 12% ao ano e a inflação está em 5%, seu ganho real é de aproximadamente 6,7% ao ano. Para uma visão mais conservadora de longo prazo, use a taxa real (não a nominal) nos seus cálculos.</p>
+      <h3>A calculadora considera a inflação?</h3>
+      <p>Não automaticamente. Os resultados mostram valores nominais — o poder de compra real depende da inflação no período. Para uma simulação conservadora de longo prazo, subtraia a inflação esperada da taxa de retorno antes de usar a calculadora. Se você espera 12% ao ano de retorno e 5% de inflação, use 6,67% como taxa (fórmula: (1 + 0,12) ÷ (1 + 0,05) − 1). O resultado será o crescimento real do seu patrimônio, já descontada a perda de poder de compra.</p>
 
-      <h3>Quanto devo poupar por mês para ter R$ 1 milhão?</h3>
-      <p>Depende do prazo e da taxa. Com 10% ao ano em capitalização mensal: se faltam 30 anos, você precisa de cerca de R$ 440 por mês. Se faltam 20 anos, R$ 1.300 por mês. Se faltam 10 anos, quase R$ 5.000 por mês. Cada ano que você adia multiplica o esforço necessário. Simule aqui usando os parâmetros do seu caso.</p>
+      <h3>O que é a Regra dos 72 e como ela se relaciona com os juros compostos?</h3>
+      <p>A Regra dos 72 é um atalho mental para estimar em quantos anos um investimento dobra de valor: basta dividir 72 pela taxa de juros anual. A 6% ao ano, seu dinheiro dobra em 12 anos (72 ÷ 6). A 12% ao ano, em 6 anos. A 1% ao mês (12% ao ano), em 6 anos. É uma aproximação, mas funciona bem para taxas entre 5% e 20% ao ano e ajuda a ter uma noção rápida do poder de uma taxa sem precisar de calculadora.</p>
+
+      <h3>Quanto preciso guardar por mês para ter R$ 1 milhão?</h3>
+      <p>Depende do prazo e da taxa. Com 10% ao ano e capitalização mensal: 30 anos de prazo exigem cerca de R$ 440 por mês. 20 anos exigem R$ 1.300 por mês. 10 anos exigem quase R$ 5.000 por mês. A matemática é implacável: cada ano que você adia duplica ou triplica o esforço necessário. Simule exatamente o seu caso na calculadora acima — basta ajustar o aporte mensal até o saldo final chegar a R$ 1.000.000.</p>
 
     </article>
 
