@@ -556,12 +556,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       display: grid;
       grid-template-columns: 340px 1fr;
       grid-template-rows: 1fr;
-      gap: 0;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 2px 20px rgba(26,58,92,0.07);
+      gap: 16px;
       margin-bottom: 40px;
     }
     @media (max-width: 860px) {
@@ -572,13 +567,11 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     .calc-form-panel {
       background: #f2ede8;
       padding: 20px 22px;
-      border-right: 1px solid #e5d8cc;
+      border-radius: 12px;
+      border: 1px solid #e5d8cc;
       display: flex;
       flex-direction: column;
       gap: 14px;
-    }
-    @media (max-width: 860px) {
-      .calc-form-panel { border-right: none; border-bottom: 1px solid #e5d8cc; }
     }
     .calc-form-title {
       font-size: 1rem;
@@ -795,6 +788,10 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       gap: 0;
       height: 100%;
       box-sizing: border-box;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 12px rgba(26,58,92,0.05);
     }
     .calc-chart-header {
       text-align: center;
