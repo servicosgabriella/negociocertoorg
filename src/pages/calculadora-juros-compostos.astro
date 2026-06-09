@@ -74,12 +74,15 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           </label>
           <div class="calc-input-wrap">
             <input id="inp-periodo" class="calc-input" type="text" inputmode="numeric" value="10" />
-            <div class="calc-unit-sel-wrap">
-              <select id="sel-periodo" class="calc-unit-sel">
-                <option value="years">Anos</option>
-                <option value="months">Meses</option>
-              </select>
-              <span class="calc-unit-sel-arrow" aria-hidden="true">▼</span>
+            <div class="calc-dd" id="dd-periodo" data-value="years">
+              <button class="calc-dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span class="calc-dd-label">Anos</span>
+                <span class="calc-dd-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <ul class="calc-dd-list" role="listbox">
+                <li class="calc-dd-opt active" data-value="years" role="option">Anos</li>
+                <li class="calc-dd-opt" data-value="months" role="option">Meses</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -94,12 +97,15 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           </label>
           <div class="calc-input-wrap">
             <input id="inp-taxa" class="calc-input" type="text" inputmode="decimal" value="12" />
-            <div class="calc-unit-sel-wrap">
-              <select id="sel-taxa" class="calc-unit-sel">
-                <option value="annual">Anual</option>
-                <option value="monthly">Mensal</option>
-              </select>
-              <span class="calc-unit-sel-arrow" aria-hidden="true">▼</span>
+            <div class="calc-dd" id="dd-taxa" data-value="annual">
+              <button class="calc-dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span class="calc-dd-label">Anual</span>
+                <span class="calc-dd-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <ul class="calc-dd-list" role="listbox">
+                <li class="calc-dd-opt active" data-value="annual" role="option">Anual</li>
+                <li class="calc-dd-opt" data-value="monthly" role="option">Mensal</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -353,8 +359,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
     /* ---------- leitura dos inputs ---------- */
     function lerInputs() {
-      var taxaFreq    = (document.getElementById('sel-taxa') || { value: 'annual' }).value;
-      var periodoUnit = (document.getElementById('sel-periodo') || { value: 'years' }).value;
+      var taxaFreq    = (document.getElementById('dd-taxa') || { dataset: { value: 'annual' } }).dataset.value;
+      var periodoUnit = (document.getElementById('dd-periodo') || { dataset: { value: 'years' } }).dataset.value;
       var periodoVal  = Math.max(1, Math.round(parseVal(document.getElementById('inp-periodo').value)));
       var taxaVal     = parseVal(document.getElementById('inp-taxa').value);
 
@@ -588,10 +594,42 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         });
       });
 
-      ['sel-periodo', 'sel-taxa'].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener('change', atualizar);
+      // Dropdowns customizados
+      document.querySelectorAll('.calc-dd').forEach(function (dd) {
+        var btn  = dd.querySelector('.calc-dd-btn');
+        var opts = dd.querySelectorAll('.calc-dd-opt');
+
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = dd.classList.contains('open');
+          document.querySelectorAll('.calc-dd.open').forEach(function (o) {
+            o.classList.remove('open');
+            o.querySelector('.calc-dd-btn').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            dd.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        opts.forEach(function (opt) {
+          opt.addEventListener('click', function () {
+            opts.forEach(function (o) { o.classList.remove('active'); });
+            opt.classList.add('active');
+            dd.dataset.value = opt.dataset.value;
+            dd.querySelector('.calc-dd-label').textContent = opt.textContent;
+            dd.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            atualizar();
+          });
+        });
+      });
+
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.calc-dd.open').forEach(function (dd) {
+          dd.classList.remove('open');
+          dd.querySelector('.calc-dd-btn').setAttribute('aria-expanded', 'false');
+        });
       });
     });
 
@@ -836,40 +874,68 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       pointer-events: none;
     }
 
-    /* Seletor inline dentro do input (Anos/Meses, Anual/Mensal) */
-    .calc-unit-sel-wrap {
+    /* Dropdown customizado dentro do input */
+    .calc-dd {
       position: relative;
-      display: flex;
-      align-items: center;
       flex-shrink: 0;
       border-left: 1px solid #e5e7eb;
-      background: #f9fafb;
-      height: 42px;
     }
-    .calc-unit-sel {
-      appearance: none;
-      -webkit-appearance: none;
-      border: none;
-      outline: none;
-      background: transparent;
-      padding: 0 28px 0 10px;
+    .calc-dd-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       height: 42px;
+      padding: 0 10px 0 12px;
+      border: none;
+      background: #f9fafb;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
       font-size: 13px;
       font-weight: 600;
       color: #374151;
-      font-family: Arial, sans-serif;
-      cursor: pointer;
-      min-width: 72px;
+      white-space: nowrap;
+      min-width: 76px;
+      transition: background 0.12s;
     }
-    .calc-unit-sel:focus { color: #1a3a5c; }
-    .calc-unit-sel-arrow {
+    .calc-dd-btn:hover { background: #f3f4f6; }
+    .calc-dd.open .calc-dd-btn { background: #f3f4f6; color: #1a3a5c; }
+    .calc-dd-chevron {
+      font-size: 10px;
+      color: #9ca3af;
+      transition: transform 0.15s;
+      line-height: 1;
+    }
+    .calc-dd.open .calc-dd-chevron { transform: rotate(180deg); color: #1a3a5c; }
+    .calc-dd-list {
+      display: none;
       position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 9px;
-      color: #6b7280;
-      pointer-events: none;
+      top: calc(100% + 3px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      list-style: none;
+      margin: 0;
+      padding: 4px 0;
+      z-index: 200;
+      min-width: 100%;
+    }
+    .calc-dd.open .calc-dd-list { display: block; }
+    .calc-dd-opt {
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.1s;
+    }
+    .calc-dd-opt:hover { background: #f3f4f6; }
+    .calc-dd-opt.active {
+      background: #eff6ff;
+      color: #1a3a5c;
+      font-weight: 700;
     }
 
     /* Toggle buttons */
