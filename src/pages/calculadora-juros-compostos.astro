@@ -65,29 +65,36 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-anos">
-            Anos de crescimento
-            <span class="tip-wrap" aria-label="Por quantos anos você pretende deixar o dinheiro investido.">
+          <label class="calc-label" for="inp-periodo">
+            Período
+            <span class="tip-wrap" aria-label="Por quanto tempo você pretende deixar o dinheiro investido. Selecione se deseja informar em meses ou anos.">
               <span class="tip-icon" aria-hidden="true">i</span>
-              <span class="tip-box" role="tooltip">Por quantos anos você pretende deixar o dinheiro investido.</span>
+              <span class="tip-box" role="tooltip">Por quanto tempo você pretende deixar o dinheiro investido. Selecione se deseja informar em meses ou anos.</span>
             </span>
           </label>
           <div class="calc-input-wrap">
-            <input id="inp-anos" class="calc-input" type="text" inputmode="numeric" value="10" />
-            <span class="calc-unit right">Anos</span>
+            <input id="inp-periodo" class="calc-input" type="text" inputmode="numeric" value="10" />
+            <div class="calc-input-toggle">
+              <button class="calc-itoggle active" data-group="periodo" data-value="years" type="button">Anos</button>
+              <button class="calc-itoggle" data-group="periodo" data-value="months" type="button">Meses</button>
+            </div>
           </div>
         </div>
 
         <div class="calc-field">
           <label class="calc-label" for="inp-taxa">
-            Taxa de retorno estimada
-            <span class="tip-wrap" aria-label="Taxa de juros anual do investimento (% a.a.). Por exemplo: 12% significa que o dinheiro rende 12% ao ano.">
+            Taxa de retorno
+            <span class="tip-wrap" aria-label="Taxa de juros do investimento. Selecione se é anual (ex: 12% a.a.) ou mensal (ex: 0,95% a.m.).">
               <span class="tip-icon" aria-hidden="true">i</span>
-              <span class="tip-box" role="tooltip">Taxa de juros anual do investimento (% a.a.). Por exemplo: 12% significa que o dinheiro rende 12% ao ano.</span>
+              <span class="tip-box" role="tooltip">Taxa de juros do investimento. Selecione se é anual (ex: 12% a.a.) ou mensal (ex: 0,95% a.m.).</span>
             </span>
           </label>
           <div class="calc-input-wrap">
-            <input id="inp-taxa" class="calc-input" type="text" inputmode="decimal" value="12%" />
+            <input id="inp-taxa" class="calc-input" type="text" inputmode="decimal" value="12" />
+            <div class="calc-input-toggle">
+              <button class="calc-itoggle active" data-group="taxa" data-value="annual" type="button">Anual</button>
+              <button class="calc-itoggle" data-group="taxa" data-value="monthly" type="button">Mensal</button>
+            </div>
           </div>
         </div>
 
@@ -303,39 +310,36 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     }
 
     /* ---------- cálculo ----------
-     * Fórmula base: M = C × (1 + i)^t
-     * Aportes mensais: converte taxa anual em mensal via (1+i)^(1/12)-1,
-     *   simula mês a mês adicionando aporte no início de cada mês.
-     * Aportes anuais: simula ano a ano adicionando aporte no início de cada ano.
+     * Simula mês a mês, agrupa por ano para a tabela.
+     * Taxa anual é convertida em mensal: iMes = (1+i)^(1/12) - 1
+     * totalMeses = período total em meses (convertido em lerInputs)
      */
-    function calcularAnos(P, taxaAnual, qtdAnos, aporte, freqAporte) {
-      var i     = taxaAnual / 100;
-      var saldo = P;
-      var rows  = [];
+    function calcular(P, taxaAnual, totalMeses, aporte, freqAporte) {
+      var iAnual = taxaAnual / 100;
+      var iMes   = Math.pow(1 + iAnual, 1 / 12) - 1;
+      var saldo  = P;
+      var rows   = [];
+      var qtdAnos = Math.ceil(totalMeses / 12);
 
-      if (freqAporte === 'monthly') {
-        // Taxa mensal equivalente: (1+i)^(1/12) - 1
-        var iMes = Math.pow(1 + i, 1 / 12) - 1;
+      for (var ano = 1; ano <= qtdAnos; ano++) {
+        var saldoInicio    = saldo;
+        var aporteNoAno    = 0;
+        var mesesNesteAno  = Math.min(12, totalMeses - (ano - 1) * 12);
 
-        for (var ano = 1; ano <= qtdAnos; ano++) {
-          var saldoInicio = saldo;
-
-          for (var mes = 0; mes < 12; mes++) {
-            saldo = (saldo + aporte) * (1 + iMes);
+        for (var mes = 0; mes < mesesNesteAno; mes++) {
+          var aporteEsteMes = 0;
+          if (freqAporte === 'monthly') {
+            aporteEsteMes = aporte;
+          } else if (mes === 0) {
+            aporteEsteMes = aporte; // aporte anual: início de cada ano
           }
+          saldo += aporteEsteMes;
+          saldo *= (1 + iMes);
+          aporteNoAno += aporteEsteMes;
+        }
 
-          var aporteNoAno = aporte * 12;
-          var juroNoAno   = saldo - saldoInicio - aporteNoAno;
-          rows.push({ ano: ano, saldoInicio: saldoInicio, aporteNoAno: aporteNoAno, juroNoAno: juroNoAno, saldoFinal: saldo });
-        }
-      } else {
-        // Aportes anuais: M = C × (1+i)^t
-        for (var ano = 1; ano <= qtdAnos; ano++) {
-          var saldoInicio = saldo;
-          saldo = (saldo + aporte) * (1 + i);
-          var juroNoAno = saldo - saldoInicio - aporte;
-          rows.push({ ano: ano, saldoInicio: saldoInicio, aporteNoAno: aporte, juroNoAno: juroNoAno, saldoFinal: saldo });
-        }
+        var juroNoAno = saldo - saldoInicio - aporteNoAno;
+        rows.push({ ano: ano, saldoInicio: saldoInicio, aporteNoAno: aporteNoAno, juroNoAno: juroNoAno, saldoFinal: saldo });
       }
 
       return rows;
@@ -343,19 +347,34 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
 
     /* ---------- leitura dos inputs ---------- */
     function lerInputs() {
+      var taxaFreq    = (document.querySelector('.calc-itoggle[data-group="taxa"].active') || { dataset: {} }).dataset.value || 'annual';
+      var periodoUnit = (document.querySelector('.calc-itoggle[data-group="periodo"].active') || { dataset: {} }).dataset.value || 'years';
+      var periodoVal  = Math.max(1, Math.round(parseVal(document.getElementById('inp-periodo').value)));
+      var taxaVal     = parseVal(document.getElementById('inp-taxa').value);
+
+      // Converte taxa para anual
+      var taxaAnual = taxaFreq === 'monthly'
+        ? (Math.pow(1 + taxaVal / 100, 12) - 1) * 100
+        : taxaVal;
+
+      // Converte período para meses
+      var totalMeses = periodoUnit === 'months'
+        ? Math.min(600, periodoVal)
+        : Math.min(50, periodoVal) * 12;
+
       return {
         P:          parseVal(document.getElementById('inp-inicial').value),
-        anos:       Math.max(1, Math.min(50, Math.round(parseVal(document.getElementById('inp-anos').value)))),
-        taxa:       parseVal(document.getElementById('inp-taxa').value),
+        totalMeses: totalMeses,
+        taxaAnual:  taxaAnual,
         aporte:     parseVal(document.getElementById('inp-aporte').value),
-        freqAporte: (document.querySelector('.calc-toggle.active') || {}).dataset?.value || 'monthly',
+        freqAporte: (document.querySelector('.calc-toggle.active') || { dataset: {} }).dataset.value || 'monthly',
       };
     }
 
     /* ---------- atualiza UI ---------- */
     function atualizar() {
       var inp  = lerInputs();
-      var rows = calcularAnos(inp.P, inp.taxa, inp.anos, inp.aporte, inp.freqAporte);
+      var rows = calcular(inp.P, inp.taxaAnual, inp.totalMeses, inp.aporte, inp.freqAporte);
       var final = rows.length ? rows[rows.length - 1].saldoFinal : inp.P;
 
       // Total em destaque
@@ -545,7 +564,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     document.addEventListener('DOMContentLoaded', function () {
       initChart();
 
-      ['inp-inicial', 'inp-anos', 'inp-taxa', 'inp-aporte'].forEach(function (id) {
+      ['inp-inicial', 'inp-periodo', 'inp-taxa', 'inp-aporte'].forEach(function (id) {
         var el = document.getElementById(id);
         if (!el) return;
         el.addEventListener('input',  function () { debounce(atualizar); });
@@ -556,6 +575,17 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       document.querySelectorAll('.calc-toggle').forEach(function (btn) {
         btn.addEventListener('click', function () {
           document.querySelectorAll('.calc-toggle').forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+          atualizar();
+        });
+      });
+
+      document.querySelectorAll('.calc-itoggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.dataset.group;
+          document.querySelectorAll('.calc-itoggle[data-group="' + group + '"]').forEach(function (b) {
             b.classList.remove('active');
           });
           btn.classList.add('active');
@@ -804,6 +834,34 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       color: #6b7280;
       pointer-events: none;
     }
+
+    /* Inline input toggle (Anos/Meses, Anual/Mensal) */
+    .calc-input-toggle {
+      display: flex;
+      height: 42px;
+      flex-shrink: 0;
+      border-left: 1px solid #e5e7eb;
+    }
+    .calc-itoggle {
+      height: 42px;
+      padding: 0 10px;
+      border: none;
+      border-right: 1px solid #e5e7eb;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+    }
+    .calc-itoggle:last-child { border-right: none; }
+    .calc-itoggle.active {
+      background: #1a3a5c;
+      color: #fff;
+    }
+    .calc-itoggle:not(.active):hover { background: #f3f4f6; }
 
     /* Toggle buttons */
     .calc-toggle-group {
