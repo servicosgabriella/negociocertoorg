@@ -566,18 +566,22 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: #2d6a9f;
-      color: #fff;
+      border: 1.5px solid #9ca3af;
+      background: transparent;
+      color: #9ca3af;
       font-size: 9px;
-      font-weight: 800;
+      font-weight: 700;
       font-style: normal;
       line-height: 1;
       cursor: default;
       user-select: none;
       flex-shrink: 0;
-      transition: background 0.15s;
+      transition: border-color 0.15s, color 0.15s;
     }
-    .tip-wrap:hover .tip-icon { background: #1a3a5c; }
+    .tip-wrap:hover .tip-icon {
+      border-color: #2d6a9f;
+      color: #2d6a9f;
+    }
     .tip-box {
       position: absolute;
       left: 50%;
