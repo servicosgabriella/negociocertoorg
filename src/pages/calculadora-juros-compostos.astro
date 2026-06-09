@@ -25,6 +25,101 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": canonicalUrl + "#webapp",
+        "name": "Calculadora de Juros Compostos",
+        "description": description,
+        "url": canonicalUrl,
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Negócio Certo",
+          "url": "https://negociocerto.org/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": canonicalUrl + "#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://negociocerto.org/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculadoras",
+            "item": "https://negociocerto.org/calculadoras/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Calculadora de Juros Compostos"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": canonicalUrl + "#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qual a diferença entre taxa nominal e taxa efetiva nos juros compostos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A taxa nominal é a declarada no contrato, por exemplo '12% ao ano'. A taxa efetiva considera a frequência de capitalização e é sempre maior que a nominal quando os juros são calculados mais de uma vez por ano. Com capitalização mensal, uma taxa nominal de 12% ao ano equivale a uma taxa efetiva de 12,68% ao ano. Esta calculadora trabalha com taxa nominal anual e divide internamente por 12 para calcular os juros mensais."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "LCI e LCA entram na calculadora da mesma forma que CDB?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim, o cálculo de juros compostos é o mesmo. A diferença está na tributação. LCI e LCA são isentas de IR para pessoa física, então o valor final calculado já é o líquido. Para comparar com um CDB tributável, calcule o rendimento bruto do CDB e subtraia o IR correspondente ao prazo. Se o CDB líquido ficar abaixo da LCI, a LCI é melhor, mesmo que a taxa bruta do CDB seja maior."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A calculadora considera a inflação?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não automaticamente. Os resultados mostram valores nominais. O poder de compra real depende da inflação no período. Para uma simulação conservadora de longo prazo, subtraia a inflação esperada da taxa de retorno antes de usar a calculadora. Se você espera 12% ao ano de retorno e 5% de inflação, use 6,67% como taxa, calculada assim: (1 + 0,12) ÷ (1 + 0,05) − 1."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é a Regra dos 72 e como ela se relaciona com os juros compostos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Regra dos 72 é um atalho mental para estimar em quantos anos um investimento dobra de valor. Basta dividir 72 pela taxa de juros anual. A 6% ao ano, seu dinheiro dobra em 12 anos (72 ÷ 6). A 12% ao ano, em 6 anos. É uma aproximação que funciona bem para taxas entre 5% e 20% ao ano."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto preciso guardar por mês para ter R$ 1 milhão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende do prazo e da taxa. Com 10% ao ano e capitalização mensal, 30 anos de prazo exigem cerca de R$ 440 por mês. Em 20 anos são R$ 1.300 por mês. Em 10 anos, quase R$ 5.000 por mês. A matemática é implacável: cada ano que você adia o início duplica ou triplica o esforço necessário."
+            }
+          }
+        ]
+      }
+    ]
+  })} />
 </head>
 <body>
   <Header />
