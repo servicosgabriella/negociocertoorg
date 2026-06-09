@@ -323,7 +323,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         chart.data.labels                  = labels;
         chart.data.datasets[0].data        = dPrincipal;
         chart.data.datasets[1].data        = dTotal;
-        chart.update('active');
+        chart.update();
       }
 
       // --- Tabela ---
