@@ -55,7 +55,13 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         <h2 class="calc-form-title">Detalhes do investimento</h2>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-inicial">Depósito inicial</label>
+          <label class="calc-label" for="inp-inicial">
+            Depósito inicial
+            <span class="tip-wrap" aria-label="Valor que você já possui para investir agora. É o ponto de partida da simulação.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Valor que você já possui para investir agora. É o ponto de partida da simulação.</span>
+            </span>
+          </label>
           <div class="calc-input-wrap">
             <span class="calc-unit left">R$</span>
             <input id="inp-inicial" class="calc-input" type="text" inputmode="numeric" value="10.000" />
@@ -63,7 +69,13 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-anos">Anos de crescimento</label>
+          <label class="calc-label" for="inp-anos">
+            Anos de crescimento
+            <span class="tip-wrap" aria-label="Por quantos anos você pretende deixar o dinheiro investido.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Por quantos anos você pretende deixar o dinheiro investido.</span>
+            </span>
+          </label>
           <div class="calc-input-wrap">
             <input id="inp-anos" class="calc-input" type="text" inputmode="numeric" value="10" />
             <span class="calc-unit right">Anos</span>
@@ -71,14 +83,26 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-taxa">Taxa de retorno estimada</label>
+          <label class="calc-label" for="inp-taxa">
+            Taxa de retorno estimada
+            <span class="tip-wrap" aria-label="Taxa de juros anual do investimento (% a.a.). Por exemplo: 12% significa que o dinheiro rende 12% ao ano.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Taxa de juros anual do investimento (% a.a.). Por exemplo: 12% significa que o dinheiro rende 12% ao ano.</span>
+            </span>
+          </label>
           <div class="calc-input-wrap">
             <input id="inp-taxa" class="calc-input" type="text" inputmode="decimal" value="12%" />
           </div>
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-freq-cap">Frequência de capitalização</label>
+          <label class="calc-label" for="inp-freq-cap">
+            Frequência de capitalização
+            <span class="tip-wrap" aria-label="De quanto em quanto tempo os juros são calculados e somados ao saldo. Capitalização mensal é o padrão da maioria dos investimentos brasileiros (CDB, Selic, poupança).">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">De quanto em quanto tempo os juros são calculados e somados ao saldo. Capitalização mensal é o padrão da maioria dos investimentos brasileiros (CDB, Selic, poupança).</span>
+            </span>
+          </label>
           <div class="calc-select-wrap">
             <select id="inp-freq-cap" class="calc-select">
               <option value="12" selected>Mensal</option>
@@ -92,7 +116,13 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-aporte">Valor do aporte</label>
+          <label class="calc-label" for="inp-aporte">
+            Valor do aporte
+            <span class="tip-wrap" aria-label="Quanto você pretende depositar periodicamente, além do valor inicial. Aportes regulares aceleram muito o crescimento do investimento.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Quanto você pretende depositar periodicamente, além do valor inicial. Aportes regulares aceleram muito o crescimento do investimento.</span>
+            </span>
+          </label>
           <div class="calc-input-wrap">
             <span class="calc-unit left">R$</span>
             <input id="inp-aporte" class="calc-input" type="text" inputmode="numeric" value="500" />
@@ -100,7 +130,13 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label">Frequência do aporte</label>
+          <label class="calc-label">
+            Frequência do aporte
+            <span class="tip-wrap" aria-label="Se você vai depositar o valor do aporte todo mês ou uma única vez por ano. Aportes mensais tendem a gerar mais rendimento por aproveitar melhor os juros compostos.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Se você vai depositar o valor do aporte todo mês ou uma única vez por ano. Aportes mensais tendem a gerar mais rendimento por aproveitar melhor os juros compostos.</span>
+            </span>
+          </label>
           <div class="calc-toggle-group" role="group" aria-label="Frequência do aporte">
             <button class="calc-toggle active" data-value="monthly" type="button">Mensal</button>
             <button class="calc-toggle" data-value="annually" type="button">Anual</button>
@@ -511,6 +547,84 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       font-size: 13px;
       color: #374151;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tooltip */
+    .tip-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #2d6a9f;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      font-style: normal;
+      line-height: 1;
+      cursor: default;
+      user-select: none;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .tip-wrap:hover .tip-icon { background: #1a3a5c; }
+    .tip-box {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: 220px;
+      background: #1a3a5c;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 9px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s, visibility 0.15s;
+      z-index: 50;
+      white-space: normal;
+      text-align: left;
+    }
+    /* seta */
+    .tip-box::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #1a3a5c;
+    }
+    .tip-wrap:hover .tip-box,
+    .tip-wrap:focus-within .tip-box {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* ajuste para tooltips que ficam perto da borda esquerda */
+    .calc-field:first-child .tip-box,
+    .calc-field:nth-child(2) .tip-box {
+      left: 0;
+      transform: none;
+    }
+    .calc-field:first-child .tip-box::after,
+    .calc-field:nth-child(2) .tip-box::after {
+      left: 12px;
+      transform: none;
     }
     .calc-input-wrap {
       display: flex;
