@@ -1,0 +1,931 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Calculadora de Juros Compostos";
+const description = "Simule o crescimento do seu investimento com juros compostos. Veja quanto seu dinheiro vai render com aportes mensais, taxa de juros e prazo personalizados.";
+const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} — Negócio Certo</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <Header />
+
+  <!-- HERO -->
+  <section class="calc-hero">
+    <div class="calc-hero-inner">
+      <nav aria-label="Breadcrumb" class="calc-breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><span>›</span></li>
+          <li><a href="/calculadoras/">Calculadoras</a></li>
+          <li><span>›</span></li>
+          <li><span class="active">Calculadora de Juros Compostos</span></li>
+        </ol>
+      </nav>
+      <h1 class="calc-hero-title">Calculadora de Juros Compostos</h1>
+      <p class="calc-hero-desc">Descubra quanto seu dinheiro pode render com o poder dos juros compostos. Simule aportes mensais, taxa de juros e prazo.</p>
+    </div>
+  </section>
+
+  <!-- FERRAMENTA PRINCIPAL -->
+  <main class="calc-main">
+    <div class="calc-wrapper">
+
+      <!-- PAINEL ESQUERDO: FORMULÁRIO -->
+      <div class="calc-form-panel">
+        <div class="calc-form-header">
+          <i class="fa-solid fa-calculator calc-form-icon"></i>
+          <span>Preencha os dados</span>
+        </div>
+
+        <div class="calc-form-body">
+
+          <!-- Campo: Investimento Inicial -->
+          <div class="calc-field">
+            <div class="calc-field-header">
+              <label class="calc-label" for="investimento-inicial">
+                <i class="fa-solid fa-wallet calc-label-icon"></i>
+                Investimento Inicial
+              </label>
+              <div class="calc-input-money">
+                <span class="calc-prefix">R$</span>
+                <input type="number" id="investimento-inicial" class="calc-number-input" value="10000" min="0" max="10000000" step="100" />
+              </div>
+            </div>
+            <input type="range" id="range-inicial" class="calc-slider" min="0" max="500000" step="1000" value="10000" />
+            <div class="calc-slider-labels">
+              <span>R$ 0</span>
+              <span>R$ 500.000</span>
+            </div>
+          </div>
+
+          <!-- Campo: Aporte Mensal -->
+          <div class="calc-field">
+            <div class="calc-field-header">
+              <label class="calc-label" for="aporte-mensal">
+                <i class="fa-solid fa-calendar-plus calc-label-icon"></i>
+                Aporte Mensal
+              </label>
+              <div class="calc-input-money">
+                <span class="calc-prefix">R$</span>
+                <input type="number" id="aporte-mensal" class="calc-number-input" value="500" min="0" max="50000" step="50" />
+              </div>
+            </div>
+            <input type="range" id="range-aporte" class="calc-slider" min="0" max="10000" step="100" value="500" />
+            <div class="calc-slider-labels">
+              <span>R$ 0</span>
+              <span>R$ 10.000</span>
+            </div>
+          </div>
+
+          <!-- Campo: Taxa de Juros -->
+          <div class="calc-field">
+            <div class="calc-field-header">
+              <label class="calc-label" for="taxa-juros">
+                <i class="fa-solid fa-percent calc-label-icon"></i>
+                Taxa de Juros (% ao ano)
+              </label>
+              <div class="calc-input-money">
+                <input type="number" id="taxa-juros" class="calc-number-input" value="12" min="0" max="50" step="0.1" style="text-align:right;" />
+                <span class="calc-suffix">%</span>
+              </div>
+            </div>
+            <input type="range" id="range-taxa" class="calc-slider" min="0" max="50" step="0.1" value="12" />
+            <div class="calc-slider-labels">
+              <span>0%</span>
+              <span>50%</span>
+            </div>
+          </div>
+
+          <!-- Campo: Frequência de Capitalização -->
+          <div class="calc-field">
+            <div class="calc-field-header">
+              <label class="calc-label" for="frequencia">
+                <i class="fa-solid fa-rotate calc-label-icon"></i>
+                Frequência de Capitalização
+              </label>
+              <select id="frequencia" class="calc-select">
+                <option value="12" selected>Mensal (12×/ano)</option>
+                <option value="4">Trimestral (4×/ano)</option>
+                <option value="2">Semestral (2×/ano)</option>
+                <option value="1">Anual (1×/ano)</option>
+                <option value="365">Diária (365×/ano)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Campo: Período -->
+          <div class="calc-field">
+            <div class="calc-field-header">
+              <label class="calc-label" for="periodo">
+                <i class="fa-solid fa-hourglass-half calc-label-icon"></i>
+                Período
+              </label>
+              <div class="calc-input-money">
+                <input type="number" id="periodo" class="calc-number-input" value="10" min="1" max="50" step="1" style="text-align:right;" />
+                <span class="calc-suffix" style="min-width:44px;">anos</span>
+              </div>
+            </div>
+            <input type="range" id="range-periodo" class="calc-slider" min="1" max="50" step="1" value="10" />
+            <div class="calc-slider-labels">
+              <span>1 ano</span>
+              <span>50 anos</span>
+            </div>
+          </div>
+
+          <button class="calc-btn" id="btn-calcular">
+            <i class="fa-solid fa-chart-line"></i>
+            Calcular
+          </button>
+        </div>
+      </div>
+
+      <!-- PAINEL DIREITO: RESULTADO -->
+      <div class="calc-result-panel">
+
+        <!-- Destaque do total -->
+        <div class="calc-result-hero">
+          <p class="calc-result-label">Você terá ao final</p>
+          <p class="calc-result-total" id="resultado-total">R$ 231.865,21</p>
+          <p class="calc-result-subtitle">em <span id="resultado-anos">10 anos</span></p>
+        </div>
+
+        <!-- Breakdown: 3 cards -->
+        <div class="calc-breakdown">
+          <div class="calc-breakdown-item">
+            <div class="calc-breakdown-dot" style="background:#1a3a5c;"></div>
+            <div>
+              <p class="calc-breakdown-value" id="breakdown-inicial">R$ 10.000</p>
+              <p class="calc-breakdown-label">Capital Inicial</p>
+            </div>
+          </div>
+          <div class="calc-breakdown-item">
+            <div class="calc-breakdown-dot" style="background:#2d6a9f;"></div>
+            <div>
+              <p class="calc-breakdown-value" id="breakdown-aportes">R$ 60.000</p>
+              <p class="calc-breakdown-label">Total Aportado</p>
+            </div>
+          </div>
+          <div class="calc-breakdown-item">
+            <div class="calc-breakdown-dot" style="background:#facc15;"></div>
+            <div>
+              <p class="calc-breakdown-value" id="breakdown-juros">R$ 161.865</p>
+              <p class="calc-breakdown-label">Juros Gerados</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de composição -->
+        <div class="calc-composition-bar-wrapper">
+          <div class="calc-composition-bar">
+            <div class="calc-bar-segment" id="bar-inicial" style="width:4.3%; background:#1a3a5c;" title="Capital Inicial"></div>
+            <div class="calc-bar-segment" id="bar-aportes" style="width:25.9%; background:#2d6a9f;" title="Aportes"></div>
+            <div class="calc-bar-segment" id="bar-juros" style="width:69.8%; background:#facc15;" title="Juros"></div>
+          </div>
+          <div class="calc-bar-legend">
+            <span><span class="legend-dot" style="background:#1a3a5c;"></span>Capital Inicial</span>
+            <span><span class="legend-dot" style="background:#2d6a9f;"></span>Aportes</span>
+            <span><span class="legend-dot" style="background:#facc15;"></span>Juros</span>
+          </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="calc-chart-wrapper">
+          <p class="calc-chart-title">Crescimento ano a ano</p>
+          <div class="calc-chart-container">
+            <canvas id="grafico-juros"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TABELA ANO A ANO -->
+    <div class="calc-table-wrapper">
+      <h2 class="calc-table-title">Evolução do investimento</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table" id="tabela-evolucao">
+          <thead>
+            <tr>
+              <th>Ano</th>
+              <th>Saldo Inicial</th>
+              <th>Aportes no Ano</th>
+              <th>Juros no Ano</th>
+              <th>Saldo Final</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-body">
+            <!-- Static placeholder rows for design -->
+            <tr>
+              <td>1</td>
+              <td>R$ 10.000,00</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 1.680,00</td>
+              <td>R$ 17.680,00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>R$ 17.680,00</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 2.841,60</td>
+              <td>R$ 26.521,60</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>R$ 26.521,60</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 4.142,59</td>
+              <td>R$ 36.664,19</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>R$ 36.664,19</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 5.599,70</td>
+              <td>R$ 48.263,89</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>R$ 48.263,89</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 7.231,67</td>
+              <td>R$ 61.495,56</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>R$ 61.495,56</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 9.059,47</td>
+              <td>R$ 76.555,03</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>R$ 76.555,03</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 11.106,60</td>
+              <td>R$ 93.661,63</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>R$ 93.661,63</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 13.399,39</td>
+              <td>R$ 113.061,03</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>R$ 113.061,03</td>
+              <td>R$ 6.000,00</td>
+              <td>R$ 15.967,32</td>
+              <td>R$ 135.028,35</td>
+            </tr>
+            <tr class="calc-table-last-row">
+              <td><strong>10</strong></td>
+              <td><strong>R$ 135.028,35</strong></td>
+              <td><strong>R$ 6.000,00</strong></td>
+              <td><strong>R$ 18.842,14</strong></td>
+              <td><strong>R$ 231.865,21</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXPLICAÇÃO -->
+    <div class="calc-info-section">
+      <h2>O que são juros compostos?</h2>
+      <p>Os juros compostos são calculados sobre o capital inicial mais os juros acumulados dos períodos anteriores — o que os economistas chamam de "juros sobre juros". Por isso, quanto mais tempo o dinheiro fica investido, maior é o efeito do crescimento exponencial.</p>
+
+      <h3>Como funciona a fórmula?</h3>
+      <div class="calc-formula-box">
+        <p class="calc-formula">M = P × (1 + i/n)<sup>n×t</sup> + C × [(1 + i/n)<sup>n×t</sup> - 1] / (i/n)</p>
+        <div class="calc-formula-legend">
+          <div class="calc-formula-item"><strong>M</strong> = Montante final</div>
+          <div class="calc-formula-item"><strong>P</strong> = Capital inicial</div>
+          <div class="calc-formula-item"><strong>i</strong> = Taxa de juros anual</div>
+          <div class="calc-formula-item"><strong>n</strong> = Frequência de capitalização ao ano</div>
+          <div class="calc-formula-item"><strong>t</strong> = Período em anos</div>
+          <div class="calc-formula-item"><strong>C</strong> = Aporte periódico</div>
+        </div>
+      </div>
+
+      <h3>Exemplo prático</h3>
+      <p>Se você investir <strong>R$ 10.000</strong> com aportes mensais de <strong>R$ 500</strong> a uma taxa de <strong>12% ao ano</strong> por <strong>10 anos</strong>, você terá acumulado mais de <strong>R$ 231.000</strong> — sendo R$ 161.000 apenas de juros gerados.</p>
+    </div>
+
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+    // Sync sliders com inputs
+    function syncSlider(sliderId, inputId) {
+      const slider = document.getElementById(sliderId);
+      const input = document.getElementById(inputId);
+      if (!slider || !input) return;
+      slider.addEventListener('input', () => { input.value = slider.value; });
+      input.addEventListener('input', () => { slider.value = input.value; });
+    }
+
+    syncSlider('range-inicial', 'investimento-inicial');
+    syncSlider('range-aporte', 'aporte-mensal');
+    syncSlider('range-taxa', 'taxa-juros');
+    syncSlider('range-periodo', 'periodo');
+
+    // --- GRÁFICO (Chart.js com dados estáticos de placeholder) ---
+    const ctx = document.getElementById('grafico-juros');
+    if (ctx && window.Chart) {
+      const labels = ['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5','Ano 6','Ano 7','Ano 8','Ano 9','Ano 10'];
+      const capitalInicial = [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000];
+      const aportes = [6000,12000,18000,24000,30000,36000,42000,48000,54000,60000];
+      const juros = [1680,4521,8664,14264,21496,30555,41662,55061,71029,89865];
+
+      new window.Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Capital Inicial',
+              data: capitalInicial,
+              backgroundColor: '#1a3a5c',
+              borderRadius: 0,
+              borderSkipped: false,
+            },
+            {
+              label: 'Aportes',
+              data: aportes,
+              backgroundColor: '#2d6a9f',
+              borderRadius: 0,
+              borderSkipped: false,
+            },
+            {
+              label: 'Juros',
+              data: juros,
+              backgroundColor: '#facc15',
+              borderRadius: 4,
+              borderSkipped: 'bottom',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  return ' ' + ctx.dataset.label + ': ' + new Intl.NumberFormat('pt-BR', {
+                    style: 'currency', currency: 'BRL'
+                  }).format(ctx.parsed.y);
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { font: { size: 11 }, color: '#6b7280' },
+            },
+            y: {
+              stacked: true,
+              grid: { color: '#f3f4f6' },
+              ticks: {
+                font: { size: 11 },
+                color: '#6b7280',
+                callback: function(value) {
+                  if (value >= 1000) return 'R$ ' + (value/1000).toFixed(0) + 'k';
+                  return 'R$ ' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Botão calcular (placeholder — lógica em dev futuro)
+    document.getElementById('btn-calcular')?.addEventListener('click', function() {
+      this.innerHTML = '<i class="fa-solid fa-check"></i> Calculado!';
+      this.style.background = '#16a34a';
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa-solid fa-chart-line"></i> Calcular';
+        this.style.background = '';
+      }, 1500);
+    });
+  </script>
+
+  <style is:global>
+    /* ======== HERO ======== */
+    .calc-hero {
+      background: linear-gradient(to right, #1a3a5c, #2d6a9f);
+      padding: 36px 0 44px;
+    }
+    .calc-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .calc-breadcrumb ol {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+    .calc-breadcrumb li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+    }
+    .calc-breadcrumb a {
+      color: #bfdbfe;
+      text-decoration: none;
+    }
+    .calc-breadcrumb a:hover { text-decoration: underline; }
+    .calc-breadcrumb span { color: #bfdbfe; }
+    .calc-breadcrumb span.active { color: #fff; font-weight: 500; }
+    .calc-hero-title {
+      color: #fff;
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+    }
+    .calc-hero-desc {
+      color: #bfdbfe;
+      font-size: 1.1rem;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* ======== MAIN WRAPPER ======== */
+    .calc-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+
+    /* ======== 2-COL LAYOUT ======== */
+    .calc-wrapper {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 900px) {
+      .calc-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ======== FORM PANEL ======== */
+    .calc-form-panel {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 16px rgba(26,58,92,0.08);
+      overflow: hidden;
+    }
+    .calc-form-header {
+      background: linear-gradient(to right, #1a3a5c, #2d6a9f);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .calc-form-icon {
+      font-size: 18px;
+      color: #facc15;
+    }
+    .calc-form-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ======== FIELDS ======== */
+    .calc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .calc-field-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .calc-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .calc-label-icon {
+      color: #2d6a9f;
+      font-size: 13px;
+      width: 16px;
+      text-align: center;
+    }
+    .calc-input-money {
+      display: flex;
+      align-items: center;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+      background: #f9fafb;
+      min-width: 130px;
+    }
+    .calc-input-money:focus-within {
+      border-color: #2d6a9f;
+      background: #fff;
+    }
+    .calc-prefix, .calc-suffix {
+      padding: 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      background: #f3f4f6;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .calc-number-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      width: 80px;
+      height: 38px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      -moz-appearance: textfield;
+    }
+    .calc-number-input::-webkit-inner-spin-button,
+    .calc-number-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+    .calc-select {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      background: #f9fafb;
+      cursor: pointer;
+      outline: none;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.15s;
+      min-width: 180px;
+    }
+    .calc-select:focus { border-color: #2d6a9f; }
+
+    /* Slider */
+    .calc-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 5px;
+      background: linear-gradient(to right, #2d6a9f 0%, #2d6a9f 20%, #e5e7eb 20%, #e5e7eb 100%);
+      outline: none;
+      cursor: pointer;
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1a3a5c;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #2d6a9f, 0 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .calc-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .calc-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1a3a5c;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #2d6a9f;
+      cursor: pointer;
+    }
+    .calc-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* Botão */
+    .calc-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background: #facc15;
+      color: #111827;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      font-family: Arial, sans-serif;
+      margin-top: 4px;
+    }
+    .calc-btn:hover { background: #eab308; transform: translateY(-1px); }
+    .calc-btn:active { transform: translateY(0); }
+
+    /* ======== RESULT PANEL ======== */
+    .calc-result-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .calc-result-hero {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      color: #fff;
+    }
+    .calc-result-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #bfdbfe;
+      margin: 0 0 8px 0;
+    }
+    .calc-result-total {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #facc15;
+      margin: 0 0 8px 0;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .calc-result-subtitle {
+      font-size: 14px;
+      color: #bfdbfe;
+      margin: 0;
+    }
+
+    /* Breakdown 3 cards */
+    .calc-breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .calc-breakdown { grid-template-columns: 1fr; }
+    }
+    .calc-breakdown-item {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .calc-breakdown-dot {
+      width: 12px;
+      height: 40px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .calc-breakdown-value {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 4px 0;
+    }
+    .calc-breakdown-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    /* Barra de composição */
+    .calc-composition-bar-wrapper {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .calc-composition-bar {
+      display: flex;
+      height: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      gap: 2px;
+      margin-bottom: 12px;
+    }
+    .calc-bar-segment {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+    .calc-bar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: #374151;
+    }
+    .calc-bar-legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Gráfico */
+    .calc-chart-wrapper {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .calc-chart-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #374151;
+      margin: 0 0 16px 0;
+    }
+    .calc-chart-container {
+      position: relative;
+      height: 220px;
+    }
+
+    /* ======== TABELA ======== */
+    .calc-table-wrapper {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 40px;
+    }
+    .calc-table-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 20px 0;
+    }
+    .calc-table-scroll {
+      overflow-x: auto;
+    }
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .calc-table th {
+      background: #f3f4f6;
+      padding: 12px 16px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .calc-table th:first-child { text-align: center; }
+    .calc-table td {
+      padding: 12px 16px;
+      text-align: right;
+      color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      white-space: nowrap;
+    }
+    .calc-table td:first-child { text-align: center; color: #6b7280; font-weight: 600; }
+    .calc-table tbody tr:hover { background: #f9fafb; }
+    .calc-table-last-row td {
+      background: #eff6ff;
+      color: #1a3a5c;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .calc-table-last-row td:first-child { color: #1a3a5c; }
+
+    /* ======== EXPLICAÇÃO ======== */
+    .calc-info-section {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .calc-info-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 12px 0;
+    }
+    .calc-info-section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin: 24px 0 8px 0;
+    }
+    .calc-info-section p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.7;
+      margin: 0 0 12px 0;
+    }
+    .calc-formula-box {
+      background: #f0f4f8;
+      border-left: 4px solid #2d6a9f;
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 12px 0 16px 0;
+    }
+    .calc-formula {
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin: 0 0 16px 0;
+    }
+    .calc-formula-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    .calc-formula-item {
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .calc-formula-item strong {
+      color: #1a3a5c;
+    }
+
+    /* ======== MOBILE ======== */
+    @media (max-width: 768px) {
+      .calc-hero-title { font-size: 1.6rem; }
+      .calc-hero-desc { font-size: 1rem; }
+      .calc-main { padding: 24px 16px 48px; }
+      .calc-result-total { font-size: 2.2rem; }
+      .calc-table-wrapper { padding: 20px 16px; }
+      .calc-info-section { padding: 24px 16px; }
+      .calc-formula-legend { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+
+</body>
+</html>
