@@ -665,16 +665,22 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       opacity: 1;
       visibility: visible;
     }
-    /* ajuste para tooltips que ficam perto da borda esquerda */
+    /* primeiros campos: abre para baixo */
     .calc-field:first-child .tip-box,
     .calc-field:nth-child(2) .tip-box {
-      left: 0;
-      transform: none;
+      top: calc(100% + 8px);
+      bottom: auto;
+      left: 50%;
+      transform: translateX(-50%);
     }
     .calc-field:first-child .tip-box::after,
     .calc-field:nth-child(2) .tip-box::after {
-      left: 12px;
-      transform: none;
+      top: auto;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: transparent;
+      border-bottom-color: #1a3a5c;
     }
     .calc-input-wrap {
       display: flex;
