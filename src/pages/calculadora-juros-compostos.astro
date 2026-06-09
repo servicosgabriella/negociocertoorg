@@ -29,27 +29,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
-        "@id": canonicalUrl + "#webapp",
-        "name": "Calculadora de Juros Compostos",
-        "description": description,
-        "url": canonicalUrl,
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "inLanguage": "pt-BR",
-        "isAccessibleForFree": true,
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "BRL"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Negócio Certo",
-          "url": "https://negociocerto.org/"
-        }
-      },
-      {
         "@type": "BreadcrumbList",
         "@id": canonicalUrl + "#breadcrumb",
         "itemListElement": [
