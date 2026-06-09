@@ -345,8 +345,8 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
           } else if (mes === 0) {
             aporteEsteMes = aporte; // aporte anual: início de cada ano
           }
-          saldo += aporteEsteMes;
           saldo *= (1 + iMes);
+          saldo += aporteEsteMes;
           aporteNoAno += aporteEsteMes;
         }
 
