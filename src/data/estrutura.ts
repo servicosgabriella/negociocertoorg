@@ -115,7 +115,9 @@ export const estrutura = {
       financeiras: {
         label: "Calculadoras Financeiras",
         href: "/calculadoras/financeiras/",
-        paginas: [] as Pagina[]
+        paginas: [
+          { label: "Calculadora de Juros Compostos", href: "/calculadora-juros-compostos" }
+        ] as Pagina[]
       },
       trabalhistas: {
         label: "Calculadoras Trabalhistas",

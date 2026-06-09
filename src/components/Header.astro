@@ -119,6 +119,9 @@ import { estrutura } from '../data/estrutura';
               </button>
               <div class="mobile-section-items">
                 <a href={estrutura.calculadoras.subcategorias.financeiras.href} class="mobile-subcat-title">Calculadoras Financeiras</a>
+                {estrutura.calculadoras.subcategorias.financeiras.paginas.map(p => (
+                  <a href={p.href + '/'} class="mobile-item mobile-sub-item">{p.label}</a>
+                ))}
                 <a href={estrutura.calculadoras.subcategorias.trabalhistas.href} class="mobile-subcat-title">Calculadoras Trabalhistas</a>
                 <a href={estrutura.calculadoras.subcategorias.emprestimo.href} class="mobile-subcat-title">Calculadora de Empréstimo</a>
                 <a href={estrutura.calculadoras.subcategorias.datas.href} class="mobile-subcat-title">Calculadora de Datas</a>
@@ -246,6 +249,9 @@ import { estrutura } from '../data/estrutura';
           <div class="megamenu-cols">
             <div class="megamenu-col">
               <a href={estrutura.calculadoras.subcategorias.financeiras.href} class="megamenu-col-title">Calculadoras Financeiras</a>
+              {estrutura.calculadoras.subcategorias.financeiras.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
             </div>
             <div class="megamenu-col">
               <a href={estrutura.calculadoras.subcategorias.trabalhistas.href} class="megamenu-col-title">Calculadoras Trabalhistas</a>
