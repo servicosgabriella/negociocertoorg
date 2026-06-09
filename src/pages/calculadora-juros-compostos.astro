@@ -383,7 +383,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         '<div class="ct-title">' + titulo + '</div>' +
         '<div class="ct-row ct-bold"><span>Saldo total</span><span>' + BRL.format(total) + '</span></div>' +
         '<div class="ct-row"><span><span class="ct-dash" style="background:#2d6a9f"></span>Principal total</span><span>' + BRL.format(principal) + '</span></div>' +
-        '<div class="ct-row"><span><span class="ct-dash" style="background:#1a3a5c"></span>Juros acumulados</span><span>' + BRL.format(juros) + '</span></div>';
+        '<div class="ct-row"><span><span class="ct-dash" style="background:#facc15"></span>Juros acumulados</span><span>' + BRL.format(juros) + '</span></div>';
 
       // Posição relativa ao canvas
       var caret   = tooltip.caretX;
@@ -427,11 +427,11 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
               data: [],
               fill: '-1',
               backgroundColor: 'rgba(26,58,92,0.10)',
-              borderColor: '#1a3a5c',
+              borderColor: '#facc15',
               borderWidth: 2.5,
               pointRadius: 0,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: '#1a3a5c',
+              pointHoverBackgroundColor: '#facc15',
               pointHoverBorderColor: '#fff',
               pointHoverBorderWidth: 2,
               tension: 0.2,
@@ -837,7 +837,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       flex-shrink: 0;
     }
     .calc-legend-swatch.principal { background: rgba(45,106,159,0.35); border: 1.5px solid rgba(45,106,159,0.6); }
-    .calc-legend-swatch.juros     { background: rgba(26,58,92,0.25); border: 2px solid #1a3a5c; }
+    .calc-legend-swatch.juros     { background: rgba(250,204,21,0.4); border: 2px solid #facc15; }
 
     /* ===== TABLE ===== */
     .calc-table-section {
