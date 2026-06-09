@@ -878,53 +878,58 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     .calc-dd {
       position: relative;
       flex-shrink: 0;
-      border-left: 1px solid #e5e7eb;
+      border-left: 1px solid #d1d5db;
     }
     .calc-dd-btn {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       height: 42px;
       padding: 0 10px 0 12px;
       border: none;
-      background: #f9fafb;
+      background: transparent;
       cursor: pointer;
       font-family: Arial, sans-serif;
       font-size: 13px;
-      font-weight: 600;
-      color: #374151;
+      font-weight: 700;
+      color: #1a3a5c;
       white-space: nowrap;
-      min-width: 76px;
+      min-width: 82px;
       transition: background 0.12s;
     }
-    .calc-dd-btn:hover { background: #f3f4f6; }
-    .calc-dd.open .calc-dd-btn { background: #f3f4f6; color: #1a3a5c; }
+    .calc-dd-btn:hover { background: #f0f5fa; }
+    .calc-dd.open .calc-dd-btn { background: #e8f0f8; }
     .calc-dd-chevron {
-      font-size: 10px;
-      color: #9ca3af;
-      transition: transform 0.15s;
+      font-size: 9px;
+      color: #2d6a9f;
+      transition: transform 0.2s;
       line-height: 1;
+      margin-left: auto;
     }
-    .calc-dd.open .calc-dd-chevron { transform: rotate(180deg); color: #1a3a5c; }
+    .calc-dd.open .calc-dd-chevron { transform: rotate(180deg); }
     .calc-dd-list {
       display: none;
       position: absolute;
-      top: calc(100% + 3px);
+      top: calc(100% + 4px);
       right: 0;
       background: #fff;
       border: 1px solid #d1d5db;
-      border-radius: 4px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       list-style: none;
       margin: 0;
       padding: 4px 0;
       z-index: 200;
-      min-width: 100%;
+      min-width: 120%;
+      overflow: hidden;
     }
     .calc-dd.open .calc-dd-list { display: block; }
     .calc-dd-opt {
       list-style: none;
-      padding: 9px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
       font-size: 13px;
       font-weight: 500;
       color: #374151;
@@ -932,12 +937,22 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
       white-space: nowrap;
       transition: background 0.1s;
     }
+    .calc-dd-opt::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: transparent;
+      flex-shrink: 0;
+    }
     .calc-dd-opt:hover { background: #f3f4f6; }
     .calc-dd-opt.active {
-      background: #eff6ff;
+      background: #f0f5fa;
       color: #1a3a5c;
       font-weight: 700;
     }
+    .calc-dd-opt.active::before { background: #2d6a9f; }
 
     /* Toggle buttons */
     .calc-toggle-group {
