@@ -92,26 +92,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         </div>
 
         <div class="calc-field">
-          <label class="calc-label" for="inp-freq-cap">
-            Frequência de capitalização
-            <span class="tip-wrap" aria-label="De quanto em quanto tempo os juros são calculados e somados ao saldo. Capitalização mensal é o padrão da maioria dos investimentos brasileiros (CDB, Selic, poupança).">
-              <span class="tip-icon" aria-hidden="true">i</span>
-              <span class="tip-box" role="tooltip">De quanto em quanto tempo os juros são calculados e somados ao saldo. Capitalização mensal é o padrão da maioria dos investimentos brasileiros (CDB, Selic, poupança).</span>
-            </span>
-          </label>
-          <div class="calc-select-wrap">
-            <select id="inp-freq-cap" class="calc-select">
-              <option value="12" selected>Mensal</option>
-              <option value="4">Trimestral</option>
-              <option value="2">Semestral</option>
-              <option value="1">Anual</option>
-              <option value="365">Diária</option>
-            </select>
-            <span class="calc-select-arrow" aria-hidden="true">▼</span>
-          </div>
-        </div>
-
-        <div class="calc-field">
           <label class="calc-label" for="inp-aporte">
             Valor do aporte
             <span class="tip-wrap" aria-label="Quanto você pretende depositar periodicamente, além do valor inicial. Aportes regulares aceleram muito o crescimento do investimento.">
@@ -188,20 +168,17 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     <article class="calc-article">
 
       <h2>Como calcular juros compostos, fórmula e exemplo passo a passo</h2>
-      <p>Juros compostos são aqueles calculados sobre o capital inicial <strong>mais os juros já acumulados</strong> nos períodos anteriores, o famoso "juros sobre juros". A fórmula completa que esta calculadora usa é a seguinte.</p>
+      <p>Juros compostos são aqueles calculados sobre o capital inicial <strong>mais os juros já acumulados</strong> nos períodos anteriores, o famoso "juros sobre juros". A fórmula dos juros compostos é:</p>
       <div class="calc-formula-block">
-        <code>M = P × (1 + i/n)<sup>n×t</sup> + C × [(1 + i/n)<sup>n×t</sup> − 1] / (i/n)</code>
+        <code>M = C × (1 + i)<sup>t</sup></code>
       </div>
       <div class="calc-formula-vars">
-        <div><strong>M</strong> = Montante final</div>
-        <div><strong>P</strong> = Capital inicial</div>
-        <div><strong>i</strong> = Taxa de juros anual</div>
-        <div><strong>n</strong> = Frequência de capitalização por ano</div>
-        <div><strong>t</strong> = Prazo em anos</div>
-        <div><strong>C</strong> = Aporte periódico</div>
+        <div><strong>M</strong> = Montante final (valor acumulado)</div>
+        <div><strong>C</strong> = Capital investido</div>
+        <div><strong>i</strong> = Taxa de juros</div>
+        <div><strong>t</strong> = Tempo de aplicação</div>
       </div>
-      <p>Sem aportes mensais, a fórmula simplifica para <strong>M = P × (1 + i)<sup>t</sup></strong>. É com ela que vamos fazer um exemplo manual.</p>
-      <p>Suponha que você investe R$ 5.000 a uma taxa de 10% ao ano por 3 anos, sem aportes adicionais e com capitalização anual.</p>
+      <p>Suponha que você investe R$ 5.000 a uma taxa de 10% ao ano por 3 anos, sem aportes adicionais.</p>
       <ul>
         <li><strong>Ano 1</strong> — R$ 5.000 × 1,10 = R$ 5.500</li>
         <li><strong>Ano 2</strong> — R$ 5.500 × 1,10 = R$ 6.050</li>
@@ -326,39 +303,39 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     }
 
     /* ---------- cálculo ----------
-     * Simula período a período para qualquer frequência de capitalização.
-     * Para aportes mensais: distribui proporcionalmente por período de capitalização.
-     * Para aportes anuais: aplica no início de cada ano.
+     * Fórmula base: M = C × (1 + i)^t
+     * Aportes mensais: converte taxa anual em mensal via (1+i)^(1/12)-1,
+     *   simula mês a mês adicionando aporte no início de cada mês.
+     * Aportes anuais: simula ano a ano adicionando aporte no início de cada ano.
      */
-    function calcularAnos(P, taxaAnual, qtdAnos, aporte, freqAporte, freqCap) {
-      var r    = taxaAnual / 100;
-      var rPer = r / freqCap;          // taxa por período de capitalização
+    function calcularAnos(P, taxaAnual, qtdAnos, aporte, freqAporte) {
+      var i     = taxaAnual / 100;
       var saldo = P;
       var rows  = [];
 
-      for (var ano = 1; ano <= qtdAnos; ano++) {
-        var saldoInicio   = saldo;
-        var aporteNoAno   = (freqAporte === 'monthly') ? aporte * 12 : aporte;
+      if (freqAporte === 'monthly') {
+        // Taxa mensal equivalente: (1+i)^(1/12) - 1
+        var iMes = Math.pow(1 + i, 1 / 12) - 1;
 
-        for (var per = 0; per < freqCap; per++) {
-          // Adiciona aporte no início de cada período proporcional
-          if (freqAporte === 'monthly') {
-            saldo += aporte * (12 / freqCap);
-          } else {
-            if (per === 0) saldo += aporte;
+        for (var ano = 1; ano <= qtdAnos; ano++) {
+          var saldoInicio = saldo;
+
+          for (var mes = 0; mes < 12; mes++) {
+            saldo = (saldo + aporte) * (1 + iMes);
           }
-          saldo *= (1 + rPer);
+
+          var aporteNoAno = aporte * 12;
+          var juroNoAno   = saldo - saldoInicio - aporteNoAno;
+          rows.push({ ano: ano, saldoInicio: saldoInicio, aporteNoAno: aporteNoAno, juroNoAno: juroNoAno, saldoFinal: saldo });
         }
-
-        var juroNoAno = saldo - saldoInicio - aporteNoAno;
-
-        rows.push({
-          ano:          ano,
-          saldoInicio:  saldoInicio,
-          aporteNoAno:  aporteNoAno,
-          juroNoAno:    juroNoAno,
-          saldoFinal:   saldo,
-        });
+      } else {
+        // Aportes anuais: M = C × (1+i)^t
+        for (var ano = 1; ano <= qtdAnos; ano++) {
+          var saldoInicio = saldo;
+          saldo = (saldo + aporte) * (1 + i);
+          var juroNoAno = saldo - saldoInicio - aporte;
+          rows.push({ ano: ano, saldoInicio: saldoInicio, aporteNoAno: aporte, juroNoAno: juroNoAno, saldoFinal: saldo });
+        }
       }
 
       return rows;
@@ -370,7 +347,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         P:          parseVal(document.getElementById('inp-inicial').value),
         anos:       Math.max(1, Math.min(50, Math.round(parseVal(document.getElementById('inp-anos').value)))),
         taxa:       parseVal(document.getElementById('inp-taxa').value),
-        freqCap:    parseInt(document.getElementById('inp-freq-cap').value) || 12,
         aporte:     parseVal(document.getElementById('inp-aporte').value),
         freqAporte: (document.querySelector('.calc-toggle.active') || {}).dataset?.value || 'monthly',
       };
@@ -379,7 +355,7 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
     /* ---------- atualiza UI ---------- */
     function atualizar() {
       var inp  = lerInputs();
-      var rows = calcularAnos(inp.P, inp.taxa, inp.anos, inp.aporte, inp.freqAporte, inp.freqCap);
+      var rows = calcularAnos(inp.P, inp.taxa, inp.anos, inp.aporte, inp.freqAporte);
       var final = rows.length ? rows[rows.length - 1].saldoFinal : inp.P;
 
       // Total em destaque
@@ -576,9 +552,6 @@ const canonicalUrl = new URL('/calculadora-juros-compostos/', Astro.site).href;
         el.addEventListener('change', atualizar);
         el.addEventListener('blur',   atualizar);
       });
-
-      var sel = document.getElementById('inp-freq-cap');
-      if (sel) sel.addEventListener('change', atualizar);
 
       document.querySelectorAll('.calc-toggle').forEach(function (btn) {
         btn.addEventListener('click', function () {
