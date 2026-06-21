@@ -1,7 +1,7 @@
 # Cluster Master — negociocerto.org
-Última atualização: abril/2026
-Total de posts informacionais: 6
-Money pages ativas: 1
+Última atualização: junho/2026
+Total de posts informacionais: 8
+Money pages ativas: 2
 
 ---
 
@@ -28,6 +28,22 @@ Linka para: /melhores-maquininhas-cartao-voucher-refeicao/
 #### Como funciona o vale refeição na maquininha: o que o lojista precisa configurar
 URL: /como-funciona-vale-refeicao-maquininha/
 Linka para: /melhores-maquininhas-cartao-voucher-refeicao/ + /bandeira-voucher-brasil/ + /taxa-voucher-maquininha/
+
+---
+
+## Money Page: Melhores Sistemas PDV (2026)
+URL da pillar: /melhores-sistemas-pdv/
+
+### Posts de Suporte
+
+#### ERP ou PDV: Qual a Diferença e Qual Você Precisa?
+URL: /blog/erp-ou-pdv-diferenca/
+Linka para: /melhores-sistemas-pdv/
+
+#### PDV em Nuvem ou Local: Qual é Mais Seguro para o Seu Negócio?
+URL: /blog/pdv-nuvem-ou-local/
+Linka para: /melhores-sistemas-pdv/
+Posição do link: Parágrafo 2 da introdução (antes dos H2s)
 
 ---
 
