@@ -255,6 +255,9 @@ import { estrutura } from '../data/estrutura';
             </div>
             <div class="megamenu-col">
               <a href={estrutura.calculadoras.subcategorias.trabalhistas.href} class="megamenu-col-title">Calculadoras Trabalhistas</a>
+              {estrutura.calculadoras.subcategorias.trabalhistas.paginas.map(p => (
+                <a href={p.href + '/'} class="megamenu-article">{p.label}</a>
+              ))}
             </div>
             <div class="megamenu-col">
               <a href={estrutura.calculadoras.subcategorias.emprestimo.href} class="megamenu-col-title">Calculadora de Empréstimo</a>

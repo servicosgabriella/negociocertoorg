@@ -122,7 +122,9 @@ export const estrutura = {
       trabalhistas: {
         label: "Calculadoras Trabalhistas",
         href: "/calculadoras/trabalhistas/",
-        paginas: [] as Pagina[]
+        paginas: [
+          { label: "Calculadora de Salário Líquido", href: "/calculadora-salario-liquido" }
+        ] as Pagina[]
       },
       emprestimo: {
         label: "Calculadora de Empréstimo",
