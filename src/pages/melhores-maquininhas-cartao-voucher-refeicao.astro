@@ -229,17 +229,37 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
         .maquininha-hero-card {
             border: 1.5px solid #e5e7eb;
             border-radius: 14px;
-            padding: 24px 28px;
-            display: flex;
-            gap: 28px;
+            overflow: hidden;
             background: #fff;
             margin: 20px 0 28px;
+            display: flex;
+            flex-direction: column;
+        }
+        .mhc-badge {
+            background: #ecfdf5;
+            border-bottom: 1px solid #d1fae5;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #065f46;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mhc-badge i {
+            font-size: 15px;
+            color: #059669;
+        }
+        .mhc-body {
+            display: flex;
+            gap: 28px;
+            padding: 24px 28px;
         }
         .mhc-left {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
             min-width: 190px;
             max-width: 200px;
         }
@@ -262,47 +282,58 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             font-size: 19px;
             font-weight: 700;
             color: #1a3a5c;
-            margin: 0 0 2px;
+            margin: 0 0 4px;
             border: none;
             padding: 0;
         }
-        .mhc-features {
+        .mhc-metrics {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 7px 20px;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .mhc-feature {
-            font-size: 13px;
-            color: #374151;
+        .mhc-metrics-secondary {
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: -4px;
+        }
+        .mhc-metric {
+            padding: 10px 14px;
+            border-right: 1px solid #e5e7eb;
             display: flex;
-            align-items: center;
-            gap: 7px;
+            flex-direction: column;
+            gap: 3px;
         }
-        .mhc-feature i {
-            color: #16a34a;
+        .mhc-metric:last-child {
+            border-right: none;
+        }
+        .mhc-metric-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .mhc-metric-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a3a5c;
+        }
+        .mhc-metrics-secondary .mhc-metric-value {
             font-size: 13px;
-            width: 14px;
-            flex-shrink: 0;
+            font-weight: 600;
+            color: #374151;
         }
         .mhc-price-block {
             border-top: 1px solid #f3f4f6;
-            padding-top: 12px;
+            padding-top: 10px;
         }
         .mhc-installment {
-            font-size: 15px;
-            color: #374151;
+            font-size: 14px;
+            color: #6b7280;
         }
         .mhc-installment strong {
-            font-size: 18px;
+            font-size: 16px;
             color: #1a3a5c;
-        }
-        .mhc-cash {
-            font-size: 13px;
-            color: #6b7280;
-            margin-top: 2px;
-        }
-        .mhc-cash strong {
-            color: #374151;
         }
         .mhc-cta-button {
             display: flex;
@@ -316,7 +347,6 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             text-decoration: none !important;
             text-align: center;
             transition: background 0.2s;
-            margin-top: 4px;
         }
         .mhc-cta-button:hover {
             background: #2d6a9f;
@@ -340,24 +370,23 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             text-align: center;
         }
         @media (max-width: 720px) {
-            .maquininha-hero-card {
+            .mhc-body {
                 flex-direction: column;
-                padding: 18px;
+                padding: 16px;
                 gap: 16px;
             }
             .mhc-left {
-                flex-direction: row;
-                flex-wrap: wrap;
                 max-width: 100%;
                 min-width: unset;
-                align-items: flex-start;
-                gap: 12px;
             }
             .mhc-product-img {
                 display: none;
             }
-            .mhc-features {
-                grid-template-columns: 1fr;
+            .mhc-metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+            .mhc-metrics-secondary {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -377,30 +406,58 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
     <h2>PagBank: as 5 bandeiras de vale refeição e alimentação pelo preço certo</h2>
 
     <div class="maquininha-hero-card">
-        <div class="mhc-left">
-            <a href="https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TW9kZXJuaW5oYSBQcm8gMiAtIExhbmRpbmcgUGFnZQ==&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-pro%3Faff_source%3Df787086478e94354b90efc861dfcf89b" target="_blank" rel="sponsored noopener" class="mhc-product-img">
-                <img src="/images/moderninha-pro-2-pagbank.webp" alt="PagBank Moderninha Pro 2" width="175" height="175" loading="eager">
-            </a>
+        <div class="mhc-badge">
+            <i class="fa fa-check-circle"></i> Nossa escolha para: vale refeição e alimentação
         </div>
-        <div class="mhc-right">
-            <h3 class="mhc-product-name">Moderninha Pro 2</h3>
-            <div class="mhc-features">
-                <span class="mhc-feature"><i class="fa fa-print"></i> Comprovante impresso</span>
-                <span class="mhc-feature"><i class="fa fa-wifi"></i> Wi-Fi e Chip de Dados</span>
-                <span class="mhc-feature"><i class="fa fa-qrcode"></i> Aceita Pix QR Code</span>
-                <span class="mhc-feature"><i class="fa fa-dot-circle-o"></i> Pagamento por aproximação (NFC)</span>
-                <span class="mhc-feature"><i class="fa fa-times"></i> Sem aluguel</span>
-                <span class="mhc-feature"><i class="fa fa-shield"></i> Garantia de 5 anos</span>
+        <div class="mhc-body">
+            <div class="mhc-left">
+                <a href="https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TW9kZXJuaW5oYSBQcm8gMiAtIExhbmRpbmcgUGFnZQ==&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-pro%3Faff_source%3Df787086478e94354b90efc861dfcf89b" target="_blank" rel="sponsored noopener" class="mhc-product-img">
+                    <img src="/images/moderninha-pro-2-pagbank.webp" alt="PagBank Moderninha Pro 2" width="175" height="175" loading="eager">
+                </a>
             </div>
-            <div class="mhc-price-block">
-                <div class="mhc-installment">12x de <strong>R$ 8,98</strong> sem juros</div>
-                <div class="mhc-cash">ou <strong>R$ 107,87</strong> à vista</div>
+            <div class="mhc-right">
+                <h3 class="mhc-product-name">PagBank Moderninha Pro 2</h3>
+                <div class="mhc-metrics">
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Taxa débito</span>
+                        <span class="mhc-metric-value">0,58%</span>
+                    </div>
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Taxa crédito</span>
+                        <span class="mhc-metric-value">0,58%</span>
+                    </div>
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Vouchers aceitos</span>
+                        <span class="mhc-metric-value">5 bandeiras</span>
+                    </div>
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Preço à vista</span>
+                        <span class="mhc-metric-value">R$ 107,87</span>
+                    </div>
+                </div>
+                <div class="mhc-metrics mhc-metrics-secondary">
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Crédito 12x</span>
+                        <span class="mhc-metric-value">7,98%</span>
+                    </div>
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Recebimento</span>
+                        <span class="mhc-metric-value">Em até 1 hora</span>
+                    </div>
+                    <div class="mhc-metric">
+                        <span class="mhc-metric-label">Garantia</span>
+                        <span class="mhc-metric-value">5 anos</span>
+                    </div>
+                </div>
+                <div class="mhc-price-block">
+                    <div class="mhc-installment">ou <strong>12x de R$ 8,98</strong> sem juros</div>
+                </div>
+                <a href="https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TW9kZXJuaW5oYSBQcm8gMiAtIExhbmRpbmcgUGFnZQ==&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-pro%3Faff_source%3Df787086478e94354b90efc861dfcf89b" class="mhc-cta-button" target="_blank" rel="sponsored noopener">
+                    <span class="mhc-cta-main">VER OFERTA MODERNINHA PRO 2 ›</span>
+                    <span class="mhc-cta-sub">POR TEMPO LIMITADO</span>
+                </a>
+                <span class="mhc-domain">pagbank.com.br</span>
             </div>
-            <a href="https://click.afiliados.uol.com.br/Clique?idtUrl=399883&cpg=Mzk5ODgz&idtLabel=138465&source=15&type=link&creative=TW9kZXJuaW5oYSBQcm8gMiAtIExhbmRpbmcgUGFnZQ==&affRedir=https%3A%2F%2Fpagbank.com.br%2Fpara-seu-negocio%2Fmaquininhas%2Fmoderninha-pro%3Faff_source%3Df787086478e94354b90efc861dfcf89b" class="mhc-cta-button" target="_blank" rel="sponsored noopener">
-                <span class="mhc-cta-main">VER OFERTA MODERNINHA PRO 2 ›</span>
-                <span class="mhc-cta-sub">POR TEMPO LIMITADO</span>
-            </a>
-            <span class="mhc-domain">pagbank.com.br</span>
         </div>
     </div>
 
