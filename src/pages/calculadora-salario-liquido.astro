@@ -1,0 +1,1058 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Calculadora de Salário Líquido 2025 — INSS e IRRF Automáticos";
+const description = "Calcule seu salário líquido CLT em segundos. INSS progressivo e IRRF 2025 calculados automaticamente com tabelas atualizadas. Inclui dependentes e outros descontos.";
+const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": canonicalUrl + "#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://negociocerto.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://negociocerto.org/calculadoras/" },
+          { "@type": "ListItem", "position": 3, "name": "Calculadora de Salário Líquido" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": canonicalUrl + "#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O desconto do INSS é progressivo igual ao IR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim, desde 2020 o INSS passou a ser calculado de forma progressiva, igual ao Imposto de Renda. Antes, a alíquota incidia sobre o salário inteiro. Hoje, cada faixa do salário tem sua alíquota própria: 7,5% sobre a parte até R$ 1.518,00, 9% sobre o trecho entre R$ 1.518,01 e R$ 2.793,88, 12% entre R$ 2.793,89 e R$ 4.190,83, e 14% sobre o trecho entre R$ 4.190,84 e R$ 8.157,41. Acima disso, o desconto não aumenta: o teto é R$ 908,85."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dependentes reduzem o INSS ou só o IRRF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Só o IRRF. A dedução de R$ 189,59 por dependente é aplicada apenas na base de cálculo do Imposto de Renda Retido na Fonte. O INSS é calculado sobre o salário bruto integral, sem qualquer dedução por dependentes. Portanto, cada dependente reduz diretamente o IR, mas não altera o desconto do INSS."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Vale-transporte desconta quanto do salário?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O desconto do vale-transporte é de 6% sobre o salário bruto, limitado ao valor efetivo do benefício. Se o custo real do transporte for menor que 6% do salário, o empregador desconta apenas o valor real. Se o empregado não usar transporte público para chegar ao trabalho, não há desconto e nem benefício. O desconto de vale-transporte é feito antes do cálculo do IRRF, reduzindo a base de tributação."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O 13º salário desconta INSS e IR da mesma forma?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O 13º salário tem regras próprias. O INSS incide normalmente sobre o valor bruto do 13°, usando as mesmas faixas progressivas. Já o IRRF sobre o 13° é calculado separadamente da folha mensal: usa a tabela progressiva aplicada sobre o valor do 13° menos as deduções de dependentes, mas sem deduzir o INSS do 13° da base do IR (diferente da folha mensal). O imposto retido na fonte no 13° é definitivo e não entra na declaração anual."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto preciso ganhar de bruto para ter salário líquido de R$ 5.000?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para líquido de R$ 5.000 sem dependentes e sem outros descontos, você precisa de aproximadamente R$ 6.500 a R$ 6.800 de salário bruto. Nessa faixa, o INSS fica em torno de R$ 680 (desconto máximo progressivo) e o IRRF em torno de R$ 600 a R$ 700. Use a calculadora acima ajustando o salário bruto até o resultado líquido atingir R$ 5.000."
+            }
+          }
+        ]
+      }
+    ]
+  })} />
+</head>
+<body>
+  <Header />
+
+  <!-- FERRAMENTA -->
+  <main class="calc-main">
+
+    <nav aria-label="Breadcrumb" class="calc-breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><a href="/calculadoras/">Calculadoras</a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><span class="current">Calculadora de Salário Líquido</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="calc-page-title">Calculadora de Salário Líquido CLT</h1>
+    <p class="calc-page-desc">Descubra quanto você realmente recebe depois dos descontos de INSS e Imposto de Renda com as tabelas de 2025.</p>
+
+    <div class="calc-tool">
+
+      <!-- PAINEL ESQUERDO: FORM -->
+      <aside class="calc-form-panel">
+        <h2 class="calc-form-title">Dados do salário</h2>
+
+        <div class="calc-field">
+          <label class="calc-label" for="inp-bruto">
+            Salário bruto
+            <span class="tip-wrap" aria-label="Valor total do seu salário antes de qualquer desconto. É o número que consta no seu contrato de trabalho.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Valor total do seu salário antes de qualquer desconto. É o número que consta no seu contrato de trabalho.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <span class="calc-unit left">R$</span>
+            <input id="inp-bruto" class="calc-input" type="text" inputmode="numeric" value="5.000" />
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="inp-dependentes">
+            Número de dependentes
+            <span class="tip-wrap" aria-label="Filhos, cônjuge ou outros dependentes declarados. Cada um reduz a base de cálculo do IR em R$ 189,59. Não afeta o desconto do INSS.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Filhos, cônjuge ou outros dependentes declarados. Cada um reduz a base de cálculo do IR em R$ 189,59. Não afeta o desconto do INSS.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <input id="inp-dependentes" class="calc-input" type="text" inputmode="numeric" value="0" />
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="inp-outros">
+            Outros descontos
+            <span class="tip-wrap" aria-label="Vale-transporte (6% do bruto), plano de saúde, previdência privada ou outros descontos em folha. Informe o total mensal em reais.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Vale-transporte (6% do bruto), plano de saúde, previdência privada ou outros descontos em folha. Informe o total mensal em reais.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <span class="calc-unit left">R$</span>
+            <input id="inp-outros" class="calc-input" type="text" inputmode="numeric" value="0" />
+          </div>
+        </div>
+
+        <!-- RESUMO RÁPIDO -->
+        <div class="calc-summary-box">
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">INSS</span>
+            <span class="calc-summary-val red" id="res-inss">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">IRRF</span>
+            <span class="calc-summary-val red" id="res-irrf">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">Outros</span>
+            <span class="calc-summary-val red" id="res-outros">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-divider"></div>
+          <div class="calc-summary-row total">
+            <span class="calc-summary-label">Total descontado</span>
+            <span class="calc-summary-val red" id="res-total-desc">− R$ 0,00</span>
+          </div>
+        </div>
+
+        <p class="calc-disclaimer">Tabelas INSS e IRRF vigentes em 2025. Cálculo para CLT mensal.</p>
+      </aside>
+
+      <!-- PAINEL DIREITO: GRÁFICO -->
+      <div class="calc-chart-panel">
+        <div class="calc-chart-header">
+          <p class="calc-chart-label">Salário Líquido</p>
+          <p class="calc-chart-total" id="result-liquido">R$ 0,00</p>
+          <p class="calc-chart-sub" id="result-pct">0% do bruto</p>
+        </div>
+        <div class="calc-chart-area">
+          <canvas id="grafico" aria-label="Gráfico de composição do salário"></canvas>
+        </div>
+        <div class="calc-chart-legend">
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch liquido"></span>
+            Salário líquido
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch inss"></span>
+            INSS
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch irrf"></span>
+            IRRF
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch outros"></span>
+            Outros
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABELA DE DEDUÇÕES -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Composição detalhada do salário</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Item</th>
+              <th>Valor</th>
+              <th>% do Bruto</th>
+              <th style="text-align:left">Observação</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-body">
+            <!-- preenchido pelo JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TABELA INSS DE REFERÊNCIA -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Tabela INSS 2025 — alíquotas progressivas</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Faixa salarial</th>
+              <th>Alíquota</th>
+              <th>Desconto máximo na faixa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left; color:#374151">Até R$ 1.518,00</td>
+              <td>7,5%</td>
+              <td>R$ 113,85</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 1.518,01 a R$ 2.793,88</td>
+              <td>9,0%</td>
+              <td>R$ 114,82</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.793,89 a R$ 4.190,83</td>
+              <td>12,0%</td>
+              <td>R$ 167,63</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 4.190,84 a R$ 8.157,41</td>
+              <td>14,0%</td>
+              <td>R$ 555,45</td>
+            </tr>
+            <tr class="highlight">
+              <td style="text-align:left"><strong>Teto de contribuição</strong></td>
+              <td><strong>—</strong></td>
+              <td><strong>R$ 908,85</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TABELA IRRF DE REFERÊNCIA -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Tabela IRRF 2025 — faixas de tributação mensal</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Base de cálculo (após INSS e deduções)</th>
+              <th>Alíquota</th>
+              <th>Parcela a deduzir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left; color:#374151">Até R$ 2.259,20</td>
+              <td>Isento</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.259,21 a R$ 2.826,65</td>
+              <td>7,5%</td>
+              <td>R$ 169,44</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.826,66 a R$ 3.751,05</td>
+              <td>15%</td>
+              <td>R$ 381,44</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 3.751,06 a R$ 4.664,68</td>
+              <td>22,5%</td>
+              <td>R$ 662,77</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">Acima de R$ 4.664,68</td>
+              <td>27,5%</td>
+              <td>R$ 896,00</td>
+            </tr>
+            <tr class="highlight">
+              <td style="text-align:left"><strong>Dedução por dependente</strong></td>
+              <td><strong>—</strong></td>
+              <td><strong>R$ 189,59 / dependente</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO EDUCATIVO -->
+    <article class="calc-article">
+
+      <h2>Como calcular salário líquido CLT: INSS progressivo e IRRF passo a passo</h2>
+      <p>O salário líquido é o valor que efetivamente cai na sua conta todo mês. Para chegar nele, o empregador desconta dois tributos obrigatórios diretamente da folha de pagamento: o INSS (contribuição à Previdência Social) e o IRRF (Imposto de Renda Retido na Fonte). Outros descontos como vale-transporte e plano de saúde também podem reduzir o valor final.</p>
+      <p>O cálculo segue uma sequência obrigatória. Primeiro você calcula o INSS sobre o salário bruto. Depois subtrai o INSS do salário bruto para chegar à base de cálculo do IR. Em seguida deduz R$ 189,59 por cada dependente declarado. O resultado é a base de cálculo do IRRF, sobre a qual você aplica a tabela progressiva. Por fim, soma os dois descontos e subtrai do bruto. O que sobra é o salário líquido.</p>
+      <div class="calc-formula-block">
+        <code>Salário Líquido = Bruto − INSS − IRRF − Outros Descontos</code>
+      </div>
+      <p>Um exemplo concreto para salário bruto de R$ 5.000, sem dependentes e sem outros descontos. O INSS progressivo resulta em R$ 524,31. A base do IR fica em R$ 4.475,69. O IRRF calculado pela tabela é R$ 335,27. O salário líquido é R$ 4.140,42, ou seja, 82,8% do bruto.</p>
+
+      <h2>Tabela INSS 2025: como o cálculo progressivo funciona na prática</h2>
+      <p>Desde novembro de 2020, o INSS passou a funcionar de forma progressiva, igual ao Imposto de Renda. Antes dessa mudança, a alíquota incidia sobre o salário inteiro, o que criava situações absurdas onde um aumento salarial pequeno resultava em queda no líquido.</p>
+      <p>Hoje, cada faixa do salário tem sua própria alíquota, aplicada apenas sobre a parte que cai naquela faixa. Para um salário de R$ 5.000:</p>
+      <ul>
+        <li>Os primeiros R$ 1.518,00 pagam 7,5% = R$ 113,85</li>
+        <li>A faixa de R$ 1.518,01 a R$ 2.793,88 paga 9% = R$ 114,82</li>
+        <li>A faixa de R$ 2.793,89 a R$ 4.190,83 paga 12% = R$ 167,63</li>
+        <li>A faixa de R$ 4.190,84 a R$ 5.000,00 paga 14% = R$ 113,28</li>
+        <li><strong>Total INSS: R$ 509,58</strong></li>
+      </ul>
+      <p>Importante: existe um teto de contribuição. Para salários acima de R$ 8.157,41, o INSS não aumenta mais. O desconto máximo possível é de R$ 908,85. Quem ganha R$ 20.000 paga o mesmo INSS que quem ganha R$ 8.157,41.</p>
+
+      <h2>Tabela IRRF 2025: faixas de tributação e quanto cada dependente economiza</h2>
+      <p>O Imposto de Renda Retido na Fonte funciona de forma progressiva desde sempre. A base de cálculo não é o salário bruto, mas sim o salário bruto menos o INSS, menos as deduções por dependentes e menos outros descontos legalmente previstos.</p>
+      <p>Para quem não tem dependentes e não tem outros descontos, a base do IR é o bruto menos o INSS. Quem tem dependentes reduz essa base em R$ 189,59 por cabeça. Com dois filhos, a redução é de R$ 379,18 na base antes de calcular o imposto. Dependendo da faixa salarial, essa dedução pode representar uma economia real de R$ 14 a R$ 52 por dependente por mês.</p>
+      <p>A tabela usa o chamado método da subtração direta. Em vez de calcular faixa por faixa como o INSS, você multiplica a base pela alíquota da última faixa e subtrai a parcela de dedução correspondente. Para base de R$ 4.000: 22,5% × R$ 4.000 − R$ 662,77 = R$ 237,23 de IR.</p>
+
+      <h2>Quanto desconta de INSS e IRRF para salários de R$ 2.000 a R$ 15.000</h2>
+      <p>Para entender o impacto real dos descontos em cada faixa salarial, veja os valores aproximados sem dependentes e sem outros descontos.</p>
+      <p><strong>R$ 2.000 bruto:</strong> INSS de R$ 153,31, base IR de R$ 1.846,69 (isento). Líquido: R$ 1.846,69. Percentual líquido: 92,3%.</p>
+      <p><strong>R$ 3.000 bruto:</strong> INSS de R$ 254,22, base IR de R$ 2.745,78 (isento). Líquido: R$ 2.745,78. Percentual líquido: 91,5%.</p>
+      <p><strong>R$ 4.000 bruto:</strong> INSS de R$ 387,85, base IR de R$ 3.612,15, IRRF de R$ 160,38. Líquido: R$ 3.451,77. Percentual líquido: 86,3%.</p>
+      <p><strong>R$ 6.000 bruto:</strong> INSS de R$ 628,43, base IR de R$ 5.371,57, IRRF de R$ 582,23. Líquido: R$ 4.789,34. Percentual líquido: 79,8%.</p>
+      <p><strong>R$ 10.000 bruto:</strong> INSS de R$ 908,85 (teto), base IR de R$ 9.091,15, IRRF de R$ 1.603,07. Líquido: R$ 7.488,08. Percentual líquido: 74,9%.</p>
+      <p><strong>R$ 15.000 bruto:</strong> INSS de R$ 908,85 (teto), base IR de R$ 14.091,15, IRRF de R$ 2.978,57. Líquido: R$ 11.112,58. Percentual líquido: 74,1%.</p>
+      <p>Repare que acima de R$ 10.000 o percentual líquido fica relativamente estável, entre 73% e 75%. Isso acontece porque o INSS atingiu o teto e o IR da última faixa (27,5%) já se aplica integralmente. Cada real a mais no bruto vira R$ 0,725 no líquido.</p>
+
+      <h2>O que mais pode ser descontado do salário CLT além de INSS e IRRF</h2>
+      <p>O salário líquido real frequentemente é menor do que o cálculo de INSS + IR, porque há outros descontos autorizados pela CLT que reduzem ainda mais o valor recebido. Os mais comuns são:</p>
+      <p><strong>Vale-transporte:</strong> O empregado contribui com até 6% do salário bruto para o custeio do benefício. Se o custo real do transporte diário for menor que 6% do salário, o desconto é limitado ao custo real. Quem não usa transporte público não tem desconto nem benefício.</p>
+      <p><strong>Plano de saúde:</strong> Quando a empresa oferece plano coletivo, a participação do empregado é descontada em folha. O valor varia muito conforme o plano, faixa etária e número de dependentes incluídos. Planos com coparticipação têm mensalidade menor, mas cobranças por uso.</p>
+      <p><strong>Previdência privada:</strong> Contribuições para planos PGBL ou Vgbl coletivos patrocinados pelo empregador são descontadas em folha e podem ser deduzidas na declaração anual de IR, até 12% da renda tributável.</p>
+      <p><strong>Adiantamento salarial:</strong> Se você recebeu adiantamento quinzenal, o valor já pago é descontado no fechamento da folha. Não é desconto real — é apenas antecipação do que já foi pago.</p>
+      <p><strong>Pensão alimentícia judicial:</strong> Quando determinada por decisão judicial, é descontada diretamente em folha, com prioridade sobre qualquer outro desconto.</p>
+
+      <h2>Salário bruto vs salário líquido: quanto o empregador realmente gasta e quanto você leva</h2>
+      <p>O custo real de um funcionário CLT para a empresa é sempre maior que o salário bruto. Sobre o bruto, o empregador ainda paga encargos patronais que não aparecem no holerite mas saem do orçamento do negócio.</p>
+      <p>Os principais encargos patronais incluem INSS patronal de 20% (ou 22,5% para alguns segmentos), FGTS de 8%, contribuições ao sistema S (Senai, Sesi, Senac, Sesc) de cerca de 3,1%, Seguro Acidente de Trabalho (SAT) de 1% a 3%, e o custo das férias com 1/3 constitucional e 13° salário rateado ao longo do ano.</p>
+      <p>Na prática, o custo total de um funcionário que recebe R$ 5.000 de bruto fica entre R$ 7.500 e R$ 8.500 para a empresa, dependendo do setor e do porte. O trabalhador leva pra casa entre R$ 4.000 e R$ 4.300, dependendo dos descontos. A diferença vai para o Estado e para os fundos obrigatórios como o FGTS.</p>
+
+      <h2>CLT vs PJ: para qual salário bruto compensa mudar de regime</h2>
+      <p>Essa é uma das perguntas mais frequentes de profissionais qualificados. A resposta depende do salário, das despesas como PJ e do quanto você usa os benefícios CLT. Mas existe uma regra prática amplamente usada no mercado: o contrato PJ precisa pagar entre 30% e 40% a mais que o salário bruto CLT para ser equivalente.</p>
+      <p>Isso porque o CLT inclui FGTS (8% do bruto, que você só recebe em situações específicas), 13° salário (equivale a 8,33% ao mês rateado), férias remuneradas com 1/3 (cerca de 11,1% ao mês rateado), aviso prévio proporcional e estabilidade no emprego. Quando você soma tudo, a remuneração real do CLT é aproximadamente 35% maior que o salário bruto pago em dezembro.</p>
+      <p>Para um salário CLT de R$ 8.000 brutos (líquido de cerca de R$ 6.100), o contrato PJ equivalente precisaria pagar R$ 10.800 a R$ 11.200 por mês. Desse valor, você ainda paga Imposto de Renda PJ (DAS se for MEI, Simples Nacional, ou IRPJ + CSLL se for Lucro Presumido), INSS como autônomo (20% sobre o pró-labore ou contribuição mínima), e suas próprias despesas de contabilidade, saúde e férias.</p>
+      <p>A vantagem real do PJ aparece acima de R$ 15.000 a R$ 20.000, onde a carga tributária do CLT fica entre 26% e 28% e os regimes simplificados do PJ podem ficar em 15% a 18%. Abaixo disso, a proteção do CLT frequentemente compensa financeiramente.</p>
+
+      <h2>Perguntas frequentes sobre cálculo de salário líquido</h2>
+
+      <h3>O desconto do INSS é progressivo igual ao IR?</h3>
+      <p>Sim, desde novembro de 2020 o INSS passou a ser calculado de forma progressiva, igual ao Imposto de Renda. Antes dessa mudança, a alíquota incidia sobre o salário inteiro. Hoje, cada faixa do salário tem sua alíquota própria: 7,5% sobre a parte até R$ 1.518,00, 9% sobre o trecho seguinte até R$ 2.793,88, 12% até R$ 4.190,83, e 14% sobre o que excede esse valor até o teto de R$ 8.157,41. Acima do teto, o desconto não aumenta — máximo de R$ 908,85.</p>
+
+      <h3>Dependentes reduzem o INSS ou só o IRRF?</h3>
+      <p>Só o IRRF. A dedução de R$ 189,59 por dependente é aplicada exclusivamente na base de cálculo do Imposto de Renda Retido na Fonte. O INSS é calculado sobre o salário bruto integral, sem qualquer abatimento por dependentes. Cada dependente reduz diretamente o IR, mas não altera o desconto do INSS. Para dependentes com rendimentos próprios, existem regras adicionais que devem ser verificadas com um contador.</p>
+
+      <h3>Vale-transporte desconta quanto do salário?</h3>
+      <p>O desconto do vale-transporte é de 6% sobre o salário bruto, limitado ao custo real do trajeto diário. Se o transporte público mensal custa R$ 200 e 6% do salário bruto é R$ 300, o desconto será de R$ 200 — o menor valor. Se não há transporte público no trajeto ou o empregado usa veículo próprio, não há desconto nem benefício. Trabalhadores que exercem função em home office integral podem ficar sem o benefício nos dias trabalhados remotamente.</p>
+
+      <h3>O 13° salário desconta INSS e IR da mesma forma?</h3>
+      <p>O 13° salário tem regras específicas. O INSS incide normalmente sobre o valor bruto do 13°, usando as mesmas faixas progressivas do mês normal. Já o IRRF sobre o 13° é calculado separadamente: usa a tabela progressiva aplicada sobre o valor do 13° menos as deduções de dependentes, mas sem deduzir o INSS do 13° da base do IR. O imposto retido na fonte do 13° é definitivo e não entra na base de cálculo da declaração anual de ajuste.</p>
+
+      <h3>Quanto preciso ganhar de bruto para ter líquido de R$ 5.000?</h3>
+      <p>Para líquido de R$ 5.000 sem dependentes e sem outros descontos, você precisa de aproximadamente R$ 6.500 a R$ 6.800 de salário bruto. Nessa faixa, o INSS fica em torno de R$ 680 e o IRRF entre R$ 620 e R$ 700. Use a calculadora acima ajustando o salário bruto até o resultado líquido atingir o valor desejado. A cada real a mais no bruto acima de R$ 4.665, você leva R$ 0,725 líquido — a alíquota marginal efetiva é 27,5% de IR mais 14% de INSS até o teto.</p>
+
+    </article>
+
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+  (function () {
+    'use strict';
+
+    var chart = null;
+
+    var BRL = new Intl.NumberFormat('pt-BR', {
+      style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2
+    });
+
+    /* ---------- helpers ---------- */
+    function parseVal(str) {
+      var s = String(str).replace(/[R$\s%]/g, '').trim();
+      if (s.indexOf(',') !== -1) {
+        s = s.replace(/\./g, '').replace(',', '.');
+      } else {
+        s = s.replace(/\.(\d{3})(?=\.|$)/g, '$1');
+      }
+      return parseFloat(s) || 0;
+    }
+
+    function fmt(v) { return BRL.format(v); }
+    function pct(v, total) { return total > 0 ? (v / total * 100).toFixed(1) + '%' : '0,0%'; }
+
+    /* ---------- INSS 2025 progressivo ---------- */
+    function calcularINSS(bruto) {
+      var faixas = [
+        { ate: 1518.00,  aliquota: 0.075 },
+        { ate: 2793.88,  aliquota: 0.09  },
+        { ate: 4190.83,  aliquota: 0.12  },
+        { ate: 8157.41,  aliquota: 0.14  },
+      ];
+      var inss     = 0;
+      var anterior = 0;
+
+      for (var i = 0; i < faixas.length; i++) {
+        if (bruto <= anterior) break;
+        var topo = faixas[i].ate;
+        var base = Math.min(bruto, topo) - anterior;
+        inss += base * faixas[i].aliquota;
+        anterior = topo;
+        if (bruto <= topo) break;
+      }
+
+      return Math.min(inss, 908.85);
+    }
+
+    /* ---------- IRRF 2025 ---------- */
+    function calcularIRRF(baseCalculo, dependentes) {
+      var deducaoDep = 189.59;
+      var base = Math.max(0, baseCalculo - dependentes * deducaoDep);
+
+      var faixas = [
+        { ate: 2259.20,   aliquota: 0,     deducao: 0      },
+        { ate: 2826.65,   aliquota: 0.075, deducao: 169.44 },
+        { ate: 3751.05,   aliquota: 0.15,  deducao: 381.44 },
+        { ate: 4664.68,   aliquota: 0.225, deducao: 662.77 },
+        { ate: Infinity,  aliquota: 0.275, deducao: 896.00 },
+      ];
+
+      for (var i = 0; i < faixas.length; i++) {
+        if (base <= faixas[i].ate) {
+          return Math.max(0, base * faixas[i].aliquota - faixas[i].deducao);
+        }
+      }
+      return 0;
+    }
+
+    /* ---------- cálculo principal ---------- */
+    function calcular() {
+      var bruto      = parseVal(document.getElementById('inp-bruto').value);
+      var dependentes = Math.max(0, Math.round(parseVal(document.getElementById('inp-dependentes').value)));
+      var outros     = parseVal(document.getElementById('inp-outros').value);
+
+      var inss       = calcularINSS(bruto);
+      var baseIR     = Math.max(0, bruto - inss - outros);
+      var irrf       = calcularIRRF(baseIR, dependentes);
+      var totalDesc  = inss + irrf + outros;
+      var liquido    = Math.max(0, bruto - totalDesc);
+      var pctLiq     = bruto > 0 ? (liquido / bruto * 100) : 0;
+
+      return { bruto: bruto, inss: inss, irrf: irrf, outros: outros, totalDesc: totalDesc, liquido: liquido, pctLiq: pctLiq };
+    }
+
+    /* ---------- atualiza UI ---------- */
+    function atualizar() {
+      var r = calcular();
+
+      // Resumo no painel esquerdo
+      document.getElementById('res-inss').textContent     = '− ' + fmt(r.inss);
+      document.getElementById('res-irrf').textContent     = '− ' + fmt(r.irrf);
+      document.getElementById('res-outros').textContent   = '− ' + fmt(r.outros);
+      document.getElementById('res-total-desc').textContent = '− ' + fmt(r.totalDesc);
+
+      // Resultado principal
+      document.getElementById('result-liquido').textContent = fmt(r.liquido);
+      document.getElementById('result-pct').textContent    = r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto';
+
+      // Gráfico donut
+      if (chart) {
+        chart.data.datasets[0].data = [r.liquido, r.inss, r.irrf, r.outros];
+        chart.update();
+      }
+
+      // Tabela de composição
+      var tbody = document.getElementById('tabela-body');
+      tbody.innerHTML = '';
+
+      var linhas = [
+        { label: 'Salário bruto',          valor: r.bruto,     sinal: '',  obs: 'Valor do contrato de trabalho',         bold: false },
+        { label: 'INSS',                   valor: r.inss,      sinal: '−', obs: 'Tabela progressiva 2025 (até 14%)',      bold: false },
+        { label: 'Base de cálculo IR',     valor: r.bruto - r.inss - r.outros, sinal: '', obs: 'Bruto − INSS − outros descontos', bold: false },
+        { label: 'IRRF',                   valor: r.irrf,      sinal: '−', obs: 'Tabela progressiva 2025 (até 27,5%)',   bold: false },
+        { label: 'Outros descontos',       valor: r.outros,    sinal: '−', obs: 'Vale-transporte, plano de saúde, etc.', bold: false },
+        { label: 'Salário líquido',        valor: r.liquido,   sinal: '',  obs: r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto', bold: true },
+      ];
+
+      linhas.forEach(function (linha) {
+        if (linha.label === 'Outros descontos' && r.outros === 0) return;
+        if (linha.label === 'Base de cálculo IR') return; // linha informativa — omitir para clareza
+        var tr = document.createElement('tr');
+        if (linha.bold) tr.className = 'highlight';
+
+        var valor = linha.sinal ? linha.sinal + ' ' + fmt(linha.valor) : fmt(linha.valor);
+        var pctStr = linha.label === 'Salário bruto' ? '100%'
+                   : linha.label === 'Salário líquido' ? r.pctLiq.toFixed(1).replace('.', ',') + '%'
+                   : (linha.valor > 0 ? pct(linha.valor, r.bruto) : '—');
+
+        tr.innerHTML =
+          '<td style="text-align:left; color:' + (linha.bold ? '#1a3a5c' : '#374151') + '">' +
+            (linha.bold ? '<strong>' + linha.label + '</strong>' : linha.label) +
+          '</td>' +
+          '<td>' + (linha.bold ? '<strong>' + valor + '</strong>' : valor) + '</td>' +
+          '<td>' + pctStr + '</td>' +
+          '<td style="text-align:left; color:#9ca3af; font-size:13px">' + linha.obs + '</td>';
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* ---------- tooltip externo donut ---------- */
+    function customTooltip(context) {
+      var chartObj = context.chart;
+      var tooltip  = context.tooltip;
+
+      var el = document.getElementById('calc-tooltip');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'calc-tooltip';
+        chartObj.canvas.parentNode.style.position = 'relative';
+        chartObj.canvas.parentNode.appendChild(el);
+      }
+
+      if (tooltip.opacity === 0) { el.style.opacity = '0'; return; }
+
+      var labels = ['Salário líquido', 'INSS', 'IRRF', 'Outros descontos'];
+      var pt     = tooltip.dataPoints && tooltip.dataPoints[0];
+      if (!pt) return;
+
+      var label = labels[pt.dataIndex] || '';
+      var valor = pt.parsed || 0;
+
+      el.innerHTML =
+        '<div class="ct-title">' + label + '</div>' +
+        '<div class="ct-row ct-bold"><span>' + BRL.format(valor) + '</span></div>';
+
+      var canvasW = chartObj.canvas.offsetWidth;
+      var tipW    = 180;
+      var left    = tooltip.caretX + 12;
+      if (left + tipW > canvasW) left = tooltip.caretX - tipW - 12;
+
+      el.style.opacity = '1';
+      el.style.left    = left + 'px';
+      el.style.top     = (tooltip.caretY - 20) + 'px';
+    }
+
+    /* ---------- inicializa gráfico donut ---------- */
+    function initChart() {
+      var canvas = document.getElementById('grafico');
+      if (!canvas || !window.Chart) return;
+
+      chart = new window.Chart(canvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Salário líquido', 'INSS', 'IRRF', 'Outros'],
+          datasets: [{
+            data: [0, 0, 0, 0],
+            backgroundColor: ['#1a3a5c', '#e74c3c', '#eab308', '#9ca3af'],
+            borderColor: ['#fff', '#fff', '#fff', '#fff'],
+            borderWidth: 3,
+            hoverOffset: 8,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '65%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: false,
+              external: customTooltip,
+            },
+          },
+        },
+      });
+
+      atualizar();
+    }
+
+    /* ---------- eventos ---------- */
+    var debounceTimer = null;
+    function debounce(fn) {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(fn, 280);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initChart();
+
+      ['inp-bruto', 'inp-dependentes', 'inp-outros'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('input',  function () { debounce(atualizar); });
+        el.addEventListener('change', atualizar);
+        el.addEventListener('blur',   atualizar);
+      });
+    });
+
+  }());
+  </script>
+
+  <style is:global>
+
+    /* ===== BREADCRUMB + TÍTULO ===== */
+    .calc-breadcrumb ol {
+      list-style: none;
+      padding: 0; margin: 0 0 10px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+      font-size: 13px;
+    }
+    .calc-breadcrumb li { display: flex; align-items: center; gap: 6px; margin: 0; margin-left: 0 !important; }
+    .calc-breadcrumb a { color: #2d6a9f; text-decoration: none; }
+    .calc-breadcrumb a:hover { text-decoration: underline; }
+    .calc-breadcrumb span { color: #9ca3af; }
+    .calc-breadcrumb span.current { color: #374151; font-weight: 500; }
+    .calc-page-title {
+      font-size: 1.875rem !important;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin: 0 0 8px !important;
+    }
+    .calc-page-desc {
+      font-size: 1rem;
+      color: #6b7280;
+      margin: 0 0 36px;
+    }
+
+    /* ===== MAIN ===== */
+    .calc-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+    }
+
+    /* ===== TOOL: 2 COLUNAS ===== */
+    .calc-tool {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 860px) {
+      .calc-tool { grid-template-columns: 1fr; }
+    }
+
+    /* ===== FORM PANEL ===== */
+    .calc-form-panel {
+      background: #f9fafb;
+      padding: 20px 22px;
+      border-radius: 0;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .calc-form-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 4px;
+    }
+
+    /* Fields */
+    .calc-field { display: flex; flex-direction: column; gap: 6px; }
+    .calc-label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tooltip */
+    .tip-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1.5px solid #9ca3af;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 9px;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1;
+      cursor: default;
+      user-select: none;
+      flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .tip-wrap:hover .tip-icon { border-color: #2d6a9f; color: #2d6a9f; }
+    .tip-box {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: 220px;
+      background: #1a3a5c;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 9px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s, visibility 0.15s;
+      z-index: 50;
+      white-space: normal;
+      text-align: left;
+    }
+    .tip-box::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #1a3a5c;
+    }
+    .tip-wrap:hover .tip-box,
+    .tip-wrap:focus-within .tip-box { opacity: 1; visibility: visible; }
+    .calc-field:first-child .tip-box,
+    .calc-field:nth-child(2) .tip-box {
+      top: calc(100% + 8px);
+      bottom: auto;
+    }
+    .calc-field:first-child .tip-box::after,
+    .calc-field:nth-child(2) .tip-box::after {
+      top: auto;
+      bottom: 100%;
+      border-top-color: transparent;
+      border-bottom-color: #1a3a5c;
+    }
+
+    /* Inputs */
+    .calc-input-wrap {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      overflow: visible;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .calc-input-wrap:focus-within {
+      border-color: #2d6a9f;
+      box-shadow: 0 0 0 3px rgba(45,106,159,0.12);
+    }
+    .calc-unit {
+      padding: 0 12px;
+      font-size: 14px;
+      color: #6b7280;
+      background: #f9fafb;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      border-right: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+    .calc-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 12px;
+      height: 42px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #374151;
+      font-family: Arial, sans-serif;
+      min-width: 0;
+    }
+
+    /* Resumo rápido no form */
+    .calc-summary-box {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .calc-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .calc-summary-row.total { font-weight: 700; }
+    .calc-summary-label { color: #6b7280; }
+    .calc-summary-val { font-variant-numeric: tabular-nums; font-weight: 600; color: #374151; }
+    .calc-summary-val.red { color: #dc2626; }
+    .calc-summary-divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin: 4px 0;
+    }
+    .calc-disclaimer {
+      font-size: 11px;
+      color: #9ca3af;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ===== CHART PANEL ===== */
+    .calc-chart-panel {
+      padding: 20px 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      height: 100%;
+      box-sizing: border-box;
+      background: #fff;
+      border-radius: 0;
+      border: 1px solid #e5e7eb;
+    }
+    .calc-chart-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .calc-chart-label {
+      font-size: 16px;
+      color: #6b7280;
+      margin: 0 0 2px;
+      font-weight: 500;
+    }
+    .calc-chart-total {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #1a3a5c;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .calc-chart-sub {
+      font-size: 13px;
+      color: #9ca3af;
+      margin: 4px 0 0;
+      font-weight: 500;
+    }
+    .calc-chart-area {
+      flex: 1;
+      position: relative;
+      min-height: 200px;
+    }
+    .calc-chart-legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #374151;
+    }
+    .calc-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .calc-legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .calc-legend-swatch.liquido { background: #1a3a5c; }
+    .calc-legend-swatch.inss    { background: #e74c3c; }
+    .calc-legend-swatch.irrf    { background: #eab308; }
+    .calc-legend-swatch.outros  { background: #9ca3af; }
+
+    /* ===== TABLE ===== */
+    .calc-table-section {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .calc-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 20px;
+    }
+    .calc-table-scroll { overflow-x: auto; }
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .calc-table th {
+      background: #f9fafb;
+      padding: 10px 16px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .calc-table th:first-child { text-align: left; }
+    .calc-table td {
+      padding: 11px 16px;
+      text-align: right;
+      color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .calc-table tbody tr:hover { background: #f9fafb; }
+    .calc-table tr.highlight td {
+      background: #eff6ff;
+      color: #1a3a5c;
+      font-weight: 700;
+      border-bottom: none;
+    }
+
+    /* ===== ARTICLE CONTENT ===== */
+    .calc-article h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 40px 0 12px;
+      line-height: 1.3;
+    }
+    .calc-article h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 28px 0 8px;
+      line-height: 1.4;
+    }
+    .calc-article p {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .calc-article ul {
+      margin: 0 0 16px;
+      padding-left: 24px;
+    }
+    .calc-article li {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+    .calc-article strong { color: #111827; font-weight: 700; }
+    .calc-formula-block {
+      background: #f9fafb;
+      border-left: 3px solid #2d6a9f;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+    .calc-formula-block code {
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a3a5c;
+      background: none;
+      padding: 0;
+    }
+
+    /* ===== TOOLTIP EXTERNO ===== */
+    #calc-tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      padding: 12px 14px;
+      min-width: 160px;
+      z-index: 20;
+      font-family: Arial, sans-serif;
+    }
+    .ct-title {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .ct-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #374151;
+    }
+    .ct-bold { font-weight: 700; color: #111827; font-size: 14px; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .calc-main { padding: 20px 16px 48px; }
+      .calc-chart-total { font-size: 1.6rem; }
+      .calc-chart-area { min-height: 200px; }
+      .calc-table-section { padding: 20px 16px; }
+      .calc-chart-legend { gap: 8px 14px; }
+    }
+  </style>
+
+</body>
+</html>
