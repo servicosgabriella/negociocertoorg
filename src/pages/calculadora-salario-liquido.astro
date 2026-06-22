@@ -3,8 +3,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const title = "Calculadora de Salário Líquido 2025 — INSS e IRRF Automáticos";
-const description = "Calcule seu salário líquido CLT em segundos. INSS progressivo e IRRF 2025 calculados automaticamente com tabelas atualizadas. Inclui dependentes e outros descontos.";
+const title = "Calculadora de Salário Líquido 2026 — INSS e IRRF Automáticos";
+const description = "Calcule seu salário líquido CLT em segundos. INSS e IRRF 2026 calculados automaticamente com tabelas atualizadas, incluindo a nova isenção de IR para quem ganha até R$ 5.000.";
 const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 ---
 
@@ -173,7 +173,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
           </div>
         </div>
 
-        <p class="calc-disclaimer">Tabelas INSS e IRRF vigentes em 2025. Cálculo para CLT mensal.</p>
+        <p class="calc-disclaimer">Tabelas INSS e IRRF 2026 (Lei 15.270/2025). Isenção IR até R$ 5.000 bruto. CLT mensal.</p>
       </aside>
 
       <!-- PAINEL DIREITO: GRÁFICO -->
@@ -230,7 +230,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 
     <!-- TABELA INSS DE REFERÊNCIA -->
     <div class="calc-table-section">
-      <h2 class="calc-section-title">Tabela INSS 2025 — alíquotas progressivas</h2>
+      <h2 class="calc-section-title">Tabela INSS 2026 — alíquotas progressivas</h2>
       <div class="calc-table-scroll">
         <table class="calc-table">
           <thead>
@@ -242,29 +242,29 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
           </thead>
           <tbody>
             <tr>
-              <td style="text-align:left; color:#374151">Até R$ 1.518,00</td>
+              <td style="text-align:left; color:#374151">Até R$ 1.621,00</td>
               <td>7,5%</td>
-              <td>R$ 113,85</td>
+              <td>R$ 121,58</td>
             </tr>
             <tr>
-              <td style="text-align:left; color:#374151">De R$ 1.518,01 a R$ 2.793,88</td>
+              <td style="text-align:left; color:#374151">De R$ 1.621,01 a R$ 2.902,84</td>
               <td>9,0%</td>
-              <td>R$ 114,82</td>
+              <td>R$ 115,37</td>
             </tr>
             <tr>
-              <td style="text-align:left; color:#374151">De R$ 2.793,89 a R$ 4.190,83</td>
+              <td style="text-align:left; color:#374151">De R$ 2.902,85 a R$ 4.354,27</td>
               <td>12,0%</td>
-              <td>R$ 167,63</td>
+              <td>R$ 174,17</td>
             </tr>
             <tr>
-              <td style="text-align:left; color:#374151">De R$ 4.190,84 a R$ 8.157,41</td>
+              <td style="text-align:left; color:#374151">De R$ 4.354,28 a R$ 8.475,55</td>
               <td>14,0%</td>
-              <td>R$ 555,45</td>
+              <td>R$ 576,98</td>
             </tr>
             <tr class="highlight">
               <td style="text-align:left"><strong>Teto de contribuição</strong></td>
               <td><strong>—</strong></td>
-              <td><strong>R$ 908,85</strong></td>
+              <td><strong>R$ 988,09</strong></td>
             </tr>
           </tbody>
         </table>
@@ -273,7 +273,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 
     <!-- TABELA IRRF DE REFERÊNCIA -->
     <div class="calc-table-section">
-      <h2 class="calc-section-title">Tabela IRRF 2025 — faixas de tributação mensal</h2>
+      <h2 class="calc-section-title">Tabela IRRF 2026 — faixas de tributação mensal</h2>
       <div class="calc-table-scroll">
         <table class="calc-table">
           <thead>
@@ -285,29 +285,29 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
           </thead>
           <tbody>
             <tr>
-              <td style="text-align:left; color:#374151">Até R$ 2.259,20</td>
+              <td style="text-align:left; color:#374151">Até R$ 2.428,80</td>
               <td>Isento</td>
               <td>—</td>
             </tr>
             <tr>
-              <td style="text-align:left; color:#374151">De R$ 2.259,21 a R$ 2.826,65</td>
+              <td style="text-align:left; color:#374151">De R$ 2.428,81 a R$ 2.826,65</td>
               <td>7,5%</td>
-              <td>R$ 169,44</td>
+              <td>R$ 182,16</td>
             </tr>
             <tr>
               <td style="text-align:left; color:#374151">De R$ 2.826,66 a R$ 3.751,05</td>
               <td>15%</td>
-              <td>R$ 381,44</td>
+              <td>R$ 394,16</td>
             </tr>
             <tr>
               <td style="text-align:left; color:#374151">De R$ 3.751,06 a R$ 4.664,68</td>
               <td>22,5%</td>
-              <td>R$ 662,77</td>
+              <td>R$ 675,49</td>
             </tr>
             <tr>
               <td style="text-align:left; color:#374151">Acima de R$ 4.664,68</td>
               <td>27,5%</td>
-              <td>R$ 896,00</td>
+              <td>R$ 908,73</td>
             </tr>
             <tr class="highlight">
               <td style="text-align:left"><strong>Dedução por dependente</strong></td>
@@ -317,6 +317,11 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
           </tbody>
         </table>
       </div>
+      <p style="margin:16px 0 0; font-size:13px; color:#6b7280;">
+        <strong>Redutor 2026 (Lei 15.270/2025):</strong> quem tem salário bruto até R$ 5.000 está isento de IR.
+        Para bruto entre R$ 5.000,01 e R$ 7.350, aplica-se redução gradual: <code>Redutor = R$ 978,62 − (0,133145 × salário bruto)</code>.
+        Acima de R$ 7.350, sem redutor.
+      </p>
     </div>
 
     <!-- CONTEÚDO EDUCATIVO -->
@@ -324,38 +329,38 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 
       <h2>Como calcular salário líquido CLT: INSS progressivo e IRRF passo a passo</h2>
       <p>O salário líquido é o valor que efetivamente cai na sua conta todo mês. Para chegar nele, o empregador desconta dois tributos obrigatórios diretamente da folha de pagamento: o INSS (contribuição à Previdência Social) e o IRRF (Imposto de Renda Retido na Fonte). Outros descontos como vale-transporte e plano de saúde também podem reduzir o valor final.</p>
-      <p>O cálculo segue uma sequência obrigatória. Primeiro você calcula o INSS sobre o salário bruto. Depois subtrai o INSS do salário bruto para chegar à base de cálculo do IR. Em seguida deduz R$ 189,59 por cada dependente declarado. O resultado é a base de cálculo do IRRF, sobre a qual você aplica a tabela progressiva. Por fim, soma os dois descontos e subtrai do bruto. O que sobra é o salário líquido.</p>
+      <p>O cálculo segue uma sequência obrigatória. Primeiro você calcula o INSS sobre o salário bruto. Depois subtrai o INSS do salário bruto para chegar à base de cálculo do IR. Em seguida deduz R$ 189,59 por cada dependente declarado. O resultado é a base de cálculo do IRRF, sobre a qual você aplica a tabela progressiva e o redutor 2026. Por fim, soma os dois descontos e subtrai do bruto. O que sobra é o salário líquido.</p>
       <div class="calc-formula-block">
         <code>Salário Líquido = Bruto − INSS − IRRF − Outros Descontos</code>
       </div>
-      <p>Um exemplo concreto para salário bruto de R$ 5.000, sem dependentes e sem outros descontos. O INSS progressivo resulta em R$ 524,31. A base do IR fica em R$ 4.475,69. O IRRF calculado pela tabela é R$ 335,27. O salário líquido é R$ 4.140,42, ou seja, 82,8% do bruto.</p>
+      <p>Um exemplo concreto para salário bruto de R$ 5.000 em 2026, sem dependentes e sem outros descontos. O INSS progressivo resulta em R$ 501,51. A base do IR fica em R$ 4.498,49. Pela tabela progressiva 2026, o IRRF seria R$ 336,67 — mas como o salário bruto é de exatamente R$ 5.000, o <strong>redutor 2026 zera o imposto</strong>. O salário líquido é R$ 4.498,49, ou seja, 90% do bruto.</p>
 
-      <h2>Tabela INSS 2025: como o cálculo progressivo funciona na prática</h2>
+      <h2>Tabela INSS 2026: como o cálculo progressivo funciona na prática</h2>
       <p>Desde novembro de 2020, o INSS passou a funcionar de forma progressiva, igual ao Imposto de Renda. Antes dessa mudança, a alíquota incidia sobre o salário inteiro, o que criava situações absurdas onde um aumento salarial pequeno resultava em queda no líquido.</p>
-      <p>Hoje, cada faixa do salário tem sua própria alíquota, aplicada apenas sobre a parte que cai naquela faixa. Para um salário de R$ 5.000:</p>
+      <p>Em 2026, com o salário mínimo em R$ 1.621,00, as faixas foram reajustadas. Para um salário de R$ 5.000:</p>
       <ul>
-        <li>Os primeiros R$ 1.518,00 pagam 7,5% = R$ 113,85</li>
-        <li>A faixa de R$ 1.518,01 a R$ 2.793,88 paga 9% = R$ 114,82</li>
-        <li>A faixa de R$ 2.793,89 a R$ 4.190,83 paga 12% = R$ 167,63</li>
-        <li>A faixa de R$ 4.190,84 a R$ 5.000,00 paga 14% = R$ 113,28</li>
-        <li><strong>Total INSS: R$ 509,58</strong></li>
+        <li>Os primeiros R$ 1.621,00 pagam 7,5% = R$ 121,58</li>
+        <li>A faixa de R$ 1.621,01 a R$ 2.902,84 paga 9% = R$ 115,37</li>
+        <li>A faixa de R$ 2.902,85 a R$ 4.354,27 paga 12% = R$ 174,17</li>
+        <li>A faixa de R$ 4.354,28 a R$ 5.000,00 paga 14% = R$ 90,40</li>
+        <li><strong>Total INSS: R$ 501,51</strong></li>
       </ul>
-      <p>Importante: existe um teto de contribuição. Para salários acima de R$ 8.157,41, o INSS não aumenta mais. O desconto máximo possível é de R$ 908,85. Quem ganha R$ 20.000 paga o mesmo INSS que quem ganha R$ 8.157,41.</p>
+      <p>Existe um teto de contribuição. Para salários acima de R$ 8.475,55, o INSS não aumenta mais. O desconto máximo possível em 2026 é de R$ 988,09. Quem ganha R$ 20.000 paga o mesmo INSS que quem ganha R$ 8.475,55.</p>
 
-      <h2>Tabela IRRF 2025: faixas de tributação e quanto cada dependente economiza</h2>
-      <p>O Imposto de Renda Retido na Fonte funciona de forma progressiva desde sempre. A base de cálculo não é o salário bruto, mas sim o salário bruto menos o INSS, menos as deduções por dependentes e menos outros descontos legalmente previstos.</p>
+      <h2>Tabela IRRF 2026 e a nova isenção para quem ganha até R$ 5.000</h2>
+      <p>Em 2026, a reforma do Imposto de Renda (Lei 15.270/2025) trouxe a maior mudança na tributação da pessoa física em décadas. Quem tem salário bruto de até R$ 5.000 está completamente isento de IRRF — independentemente do valor calculado pela tabela progressiva. Para rendas entre R$ 5.000 e R$ 7.350, existe um redutor gradual que diminui o imposto de forma linear.</p>
+      <p>A tabela progressiva base também foi atualizada. O primeiro limite de isenção subiu de R$ 2.259,20 para R$ 2.428,80, e as parcelas de dedução foram recalibradas. A fórmula do redutor é: <strong>Redutor = R$ 978,62 − (0,133145 × salário bruto)</strong>. A R$ 7.350 de bruto, o redutor chega a zero e a tabela progressiva passa a valer integralmente.</p>
       <p>Para quem não tem dependentes e não tem outros descontos, a base do IR é o bruto menos o INSS. Quem tem dependentes reduz essa base em R$ 189,59 por cabeça. Com dois filhos, a redução é de R$ 379,18 na base antes de calcular o imposto. Dependendo da faixa salarial, essa dedução pode representar uma economia real de R$ 14 a R$ 52 por dependente por mês.</p>
-      <p>A tabela usa o chamado método da subtração direta. Em vez de calcular faixa por faixa como o INSS, você multiplica a base pela alíquota da última faixa e subtrai a parcela de dedução correspondente. Para base de R$ 4.000: 22,5% × R$ 4.000 − R$ 662,77 = R$ 237,23 de IR.</p>
 
-      <h2>Quanto desconta de INSS e IRRF para salários de R$ 2.000 a R$ 15.000</h2>
-      <p>Para entender o impacto real dos descontos em cada faixa salarial, veja os valores aproximados sem dependentes e sem outros descontos.</p>
-      <p><strong>R$ 2.000 bruto:</strong> INSS de R$ 153,31, base IR de R$ 1.846,69 (isento). Líquido: R$ 1.846,69. Percentual líquido: 92,3%.</p>
-      <p><strong>R$ 3.000 bruto:</strong> INSS de R$ 254,22, base IR de R$ 2.745,78 (isento). Líquido: R$ 2.745,78. Percentual líquido: 91,5%.</p>
-      <p><strong>R$ 4.000 bruto:</strong> INSS de R$ 387,85, base IR de R$ 3.612,15, IRRF de R$ 160,38. Líquido: R$ 3.451,77. Percentual líquido: 86,3%.</p>
-      <p><strong>R$ 6.000 bruto:</strong> INSS de R$ 628,43, base IR de R$ 5.371,57, IRRF de R$ 582,23. Líquido: R$ 4.789,34. Percentual líquido: 79,8%.</p>
-      <p><strong>R$ 10.000 bruto:</strong> INSS de R$ 908,85 (teto), base IR de R$ 9.091,15, IRRF de R$ 1.603,07. Líquido: R$ 7.488,08. Percentual líquido: 74,9%.</p>
-      <p><strong>R$ 15.000 bruto:</strong> INSS de R$ 908,85 (teto), base IR de R$ 14.091,15, IRRF de R$ 2.978,57. Líquido: R$ 11.112,58. Percentual líquido: 74,1%.</p>
-      <p>Repare que acima de R$ 10.000 o percentual líquido fica relativamente estável, entre 73% e 75%. Isso acontece porque o INSS atingiu o teto e o IR da última faixa (27,5%) já se aplica integralmente. Cada real a mais no bruto vira R$ 0,725 no líquido.</p>
+      <h2>Quanto desconta de INSS e IRRF para salários de R$ 2.000 a R$ 15.000 em 2026</h2>
+      <p>Para entender o impacto real dos descontos em cada faixa salarial em 2026, veja os valores aproximados sem dependentes e sem outros descontos.</p>
+      <p><strong>R$ 2.000 bruto:</strong> INSS de R$ 150,00, base IR de R$ 1.850,00 (isento pela tabela + isento pelo redutor). Líquido: R$ 1.850,00. Percentual líquido: 92,5%.</p>
+      <p><strong>R$ 3.000 bruto:</strong> INSS de R$ 248,60, base IR de R$ 2.751,40 (isento pelo redutor — bruto ≤ R$ 5.000). Líquido: R$ 2.751,40. Percentual líquido: 91,7%.</p>
+      <p><strong>R$ 5.000 bruto:</strong> INSS de R$ 501,51, IRRF R$ 0 (isento pelo redutor 2026). Líquido: R$ 4.498,49. Percentual líquido: 90,0%.</p>
+      <p><strong>R$ 6.000 bruto:</strong> INSS de R$ 615,51, base IR de R$ 5.384,49, IRRF de R$ 69,55 (após redutor de R$ 179,93). Líquido: R$ 5.314,94. Percentual líquido: 88,6%.</p>
+      <p><strong>R$ 10.000 bruto:</strong> INSS de R$ 988,09 (teto), base IR de R$ 9.011,91, IRRF de R$ 1.569,25. Líquido: R$ 7.442,66. Percentual líquido: 74,4%.</p>
+      <p><strong>R$ 15.000 bruto:</strong> INSS de R$ 988,09 (teto), base IR de R$ 14.011,91, IRRF de R$ 2.944,75. Líquido: R$ 11.067,16. Percentual líquido: 73,8%.</p>
+      <p>A novidade de 2026 é a faixa entre R$ 5.000 e R$ 7.350: trabalhadores nessa faixa pagam muito menos IR do que pagavam em 2025. Acima de R$ 10.000, o efeito do redutor some e a carga tributária é semelhante à de anos anteriores.</p>
 
       <h2>O que mais pode ser descontado do salário CLT além de INSS e IRRF</h2>
       <p>O salário líquido real frequentemente é menor do que o cálculo de INSS + IR, porque há outros descontos autorizados pela CLT que reduzem ainda mais o valor recebido. Os mais comuns são:</p>
@@ -423,13 +428,13 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
     function fmt(v) { return BRL.format(v); }
     function pct(v, total) { return total > 0 ? (v / total * 100).toFixed(1) + '%' : '0,0%'; }
 
-    /* ---------- INSS 2025 progressivo ---------- */
+    /* ---------- INSS 2026 progressivo ---------- */
     function calcularINSS(bruto) {
       var faixas = [
-        { ate: 1518.00,  aliquota: 0.075 },
-        { ate: 2793.88,  aliquota: 0.09  },
-        { ate: 4190.83,  aliquota: 0.12  },
-        { ate: 8157.41,  aliquota: 0.14  },
+        { ate: 1621.00,  aliquota: 0.075 },
+        { ate: 2902.84,  aliquota: 0.09  },
+        { ate: 4354.27,  aliquota: 0.12  },
+        { ate: 8475.55,  aliquota: 0.14  },
       ];
       var inss     = 0;
       var anterior = 0;
@@ -443,28 +448,41 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
         if (bruto <= topo) break;
       }
 
-      return Math.min(inss, 908.85);
+      return Math.min(inss, 988.09);
     }
 
-    /* ---------- IRRF 2025 ---------- */
-    function calcularIRRF(baseCalculo, dependentes) {
+    /* ---------- IRRF 2026 (Lei 15.270/2025) ---------- */
+    function calcularIRRF(baseCalculo, dependentes, bruto) {
       var deducaoDep = 189.59;
       var base = Math.max(0, baseCalculo - dependentes * deducaoDep);
 
+      // Tabela progressiva 2026 (atualizada)
       var faixas = [
-        { ate: 2259.20,   aliquota: 0,     deducao: 0      },
-        { ate: 2826.65,   aliquota: 0.075, deducao: 169.44 },
-        { ate: 3751.05,   aliquota: 0.15,  deducao: 381.44 },
-        { ate: 4664.68,   aliquota: 0.225, deducao: 662.77 },
-        { ate: Infinity,  aliquota: 0.275, deducao: 896.00 },
+        { ate: 2428.80,   aliquota: 0,     deducao: 0      },
+        { ate: 2826.65,   aliquota: 0.075, deducao: 182.16 },
+        { ate: 3751.05,   aliquota: 0.15,  deducao: 394.16 },
+        { ate: 4664.68,   aliquota: 0.225, deducao: 675.49 },
+        { ate: Infinity,  aliquota: 0.275, deducao: 908.73 },
       ];
 
+      var irrf = 0;
       for (var i = 0; i < faixas.length; i++) {
         if (base <= faixas[i].ate) {
-          return Math.max(0, base * faixas[i].aliquota - faixas[i].deducao);
+          irrf = Math.max(0, base * faixas[i].aliquota - faixas[i].deducao);
+          break;
         }
       }
-      return 0;
+
+      // Redutor 2026: isenção total até R$ 5.000 bruto,
+      // redução gradual até R$ 7.350 (fórmula: 978,62 − 0,133145 × bruto)
+      if (bruto <= 5000) {
+        irrf = 0;
+      } else if (bruto <= 7350) {
+        var redutor = 978.62 - (0.133145 * bruto);
+        irrf = Math.max(0, irrf - redutor);
+      }
+
+      return irrf;
     }
 
     /* ---------- cálculo principal ---------- */
@@ -475,7 +493,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 
       var inss       = calcularINSS(bruto);
       var baseIR     = Math.max(0, bruto - inss - outros);
-      var irrf       = calcularIRRF(baseIR, dependentes);
+      var irrf       = calcularIRRF(baseIR, dependentes, bruto);
       var totalDesc  = inss + irrf + outros;
       var liquido    = Math.max(0, bruto - totalDesc);
       var pctLiq     = bruto > 0 ? (liquido / bruto * 100) : 0;
