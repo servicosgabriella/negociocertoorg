@@ -559,17 +559,15 @@ const recentPosts = (await getCollection('blog'))
     }
     .blog-carousel-track {
       display: flex;
+      align-items: center;
       gap: 16px;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
     }
     .blog-slide {
-      flex: 0 0 52%;
+      flex: 0 0 auto;
       opacity: 0.45;
-      transition: opacity 0.4s;
-    }
-    @media (max-width: 768px) {
-      .blog-slide { flex: 0 0 82%; }
+      transition: opacity 0.55s, width 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .blog-slide.active {
       opacity: 1;
@@ -581,7 +579,8 @@ const recentPosts = (await getCollection('blog'))
     }
     .blog-card-inner {
       position: relative;
-      aspect-ratio: 16/9;
+      height: clamp(220px, 28vw, 420px);
+      width: 100%;
       overflow: hidden;
       border-radius: 20px;
     }
@@ -684,21 +683,39 @@ const recentPosts = (await getCollection('blog'))
       const GAP = 16;
       let autoTimer: ReturnType<typeof setInterval> | null = null;
 
-      function getCardWidth() {
+      function getDims() {
         const vw = viewport.offsetWidth;
-        return vw * (vw < 768 ? 0.82 : 0.52);
+        const h = Math.min(Math.max(220, vw * 0.28), 420);
+        return {
+          activeW: Math.round(h * 16 / 9),   // landscape 16:9
+          sideW:   Math.round(h * 9 / 16),    // portrait 9:16
+        };
       }
 
       function goTo(index: number, animate = true) {
         current = (index + total) % total;
-        const cardWidth = getCardWidth();
+        const { activeW, sideW } = getDims();
         const vw = viewport.offsetWidth;
-        const centerOffset = (vw - cardWidth) / 2;
-        const translateX = centerOffset - current * (cardWidth + GAP);
 
-        if (!animate) track.style.transition = 'none';
+        // Set widths on each slide
+        slides.forEach((s, i) => {
+          s.style.width = (i === current ? activeW : sideW) + 'px';
+        });
+
+        // Translate so active card is centered
+        const translateX = vw / 2 - current * (sideW + GAP) - activeW / 2;
+
+        if (!animate) {
+          track.style.transition = 'none';
+          slides.forEach(s => { s.style.transition = 'opacity 0.55s'; });
+        }
         track.style.transform = `translateX(${translateX}px)`;
-        if (!animate) requestAnimationFrame(() => { track.style.transition = ''; });
+        if (!animate) {
+          requestAnimationFrame(() => {
+            track.style.transition = '';
+            slides.forEach(s => { s.style.transition = ''; });
+          });
+        }
 
         slides.forEach((s, i) => s.classList.toggle('active', i === current));
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
