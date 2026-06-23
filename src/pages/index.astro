@@ -429,12 +429,21 @@ const recentPosts = (await getCollection('blog'))
     /* Foto */
     .trust-photo-wrap {
       flex-shrink: 0;
+      background: #d4f0e2;
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 320px;
     }
     .trust-photo {
       width: 100%;
       max-width: 300px;
       height: auto;
       display: block;
+      object-fit: cover;
+      object-position: top center;
     }
 
     /* Direita */
@@ -445,11 +454,11 @@ const recentPosts = (await getCollection('blog'))
     /* Título */
     .trust-title {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: clamp(22px, 2.4vw, 36px);
+      font-size: clamp(26px, 3vw, 44px);
       font-weight: 800;
       color: #0f172a;
-      line-height: 1.2;
-      margin: 0 0 32px;
+      line-height: 1.15;
+      margin: 0 0 36px;
       word-break: break-word;
     }
 
@@ -463,25 +472,24 @@ const recentPosts = (await getCollection('blog'))
     @media (max-width: 500px) {
       .trust-stats { grid-template-columns: 1fr; }
     }
-    .trust-stat { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .trust-stat { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
     .trust-stat-number {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(36px, 4.5vw, 56px);
       font-weight: 800;
-      color: #2d6a4f;
+      color: #1a9050;
       line-height: 1;
     }
     .trust-stat-label {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 13px;
+      font-size: 15px;
       color: #374151;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     /* Logos com scroll */
     .trust-logos-wrap {
-      border-top: 1px solid #e5e7eb;
       padding-top: 24px;
     }
     .trust-logos-label {
@@ -489,9 +497,19 @@ const recentPosts = (await getCollection('blog'))
       font-size: 11px;
       font-weight: 700;
       color: #9ca3af;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+    }
+    .trust-logos-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
     }
     .trust-logos-track-outer {
       overflow: hidden;
