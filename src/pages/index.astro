@@ -241,7 +241,6 @@ const recentPosts = (await getCollection('blog'))
       padding: 24px;
       transform: translateY(-48px);
       margin-bottom: -48px;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
     }
 
     .categories-grid {
@@ -270,12 +269,7 @@ const recentPosts = (await getCollection('blog'))
       align-items: center;
       text-align: center;
       gap: 12px;
-      transition: box-shadow 0.2s, border-color 0.2s;
       min-height: 260px;
-    }
-    .cat-card:hover {
-      box-shadow: 0 4px 20px rgba(45,106,79,0.12);
-      border-color: #a8d5b8;
     }
 
     .cat-arrow {
@@ -285,9 +279,7 @@ const recentPosts = (await getCollection('blog'))
       font-size: 16px;
       color: #b0bec5;
       font-style: normal;
-      transition: color 0.2s;
     }
-    .cat-card:hover .cat-arrow { color: #2d6a4f; }
 
     .cat-icon {
       display: flex;
