@@ -361,15 +361,15 @@ const recentPosts = (await getCollection('blog'))
         <!-- Stats horizontais -->
         <div class="trust-stats">
           <div class="trust-stat">
-            <span class="trust-stat-number">50+</span>
+            <span class="trust-stat-number">50<span class="trust-stat-plus">+</span></span>
             <span class="trust-stat-label">produtos avaliados com critérios rigorosos</span>
           </div>
           <div class="trust-stat">
-            <span class="trust-stat-number">2.000+</span>
+            <span class="trust-stat-number">2.000<span class="trust-stat-plus">+</span></span>
             <span class="trust-stat-label">horas de pesquisa e testes realizados</span>
           </div>
           <div class="trust-stat">
-            <span class="trust-stat-number">10+</span>
+            <span class="trust-stat-number">10<span class="trust-stat-plus">+</span></span>
             <span class="trust-stat-label">anos acompanhando o mercado empreendedor</span>
           </div>
         </div>
@@ -479,6 +479,9 @@ const recentPosts = (await getCollection('blog'))
       font-weight: 800;
       color: #1a9050;
       line-height: 1;
+    }
+    .trust-stat-plus {
+      color: #74c69d;
     }
     .trust-stat-label {
       font-family: 'Nunito Sans', sans-serif;
