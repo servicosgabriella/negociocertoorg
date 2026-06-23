@@ -453,13 +453,14 @@ const recentPosts = (await getCollection('blog'))
 
     /* Título */
     .trust-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(26px, 3vw, 44px);
-      font-weight: 700;
-      color: #0f172a;
-      line-height: 1.15;
+      font-weight: 800;
+      color: #111111;
+      line-height: 1.1;
       margin: 0 0 36px;
       word-break: break-word;
+      letter-spacing: -0.5px;
     }
 
     /* Stats */
@@ -474,10 +475,10 @@ const recentPosts = (await getCollection('blog'))
     }
     .trust-stat { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
     .trust-stat-number {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(36px, 4.5vw, 56px);
       font-weight: 700;
-      color: #1a9050;
+      color: #2d6a4f;
       line-height: 1;
     }
     .trust-stat-plus {
