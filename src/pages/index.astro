@@ -242,6 +242,14 @@ const recentPosts = (await getCollection('blog'))
       font-size: 16px;
       color: #b0bec5;
       font-style: normal;
+      transition: transform 0.2s ease, color 0.2s;
+    }
+    .cat-card:hover .cat-arrow {
+      transform: translate(3px, -3px);
+      color: #2d6a4f;
+    }
+    .cat-card:hover .cat-title {
+      color: #2d6a4f;
     }
 
     .cat-icon {
@@ -264,6 +272,7 @@ const recentPosts = (await getCollection('blog'))
       color: #0f172a;
       margin: 0;
       line-height: 1.25;
+      transition: color 0.2s;
     }
     .cat-desc {
       font-family: 'Nunito Sans', sans-serif;
