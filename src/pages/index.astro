@@ -222,14 +222,13 @@ const recentPosts = (await getCollection('blog'))
       background: #ffffff;
       border: 1px solid #e2ede8;
       border-radius: 16px;
-      padding: 36px 20px 32px;
+      padding: 24px 16px 20px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 12px;
-      min-height: 260px;
+      gap: 8px;
     }
 
     .cat-arrow {
@@ -245,19 +244,16 @@ const recentPosts = (await getCollection('blog'))
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 96px;
-      height: 96px;
-      margin-bottom: 8px;
+      height: 80px;
       flex-shrink: 0;
     }
     .cat-icon img {
-      width: 96px;
-      height: 96px;
-      object-fit: contain;
+      height: 80px;
+      width: auto;
     }
     .cat-title {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: #0f172a;
       margin: 0;
@@ -265,11 +261,11 @@ const recentPosts = (await getCollection('blog'))
     }
     .cat-desc {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
       color: #6b7280;
       margin: 0;
-      line-height: 1.55;
+      line-height: 1.5;
     }
   </style>
 
