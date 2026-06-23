@@ -31,9 +31,6 @@ const recentPosts = (await getCollection('blog'))
           </button>
         </form>
       </div>
-      <div class="hero-image-wrap">
-        <img src="/images/head-negocio-certo.webp" alt="Negócio Certo" class="hero-image" />
-      </div>
     </div>
   </section>
 
@@ -89,18 +86,11 @@ const recentPosts = (await getCollection('blog'))
       max-width: 1200px;
       margin: 0 auto;
       padding: 64px 32px 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 48px;
     }
     @media (max-width: 768px) {
       .hero-inner {
-        grid-template-columns: 1fr;
         padding: 40px 20px 64px;
-        gap: 32px;
       }
-      .hero-image-wrap { display: none; }
     }
 
     .hero-title {
@@ -159,20 +149,6 @@ const recentPosts = (await getCollection('blog'))
       flex-shrink: 0;
     }
     .hero-search-btn:hover { color: #0d3b22; }
-
-    /* Image */
-    .hero-image-wrap {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-    }
-    .hero-image {
-      max-height: 460px;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-    }
 
     /* ======= CATEGORIES ======= */
     .categories-section {
