@@ -344,26 +344,145 @@ const recentPosts = (await getCollection('blog'))
     </div>
   </section>
 
-  <section style="background: #eef3fb; border-top: 1px solid #dbe7f5; padding: 8px 24px;">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 24px;">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 42px; line-height: 63px; font-weight: 700; color: #0f2b5b;">50+</span>
-        <span style="font-size: 18px; line-height: 22px; font-weight: 500; color: #374151;">Produtos<br/>Avaliados</span>
+  <!-- SEÇÃO DE CONFIANÇA -->
+  <section class="trust-section">
+    <div class="trust-inner">
+
+      <!-- Esquerda: título -->
+      <div class="trust-left">
+        <h2 class="trust-title">Por que empreendedores confiam no <span class="trust-highlight">NegócioCerto?</span></h2>
+        <p class="trust-subtitle">Pesquisamos, testamos e avaliamos centenas de ferramentas para que você tome a melhor decisão para o seu negócio.</p>
       </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 42px; line-height: 63px; font-weight: 700; color: #0f2b5b;">2 MIL</span>
-        <span style="font-size: 18px; line-height: 22px; font-weight: 500; color: #374151;">Horas de<br/>Pesquisa</span>
+
+      <!-- Direita: stats -->
+      <div class="trust-stats">
+        <div class="trust-stat">
+          <span class="trust-stat-number">50+</span>
+          <span class="trust-stat-label">produtos avaliados com critérios rigorosos</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-stat-number">2.000+</span>
+          <span class="trust-stat-label">horas de pesquisa e testes realizados</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-stat-number">10+</span>
+          <span class="trust-stat-label">anos acompanhando o mercado empreendedor</span>
+        </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 42px; line-height: 63px; font-weight: 700; color: #0f2b5b;">5 MIL</span>
-        <span style="font-size: 18px; line-height: 22px; font-weight: 500; color: #374151;">Leitores<br/>Mensais</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 42px; line-height: 63px; font-weight: 700; color: #0f2b5b;">+10</span>
-        <span style="font-size: 18px; line-height: 22px; font-weight: 500; color: #374151;">Anos de<br/>Experiência</span>
+
+    </div>
+
+    <!-- Logos de produtos avaliados -->
+    <div class="trust-logos-wrap">
+      <p class="trust-logos-label">PRODUTOS QUE JÁ AVALIAMOS E TESTAMOS</p>
+      <div class="trust-logos">
+        <img src="/images/logo-pagbank.png" alt="PagBank" />
+        <img src="/images/logo-mercado-pago.png" alt="Mercado Pago" />
+        <img src="/images/logo-sumup.png" alt="SumUp" />
+        <img src="/images/logo-ton.webp" alt="Ton" />
+        <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" />
+        <img src="/images/contabilizei-logo.png" alt="Contabilizei" />
       </div>
     </div>
   </section>
+
+  <style>
+    /* ======= TRUST SECTION ======= */
+    .trust-section {
+      background: #ffffff;
+      padding: 72px 32px 48px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .trust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 768px) {
+      .trust-inner { grid-template-columns: 1fr; gap: 32px; }
+      .trust-section { padding: 48px 20px 40px; }
+    }
+
+    .trust-title {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+    .trust-highlight { color: #2d6a4f; }
+    .trust-subtitle {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .trust-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .trust-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .trust-stat-number {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: #2d6a4f;
+      line-height: 1;
+    }
+    .trust-stat-label {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 15px;
+      color: #374151;
+      font-weight: 400;
+    }
+
+    /* Logos */
+    .trust-logos-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 32px;
+    }
+    .trust-logos-label {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 20px;
+    }
+    .trust-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-logos img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.55;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+    .trust-logos img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+  </style>
 
   <section class="bg-white py-16">
     <div style="max-width: 1100px; margin: 0 auto; padding-left: 34px; padding-right: 34px;">
