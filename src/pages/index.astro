@@ -408,21 +408,22 @@ const recentPosts = (await getCollection('blog'))
     /* ======= TRUST SECTION ======= */
     .trust-section {
       background: #ffffff;
-      padding: 64px 32px 64px;
+      padding: 64px 32px;
       border-top: 1px solid #f0f0f0;
+      overflow: hidden;
     }
     .trust-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 64px;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 56px;
       align-items: center;
     }
     @media (max-width: 900px) {
       .trust-inner { grid-template-columns: 1fr; gap: 32px; }
       .trust-photo-wrap { display: none; }
-      .trust-section { padding: 48px 20px 48px; }
+      .trust-section { padding: 48px 20px; }
     }
 
     /* Foto */
@@ -431,42 +432,48 @@ const recentPosts = (await getCollection('blog'))
     }
     .trust-photo {
       width: 100%;
-      max-width: 340px;
+      max-width: 300px;
       height: auto;
       display: block;
+    }
+
+    /* Direita */
+    .trust-right {
+      min-width: 0;
     }
 
     /* Título */
     .trust-title {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: clamp(26px, 2.8vw, 40px);
+      font-size: clamp(22px, 2.4vw, 36px);
       font-weight: 800;
       color: #0f172a;
-      line-height: 1.15;
-      margin: 0 0 36px;
+      line-height: 1.2;
+      margin: 0 0 32px;
+      word-break: break-word;
     }
 
     /* Stats */
     .trust-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
     }
     @media (max-width: 500px) {
       .trust-stats { grid-template-columns: 1fr; }
     }
-    .trust-stat { display: flex; flex-direction: column; gap: 6px; }
+    .trust-stat { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .trust-stat-number {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 40px;
+      font-size: clamp(28px, 3vw, 40px);
       font-weight: 800;
       color: #2d6a4f;
       line-height: 1;
     }
     .trust-stat-label {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       color: #374151;
       font-weight: 400;
       line-height: 1.4;
@@ -489,8 +496,8 @@ const recentPosts = (await getCollection('blog'))
     .trust-logos-track-outer {
       overflow: hidden;
       width: 100%;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     }
     .trust-logos-track {
       display: flex;
