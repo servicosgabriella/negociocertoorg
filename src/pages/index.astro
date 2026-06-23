@@ -220,7 +220,7 @@ const recentPosts = (await getCollection('blog'))
     .cat-card {
       position: relative;
       background: #ffffff;
-      border: 1px solid #e2ede8;
+      border: 1px solid transparent;
       border-radius: 16px;
       padding: 24px 16px 20px;
       text-decoration: none;
@@ -229,6 +229,10 @@ const recentPosts = (await getCollection('blog'))
       align-items: center;
       text-align: center;
       gap: 8px;
+      transition: border-color 0.2s;
+    }
+    .cat-card:hover {
+      border-color: #e2ede8;
     }
 
     .cat-arrow {
