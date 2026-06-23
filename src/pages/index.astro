@@ -244,12 +244,14 @@ const recentPosts = (await getCollection('blog'))
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       flex-shrink: 0;
     }
     .cat-icon img {
-      height: 80px;
-      width: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .cat-title {
       font-family: 'Nunito Sans', sans-serif;
