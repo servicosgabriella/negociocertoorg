@@ -348,40 +348,55 @@ const recentPosts = (await getCollection('blog'))
   <section class="trust-section">
     <div class="trust-inner">
 
-      <!-- Esquerda: título -->
-      <div class="trust-left">
-        <h2 class="trust-title">Por que empreendedores confiam no <span class="trust-highlight">NegócioCerto?</span></h2>
+      <!-- Esquerda: foto -->
+      <div class="trust-photo-wrap">
+        <img src="/images/nnegociocerto.png" alt="Especialista NegócioCerto" class="trust-photo" />
       </div>
 
-      <!-- Direita: stats em linha + logos -->
+      <!-- Direita: conteúdo -->
       <div class="trust-right">
+
+        <h2 class="trust-title">Por que empreendedores confiam no NegócioCerto?</h2>
 
         <!-- Stats horizontais -->
         <div class="trust-stats">
           <div class="trust-stat">
-            <span class="trust-stat-number">50 <span class="trust-stat-plus">+</span></span>
+            <span class="trust-stat-number">50+</span>
             <span class="trust-stat-label">produtos avaliados com critérios rigorosos</span>
           </div>
           <div class="trust-stat">
-            <span class="trust-stat-number">2.000 <span class="trust-stat-plus">+</span></span>
+            <span class="trust-stat-number">2.000+</span>
             <span class="trust-stat-label">horas de pesquisa e testes realizados</span>
           </div>
           <div class="trust-stat">
-            <span class="trust-stat-number">10 <span class="trust-stat-plus">+</span></span>
+            <span class="trust-stat-number">10+</span>
             <span class="trust-stat-label">anos acompanhando o mercado empreendedor</span>
           </div>
         </div>
 
-        <!-- Logos -->
+        <!-- Logos com scroll -->
         <div class="trust-logos-wrap">
           <p class="trust-logos-label">PRODUTOS QUE JÁ AVALIAMOS E TESTAMOS</p>
-          <div class="trust-logos">
-            <img src="/images/logo-pagbank.png" alt="PagBank" />
-            <img src="/images/logo-mercado-pago.png" alt="Mercado Pago" />
-            <img src="/images/logo-sumup.png" alt="SumUp" />
-            <img src="/images/logo-ton.webp" alt="Ton" />
-            <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" />
-            <img src="/images/contabilizei-logo.png" alt="Contabilizei" />
+          <div class="trust-logos-track-outer">
+            <div class="trust-logos-track">
+              <img src="/images/logo-pagbank.png" alt="PagBank" />
+              <img src="/images/logo-mercado-pago.png" alt="Mercado Pago" />
+              <img src="/images/logo-sumup.png" alt="SumUp" />
+              <img src="/images/logo-ton.webp" alt="Ton" />
+              <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" />
+              <img src="/images/contabilizei-logo.png" alt="Contabilizei" />
+              <img src="/images/agilize-contabilidade-online-logo.png" alt="Agilize" />
+              <img src="/images/colinear-logo.png" alt="Colinear" />
+              <!-- duplicados para loop contínuo -->
+              <img src="/images/logo-pagbank.png" alt="PagBank" aria-hidden="true" />
+              <img src="/images/logo-mercado-pago.png" alt="Mercado Pago" aria-hidden="true" />
+              <img src="/images/logo-sumup.png" alt="SumUp" aria-hidden="true" />
+              <img src="/images/logo-ton.webp" alt="Ton" aria-hidden="true" />
+              <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" aria-hidden="true" />
+              <img src="/images/contabilizei-logo.png" alt="Contabilizei" aria-hidden="true" />
+              <img src="/images/agilize-contabilidade-online-logo.png" alt="Agilize" aria-hidden="true" />
+              <img src="/images/colinear-logo.png" alt="Colinear" aria-hidden="true" />
+            </div>
           </div>
         </div>
 
@@ -393,58 +408,61 @@ const recentPosts = (await getCollection('blog'))
     /* ======= TRUST SECTION ======= */
     .trust-section {
       background: #ffffff;
-      padding: 72px 32px 64px;
+      padding: 64px 32px 64px;
       border-top: 1px solid #f0f0f0;
     }
     .trust-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 2fr 3fr;
+      grid-template-columns: 340px 1fr;
       gap: 64px;
-      align-items: start;
+      align-items: center;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .trust-inner { grid-template-columns: 1fr; gap: 32px; }
-      .trust-section { padding: 48px 20px 40px; }
+      .trust-photo-wrap { display: none; }
+      .trust-section { padding: 48px 20px 48px; }
     }
 
+    /* Foto */
+    .trust-photo-wrap {
+      flex-shrink: 0;
+    }
+    .trust-photo {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      display: block;
+    }
+
+    /* Título */
     .trust-title {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: clamp(26px, 3vw, 40px);
+      font-size: clamp(26px, 2.8vw, 40px);
       font-weight: 800;
       color: #0f172a;
       line-height: 1.15;
-      margin: 0;
+      margin: 0 0 36px;
     }
-    .trust-highlight { color: #2d6a4f; }
 
-    /* Stats em linha */
+    /* Stats */
     .trust-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-bottom: 40px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
       .trust-stats { grid-template-columns: 1fr; }
     }
-    .trust-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .trust-stat { display: flex; flex-direction: column; gap: 6px; }
     .trust-stat-number {
       font-family: 'Nunito Sans', sans-serif;
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 800;
       color: #2d6a4f;
       line-height: 1;
-    }
-    .trust-stat-plus {
-      font-size: 28px;
-      font-weight: 800;
-      color: #2d6a4f;
     }
     .trust-stat-label {
       font-family: 'Nunito Sans', sans-serif;
@@ -454,7 +472,7 @@ const recentPosts = (await getCollection('blog'))
       line-height: 1.4;
     }
 
-    /* Logos */
+    /* Logos com scroll */
     .trust-logos-wrap {
       border-top: 1px solid #e5e7eb;
       padding-top: 24px;
@@ -468,23 +486,32 @@ const recentPosts = (await getCollection('blog'))
       text-transform: uppercase;
       margin: 0 0 16px;
     }
-    .trust-logos {
+    .trust-logos-track-outer {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .trust-logos-track {
       display: flex;
       align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
+      gap: 48px;
+      width: max-content;
+      animation: logos-scroll 22s linear infinite;
     }
-    .trust-logos img {
-      height: 24px;
+    .trust-logos-track:hover { animation-play-state: paused; }
+    .trust-logos-track img {
+      height: 26px;
       width: auto;
       object-fit: contain;
       filter: grayscale(100%);
       opacity: 0.5;
-      transition: opacity 0.2s, filter 0.2s;
+      flex-shrink: 0;
     }
-    .trust-logos img:hover {
-      filter: grayscale(0%);
-      opacity: 1;
+
+    @keyframes logos-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 
