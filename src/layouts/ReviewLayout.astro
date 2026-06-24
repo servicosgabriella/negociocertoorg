@@ -300,6 +300,37 @@ const itemListSchema =
 			NÃO replique nenhuma destas funções nos arquivos de artigo.
 		-->
 		<script is:inline>
+			document.addEventListener('DOMContentLoaded', function () {
+				document.querySelectorAll('.contabilidade-container').forEach(function (card) {
+					var logoCol = card.querySelector('.logo-column');
+					var ratingCol = card.querySelector('.rating-column');
+					if (!logoCol || !ratingCol) return;
+
+					// Move rating para dentro do logo-column
+					logoCol.appendChild(ratingCol);
+					ratingCol.style.display = 'block';
+
+					// Gerar estrelas dinâmicas
+					var scoreEl = ratingCol.querySelector('.rating-score');
+					if (!scoreEl) return;
+					var score = parseFloat(scoreEl.textContent.replace(',', '.'));
+					if (score > 5) score = score / 2; // converte /10 para /5
+					var score5 = score.toFixed(1).replace('.', ',');
+					var full = Math.floor(score);
+					var partial = score - full;
+					var empty = 5 - full - (partial > 0 ? 1 : 0);
+					var html = '<div class="stars-display">';
+					for (var i = 0; i < full; i++) html += '<span class="star-full">★</span>';
+					if (partial > 0) {
+						var pct = Math.round(partial * 100);
+						html += '<span class="star-partial"><span class="star-fill" style="width:' + pct + '%">★</span>★</span>';
+					}
+					for (var i = 0; i < empty; i++) html += '<span class="star-empty">★</span>';
+					html += '</div><div class="score-num">' + score5 + '/5</div>';
+					ratingCol.innerHTML = html;
+				});
+			});
+
 			window.toggleAccordion = function (el) {
 				const item = el.parentElement;
 				const header = el;
@@ -466,33 +497,36 @@ const itemListSchema =
 			}
 			.contabilidade-grid {
 				display: grid;
-				grid-template-columns: 150px 1.3fr 1.5fr 1.4fr;
-				grid-template-rows: auto auto;
-				column-gap: 20px;
-				row-gap: 4px;
-				align-items: start;
+				grid-template-columns: 140px 1.3fr 1.5fr 1.4fr;
+				gap: 20px;
+				align-items: center;
 			}
-			.logo-column   { grid-column: 1; grid-row: 1; }
-			.rating-column { grid-column: 1; grid-row: 2; }
-			/* info-column ocupa as colunas 2 e 3 e divide título | bullets lado a lado */
+			.logo-column {
+				grid-column: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 8px;
+			}
+			/* rating-column movido para dentro do logo-column via JS */
+			.rating-column { display: none; }
 			.info-column {
 				grid-column: 2 / 4;
-				grid-row: 1 / span 2;
 				display: flex;
 				flex-direction: row;
 				gap: 20px;
 				align-items: center;
-				align-self: center;
 			}
 			.info-title { flex: 0 0 42%; margin: 0; }
 			.info-list  { flex: 1; }
-			.button-column { grid-column: 4; grid-row: 1 / span 2; align-self: center; }
-			.logo-column {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 12px;
-			}
+			.button-column { grid-column: 4; align-self: center; }
+			/* Stars display gerado via JS */
+			.stars-display { display: flex; gap: 1px; font-size: 16px; line-height: 1; }
+			.star-full  { color: #f59e0b; }
+			.star-empty { color: #d1d5db; }
+			.star-partial { position: relative; color: #d1d5db; display: inline-block; }
+			.star-fill { position: absolute; left: 0; top: 0; overflow: hidden; color: #f59e0b; white-space: nowrap; display: inline-block; }
+			.score-num { font-size: 12px; font-weight: 700; color: #374151; margin-top: 3px; }
 			.logo-link { display: block; }
 			.logo-image { max-width: 130px !important; max-height: 52px !important; height: auto; width: auto; display: block; }
 			.logo-text { display: none !important; }
@@ -532,19 +566,23 @@ const itemListSchema =
 			}
 			.rating-label { display: none; }
 			.info-title { font-size: 16px; font-weight: 700; color: #1f2937; margin: 0; }
-			.info-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+			.info-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
 			.info-list li {
-				font-size: 14px;
+				font-size: 13px;
 				color: #374151;
-				padding-left: 16px;
+				padding-left: 18px;
 				position: relative;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 			.info-list li::before {
-				content: "•";
+				content: "✓";
 				position: absolute;
 				left: 0;
-				color: #000;
-				font-weight: bold;
+				color: #6b7280;
+				font-size: 11px;
+				font-weight: 400;
 			}
 			.button-column { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 			.visit-price {
