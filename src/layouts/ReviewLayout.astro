@@ -490,32 +490,38 @@ const itemListSchema =
 			.logo-text { display: none !important; }
 			.rating-column {
 				display: flex;
-				flex-direction: column;
 				align-items: flex-start;
-				gap: 2px;
 			}
 			.rating-wrapper {
 				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 2px;
+				flex-direction: row;
+				align-items: center;
+				gap: 4px;
 			}
 			.rating-wrapper::before {
-				content: "★★★★★";
+				content: "★";
 				color: #f59e0b;
-				font-size: 15px;
+				font-size: 16px;
 				line-height: 1;
-				letter-spacing: 1px;
 			}
 			.rating-score {
 				background: none;
-				color: #374151;
-				font-size: 13px;
-				font-weight: 600;
+				color: #111827;
+				font-size: 15px;
+				font-weight: 700;
 				padding: 0;
 				border-radius: 0;
 			}
-			.rating-total { font-size: 12px; font-weight: 400; color: #9ca3af; }
+			.rating-total {
+				font-size: 0;
+				color: transparent;
+			}
+			.rating-total::after {
+				content: "/5";
+				font-size: 13px;
+				font-weight: 400;
+				color: #9ca3af;
+			}
 			.rating-label { display: none; }
 			.info-column { display: flex; flex-direction: column; gap: 12px; }
 			.info-title { font-size: 16px; font-weight: 700; color: #1f2937; margin: 0; }
