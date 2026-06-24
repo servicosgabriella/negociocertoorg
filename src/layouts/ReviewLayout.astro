@@ -175,36 +175,33 @@ const itemListSchema =
 				<p class="review-hero-desc">{description}</p>
 
 	
-				<!-- Meta: autor + data + verificado -->
+				<!-- Meta: avatar | (escrito por / data + verificado) -->
 				<div class="review-hero-meta">
-					<!-- Linha 1: avatar + escrito por -->
-					<div class="review-meta-row1">
-						<img
-							src={authorImage}
-							alt={`Foto de ${authorName}`}
-							width="40"
-							height="40"
-							loading="eager"
-							fetchpriority="high"
-							class="review-hero-avatar"
-						/>
-						<span class="review-meta-written">
+					<img
+						src={authorImage}
+						alt={`Foto de ${authorName}`}
+						width="48"
+						height="48"
+						loading="eager"
+						fetchpriority="high"
+						class="review-hero-avatar"
+					/>
+					<div class="review-meta-text">
+						<div class="review-meta-row1">
 							Escrito por <a href={authorHref ?? '#'} class="review-hero-author-name" rel="author">{authorName}</a>
-						</span>
-					</div>
-					<!-- Linha 2: data | verificado | integridade -->
-					<div class="review-meta-row2">
-						<span class="review-meta-date">
-							<i class="fa-regular fa-clock" aria-hidden="true"></i>
-							Última atualização em <time datetime={updatedDate}>{new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
-						</span>
-						<span class="review-meta-sep">|</span>
-						<span class="review-meta-verified">
-							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-							VERIFICADO
-						</span>
-						<span class="review-meta-sep">|</span>
-						<span class="review-meta-integrity">INTEGRIDADE EDITORIAL</span>
+						</div>
+						<div class="review-meta-row2">
+							<span class="review-meta-date">
+								Última atualização em <time datetime={updatedDate}>{new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>.
+							</span>
+							<span class="review-meta-sep">|</span>
+							<span class="review-meta-verified">
+								<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+								VERIFICADO
+							</span>
+							<span class="review-meta-sep">|</span>
+							<span class="review-meta-integrity">INTEGRIDADE EDITORIAL</span>
+						</div>
 					</div>
 				</div>
 
@@ -905,30 +902,31 @@ const itemListSchema =
 				margin: 0 0 24px;
 			}
 
-			/* Meta: autor + data + verificado */
+			/* Meta: avatar à esquerda + bloco de texto à direita */
 			.review-hero-meta {
 				display: flex;
-				flex-direction: column;
-				gap: 6px;
-			}
-			/* Linha 1 */
-			.review-meta-row1 {
-				display: flex;
 				align-items: center;
-				gap: 10px;
+				gap: 14px;
 			}
 			.review-hero-avatar {
-				width: 40px;
-				height: 40px;
+				width: 48px;
+				height: 48px;
 				border-radius: 50%;
 				object-fit: cover;
 				flex-shrink: 0;
 				border: 2px solid rgba(255,255,255,0.35);
 			}
-			.review-meta-written {
+			.review-meta-text {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+			/* Linha 1: escrito por */
+			.review-meta-row1 {
 				font-size: 14px;
 				color: rgba(255,255,255,0.85);
 				font-family: 'Nunito Sans', 'Inter', sans-serif;
+				line-height: 1.4;
 			}
 			.review-hero-author-name {
 				color: #ffffff;
@@ -936,7 +934,7 @@ const itemListSchema =
 				text-decoration: none;
 			}
 			a.review-hero-author-name:hover { text-decoration: underline; }
-			/* Linha 2 */
+			/* Linha 2: data | verificado | integridade */
 			.review-meta-row2 {
 				display: flex;
 				align-items: center;
@@ -945,17 +943,11 @@ const itemListSchema =
 				font-size: 13px;
 				color: rgba(255,255,255,0.75);
 				font-family: 'Nunito Sans', 'Inter', sans-serif;
+				line-height: 1.4;
 			}
-			.review-meta-date {
-				display: flex;
-				align-items: center;
-				gap: 5px;
-			}
-			.review-meta-date i { font-size: 12px; }
 			.review-meta-date time { font-weight: 600; color: #ffffff; }
 			.review-meta-sep {
 				color: rgba(255,255,255,0.35);
-				font-size: 12px;
 			}
 			.review-meta-verified {
 				display: flex;
@@ -964,13 +956,13 @@ const itemListSchema =
 				font-weight: 700;
 				font-size: 12px;
 				color: #ace347;
-				letter-spacing: 0.04em;
+				letter-spacing: 0.05em;
 			}
 			.review-meta-integrity {
 				font-weight: 700;
 				font-size: 12px;
-				color: rgba(255,255,255,0.75);
-				letter-spacing: 0.04em;
+				color: rgba(255,255,255,0.80);
+				letter-spacing: 0.05em;
 				text-decoration: underline;
 				text-underline-offset: 2px;
 				cursor: pointer;
