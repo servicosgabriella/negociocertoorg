@@ -423,40 +423,57 @@ import { estrutura } from '../data/estrutura';
     text-decoration: none;
     background: none;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: none;
     cursor: pointer;
     white-space: nowrap;
-    transition: color 0.15s, border-color 0.15s;
+    transition: color 0.2s;
     line-height: 1;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: linear-gradient(to right, #337651, #62a355, #599c55);
+    opacity: 0;
+    transition: opacity 0.2s;
   }
   .nav-link:hover,
   .nav-link.active {
-    color: #111827 !important;
-    border-bottom-color: #d1d5db;
+    color: #62a355 !important;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    opacity: 1;
   }
   .nav-item:hover .nav-link {
-    border-bottom-color: #d1d5db;
+    color: #62a355 !important;
+  }
+  .nav-item:hover .nav-link::after {
+    opacity: 1;
   }
 
   .nav-arrow {
     width: 12px;
     height: 12px;
     color: #6b7280;
-    transition: transform 0.2s;
+    transition: transform 0.2s, color 0.2s;
     flex-shrink: 0;
   }
   .nav-link.active .nav-arrow,
   .nav-item:hover .nav-arrow {
     transform: rotate(180deg);
-    color: #374151;
+    color: #62a355;
   }
 
   .nav-link-simple {
-    border-bottom: 2px solid transparent;
+    border-bottom: none;
   }
   .nav-link-simple:hover {
-    color: #111827 !important;
-    border-bottom-color: #d1d5db;
+    color: #62a355 !important;
   }
 
   /* ===================== MEGAMENU ===================== */
@@ -509,7 +526,7 @@ import { estrutura } from '../data/estrutura';
     border-bottom: 2px solid #e5e7eb;
     transition: color 0.15s;
   }
-  .megamenu-col-title:hover { color: #111827 !important; }
+  .megamenu-col-title:hover { color: #337651 !important; }
 
   .megamenu-article {
     display: block;
@@ -524,7 +541,7 @@ import { estrutura } from '../data/estrutura';
   }
   .megamenu-article:last-child { border-bottom: none; }
   .megamenu-article:hover {
-    color: #111827 !important;
+    color: #337651 !important;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
