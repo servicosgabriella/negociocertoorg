@@ -568,8 +568,10 @@ const itemListSchema =
 			}
 			.show-more-button:hover { background: #276fbd; color: #ffffff; }
 			.content-hidden { position: relative; }
-			/* Esconde cards do 4º em diante — mostra apenas os 3 primeiros */
-			.content-hidden .contabilidade-container:nth-child(n+4) { display: none; }
+			/* Sempre mostra apenas os 3 primeiros */
+			.contabilidade-container:nth-child(n+4) { display: none !important; }
+			.fade-overlay { display: none !important; }
+			.show-more-button { display: none !important; }
 
 			@media (max-width: 968px) {
 				.contabilidade-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
