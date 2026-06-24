@@ -67,7 +67,7 @@ A forma mais direta de entender é comparar o que cada um faz no dia a dia:
 <div style="overflow-x:auto; margin: 24px 0;">
   <table style="width:100%; border-collapse:collapse; font-size:0.95rem; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
     <thead>
-      <tr style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); color:#ffffff; text-align:left;">
+      <tr style="background: linear-gradient(to right, #0d4a28, #2d6a4f); color:#ffffff; text-align:left;">
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Função</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">PDV</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">ERP</th>
@@ -76,43 +76,43 @@ A forma mais direta de entender é comparar o que cada um faz no dia a dia:
     <tbody>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Registrar venda no balcão</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
         <td style="padding:12px 16px; color:#374151;">Depende do módulo</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Emitir NFC-e e NF-e</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Controle de caixa</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Completo</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Completo</td>
         <td style="padding:12px 16px; color:#374151;">Parcial</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Gestão de estoque</td>
         <td style="padding:12px 16px; color:#374151;">Básica</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Completa</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Completa</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Contas a pagar e receber</td>
         <td style="padding:12px 16px; color:#d1d5db;">✗ Não</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Relatórios financeiros</td>
         <td style="padding:12px 16px; color:#374151;">Básicos</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Completos</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Completos</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Compras e pedidos a fornecedores</td>
         <td style="padding:12px 16px; color:#d1d5db;">✗ Não</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Integração com contabilidade</td>
         <td style="padding:12px 16px; color:#d1d5db;">✗ Não</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Folha de pagamento</td>
@@ -176,7 +176,7 @@ Os preços variam, mas aqui está uma referência prática:
 <div style="overflow-x:auto; margin: 24px 0;">
   <table style="width:100%; border-collapse:collapse; font-size:0.95rem; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
     <thead>
-      <tr style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); color:#ffffff; text-align:left;">
+      <tr style="background: linear-gradient(to right, #0d4a28, #2d6a4f); color:#ffffff; text-align:left;">
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Tipo de sistema</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Faixa de preço</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">O que inclui</th>

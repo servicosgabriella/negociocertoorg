@@ -82,7 +82,7 @@ faq:
 
 <p>Para saber se é compatibilidade, veja o manual da sua maquininha ou ligue para o fabricante e pergunte: "Qual é o código da bandeira de voucher?", eles vão dizer a você quais marcas o aparelho aceita.</p>
 
-<p>Se descobrir que sua maquininha simplesmente não aceita aquela bandeira de voucher que o cliente quer usar, talvez seja hora de considerar uma alternativa. Confira nosso <a href="/melhores-maquininhas-cartao-voucher-refeicao/" style="color:#007eff; text-decoration:none; font-weight:600;">guia das melhores maquininhas que aceitam voucher</a> para encontrar um modelo compatível com todos os cartões de benefício que seus clientes usam.</p>
+<p>Se descobrir que sua maquininha simplesmente não aceita aquela bandeira de voucher que o cliente quer usar, talvez seja hora de considerar uma alternativa. Confira nosso <a href="/melhores-maquininhas-cartao-voucher-refeicao/" style="color:#2d6a4f; text-decoration:none; font-weight:600;">guia das melhores maquininhas que aceitam voucher</a> para encontrar um modelo compatível com todos os cartões de benefício que seus clientes usam.</p>
 
 <p>Isso pode parecer um grande problema, mas é raro. Atualmente, mais de 95% das maquininhas novas aceitam pelo menos as 4 principais bandeiras de voucher. O cenário onde a máquina rejeita tudo é muito específico.</p>
 

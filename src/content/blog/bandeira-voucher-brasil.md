@@ -89,4 +89,4 @@ faq:
 
 <p>Um detalhe financeiro importante: não existe taxa diferente para voucher versus crédito na maioria das maquininhas. Você paga o mesmo percentual no VR que pagaria em um crédito à vista de mesmo valor. Então não há motivo financeiro para recusar voucher.</p>
 
-<p>Agora que você sabe qual bandeira faz sentido para seu negócio, descubra qual maquininha oferece melhor cobertura e menores taxas nessa bandeira específica <a href="/melhores-maquininhas-cartao-voucher-refeicao/" style="color:#007eff; text-decoration:none; font-weight:600;">vendo nosso comparativo de maquininhas que aceitam voucher e vale-refeição</a>. Lá você vai encontrar as opções mais recomendadas com taxa atualizada para 2026.</p>
+<p>Agora que você sabe qual bandeira faz sentido para seu negócio, descubra qual maquininha oferece melhor cobertura e menores taxas nessa bandeira específica <a href="/melhores-maquininhas-cartao-voucher-refeicao/" style="color:#2d6a4f; text-decoration:none; font-weight:600;">vendo nosso comparativo de maquininhas que aceitam voucher e vale-refeição</a>. Lá você vai encontrar as opções mais recomendadas com taxa atualizada para 2026.</p>

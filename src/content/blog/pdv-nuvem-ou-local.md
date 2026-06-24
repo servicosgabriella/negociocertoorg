@@ -79,7 +79,7 @@ A desvantagem principal: se o computador quebrar ou for roubado, os dados do per
 <div style="overflow-x:auto; margin: 24px 0;">
   <table style="width:100%; border-collapse:collapse; font-size:0.95rem; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
     <thead>
-      <tr style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); color:#ffffff; text-align:left;">
+      <tr style="background: linear-gradient(to right, #0d4a28, #2d6a4f); color:#ffffff; text-align:left;">
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Critério</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">PDV em Nuvem</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">PDV Local</th>
@@ -89,47 +89,47 @@ A desvantagem principal: se o computador quebrar ou for roubado, os dados do per
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Funciona sem internet</td>
         <td style="padding:12px 16px; color:#374151;">Só se tiver modo offline</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim, por padrão</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim, por padrão</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Backup automático</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Sim, contínuo</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Sim, contínuo</td>
         <td style="padding:12px 16px; color:#374151;">Manual ou agendado</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Acesso remoto (de casa, celular)</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">✓ Nativo</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">✓ Nativo</td>
         <td style="padding:12px 16px; color:#374151;">Exige configuração extra</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Custo de instalação</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Zero (acessa pelo navegador)</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Zero (acessa pelo navegador)</td>
         <td style="padding:12px 16px; color:#374151;">Licença + instalação</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Atualizações</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Automáticas, sem custo extra</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Automáticas, sem custo extra</td>
         <td style="padding:12px 16px; color:#374151;">Manuais, às vezes pagas</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Manutenção de TI necessária</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Mínima</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Mínima</td>
         <td style="padding:12px 16px; color:#374151;">Periódica (servidor, HD)</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Risco de perda de dados por falha física</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Muito baixo</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Muito baixo</td>
         <td style="padding:12px 16px; color:#374151;">Alto (HD, roubo, incêndio)</td>
       </tr>
       <tr style="background:#f8fafc; border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Múltiplos terminais na mesma loja</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Fácil, adiciona dispositivo</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Fácil, adiciona dispositivo</td>
         <td style="padding:12px 16px; color:#374151;">Exige rede interna</td>
       </tr>
       <tr style="border-bottom:1px solid #e5e7eb;">
         <td style="padding:12px 16px; color:#111827; font-weight:600;">Performance em alto volume de vendas</td>
         <td style="padding:12px 16px; color:#374151;">Depende da internet</td>
-        <td style="padding:12px 16px; color:#007eff; font-weight:600;">Estável (processa local)</td>
+        <td style="padding:12px 16px; color:#2d6a4f; font-weight:600;">Estável (processa local)</td>
       </tr>
     </tbody>
   </table>
@@ -207,7 +207,7 @@ O PDV local coloca a responsabilidade inteiramente no lojista, que raramente tem
 <div style="overflow-x:auto; margin: 24px 0;">
   <table style="width:100%; border-collapse:collapse; font-size:0.95rem; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
     <thead>
-      <tr style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); color:#ffffff; text-align:left;">
+      <tr style="background: linear-gradient(to right, #0d4a28, #2d6a4f); color:#ffffff; text-align:left;">
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Tipo</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Custo inicial</th>
         <th style="padding:14px 16px; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px;">Mensalidade</th>
