@@ -461,13 +461,17 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
         .mhc-v2-voucher-badge {
             display: inline-flex;
             align-items: center;
-            background: #f9fafb;
+            justify-content: center;
+            background: #fff;
             border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            padding: 5px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #374151;
+            border-radius: 8px;
+            padding: 8px 14px;
+        }
+        .mhc-v2-voucher-badge img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
         .mhc-v2-machine-wrap {
             display: flex;
@@ -699,11 +703,11 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             <i class="fa fa-chevron-down mhc-chevron"></i>
         </button>
         <div class="mhc-v2-voucher-panel" id="pagbank-voucher-panel">
-            <span class="mhc-v2-voucher-badge">Alelo</span>
-            <span class="mhc-v2-voucher-badge">VR</span>
-            <span class="mhc-v2-voucher-badge">Ticket</span>
-            <span class="mhc-v2-voucher-badge">Pluxee</span>
-            <span class="mhc-v2-voucher-badge">Ben Visa Vale</span>
+            <span class="mhc-v2-voucher-badge"><img src="/images/vouchers/alelo.png" alt="Alelo"></span>
+            <span class="mhc-v2-voucher-badge"><img src="/images/vouchers/vr.png" alt="VR Benefícios"></span>
+            <span class="mhc-v2-voucher-badge"><img src="/images/vouchers/ticket.png" alt="Ticket"></span>
+            <span class="mhc-v2-voucher-badge"><img src="/images/vouchers/pluxee.png" alt="Pluxee"></span>
+            <span class="mhc-v2-voucher-badge"><img src="/images/vouchers/ben-visa-vale.png" alt="Ben Visa Vale"></span>
         </div>
     </div>
 
