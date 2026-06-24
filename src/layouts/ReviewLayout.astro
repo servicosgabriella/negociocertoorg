@@ -144,60 +144,65 @@ const itemListSchema =
 	<body>
 		<Header />
 		<section class="review-hero">
-			<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-				<nav aria-label="Breadcrumb" class="hidden md:flex" style="font-size: 13px; margin-bottom: 16px;">
-				  <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
-				    {breadcrumb.map((item, index) => (
-				      <li style="display: flex; align-items: center; gap: 4px;">
-				        {index < breadcrumb.length - 1 ? (
-				          <a href={item.href} style="color: #bfdbfe; text-decoration: none;">{item.label}</a>
-				        ) : (
-				          <span style="color: #ffffff; font-weight: 500;">{item.label}</span>
-				        )}
-				        {index < breadcrumb.length - 1 && (
-				          <span style="color: #bfdbfe;">›</span>
-				        )}
-				      </li>
-				    ))}
-				  </ol>
-				</nav>
-				<h1 class="review-hero-title" style="color: white; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">{title}</h1>
-				<p style="color: #bfdbfe; font-size: 1.125rem; max-width: 720px; margin: 0 0 24px 0;">{description}</p>
-				<div class="ab-root">
-					<div class="ab-author-container">
+			<div class="review-hero-container">
+
+				<!-- Breadcrumb -->
+				{breadcrumb.length > 0 && (
+					<nav aria-label="Breadcrumb" class="review-breadcrumb">
+						<ol class="breadcrumb-list">
+							{breadcrumb.map((item, index) => (
+								<li>
+									{index < breadcrumb.length - 1 ? (
+										<a href={item.href}>
+											{index === 0 ? (
+												<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-label="Home" style="display:inline;vertical-align:middle;margin-bottom:1px;">
+													<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+												</svg>
+											) : item.label}
+										</a>
+									) : (
+										<span>{item.label}</span>
+									)}
+									{index < breadcrumb.length - 1 && <span class="rbc-sep">›</span>}
+								</li>
+							))}
+						</ol>
+					</nav>
+				)}
+
+				<!-- Título e Descrição -->
+				<h1 class="review-hero-title">{title}</h1>
+				<p class="review-hero-desc">{description}</p>
+
+				<!-- Divisor -->
+				<hr class="review-hero-divider" />
+
+				<!-- Meta: autor + data -->
+				<div class="review-hero-meta">
+					<div class="review-hero-author">
 						<img
 							src={authorImage}
 							alt={`Foto de ${authorName}`}
-							width="40"
-							height="40"
+							width="44"
+							height="44"
 							loading="eager"
 							fetchpriority="high"
-							style="width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0;"
+							class="review-hero-avatar"
 						/>
-						<div class="ab-author-details">
-							<div class="ab-label">
-								Escrito por:
-								<a href={authorHref ?? '#'} class="ab-author-link-main" rel="author">
-									<span>{authorName}</span>
-								</a>
-							</div>
-							<div class="ab-job-verified-wrapper">
-								<div class="ab-label">{authorRole}</div>
-								<div class="ab-verified-inline">
-									<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16" fill="#60d790">
-										<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm4.471 6.471-5.04 5.04a.666.666 0 0 1-.942 0L4.187 9.21a.666.666 0 1 1 .942-.942l1.831 1.83 4.569-4.568a.666.666 0 1 1 .942.942Z"/>
-									</svg>
-									<span>Verificado pelo editor</span>
-								</div>
-							</div>
+						<div class="review-hero-author-info">
+							<span class="review-hero-author-label">Escrito por</span>
+							<a href={authorHref ?? '#'} class="review-hero-author-name" rel="author">{authorName}</a>
 						</div>
 					</div>
-					<div class="ab-date-container">
-						<i class="fa-regular fa-clock"></i>
-						<span class="ab-date-label">Última atualização:</span>
-						<time datetime={updatedDate}>{new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+					<div class="review-hero-date">
+						<i class="fa-regular fa-clock" aria-hidden="true"></i>
+						<span>Última atualização:</span>
+						<time datetime={updatedDate}>
+							{new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
+						</time>
 					</div>
 				</div>
+
 			</div>
 		</section>
 
@@ -822,17 +827,135 @@ const itemListSchema =
 			.faq-answer ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0; }
 			.faq-answer ul li { font-size: 14px; color: #374151; margin-bottom: 4px; }
 
-			/* Review Layout Mobile Optimizations */
-			.review-hero { background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 0 80px; }
-			.review-hero > div { display: block; }
-			.review-hero nav { padding: 0 !important; margin: 0 !important; display: block !important; width: 100% !important; }
-			.review-hero nav ol { padding: 0 !important; margin: 0 !important; width: 100% !important; }
-			.review-hero nav li { padding: 0 !important; margin: 0 !important; margin-left: 0 !important; }
-			.review-hero-title { font-size: 2.25rem; }
+			/* ===================== REVIEW HERO ===================== */
+			.review-hero {
+				background:
+					linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+					linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+					linear-gradient(135deg, #0d4a28 0%, #1d6b3d 45%, #3aaa62 100%);
+				background-size: 28px 28px, 28px 28px, auto;
+				padding: 40px 0 80px;
+			}
+			.review-hero-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 24px;
+				box-sizing: border-box;
+			}
+
+			/* Breadcrumb */
+			.review-breadcrumb {
+				margin: 0 0 20px 0;
+				padding: 0;
+			}
+			.review-breadcrumb ol {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 6px;
+			}
+			.review-breadcrumb li {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 13px;
+				margin: 0;
+				padding: 0;
+			}
+			.review-breadcrumb a {
+				color: #ffffff;
+				text-decoration: none;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				font-size: 12px;
+			}
+			.review-breadcrumb a:hover { color: #fff; text-decoration: underline; }
+			.review-breadcrumb span { color: #ffffff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+			.review-breadcrumb .rbc-sep { color: rgba(255,255,255,0.60); }
+
+			/* Título e Descrição */
+			.review-hero-title {
+				font-family: 'Nunito Sans', 'Inter', sans-serif;
+				color: #ffffff;
+				font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+				font-weight: 800;
+				line-height: 1.2;
+				margin: 0 0 16px;
+				letter-spacing: -0.3px;
+			}
+			.review-hero-desc {
+				font-family: 'Nunito Sans', 'Inter', sans-serif;
+				color: rgba(255,255,255,0.85);
+				font-size: 1.1rem;
+				line-height: 1.6;
+				margin: 0 0 28px;
+			}
+
+			/* Divisor */
+			.review-hero-divider {
+				border: none;
+				border-top: 0.5px solid #e9fd62;
+				margin: 0 0 24px;
+			}
+
+			/* Meta: autor + data */
+			.review-hero-meta {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 16px;
+			}
+			.review-hero-author {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+			.review-hero-avatar {
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				object-fit: cover;
+				flex-shrink: 0;
+				border: 2px solid rgba(255,255,255,0.3);
+			}
+			.review-hero-author-info {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+			}
+			.review-hero-author-label {
+				font-size: 11px;
+				color: rgba(255,255,255,0.65);
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			.review-hero-author-name {
+				font-size: 14px;
+				color: #ffffff;
+				font-weight: 700;
+				text-decoration: none;
+			}
+			a.review-hero-author-name:hover { text-decoration: underline; }
+			.review-hero-date {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 15px;
+				color: rgba(255,255,255,0.80);
+				font-family: 'Nunito Sans', 'Inter', sans-serif;
+			}
+			.review-hero-date i { font-size: 14px; }
+			.review-hero-date time { font-weight: 600; color: #fff; }
+
 			.review-main-container { max-width: 1200px; margin: 0 auto; padding: 40px; display: flex; gap: 40px; margin-top: 48px; }
 
 			@media (max-width: 768px) {
-				.review-hero { padding: 48px 0 40px !important; }
+				.review-hero { padding: 40px 0 60px !important; }
 				.review-main-container { padding: 24px !important; }
 			}
 
