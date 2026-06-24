@@ -497,7 +497,7 @@ const itemListSchema =
 			}
 			.contabilidade-grid {
 				display: grid;
-				grid-template-columns: 140px 1.5fr 1.4fr;
+				grid-template-columns: 140px 1.3fr 1.5fr 1.4fr;
 				gap: 12px;
 				align-items: center;
 			}
@@ -513,15 +513,15 @@ const itemListSchema =
 			/* rating-column movido para dentro do logo-column via JS */
 			.rating-column { display: none; }
 			.info-column {
-				grid-column: 2;
+				grid-column: 2 / 4;
 				display: flex;
 				flex-direction: row;
 				gap: 2px;
 				align-items: center;
 			}
-			.info-title { display: none !important; }
+			.info-title { flex: 0 0 42%; margin: 0; padding-left: 8px; }
 			.info-list  { flex: 1; }
-			.button-column { grid-column: 3; align-self: center; padding-right: 25px; }
+			.button-column { grid-column: 4; align-self: center; padding-right: 25px; }
 			/* Stars display gerado via JS */
 			.stars-display { display: flex; gap: 1px; font-size: 16px; line-height: 1; }
 			.star-full  { color: #f59e0b; }
@@ -568,7 +568,7 @@ const itemListSchema =
 				color: #9ca3af;
 			}
 			.rating-label { display: none; }
-			.info-title { display: none !important; }
+			.info-title { font-size: 13px; font-weight: 500; color: #4b5563; margin: 0; }
 			.info-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
 			.info-list li {
 				font-size: 13px;
