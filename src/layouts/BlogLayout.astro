@@ -536,15 +536,27 @@ const breadcrumbSchema = {
       align-items: center;
       gap: 12px;
       background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e2e6ea;
       border-radius: 12px;
       padding: 14px 16px;
       text-decoration: none;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      transform: translateY(0);
+      box-shadow:
+        0 1px 0 #d1d5db,
+        0 2px 0 #c4c9cf,
+        0 3px 0 #b8bdc4,
+        0 4px 8px rgba(0,0,0,0.10);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     .blog-google-card:hover {
-      border-color: #d1d5db;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+      box-shadow:
+        0 1px 0 #d1d5db,
+        0 2px 0 #c4c9cf,
+        0 3px 0 #b8bdc4,
+        0 4px 0 #acb2b9,
+        0 5px 0 #a0a7af,
+        0 8px 16px rgba(0,0,0,0.14);
     }
     .blog-google-icon {
       width: 28px;
