@@ -30,11 +30,13 @@ faq:
 
 Você está prestes a contratar um sistema PDV e travou numa dúvida que parece técnica demais: instalar o software no computador da loja ou usar um PDV em nuvem que roda no navegador?
 
-A resposta muda conforme o tipo de negócio. Para quem tem internet estável e quer acessar os dados de qualquer lugar, o PDV em nuvem resolve com menos custo de manutenção. Para quem opera com conexão instável, o PDV local dá mais controle. Se você ainda não escolheu qual sistema usar, a comparação dos [melhores sistemas PDV](/melhores-sistemas-pdv/) mostra quais são em nuvem, quais são locais e quais oferecem os dois modos, com preços e funcionalidades atualizados.
+A resposta muda conforme o tipo de negócio. Para quem tem internet estável e quer acessar os dados de qualquer lugar, o PDV em nuvem resolve com menos custo de manutenção. Para quem opera com conexão instável, o PDV local dá mais controle. 
+
+Se você ainda não escolheu qual sistema usar, a comparação dos [melhores sistemas PDV](/melhores-sistemas-pdv/) mostra quais são em nuvem, quais são locais e quais oferecem os dois modos, com preços e funcionalidades atualizados.
 
 Antes de escolher pelo nome, vale entender o que cada arquitetura significa na prática: segurança, contingência sem internet e custo real ao longo do tempo.
 
-## O que é PDV em nuvem e como funciona na prática
+## PDV em nuvem e como funciona
 
 PDV em nuvem significa que os dados da sua loja (vendas, estoque, clientes, relatórios) ficam armazenados em servidores remotos, não no computador do balcão.
 
@@ -53,7 +55,7 @@ No Brasil, sistemas como Bling e GestãoClick operam 100% em nuvem e são acessa
 
 A dependência de internet é o ponto de atenção. Sem conexão, a maioria dos PDVs em nuvem para, a menos que tenham modo offline (veremos isso mais adiante).
 
-## O que é PDV local e por que ainda é usado
+## PDV local e por que ainda é usado
 
 PDV local é o modelo tradicional: o software fica instalado diretamente no computador da loja. Os dados ficam na máquina. A internet é opcional.
 
@@ -135,7 +137,7 @@ A desvantagem principal: se o computador quebrar ou for roubado, os dados do per
 
 Não existe opção superior em todos os critérios. A escolha depende do que você prioriza: mobilidade e simplicidade (nuvem) ou independência de conexão e performance em pico (local).
 
-## PDV em nuvem funciona sem internet? O que muda na contingência
+## PDV em nuvem funciona sem internet?
 
 Essa é a dúvida que trava mais lojistas na hora da decisão, e a resposta é: **depende do sistema**.
 
@@ -168,13 +170,15 @@ A pergunta está mal formulada. O risco é diferente, não maior ou menor.
 - Vazamento de dados em caso de brecha de segurança
 - Dependência da continuidade do fornecedor (se a empresa fechar, seus dados precisam de exportação)
 
-**O que os PDVs em nuvem sérios fazem para mitigar:**
+**O que os PDVs em nuvem sérios fazem para reduzir os riscos:**
 - Criptografia dos dados em trânsito e em repouso
 - Backup redundante em múltiplos servidores
 - Certificações de segurança (ISO 27001 e SOC 2, padrões internacionais de proteção de dados)
 - Autenticação em dois fatores para acesso
 
-Para a grande maioria das pequenas empresas, o PDV em nuvem é mais seguro na prática. O backup automático compensa o risco técnico, que fica no lado do fornecedor, com equipe de segurança dedicada. O PDV local coloca a responsabilidade inteiramente no lojista, que raramente tem infraestrutura de TI para isso.
+Para a grande maioria das pequenas empresas, o PDV em nuvem é mais seguro na prática. O backup automático compensa o risco técnico, que fica no lado do fornecedor, com equipe de segurança dedicada. 
+
+O PDV local coloca a responsabilidade inteiramente no lojista, que raramente tem infraestrutura de TI para isso.
 
 ## Para qual tipo de negócio cada um faz mais sentido
 
@@ -193,7 +197,7 @@ Para a grande maioria das pequenas empresas, o PDV em nuvem é mais seguro na pr
 - Estabelecimentos com restrições regulatórias para dados em servidores externos
 - Negócios que já têm infraestrutura de TI e servidor interno
 
-**PDV híbrido (nuvem com modo offline robusto) é o melhor dos dois mundos para:**
+**PDV híbrido (nuvem com modo offline) para:**
 
 - Quem quer a mobilidade da nuvem mas não pode depender 100% da internet
 - Restaurantes e varejo com pico de atendimento onde qualquer lentidão é problema
