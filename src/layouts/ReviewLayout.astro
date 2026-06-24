@@ -319,14 +319,14 @@ const itemListSchema =
 					var full = Math.floor(score);
 					var partial = score - full;
 					var empty = 5 - full - (partial > 0 ? 1 : 0);
-					var html = '<div class="stars-display">';
+					var html = '<div class="rating-row"><div class="stars-display">';
 					for (var i = 0; i < full; i++) html += '<span class="star-full">★</span>';
 					if (partial > 0) {
 						var pct = Math.round(partial * 100);
 						html += '<span class="star-partial"><span class="star-fill" style="width:' + pct + '%">★</span>★</span>';
 					}
 					for (var i = 0; i < empty; i++) html += '<span class="star-empty">★</span>';
-					html += '</div><div class="score-num">' + score5 + '/5</div>';
+					html += '</div><span class="score-num">' + score5 + '/5</span></div>';
 					ratingCol.innerHTML = html;
 				});
 			});
@@ -526,7 +526,8 @@ const itemListSchema =
 			.star-empty { color: #d1d5db; }
 			.star-partial { position: relative; color: #d1d5db; display: inline-block; }
 			.star-fill { position: absolute; left: 0; top: 0; overflow: hidden; color: #f59e0b; white-space: nowrap; display: inline-block; }
-			.score-num { font-size: 12px; font-weight: 700; color: #374151; margin-top: 3px; }
+			.rating-row { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap; }
+			.score-num { font-size: 12px; font-weight: 700; color: #374151; white-space: nowrap; }
 			.logo-link { display: block; }
 			.logo-image { max-width: 130px !important; max-height: 52px !important; height: auto; width: auto; display: block; }
 			.logo-text { display: none !important; }
