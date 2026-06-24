@@ -469,8 +469,9 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
         }
         .mhc-v2-features {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px 16px;
+            grid-template-columns: auto auto;
+            justify-content: space-between;
+            gap: 10px 0;
             width: 100%;
         }
         .mhc-v2-feature {
