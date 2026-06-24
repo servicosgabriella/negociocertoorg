@@ -364,7 +364,11 @@ const breadcrumbSchema = {
   <style is:global>
     /* ===================== HERO ===================== */
     .blog-hero {
-      background: linear-gradient(135deg, #0d4a28 0%, #1d6b3d 45%, #3aaa62 100%);
+      background:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(135deg, #0d4a28 0%, #1d6b3d 45%, #3aaa62 100%);
+      background-size: 28px 28px, 28px 28px, auto;
       padding: 40px 0 96px;
     }
     .blog-hero-container {
