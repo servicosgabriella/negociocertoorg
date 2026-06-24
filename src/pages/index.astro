@@ -495,8 +495,8 @@ const recentPosts = (await getCollection('blog'))
             <div class={`blog-slide${isActive ? ' active' : ''}`} data-index={String(i)}>
               <a href={`/blog/${post.id}/`} class="blog-card">
                 <div class="blog-card-inner">
-                  {post.data.heroImage ? (
-                    <Image src={post.data.heroImage} alt={post.data.title} width={900} height={506} class="blog-card-img" />
+                  {post.data.coverImage ? (
+                    <img src={post.data.coverImage} alt={post.data.title} width={900} height={506} class="blog-card-img" loading="lazy" />
                   ) : (
                     <div class="blog-card-no-img"></div>
                   )}
