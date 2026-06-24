@@ -772,7 +772,7 @@ const recentPosts = (await getCollection('blog'))
         startAuto();
       });
 
-      goTo(0, false);
+      goTo(realTotal + 1, false);
       startAuto();
       window.addEventListener('resize', () => goTo(current, false));
     })();
