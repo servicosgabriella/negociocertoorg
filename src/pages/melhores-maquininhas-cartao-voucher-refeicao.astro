@@ -407,10 +407,29 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             flex-shrink: 0;
             background: #fff;
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 24px 0 24px 16px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 24px 0 16px 16px;
             border-right: 1px solid #e5e7eb;
+            gap: 10px;
+        }
+        .mhc-v2-voucher-link {
+            font-size: 11px;
+            color: #2d6a4f;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            padding-right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #d1fae5;
+        }
+        .mhc-v2-voucher-link:hover {
+            color: #1d6b3d;
         }
         .mhc-v2-machine-wrap {
             display: flex;
@@ -615,6 +634,9 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
                     <img src="/images/moderninha-pro-2-pagbank-limpa.png" alt="PagBank Moderninha Pro 2" width="110" height="160" class="mhc-v2-product-img" loading="eager">
                 </a>
             </div>
+            <a href="#pagbank-vouchers" class="mhc-v2-voucher-link">
+                <i class="fa fa-tags"></i> Ver bandeiras de voucher aceitas
+            </a>
         </div>
         <div class="mhc-v2-right">
             <div class="mhc-v2-features">
