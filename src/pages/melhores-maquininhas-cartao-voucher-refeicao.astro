@@ -396,10 +396,10 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
         /* === Hero Card v2 — NegócioCerto style === */
         .mhc-v2-card {
             border: 1.5px solid #e5e7eb;
-            border-radius: 16px;
+            border-radius: 16px 16px 0 0;
             overflow: hidden;
             background: #fff;
-            margin: 20px 0 28px;
+            margin: 20px 0 0;
             display: flex;
         }
         .mhc-v2-left {
@@ -407,29 +407,67 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             flex-shrink: 0;
             background: #fff;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 24px 0 16px 16px;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 24px 0 24px 16px;
             border-right: 1px solid #e5e7eb;
-            gap: 10px;
         }
-        .mhc-v2-voucher-link {
-            font-size: 11px;
-            color: #2d6a4f;
-            text-decoration: none;
-            text-align: center;
+        .mhc-v2-voucher-section {
+            border: 1.5px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+        .mhc-v2-voucher-toggle {
             width: 100%;
-            padding-right: 0;
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #d1fae5;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2d6a4f;
+            background: #f0faf4;
+            transition: background 0.2s;
         }
-        .mhc-v2-voucher-link:hover {
-            color: #1d6b3d;
+        .mhc-v2-voucher-toggle:hover {
+            background: #d1fae5;
+        }
+        .mhc-v2-voucher-toggle i.mhc-chevron {
+            transition: transform 0.2s;
+            font-size: 11px;
+        }
+        .mhc-v2-voucher-toggle.open i.mhc-chevron {
+            transform: rotate(180deg);
+        }
+        .mhc-v2-voucher-panel {
+            display: none;
+            padding: 16px 20px;
+            background: #fff;
+            border-top: 1px solid #e5e7eb;
+        }
+        .mhc-v2-voucher-panel.open {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        .mhc-v2-voucher-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
         }
         .mhc-v2-machine-wrap {
             display: flex;
@@ -634,9 +672,6 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
                     <img src="/images/moderninha-pro-2-pagbank-limpa.png" alt="PagBank Moderninha Pro 2" width="110" height="160" class="mhc-v2-product-img" loading="eager">
                 </a>
             </div>
-            <a href="#pagbank-vouchers" class="mhc-v2-voucher-link">
-                <i class="fa fa-tags"></i> Ver bandeiras de voucher aceitas
-            </a>
         </div>
         <div class="mhc-v2-right">
             <div class="mhc-v2-features">
@@ -655,6 +690,20 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
                 <span class="mhc-v2-cta-sub">POR TEMPO LIMITADO</span>
             </a>
             <span class="mhc-v2-domain">pagbank.com.br</span>
+        </div>
+    </div>
+
+    <div class="mhc-v2-voucher-section">
+        <button class="mhc-v2-voucher-toggle" id="pagbank-voucher-toggle" onclick="var p=document.getElementById('pagbank-voucher-panel');this.classList.toggle('open');p.classList.toggle('open')">
+            <i class="fa fa-tags"></i> Ver bandeiras de voucher aceitas pela Moderninha Pro 2
+            <i class="fa fa-chevron-down mhc-chevron"></i>
+        </button>
+        <div class="mhc-v2-voucher-panel" id="pagbank-voucher-panel">
+            <span class="mhc-v2-voucher-badge">Alelo</span>
+            <span class="mhc-v2-voucher-badge">VR</span>
+            <span class="mhc-v2-voucher-badge">Ticket</span>
+            <span class="mhc-v2-voucher-badge">Pluxee</span>
+            <span class="mhc-v2-voucher-badge">Ben Visa Vale</span>
         </div>
     </div>
 
