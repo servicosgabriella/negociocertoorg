@@ -403,30 +403,24 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             display: flex;
             flex-direction: column;
         }
-        .mhc-v2-badge-strip {
-            background: #ecfdf5;
-            border-bottom: 1px solid #d1fae5;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #065f46;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .mhc-v2-badge-icon {
-            width: 24px;
-            height: 24px;
-            background: #065f46;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .mhc-v2-badge-icon i {
+        .mhc-v2-ribbon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #1d6b3d;
             color: #fff;
-            font-size: 11px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 0 0 8px 0;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        .mhc-v2-ribbon i {
+            font-size: 12px;
         }
         .mhc-v2-body-row {
             display: flex;
@@ -451,6 +445,7 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
             justify-content: flex-end;
             padding: 24px 0 24px 16px;
             border-right: 1px solid #e5e7eb;
+            position: relative;
         }
         .mhc-v2-rates-inline {
             display: flex;
@@ -730,12 +725,11 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
     <h2>PagBank: as 5 bandeiras de vale refeição e alimentação pelo preço certo</h2>
 
     <div class="mhc-v2-card">
-        <div class="mhc-v2-badge-strip">
-            <span class="mhc-v2-badge-icon"><i class="fa fa-check"></i></span>
-            Nossa escolha para: <strong>Melhor custo-benefício</strong>
-        </div>
         <div class="mhc-v2-body-row">
             <div class="mhc-v2-left">
+                <div class="mhc-v2-ribbon">
+                    <i class="fa fa-check-circle"></i> Nossa escolha
+                </div>
                 <div class="mhc-v2-machine-wrap">
                     <div class="mhc-v2-rates-aside">
                         <div class="mhc-v2-rate">
