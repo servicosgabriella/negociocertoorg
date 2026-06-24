@@ -4,9 +4,16 @@
 		<!-- Esquerda: logo + tagline -->
 		<div class="footer-brand">
 			<a href="/" class="footer-logo">
-				<span class="footer-logo-badge">N</span>
-				<span class="footer-logo-text">negócio<strong>certo</strong></span>
+				<span class="footer-logo-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;color:#fff;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+						<path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.793-6.793a1 1 0 011.414 0z" clip-rule="evenodd" />
+					</svg>
+				</span>
+				<span class="footer-logo-text">
+					<span class="footer-logo-green">negócio</span><span class="footer-logo-dark">certo</span>
+				</span>
 			</a>
+
 			<p class="footer-tagline">Decisões inteligentes<br />para o seu negócio</p>
 
 			<div class="footer-socials">
@@ -30,34 +37,34 @@
 
 			<div class="footer-col">
 				<h4 class="footer-col-title">DESTAQUES</h4>
-				<ul class="footer-links">
-					<li><a href="/melhores-contabilidades-online/">Melhores Contabilidades Online</a></li>
-					<li><a href="/melhores-maquininhas-cartao-voucher-refeicao/">Melhores Maquininhas de Cartão</a></li>
-					<li><a href="/melhores-sistemas-pdv/">Melhores Sistemas de PDV</a></li>
-					<li><a href="/melhores-sistemas-nota-fiscal/">Melhores Sistemas de Nota Fiscal</a></li>
-					<li><a href="/como-registrar-uma-marca/">Como Registrar uma Marca</a></li>
-				</ul>
+				<div class="footer-links">
+					<a href="/melhores-contabilidades-online/" class="footer-link">Melhores Contabilidades Online</a>
+					<a href="/melhores-maquininhas-cartao-voucher-refeicao/" class="footer-link">Melhores Maquininhas de Cartão</a>
+					<a href="/melhores-sistemas-pdv/" class="footer-link">Melhores Sistemas de PDV</a>
+					<a href="/melhores-sistemas-nota-fiscal/" class="footer-link">Melhores Sistemas de Nota Fiscal</a>
+					<a href="/como-registrar-uma-marca/" class="footer-link">Como Registrar uma Marca</a>
+				</div>
 			</div>
 
 			<div class="footer-col">
 				<h4 class="footer-col-title">CATEGORIAS</h4>
-				<ul class="footer-links">
-					<li><a href="/financas/">Finanças Empresariais</a></li>
-					<li><a href="/rh/">Recursos Humanos</a></li>
-					<li><a href="/planejamento/">Planejamento</a></li>
-					<li><a href="/gestao/">Gestão</a></li>
-					<li><a href="/blog/">Blog</a></li>
-				</ul>
+				<div class="footer-links">
+					<a href="/financas/" class="footer-link">Finanças Empresariais</a>
+					<a href="/rh/" class="footer-link">Recursos Humanos</a>
+					<a href="/planejamento/" class="footer-link">Planejamento</a>
+					<a href="/gestao/" class="footer-link">Gestão</a>
+					<a href="/blog/" class="footer-link">Blog</a>
+				</div>
 			</div>
 
 			<div class="footer-col">
 				<h4 class="footer-col-title">INFORMAÇÕES</h4>
-				<ul class="footer-links">
-					<li><a href="/quem-somos/">Quem Somos</a></li>
-					<li><a href="/contato/">Contato</a></li>
-					<li><a href="/termos-de-uso/">Termos de Uso</a></li>
-					<li><a href="/politica-de-privacidade/">Política de Privacidade</a></li>
-				</ul>
+				<div class="footer-links">
+					<a href="/quem-somos/" class="footer-link">Quem Somos</a>
+					<a href="/contato/" class="footer-link">Contato</a>
+					<a href="/termos-de-uso/" class="footer-link">Termos de Uso</a>
+					<a href="/politica-de-privacidade/" class="footer-link">Política de Privacidade</a>
+				</div>
 			</div>
 
 		</div>
@@ -80,69 +87,52 @@
 		margin: 0 auto;
 		padding: 64px 32px 48px;
 		display: grid;
-		grid-template-columns: 260px 1fr;
+		grid-template-columns: 240px 1fr;
 		gap: 64px;
 	}
 	@media (max-width: 900px) {
-		.footer-inner {
-			grid-template-columns: 1fr;
-			gap: 40px;
-			padding: 48px 24px 40px;
-		}
+		.footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 40px; }
 	}
 
-	/* Brand */
-	.footer-brand {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-	}
+	/* Logo — igual ao header */
+	.footer-brand { display: flex; flex-direction: column; gap: 20px; }
+
 	.footer-logo {
 		display: inline-flex;
 		align-items: center;
-		gap: 10px;
+		gap: 8px;
 		text-decoration: none;
 	}
-	.footer-logo-badge {
-		width: 40px;
-		height: 40px;
-		background: #2d6a4f;
-		color: #fff;
-		border-radius: 8px;
+	.footer-logo-icon {
+		width: 28px;
+		height: 28px;
+		border-radius: 6px;
+		background: #16a34a;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 22px;
-		font-weight: 800;
-		font-family: 'Inter', sans-serif;
 		flex-shrink: 0;
 	}
 	.footer-logo-text {
-		font-size: 20px;
-		font-weight: 400;
-		color: #1a3a28;
+		font-size: 22px;
+		font-weight: 800;
+		text-transform: lowercase;
+		line-height: 1;
 		letter-spacing: -0.3px;
 	}
-	.footer-logo-text strong {
-		font-weight: 800;
-	}
+	.footer-logo-green { color: #16a34a; }
+	.footer-logo-dark  { color: #111827; }
+
 	.footer-tagline {
-		font-size: 18px;
+		font-size: 17px;
 		font-weight: 700;
 		color: #1a3a28;
-		line-height: 1.3;
+		line-height: 1.35;
 		margin: 0;
 	}
-	.footer-socials {
-		display: flex;
-		gap: 12px;
-		margin-top: 4px;
-	}
-	.footer-social-link {
-		color: #2d6a4f;
-		opacity: 0.7;
-		transition: opacity 0.2s;
-	}
+
+	.footer-socials { display: flex; gap: 12px; }
+	.footer-social-link { color: #2d6a4f; opacity: 0.65; transition: opacity 0.2s; display: flex; }
 	.footer-social-link:hover { opacity: 1; }
 
 	/* Colunas */
@@ -151,52 +141,45 @@
 		grid-template-columns: repeat(3, 1fr);
 		gap: 40px;
 	}
-	@media (max-width: 640px) {
-		.footer-cols { grid-template-columns: 1fr 1fr; }
-	}
-	@media (max-width: 400px) {
-		.footer-cols { grid-template-columns: 1fr; }
-	}
+	@media (max-width: 640px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
+	@media (max-width: 400px) { .footer-cols { grid-template-columns: 1fr; } }
 
 	.footer-col-title {
-		font-size: 12px;
+		font-size: 11px;
 		font-weight: 700;
 		color: #1a3a28;
 		letter-spacing: 0.1em;
-		margin: 0 0 16px;
+		margin: 0 0 14px;
 		padding-bottom: 10px;
 		border-bottom: 2px solid #e8a020;
-		display: inline-block;
+		display: block;
 	}
 
 	.footer-links {
-		list-style: none;
-		margin: 0;
-		padding: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
 	}
-	.footer-links a {
+	.footer-link {
 		color: #2d5a3d;
 		text-decoration: none;
 		font-size: 14px;
 		line-height: 1.5;
 		transition: color 0.2s;
 	}
-	.footer-links a:hover { color: #1a3a28; }
+	.footer-link:hover { color: #1a3a28; }
 
-	/* Bottom bar */
+	/* Bottom */
 	.footer-bottom {
 		border-top: 1px solid #ddd5c4;
 		padding: 20px 32px;
-		max-width: 1100px;
-		margin: 0 auto;
 	}
 	.footer-bottom p {
 		font-size: 13px;
 		color: #7a6e5e;
 		margin: 0;
 		text-align: center;
+		max-width: 1100px;
+		margin: 0 auto;
 	}
 </style>
