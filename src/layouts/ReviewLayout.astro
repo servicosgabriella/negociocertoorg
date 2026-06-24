@@ -474,18 +474,18 @@ const itemListSchema =
 			}
 			.logo-column   { grid-column: 1; grid-row: 1; }
 			.rating-column { grid-column: 1; grid-row: 2; }
-			/* info-column ocupa as colunas 2 e 3 e cria sub-grid interno */
+			/* info-column ocupa as colunas 2 e 3 e divide título | bullets lado a lado */
 			.info-column {
 				grid-column: 2 / 4;
 				grid-row: 1 / span 2;
-				display: grid;
-				grid-template-columns: 1fr 1.1fr;
-				gap: 0 20px;
+				display: flex;
+				flex-direction: row;
+				gap: 20px;
 				align-items: center;
 				align-self: center;
 			}
-			.info-title { grid-column: 1; margin: 0; }
-			.info-list  { grid-column: 2; }
+			.info-title { flex: 0 0 42%; margin: 0; }
+			.info-list  { flex: 1; }
 			.button-column { grid-column: 4; grid-row: 1 / span 2; align-self: center; }
 			.logo-column {
 				display: flex;
