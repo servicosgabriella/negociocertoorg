@@ -477,36 +477,36 @@ const itemListSchema =
 				gap: 12px;
 			}
 			.logo-link { display: block; }
-			.logo-image { max-width: 180px; max-height: 72px; height: auto; width: auto; display: block; }
-			.logo-text {
-				font-size: 16px;
-				color: #374151;
-				text-align: left;
-				text-decoration: none;
-				font-family: Arial, sans-serif;
-			}
-			.logo-text:hover { text-decoration: underline; }
+			.logo-image { max-width: 130px !important; max-height: 52px !important; height: auto; width: auto; display: block; }
+			.logo-text { display: none !important; }
 			.rating-column {
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				gap: 8px;
+				align-items: flex-start;
+				gap: 4px;
 			}
 			.rating-wrapper {
 				display: flex;
 				align-items: baseline;
-				gap: 2px;
+				gap: 5px;
+			}
+			.rating-wrapper::before {
+				content: "★";
+				color: #374151;
+				font-size: 20px;
+				line-height: 1;
+				align-self: center;
 			}
 			.rating-score {
-				background: #e5ebf7;
-				color: #052537;
-				font-size: 30px;
-				font-weight: bold;
-				padding: 0px 6px;
-				border-radius: 6px;
+				background: none;
+				color: #111827;
+				font-size: 24px;
+				font-weight: 700;
+				padding: 0;
+				border-radius: 0;
 			}
-			.rating-total { font-size: 16px; font-weight: bold; color: #000; }
-			.rating-label { font-size: 12px; color: #6b7280; text-align: center; }
+			.rating-total { font-size: 13px; font-weight: 400; color: #6b7280; }
+			.rating-label { display: none; }
 			.info-column { display: flex; flex-direction: column; gap: 12px; }
 			.info-title { font-size: 16px; font-weight: 700; color: #1f2937; margin: 0; }
 			.info-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
