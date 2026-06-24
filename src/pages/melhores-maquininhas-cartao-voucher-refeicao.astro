@@ -406,17 +406,27 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
         .mhc-v2-badge-strip {
             background: #ecfdf5;
             border-bottom: 1px solid #d1fae5;
-            padding: 9px 20px;
-            font-size: 13px;
-            font-weight: 600;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
             color: #065f46;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
-        .mhc-v2-badge-strip i {
-            color: #f59e0b;
-            font-size: 13px;
+        .mhc-v2-badge-icon {
+            width: 24px;
+            height: 24px;
+            background: #065f46;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .mhc-v2-badge-icon i {
+            color: #fff;
+            font-size: 11px;
         }
         .mhc-v2-body-row {
             display: flex;
@@ -689,7 +699,8 @@ const breadcrumb = getBreadcrumb('financas', 'Maquininhas que aceitam voucher e 
 
     <div class="mhc-v2-card">
         <div class="mhc-v2-badge-strip">
-            <i class="fa fa-star"></i> Melhor custo-benefício &nbsp;·&nbsp; <strong>9,0/10</strong> avaliação do editor
+            <span class="mhc-v2-badge-icon"><i class="fa fa-check"></i></span>
+            Nossa escolha para: <strong>Melhor custo-benefício</strong>
         </div>
         <div class="mhc-v2-body-row">
             <div class="mhc-v2-left">
