@@ -466,17 +466,26 @@ const itemListSchema =
 			}
 			.contabilidade-grid {
 				display: grid;
-				grid-template-columns: 150px 1.4fr 1.6fr 1.4fr;
+				grid-template-columns: 150px 1.3fr 1.5fr 1.4fr;
+				grid-template-rows: auto auto;
 				column-gap: 20px;
 				row-gap: 4px;
-				align-items: center;
+				align-items: start;
 			}
-			.logo-column   { grid-column: 1; grid-row: 1; align-self: start; }
+			.logo-column   { grid-column: 1; grid-row: 1; }
 			.rating-column { grid-column: 1; grid-row: 2; }
-			/* display:contents faz os filhos participarem direto do grid */
-			.info-column   { display: contents; }
-			.info-title    { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0; }
-			.info-list     { grid-column: 3; grid-row: 1 / span 2; align-self: center; }
+			/* info-column ocupa as colunas 2 e 3 e cria sub-grid interno */
+			.info-column {
+				grid-column: 2 / 4;
+				grid-row: 1 / span 2;
+				display: grid;
+				grid-template-columns: 1fr 1.1fr;
+				gap: 0 20px;
+				align-items: center;
+				align-self: center;
+			}
+			.info-title { grid-column: 1; margin: 0; }
+			.info-list  { grid-column: 2; }
 			.button-column { grid-column: 4; grid-row: 1 / span 2; align-self: center; }
 			.logo-column {
 				display: flex;
