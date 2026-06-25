@@ -287,6 +287,7 @@ const itemListSchema =
 			</div>
 
 			<div class="hidden md:block w-64 shrink-0">
+				<slot name="sidebar-offers" />
 				<div id="custom-toc-widget">
 					<h3 class="toc-title">Navegue pelo conteúdo</h3>
 					<ul id="custom-toc-list"></ul>
@@ -713,6 +714,103 @@ const itemListSchema =
 				.visit-button { width: 100%; box-sizing: border-box; }
 				.fade-overlay { height: 160px; }
 			}
+
+			/* ===== SIDEBAR OFFERS WIDGET ===== */
+			.sidebar-offers {
+				background: #ffffff;
+				border: 1px solid #e5e5e5;
+				border-radius: 8px;
+				padding: 16px;
+				margin-bottom: 16px;
+				font-family: 'Nunito Sans', 'Inter', Arial, sans-serif;
+			}
+			.sidebar-offers-title {
+				font-size: 17px;
+				font-weight: 800;
+				color: #111827;
+				margin: 0 0 14px;
+				line-height: 1.2;
+			}
+			.soc-card {
+				border: 2px solid #2d9e5e;
+				border-radius: 10px;
+				padding: 12px;
+				margin-bottom: 10px;
+			}
+			.soc-card:last-child { margin-bottom: 0; }
+			.soc-top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 10px;
+			}
+			.soc-logo {
+				max-width: 90px;
+				height: auto;
+				display: block;
+			}
+			.soc-rating {
+				text-align: right;
+				line-height: 1;
+			}
+			.soc-score {
+				font-size: 26px;
+				font-weight: 800;
+				color: #111827;
+				display: block;
+				line-height: 1;
+			}
+			.soc-stars {
+				font-size: 16px;
+				line-height: 1;
+				margin-top: 3px;
+				letter-spacing: -1px;
+			}
+			.soc-star-full { color: #f59e0b; }
+			.soc-star-empty { color: #d1d5db; }
+			.soc-star-half {
+				position: relative;
+				display: inline-block;
+				color: #d1d5db;
+			}
+			.soc-star-half::before {
+				content: "★";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50%;
+				overflow: hidden;
+				color: #f59e0b;
+			}
+			.soc-bottom {
+				display: flex;
+				gap: 8px;
+				align-items: center;
+			}
+			.soc-badge {
+				border: 1.5px dashed #2d9e5e;
+				border-radius: 6px;
+				padding: 5px 10px;
+				color: #2d9e5e;
+				font-weight: 700;
+				font-size: 12px;
+				white-space: nowrap;
+				flex-shrink: 0;
+			}
+			.soc-button {
+				flex: 1;
+				background: #2d9e5e;
+				color: #ffffff !important;
+				border-radius: 6px;
+				padding: 7px 10px;
+				font-weight: 700;
+				font-size: 13px;
+				text-align: center;
+				text-decoration: none !important;
+				display: block;
+				transition: background 0.2s;
+			}
+			.soc-button:hover { background: #237a49; }
 
 			#custom-toc-widget {
 				background-color: #ffffff;
