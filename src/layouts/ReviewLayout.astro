@@ -289,8 +289,13 @@ const itemListSchema =
 			<div class="hidden md:block w-64 shrink-0" style="position: sticky; top: 100px; align-self: flex-start; height: fit-content;">
 				<slot name="sidebar-offers" />
 				<div id="custom-toc-widget">
-					<h3 class="toc-title">Navegue pelo conteúdo</h3>
-					<ul id="custom-toc-list"></ul>
+					<h3 class="toc-title" id="toc-toggle" onclick="toggleToc()" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+						Navegue pelo conteúdo
+						<span id="toc-chevron" style="font-size:11px; color:#9ca3af; transition:transform 0.2s; display:inline-block;">▼</span>
+					</h3>
+					<div id="toc-body" style="display:none; overflow:hidden; transition:max-height 0.3s ease;">
+						<ul id="custom-toc-list"></ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -353,6 +358,27 @@ const itemListSchema =
 				el.setAttribute('aria-expanded', isActive ? 'false' : 'true');
 			};
 
+			/* toggleToc — abre/fecha o índice lateral */
+			window.toggleToc = function() {
+				var body = document.getElementById('toc-body');
+				var chevron = document.getElementById('toc-chevron');
+				if (!body) return;
+				var isOpen = body.style.display !== 'none';
+				body.style.display = isOpen ? 'none' : 'block';
+				if (chevron) chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+			};
+
+			/* Fecha o TOC ao iniciar rolagem (apenas uma vez) */
+			window.addEventListener('scroll', function tocCollapseOnScroll() {
+				var body = document.getElementById('toc-body');
+				if (body && body.style.display !== 'none') {
+					body.style.display = 'none';
+					var chevron = document.getElementById('toc-chevron');
+					if (chevron) chevron.style.transform = 'rotate(0deg)';
+				}
+				window.removeEventListener('scroll', tocCollapseOnScroll);
+			}, { passive: true });
+
 			/* showMore — botão "Ver Todas" do ranking
 			   Requer id="wrapper" no div pai e id="fadeOverlay" no overlay */
 			function showMore() {
@@ -385,6 +411,9 @@ const itemListSchema =
 				const widget = document.getElementById('custom-toc-widget');
 				const list = document.getElementById('custom-toc-list');
 				widget.style.display = 'block';
+				/* TOC começa fechado — body oculto, chevron normal */
+				var tocBody = document.getElementById('toc-body');
+				if (tocBody) tocBody.style.display = 'none';
 
 				headings.forEach((heading, index) => {
 					if (!heading.id) heading.id = 'toc-' + index;
