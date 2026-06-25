@@ -718,7 +718,6 @@ const itemListSchema =
 			/* ===== SIDEBAR OFFERS WIDGET ===== */
 			.sidebar-offers {
 				background: #ffffff;
-				border: 1px solid #e5e5e5;
 				border-radius: 8px;
 				padding: 16px;
 				margin-bottom: 16px;
@@ -733,13 +732,11 @@ const itemListSchema =
 			}
 			.soc-card {
 				border: 2px solid #2d9e5e;
-				border-radius: 0;
+				border-radius: 10px;
 				padding: 12px;
-				margin-bottom: 0;
-				border-bottom: none;
+				margin-bottom: 10px;
 			}
-			.soc-card:first-of-type { border-radius: 10px 10px 0 0; }
-			.soc-card:last-of-type { border-radius: 0 0 10px 10px; border-bottom: 2px solid #2d9e5e; }
+			.soc-card:last-child { margin-bottom: 0; }
 			.soc-top {
 				display: flex;
 				justify-content: space-between;
