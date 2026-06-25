@@ -733,11 +733,13 @@ const itemListSchema =
 			}
 			.soc-card {
 				border: 2px solid #2d9e5e;
-				border-radius: 10px;
+				border-radius: 0;
 				padding: 12px;
-				margin-bottom: 10px;
+				margin-bottom: 0;
+				border-bottom: none;
 			}
-			.soc-card:last-child { margin-bottom: 0; }
+			.soc-card:first-of-type { border-radius: 10px 10px 0 0; }
+			.soc-card:last-of-type { border-radius: 0 0 10px 10px; border-bottom: 2px solid #2d9e5e; }
 			.soc-top {
 				display: flex;
 				justify-content: space-between;
