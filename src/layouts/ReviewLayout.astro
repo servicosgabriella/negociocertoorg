@@ -286,7 +286,7 @@ const itemListSchema =
 				</article>
 			</div>
 
-			<div class="hidden md:block w-64 shrink-0">
+			<div class="hidden md:block w-64 shrink-0" style="position: sticky; top: 100px; align-self: flex-start; height: fit-content;">
 				<slot name="sidebar-offers" />
 				<div id="custom-toc-widget">
 					<h3 class="toc-title">Navegue pelo conteúdo</h3>
@@ -722,8 +722,6 @@ const itemListSchema =
 				padding: 16px;
 				margin-bottom: 16px;
 				font-family: 'Nunito Sans', 'Inter', Arial, sans-serif;
-				position: sticky;
-				top: 100px;
 			}
 			.sidebar-offers-title {
 				font-size: 17px;
