@@ -234,91 +234,135 @@ const breadcrumbSchema = {
 <body>
   <Header />
 
-  <!-- HERO AZUL -->
-  <section class="blog-hero">
-    <div class="blog-hero-container">
-      <div class="blog-hero-content">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="font-size: 13px; margin: 0 0 16px 0; padding: 0; display: block; width: 100%;">
-          <ol class="breadcrumb-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
-            {breadcrumb.map((item, index) => (
-              <li style="display: flex; align-items: center; gap: 4px;">
-                {index < breadcrumb.length - 1 ? (
-                  item.href ? (
-                    <a href={item.href} style="color: #bfdbfe; text-decoration: none;">{item.label}</a>
-                  ) : (
-                    <span style="color: #bfdbfe;">{item.label}</span>
-                  )
+  <!-- HERO VERDE -->
+  <section class="cl-hero">
+    <div class="cl-hero-container">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="cl-breadcrumb">
+        <ol class="cl-breadcrumb-list">
+          {breadcrumb.map((item, index) => (
+            <li>
+              {index < breadcrumb.length - 1 ? (
+                item.href ? (
+                  <a href={item.href}>
+                    {index === 0 ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-label="Home" style="display:inline;vertical-align:middle;margin-bottom:1px;">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                      </svg>
+                    ) : item.label}
+                  </a>
                 ) : (
-                  <span style="color: #ffffff; font-weight: 500;">{item.label}</span>
-                )}
-                {index < breadcrumb.length - 1 && <span style="color: #bfdbfe;">›</span>}
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <h1 class="blog-hero-title">{title}</h1>
-        <p style="color: #bfdbfe; font-size: 1.125rem; margin-bottom: 24px;">{description}</p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <img src={authorImage} alt={`Foto de ${authorName}`} width="40" height="40"
-            loading="eager" fetchpriority="high"
-            style="width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0;" />
-          <div>
-            <div style="color: #dce4f1; font-size: 13px;">
-              Escrito por: {authorHref ? (
-                <a href={authorHref} style="color: white; text-decoration: underline; font-weight: 700;" rel="author">{authorName}</a>
+                  <span>{item.label}</span>
+                )
               ) : (
-                <strong style="color: white;">{authorName}</strong>
-              )} · <span style="color: #dce4f1;">{authorRole}</span>
-            </div>
-            <div style="color: #bfdbfe; font-size: 13px; margin-top: 4px;">
-              <i class="fa-regular fa-clock" aria-hidden="true"></i>
-              <span style="font-weight: bold;"> Última atualização:</span>
-              <time datetime={updatedDate}>{new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
-            </div>
+                <span class="cl-breadcrumb-current">{item.label}</span>
+              )}
+              {index < breadcrumb.length - 1 && <span class="cl-sep">›</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <!-- Título e Descrição -->
+      <h1 class="cl-hero-title">{title}</h1>
+      <p class="cl-hero-desc">{description}</p>
+
+      <!-- Divisor -->
+      <hr class="cl-hero-divider" />
+
+      <!-- Meta: autor + data -->
+      <div class="cl-hero-meta">
+        <div class="cl-hero-author">
+          <img
+            src={authorImage}
+            alt={`Foto de ${authorName}`}
+            width="44"
+            height="44"
+            loading="eager"
+            fetchpriority="high"
+            class="cl-hero-avatar"
+          />
+          <div class="cl-hero-author-info">
+            <span class="cl-hero-author-label">Escrito por</span>
+            {authorHref ? (
+              <a href={authorHref} class="cl-hero-author-name" rel="author">{authorName}</a>
+            ) : (
+              <strong class="cl-hero-author-name">{authorName}</strong>
+            )}
           </div>
         </div>
+        <div class="cl-hero-date">
+          <i class="fa-regular fa-clock" aria-hidden="true"></i>
+          <span>Última atualização:</span>
+          <time datetime={updatedDate}>
+            {new Date(updatedDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- IMAGEM DE CAPA (opcional) -->
-  {coverImage && (
-    <div class="blog-cover-wrapper">
-      <img
-        class="blog-cover-image"
-        src={coverImage}
-        alt={coverAlt}
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-  )}
+  <!-- LAYOUT PRINCIPAL: conteúdo esquerda + sidebar direita (sobrepõe o hero) -->
+  <div class="cl-main-wrap">
+    <div class="cl-main-layout">
 
-  <!-- CONTEÚDO + TOC LATERAL -->
-  <div class="blog-layout">
-    <div class="blog-content">
-      <article>
-        <slot />
-        {faq.length > 0 && (
-          <section style="margin-top: 48px;">
-            <h2>Perguntas Frequentes</h2>
-            {faq.map(item => (
-              <details style="margin-bottom: 12px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 14px; background: #fff;">
-                <summary style="cursor: pointer; font-weight: 700; color: #4b5563; font-size: 15px;">{item.question}</summary>
-                <p style="margin-top: 10px; margin-bottom: 0;">{item.answer}</p>
-              </details>
-            ))}
-          </section>
-        )}
-      </article>
-    </div>
-
-    <!-- TOC LATERAL -->
-    <div class="blog-toc-column">
-      <div id="custom-toc-widget">
-        <h3 class="toc-title">Navegue pelo conteúdo</h3>
-        <ul id="custom-toc-list"></ul>
+      <!-- CONTEÚDO PRINCIPAL -->
+      <div class="cl-content-card">
+        <article>
+          <slot />
+          {faq.length > 0 && (
+            <section class="cl-faq">
+              <h2>Perguntas Frequentes</h2>
+              {faq.map(item => (
+                <details class="cl-faq-item">
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </section>
+          )}
+        </article>
       </div>
+
+      <!-- SIDEBAR: Google card + imagem de capa + TOC -->
+      <aside class="cl-sidebar">
+        <div class="cl-sidebar-inner">
+          <div class="cl-sidebar-stack">
+            <a href="https://www.google.com/preferences/source?q=negociocerto.org" target="_blank" rel="noopener noreferrer" class="cl-google-card">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="cl-google-icon" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                <path fill="none" d="M0 0h48v48H0z"/>
+              </svg>
+              <span class="cl-google-text">
+                Adicionar <strong>negóciocerto</strong> como fonte preferencial no Google
+              </span>
+            </a>
+
+            {coverImage && (
+              <div class="cl-sidebar-cover">
+                <img
+                  src={coverImage}
+                  alt={coverAlt}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
+            )}
+          </div>
+
+          <!-- TOC -->
+          <div id="custom-toc-widget">
+            <h3 class="toc-title">Neste artigo</h3>
+            <ul id="custom-toc-list"></ul>
+          </div>
+        </div>
+      </aside>
+
     </div>
   </div>
 
@@ -327,12 +371,7 @@ const breadcrumbSchema = {
   <!-- SCRIPT DO TOC -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
-      const contentSelectors = ['article', 'main'];
-      let contentContainer = null;
-      for (let s of contentSelectors) {
-        let el = document.querySelector(s);
-        if (el) { contentContainer = el; break; }
-      }
+      const contentContainer = document.querySelector('article');
       if (!contentContainer) return;
 
       const headings = contentContainer.querySelectorAll('h2, h3');
@@ -365,10 +404,9 @@ const breadcrumbSchema = {
       });
 
       window.addEventListener('scroll', function () {
-        let scrollY = window.scrollY;
         let currentId = '';
         headings.forEach((heading) => {
-          if (scrollY >= heading.offsetTop - 150) currentId = heading.id;
+          if (window.scrollY >= heading.offsetTop - 150) currentId = heading.id;
         });
         if (currentId) {
           document.querySelectorAll('#custom-toc-list li').forEach((li) => {
@@ -395,191 +433,357 @@ const breadcrumbSchema = {
   </script>
 
   <style is:global>
-    /* ===================== CONTENT LAYOUT ===================== */
-
-    .blog-hero {
-      background: linear-gradient(to right, #1a3a5c, #2d6a9f);
-      padding: 40px 0 48px;
+    /* ===================== HERO ===================== */
+    .cl-hero {
+      background:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(135deg, #0d4a28 0%, #1d6b3d 45%, #3aaa62 100%);
+      background-size: 28px 28px, 28px 28px, auto;
+      padding: 40px 0 96px;
     }
-    .blog-hero-container {
+    .cl-hero-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0;
-    }
-    .blog-hero-content {
-      width: 100%;
-      max-width: 100%;
-      text-align: left;
       padding: 0 24px;
       box-sizing: border-box;
-      display: block;
     }
-    .blog-hero-content > nav {
-      width: 100%;
+
+    /* Breadcrumb */
+    .cl-breadcrumb {
+      margin: 0 0 20px 0;
+      padding: 0;
     }
-    .blog-hero-content > h1 {
-      width: 100%;
+    .cl-breadcrumb-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
     }
-    .breadcrumb-nav {
-      display: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      width: 100% !important;
+    .cl-breadcrumb-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      margin: 0;
+      padding: 0;
     }
-    @media (min-width: 768px) {
-      .breadcrumb-nav {
-        display: block !important;
-      }
+    .cl-breadcrumb-list a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 12px;
     }
-    .blog-hero nav {
-      padding: 0 !important;
-      margin: 0 !important;
-      display: block !important;
-      width: 100% !important;
-    }
-    .blog-hero nav ol {
-      padding: 0 !important;
-      margin: 0 !important;
-      display: flex !important;
-      width: 100%;
-      margin-left: 0 !important;
-    }
-    .blog-hero nav li {
-      padding: 0 !important;
-      margin: 0 !important;
-      margin-left: 0 !important;
-      display: flex !important;
-    }
-    .blog-hero-title {
-      color: white;
-      font-size: 2.25rem;
+    .cl-breadcrumb-list a:hover { color: #fff; text-decoration: underline; }
+    .cl-breadcrumb-list span { color: #ffffff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+    .cl-breadcrumb-current { color: rgba(255,255,255,0.75) !important; font-weight: 400 !important; }
+    .cl-sep { color: rgba(255,255,255,0.60) !important; }
+
+    /* Título e descrição */
+    .cl-hero-title {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      color: #ffffff;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
       font-weight: 800;
-      line-height: 1.25;
-      margin-top: 0;
-      margin-bottom: 16px;
+      line-height: 1.2;
+      margin: 0 0 16px;
+      letter-spacing: -0.3px;
+    }
+    .cl-hero-desc {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0 0 28px;
     }
 
-    .blog-cover-wrapper {
-      max-width: 1200px;
-      margin: -32px auto 0;
-      padding: 0 24px;
+    /* Divisor */
+    .cl-hero-divider {
+      border: none;
+      border-top: 0.5px solid #e9fd62;
+      margin: 0 0 24px;
     }
-    .blog-cover-image {
-      width: 100%;
-      height: 400px;
+
+    /* Meta: autor + data */
+    .cl-hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .cl-hero-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cl-hero-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      display: block;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.3);
     }
+    .cl-hero-author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cl-hero-author-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .cl-hero-author-name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    a.cl-hero-author-name:hover { text-decoration: underline; }
+    .cl-hero-date {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.80);
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+    }
+    .cl-hero-date i { font-size: 14px; }
+    .cl-hero-date time { font-weight: 600; color: #fff; }
 
-    .blog-layout {
+    /* ===================== LAYOUT PRINCIPAL ===================== */
+    .cl-main-wrap {
+      background: #f3f4f6;
+      padding-bottom: 64px;
+    }
+    .cl-main-layout {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 0 24px;
       display: flex;
-      gap: 40px;
-    }
-    .blog-content {
-      flex: 1;
-      min-width: 0;
-    }
-    .blog-toc-column {
-      width: 256px;
-      flex-shrink: 0;
+      gap: 28px;
+      align-items: flex-start;
+      position: relative;
+      top: -56px;
+      margin-bottom: -56px;
     }
 
-    /* ===================== ARTICLE TYPOGRAPHY ===================== */
+    /* Card de conteúdo */
+    .cl-content-card {
+      flex: 1;
+      min-width: 0;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px 44px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    /* Sidebar */
+    .cl-sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+    .cl-sidebar-inner {
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Stack: Google card + capa sobrepostos */
+    .cl-sidebar-stack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Card Google */
+    .cl-google-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      border: 1px solid #e2e6ea;
+      border-radius: 12px;
+      padding: 14px 16px 16px;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cl-google-card:hover {
+      background: #111827;
+      border-color: #111827;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .cl-google-card:hover .cl-google-text { color: #ffffff; }
+    .cl-google-card:hover .cl-google-text strong { color: #ffffff; }
+    .cl-google-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .cl-google-text {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.4;
+      flex: 1;
+      min-width: 0;
+      transition: color 0.2s ease;
+    }
+    .cl-google-text strong {
+      color: #111827;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    /* Imagem de capa na sidebar */
+    .cl-sidebar-cover {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 2;
+      margin-top: -12px;
+      border: 2px solid #ffffff;
+    }
+    .cl-sidebar-cover img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 16/10;
+    }
+
+    /* ===================== TYPOGRAPHY ===================== */
     article h2 {
-      font-size: 1.5rem;
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #111827;
-      margin: 32px 0 12px 0;
+      margin: 36px 0 12px;
       line-height: 1.3;
+      border-left: 4px solid #2d6a4f;
+      padding-left: 14px;
     }
     article h3 {
-      font-size: 1.1rem;
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 1.05rem;
       font-weight: 700;
-      color: #111827;
-      margin: 24px 0 8px 0;
+      color: #1f2937;
+      margin: 24px 0 8px;
       line-height: 1.4;
     }
     article h4 {
       font-size: 0.95rem;
       font-weight: 700;
       color: #111827;
-      margin: 16px 0 6px 0;
+      margin: 16px 0 6px;
     }
     article p {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
       font-size: 1rem;
       color: #374151;
-      line-height: 1.75;
-      margin-bottom: 16px;
+      line-height: 1.8;
+      margin-bottom: 18px;
     }
     article ul, article ol {
       padding-left: 1.5em;
       margin-bottom: 16px;
+      list-style-position: outside;
     }
+    article ul { list-style-type: disc; }
+    article ol { list-style-type: decimal; }
     article li {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
       font-size: 1rem;
       color: #374151;
       line-height: 1.75;
       margin-bottom: 4px;
+      margin-left: 1em;
     }
-    article strong {
-      color: #111827;
+    article strong { color: #111827; font-weight: 700; }
+    article a { color: #2d6a4f; text-decoration: none; font-weight: 500; }
+    article a:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .cl-faq { margin-top: 48px; }
+    .cl-faq-item {
+      margin-bottom: 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: #f9fafb;
+    }
+    .cl-faq-item summary {
+      cursor: pointer;
       font-weight: 700;
+      color: #1f2937;
+      font-size: 15px;
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    article a {
-      color: #007eff;
-      text-decoration: none;
+    .cl-faq-item summary::after {
+      content: '+';
+      font-size: 18px;
+      color: #2d6a4f;
+      font-weight: 400;
     }
-    article a:hover {
-      text-decoration: underline;
-    }
+    .cl-faq-item[open] summary::after { content: '−'; }
+    .cl-faq-item p { margin-top: 12px; margin-bottom: 0; font-size: 0.95rem; }
 
     /* ===================== TOC WIDGET ===================== */
     #custom-toc-widget {
-      background-color: #ffffff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      position: -webkit-sticky;
-      position: sticky;
-      top: 100px;
-      z-index: 9;
-      max-height: 40vh;
-      overflow-y: auto;
-      overscroll-behavior-y: contain;
-      padding: 12px 10px 12px 0;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 16px 0 16px;
       width: 100%;
       box-sizing: border-box;
-      align-self: flex-start;
-      font-family: Arial, sans-serif;
-      color: #333;
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
       display: none;
+      max-height: 50vh;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
     }
     #custom-toc-widget::-webkit-scrollbar { width: 4px; }
     #custom-toc-widget::-webkit-scrollbar-track { background: transparent; }
-    #custom-toc-widget::-webkit-scrollbar-thumb { background-color: #ddd; border-radius: 4px; }
+    #custom-toc-widget::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 4px; }
     #custom-toc-widget h3.toc-title {
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #000;
       font-size: 11px;
-      margin: 0 0 8px 0;
-      padding-left: 20px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+      padding: 0 16px;
     }
     #custom-toc-list { list-style: none; padding: 0; margin: 0; }
     #custom-toc-list li {
-      margin-bottom: 6px;
-      line-height: 1.2;
       position: relative;
-      padding-left: 20px;
+      padding: 5px 16px 5px 20px;
       background: transparent !important;
+      margin: 0;
+      line-height: 1;
     }
     #custom-toc-list li::before {
       content: "";
-      position: absolute; left: 0; top: 0; bottom: 0;
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
       width: 3px;
       background-color: transparent;
       border-radius: 0 4px 4px 0;
@@ -587,27 +791,33 @@ const breadcrumbSchema = {
     }
     #custom-toc-list a {
       text-decoration: none !important;
-      color: #666 !important;
-      font-size: 12px !important;
+      color: #6b7280 !important;
+      font-size: 13px !important;
       display: block;
-      line-height: 1.3;
-      transition: color 0.2s ease;
+      line-height: 1.4;
+      transition: color 0.2s;
     }
     #custom-toc-list li.toc-h2 a { font-weight: 500; }
-    #custom-toc-list li.toc-h3 { padding-left: 30px; }
-    #custom-toc-list li.toc-h3 a { font-size: 11px !important; color: #888 !important; }
-    #custom-toc-list a:hover { color: #000 !important; }
-    #custom-toc-list li.active::before { background-color: #000; }
-    #custom-toc-list li.active a { font-weight: 700 !important; color: #000 !important; }
+    #custom-toc-list li.toc-h3 { padding-left: 32px; }
+    #custom-toc-list li.toc-h3 a { font-size: 12px !important; color: #9ca3af !important; }
+    #custom-toc-list a:hover { color: #2d6a4f !important; }
+    #custom-toc-list li.active::before { background-color: #2d6a4f; }
+    #custom-toc-list li.active a { font-weight: 700 !important; color: #2d6a4f !important; }
 
     /* ===================== MOBILE ===================== */
-    @media (max-width: 768px) {
-      .blog-hero-content { max-width: 100% !important; }
-      .blog-hero-title { font-size: 1.5rem; }
-      .blog-cover-image { width: 100% !important; height: 240px; }
-      .blog-layout { flex-direction: column; gap: 0; }
-      .blog-toc-column { display: none; }
+    @media (max-width: 900px) {
+      .cl-main-layout { flex-direction: column-reverse; gap: 20px; }
+      .cl-sidebar { width: 100%; }
+      .cl-sidebar-inner { position: static; }
+      .cl-sidebar-cover img { max-height: 260px; object-fit: cover; }
       #custom-toc-widget { display: none !important; }
+    }
+    @media (max-width: 600px) {
+      .cl-hero { padding: 32px 0 80px; }
+      .cl-hero-title { font-size: 1.5rem; }
+      .cl-hero-meta { flex-direction: column; align-items: flex-start; }
+      .cl-content-card { padding: 24px 20px; }
+      .cl-main-layout { padding: 0 16px; top: -40px; margin-bottom: -40px; }
     }
   </style>
 
