@@ -398,17 +398,25 @@ const breadcrumb = getBreadcrumb('financas', 'Melhores Contabilidades Online', s
             }
             .cbox-logo-zone { width: 130px; }
             .cbox-cta-zone { width: 100%; min-width: unset; }
+            /* Linha principal: 2 colunas + destaque full-width */
             .cbox-data-row { grid-template-columns: 1fr 1fr; }
             .cbox-cell-highlight { grid-column: 1 / -1; border-right: none; border-top: 1px solid #e5e7eb; }
-            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr; }
             .cbox-cell { padding: 12px 14px; }
             .cbox-cell-value { font-size: 15px; }
+            /* Linha secundária: mantém 3 colunas para não ficar célula solta */
+            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+            .cbox-data-row-secondary .cbox-cell { padding: 10px 8px; }
+            .cbox-data-row-secondary .cbox-cell-label { font-size: 10px; letter-spacing: 0.03em; }
+            .cbox-data-row-secondary .cbox-cell-value { font-size: 13px; }
+            .cbox-data-row-secondary .cbox-cell-sub { font-size: 10px; }
         }
         @media (max-width: 460px) {
             .cbox-header { flex-direction: column; align-items: flex-start; gap: 12px; }
             .cbox-logo-zone { width: 100%; }
-            .cbox-data-row, .cbox-data-row-secondary { grid-template-columns: 1fr 1fr; }
+            .cbox-data-row { grid-template-columns: 1fr 1fr; }
             .cbox-cell-highlight { grid-column: 1 / -1; }
+            /* Mantém 3 colunas também em telas menores */
+            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
         }
     </style>
 
