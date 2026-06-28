@@ -29,6 +29,7 @@ interface Props {
 	authorImage: string;
 	heroGradient?: string;
 	faq?: FaqItem[];
+	renderFaq?: boolean;
 	breadcrumb: { label: string; href?: string }[];
 	// Lista de empresas rankeadas para o ItemList schema
 	// Ex: [{ position: 1, name: "Contabilidade Com", url: "https://..." }]
@@ -47,6 +48,7 @@ const {
 	breadcrumb,
 	heroGradient = 'from-[#1a3a5c] to-[#2d6a9f]',
 	faq = [],
+	renderFaq = true,
 	ranking = [],
 	image,
 } = Astro.props;
@@ -272,7 +274,7 @@ const itemListSchema =
 				-->
 				<article>
 					<slot />
-					{faq.length > 0 && (
+					{faq.length > 0 && renderFaq && (
 						<section class="mt-16">
 							<h2>Perguntas Frequentes</h2>
 							{faq.map((item) => (
