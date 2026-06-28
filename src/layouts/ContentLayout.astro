@@ -157,8 +157,8 @@ const sub = cat ? Object.values((cat as any).subcategorias ?? {}).find((s: any) 
 
 const breadcrumb = [
   { label: "Home", href: "/" },
-  { label: category, href: (cat as any)?.href ?? '' },
-  { label: subcategory, href: sub?.href ?? '' },
+  { label: category },
+  { label: subcategory },
   { label: title },
 ];
 
