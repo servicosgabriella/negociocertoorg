@@ -210,123 +210,281 @@ const breadcrumb = getBreadcrumb('financas', 'Melhores Contabilidades Online', s
     <p>Sem enrolação e sem parceria escondida.</p>
     <h2>Ranking das Melhores Contabilidades Online em 2026</h2>
 
-    <article id="contabilidade-com" class="review-container">
-        <div class="top-section">
-            <div class="left-column">
-                <a href="https://dub.sh/contabilidade" class="logo-link" target="_blank" rel="sponsored noopener">
-                    <img src="/images/logo-contabilidade-com.png" alt="Logo Contabilidade.com" class="logo" width="200" height="80" loading="lazy">
-                </a>
-                <h3 class="brand-title"><a href="https://dub.sh/contabilidade" target="_blank" rel="sponsored noopener">Contabilidade.com</a></h3>
-                <ul class="bullet-list">
-                    <li><strong>Abertura de empresa em até 72 horas -</strong> 95% dos processos finalizados em 6 dias úteis, sem você sair de casa e sem pagar nada extra em mais de 200 cidades</li>
-                    <li><strong>Atendimento multicanal REAL -</strong> WhatsApp, telefone, videochamada e presencial quando você precisar (não é só chatbot como algumas concorrentes)</li>
-                    <li><strong>Certificado digital grátis no 1º ano -</strong> Economiza R$ 150-200 logo de cara, com emissão por videochamada sem burocracia</li>
-                </ul>
+    <style>
+        /* === CBox Card — NerdWallet style para contabilidades === */
+        .cbox-wrap { margin-bottom: 40px; }
+        .cbox-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            margin: 20px 0 0;
+        }
+        .cbox-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .cbox-logo-zone {
+            flex-shrink: 0;
+            width: 155px;
+            display: flex;
+            align-items: center;
+        }
+        .cbox-logo-img {
+            max-width: 145px;
+            max-height: 58px;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+        .cbox-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .cbox-brand {
+            font-size: 19px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .cbox-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+        .cbox-stars {
+            color: #f59e0b;
+            font-size: 15px;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .cbox-score {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1d6fe8;
+        }
+        .cbox-score-label {
+            font-size: 13px;
+            color: #1d6fe8;
+        }
+        .cbox-tag {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid #e5e7eb;
+        }
+        .cbox-cta-zone {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 165px;
+        }
+        .cbox-cta-btn {
+            display: block;
+            background: #16a34a;
+            color: #fff !important;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none !important;
+            padding: 13px 18px;
+            border-radius: 7px;
+            text-align: center;
+            width: 100%;
+            transition: background 0.2s;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+        .cbox-cta-btn:hover { background: #15803d; color: #fff !important; }
+        .cbox-cta-caption {
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+        }
+        /* Data rows */
+        .cbox-data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid #e5e7eb;
+        }
+        .cbox-cell {
+            padding: 14px 18px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .cbox-cell:last-child { border-right: none; }
+        .cbox-cell-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .cbox-cell-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .cbox-cell-unit {
+            font-size: 13px;
+            font-weight: 400;
+            color: #6b7280;
+        }
+        .cbox-cell-sub {
+            font-size: 12px;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+        /* Highlighted cell (como o "Intro offer" do NerdWallet) */
+        .cbox-cell-highlight {
+            background: #f0f9ff;
+            position: relative;
+        }
+        .cbox-hl-badge {
+            font-size: 10px;
+            font-weight: 700;
+            color: #0369a1;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cbox-hl-badge::before {
+            content: "●";
+            font-size: 7px;
+            color: #0ea5e9;
+        }
+        .cbox-cell-highlight .cbox-cell-value {
+            color: #0c4a6e;
+        }
+        /* Secondary row — valores menores */
+        .cbox-data-row-secondary .cbox-cell-value {
+            font-size: 15px;
+        }
+        /* Review text corrido */
+        .cbox-review {
+            margin-top: 20px;
+        }
+        .cbox-review p {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .cbox-header {
+                flex-wrap: wrap;
+                gap: 14px;
+                padding: 16px;
+            }
+            .cbox-logo-zone { width: 130px; }
+            .cbox-cta-zone { width: 100%; min-width: unset; }
+            .cbox-data-row { grid-template-columns: 1fr 1fr; }
+            .cbox-cell-highlight { grid-column: 1 / -1; border-right: none; border-top: 1px solid #e5e7eb; }
+            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr; }
+            .cbox-cell { padding: 12px 14px; }
+            .cbox-cell-value { font-size: 15px; }
+        }
+        @media (max-width: 460px) {
+            .cbox-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .cbox-logo-zone { width: 100%; }
+            .cbox-data-row, .cbox-data-row-secondary { grid-template-columns: 1fr 1fr; }
+            .cbox-cell-highlight { grid-column: 1 / -1; }
+        }
+    </style>
+
+    <article id="contabilidade-com" class="cbox-wrap">
+
+        <div class="cbox-card">
+            <!-- Topo: logo | info + rating | CTA -->
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/contabilidade" target="_blank" rel="sponsored noopener">
+                        <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" class="cbox-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Contabilidade.com</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">9,5</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Ideal para todas as empresas</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/contabilidade" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site contabilidade.com</div>
+                </div>
             </div>
-            <div class="right-column">
-                <div class="editor-rating">Avaliação do editor: <span>9,4</span>/<span>10</span></div>
-                <a href="https://dub.sh/contabilidade" class="cta-visit-button" target="_blank" rel="sponsored noopener">Visitar site</a>
-                <a href="https://dub.sh/contabilidade" class="button-caption-link" target="_blank" rel="sponsored noopener">Acessar contabilidade.com</a>
+
+            <!-- Dados principais -->
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 199<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">era R$ 240/mês</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">em até 72 horas</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Certificado digital</div>
+                    <div class="cbox-cell-value">Grátis no 1º ano</div>
+                    <div class="cbox-cell-sub">economia de R$ 150–200</div>
+                </div>
+            </div>
+
+            <!-- Dados secundários -->
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,8 ★</div>
+                    <div class="cbox-cell-sub">milhares de avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">Excelente</div>
+                    <div class="cbox-cell-sub">5 reclamações / 6 meses</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">No mercado</div>
+                    <div class="cbox-cell-value">+15 anos</div>
+                    <div class="cbox-cell-sub">CRC regularizado</div>
+                </div>
             </div>
         </div>
-        <div class="accordion-section">
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)" role="button" aria-expanded="false" tabindex="0">
-                    <span>Análise do editor</span>
-                    <span class="accordion-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                </div>
-                <div class="accordion-content">
-                    <p>Depois de analisar mais de 15 contabilidades online, a Contabilidade.com se destacou por um motivo simples: ela equilibra preço justo, atendimento humanizado de verdade e tecnologia que funciona.</p>
-                    <p>Não é a mais barata (tem opções de R$ 128/mês no mercado), mas entrega mais valor por real investido.</p>
-                    <p>A escolha como #1 considerou três pilares: custo-benefício real (não só preço baixo), qualidade do atendimento (com base em avaliações de clientes reais) e completude dos serviços. A Contabilidade.com pontuou bem nos três.</p>
-                    <p>Ela existe há mais de 15 anos e tem foco claro: prestadores de serviço. Se você é consultor, dev, designer, profissional liberal ou tem agência, eles entendem bem as suas dores.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)" role="button" aria-expanded="false" tabindex="0">
-                    <span>Preços</span>
-                    <span class="accordion-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                </div>
-                <div class="accordion-content">
-                    <div class="plan-item">
-                        <span class="plan-title">PLANO PJ</span>
-                        <div class="plan-price">R$ <span>199</span>/<span>mês</span> (era R$ 240/mês)</div>
-                        <span class="plan-ideal">Ideal pra faturamento até R$ 50 mil/mês</span>
-                        <ul class="plan-list">
-                            <li>10 notas fiscais por mês incluídas</li>
-                            <li>Certificado digital e-CNPJ grátis</li>
-                            <li>Abertura de empresa sem custo</li>
-                            <li>Atendimento: WhatsApp, e-mail, telefone, vídeo e presencial</li>
-                            <li>Pró-labore de 1 sócio</li>
-                            <li>Consultoria de impostos e pró-labore incluída</li>
-                        </ul>
-                        <div class="plan-comment-box">Esse é o plano que a maioria contrata. Por R$ 199/mês você tem tudo que precisa se tá começando ou se é prestador de serviço solo/com poucos sócios.</div>
-                    </div>
-                    <div class="plan-item">
-                        <span class="plan-title">PLANO PJ PLUS</span>
-                        <div class="plan-price">R$ <span>249</span>/<span>mês</span> (era R$ 320/mês)</div>
-                        <span class="plan-ideal">Ideal pra faturamento até R$ 100 mil/mês</span>
-                        <ul class="plan-list">
-                            <li>50 notas fiscais por mês incluídas</li>
-                            <li>IRPF de 1 sócio grátis</li>
-                            <li>Relatórios contábeis mensais</li>
-                            <li>Multibenefícios (academias, telemedicina, cursos)</li>
-                            <li>Pró-labore de até 2 sócios grátis</li>
-                            <li>Certificado digital incluso</li>
-                        </ul>
-                        <div class="plan-comment-box">Por R$ 50 a mais que o PJ básico, você ganha IRPF grátis, relatórios mensais e dobra o limite de notas. Se você emite mais de 10 notas/mês ou tem 2 sócios, já compensa.</div>
-                    </div>
-                    <div class="plan-item">
-                        <span class="plan-title">PLANO PJ VIP</span>
-                        <div class="plan-price">R$ <span>329</span>/<span>mês</span> (era R$ 500/mês)</div>
-                        <span class="plan-ideal">Ideal pra faturamento até R$ 100 mil/mês</span>
-                        <ul class="plan-list">
-                            <li>100 notas fiscais por mês incluídas</li>
-                            <li>Gestão financeira completa</li>
-                            <li>Distribuição de lucros</li>
-                            <li>Pró-labore até 2 sócios grátis</li>
-                        </ul>
-                        <div class="plan-comment-box">Esse é pra quem quer "apertar um botão e esquecer". Eles gerenciam toda a parte financeira, fazem distribuição de lucros, pagam contas. Você só trabalha e recebe os relatórios prontos.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)" role="button" aria-expanded="false" tabindex="0">
-                    <span>Vantagens e desvantagens</span>
-                    <span class="accordion-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                </div>
-                <div class="accordion-content">
-                    <div class="pros-cons-container">
-                        <div class="pc-column">
-                            <h4 class="mobile-pc-header">Vantagens</h4>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Atendimento completo e acessível</strong> Você não fica refém de um único canal. Prefere WhatsApp? Tem. Quer ligar? Pode. Precisa de videochamada? Agenda. Quer ir presencialmente? Eles recebem.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Abertura rápida de empresa</strong> 72 horas é promessa e eles cumprem na maioria dos casos. Já vi gente abrindo CNPJ em 3 dias úteis.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Certificado digital incluso</strong> Economiza R$ 150-200 no primeiro ano.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Plataforma integrada</strong> Emissão de notas, controle de impostos, lembretes de vencimento, tudo num lugar só.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Consultoria de verdade</strong> Eles orientam sobre regime tributário, otimizam pró-labore, ajudam no IRPF.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Credibilidade comprovada</strong> 15 anos de mercado, 4.8 estrelas no Google, CRC regularizado.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-check-circle"></i></div><div class="pc-text"><strong>Multibenefícios nos planos Plus/VIP</strong> Desconto em academias, telemedicina, cursos da FIA.</div></div>
-                        </div>
-                        <div class="pc-column">
-                            <h4 class="mobile-pc-header" style="margin-top:10px">Desvantagens</h4>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-times-circle"></i></div><div class="pc-text"><strong>Não é a mais barata</strong> Tem opções de R$ 128/mês no mercado. A Contabilidade.com cobra R$ 199/mês no básico.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-times-circle"></i></div><div class="pc-text"><strong>Limite de notas fiscais pode apertar</strong> 10/mês no plano básico é pouco. Cada nota extra custa R$ 6.</div></div>
-                            <div class="pc-item"><div class="pc-icon"><i class="fa fa-times-circle"></i></div><div class="pc-text"><strong>Gestão financeira completa só no VIP</strong> Se você quer que eles paguem suas contas, vai precisar do plano de R$ 329/mês.</div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)" role="button" aria-expanded="false" tabindex="0">
-                    <span>Avaliação dos clientes</span>
-                    <span class="accordion-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                </div>
-                <div class="accordion-content">
-                    <p>A nota 4.8 estrelas no Google é impressionante considerando que tem milhares de avaliações. Não é aquela nota inflada com 50 reviews manipuladas — é avaliação de verdade, com volume grande de clientes reais.</p>
-                    <p>No Reclame Aqui, a Contabilidade.com recebeu apenas 5 reclamações nos últimos 6 meses. Cinco. Pra uma empresa que atende milhares de clientes, isso é excelente. E o melhor: respondeu 100% das reclamações, com a maior parte resolvida.</p>
-                </div>
-            </div>
+
+        <!-- Texto de review corrido (sem acordeão) -->
+        <div class="cbox-review">
+            <p>Depois de analisar mais de 15 contabilidades online, a Contabilidade.com se destacou por um motivo simples: ela equilibra preço justo, atendimento humanizado de verdade e tecnologia que funciona.</p>
+            <p>Não é a mais barata (tem opções de R$ 128/mês no mercado), mas entrega mais valor por real investido. A escolha como #1 considerou três pilares: custo-benefício real (não só preço baixo), qualidade do atendimento e completude dos serviços. A Contabilidade.com pontuou bem nos três.</p>
+            <p>Ela existe há mais de 15 anos e tem foco claro: prestadores de serviço. Se você é consultor, dev, designer, profissional liberal ou tem agência, eles entendem bem as suas dores.</p>
+            <p>A nota 4,8 estrelas no Google é impressionante — milhares de avaliações reais, não infladas. No Reclame Aqui, apenas 5 reclamações nos últimos 6 meses para uma empresa que atende milhares de clientes. Respondeu 100%, com a maior parte resolvida.</p>
         </div>
+
     </article>
 
     <article id="colinear" class="review-container">
