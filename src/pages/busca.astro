@@ -1,0 +1,402 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const allPosts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+
+const postsData = allPosts.map(p => ({
+  id: p.id,
+  title: p.data.title,
+  description: p.data.description ?? '',
+  coverImage: p.data.coverImage ?? '',
+  coverAlt: p.data.coverAlt ?? p.data.title,
+  authorName: p.data.authorName ?? '',
+  authorImage: p.data.authorImage ?? '',
+  category: p.data.category ?? '',
+  pubDate: p.data.pubDate.toISOString(),
+}));
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Busca — NegócioCerto</title>
+  <meta name="robots" content="noindex, follow" />
+</head>
+<body>
+  <Header />
+
+  <!-- HERO -->
+  <section class="search-hero">
+    <div class="search-hero-inner">
+      <h1 class="search-hero-title">O que você está buscando?</h1>
+      <form class="search-form" id="searchForm" role="search">
+        <input
+          class="search-input"
+          type="search"
+          id="searchInput"
+          name="q"
+          placeholder="Buscar maquininhas, contabilidade, MEI..."
+          aria-label="Buscar artigos"
+          autocomplete="off"
+        />
+        <button class="search-btn" type="submit" aria-label="Buscar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <main class="search-main">
+    <div class="search-container">
+      <p class="search-status" id="searchStatus" aria-live="polite"></p>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-empty" id="searchEmpty" hidden>
+        <div class="search-empty-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" />
+          </svg>
+        </div>
+        <p class="search-empty-title">Nenhum resultado encontrado</p>
+        <p class="search-empty-desc">Tente buscar por outros termos ou <a href="/blog/">explore todos os artigos</a>.</p>
+      </div>
+      <div class="search-initial" id="searchInitial">
+        <p class="search-initial-text">Digite acima para buscar nos nossos artigos.</p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</body>
+</html>
+
+<script define:vars={{ postsData }}>
+  function normalize(str) {
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  }
+
+  function search(query) {
+    const q = normalize(query.trim());
+    if (!q) return null;
+
+    const words = q.split(/\s+/).filter(w => w.length > 1);
+    if (words.length === 0) return null;
+
+    return postsData.filter(post => {
+      const haystack = normalize(post.title + ' ' + post.description + ' ' + post.category);
+      return words.every(word => haystack.includes(word));
+    });
+  }
+
+  function renderResults(results, query) {
+    const container = document.getElementById('searchResults');
+    const emptyEl = document.getElementById('searchEmpty');
+    const statusEl = document.getElementById('searchStatus');
+    const initialEl = document.getElementById('searchInitial');
+
+    initialEl.hidden = true;
+
+    if (!results || results.length === 0) {
+      container.innerHTML = '';
+      emptyEl.hidden = false;
+      statusEl.textContent = '';
+      return;
+    }
+
+    emptyEl.hidden = true;
+    statusEl.textContent = results.length === 1
+      ? '1 resultado encontrado'
+      : `${results.length} resultados encontrados`;
+
+    container.innerHTML = results.map(post => `
+      <article class="result-item">
+        <a href="/blog/${post.id}/" class="result-link">
+          <div class="result-thumb">
+            ${post.coverImage
+              ? `<img src="${post.coverImage}" alt="${post.coverAlt}" loading="lazy" />`
+              : `<div class="result-thumb-placeholder"></div>`}
+          </div>
+          <div class="result-body">
+            ${post.category ? `<span class="result-category">${post.category}</span>` : ''}
+            <h2 class="result-title">${post.title}</h2>
+            ${post.description ? `<p class="result-desc">${post.description}</p>` : ''}
+            <div class="result-meta">
+              ${post.authorImage ? `<img src="${post.authorImage}" alt="${post.authorName}" class="result-avatar" width="24" height="24" />` : ''}
+              <span class="result-author">${post.authorName}</span>
+              <span class="result-date">${formatDate(post.pubDate)}</span>
+            </div>
+          </div>
+        </a>
+      </article>
+    `).join('');
+  }
+
+  function run() {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') ?? '';
+
+    const input = document.getElementById('searchInput');
+    if (q) input.value = q;
+
+    const results = search(q);
+    if (results === null) return; // query vazia, mantém estado inicial
+
+    renderResults(results, q);
+  }
+
+  // Atualiza URL e busca ao submeter o formulário
+  document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = document.getElementById('searchInput').value;
+    const url = new URL(window.location.href);
+    url.searchParams.set('q', q);
+    window.history.replaceState({}, '', url.toString());
+    const results = search(q);
+    renderResults(results, q);
+  });
+
+  run();
+</script>
+
+<style>
+  body { margin: 0; background: #ffffff; }
+
+  /* ======= HERO ======= */
+  .search-hero {
+    background: linear-gradient(135deg, #0d4a28 0%, #1d6b3d 50%, #2d6a4f 100%);
+    padding: 56px 32px 72px;
+  }
+  .search-hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .search-hero-title {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 28px;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+  }
+
+  .search-form {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  }
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 16px;
+    color: #111;
+    background: transparent;
+    min-width: 0;
+  }
+  .search-input::placeholder { color: #9ca3af; }
+  .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #374151;
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .search-btn:hover { color: #0d3b22; }
+
+  @media (max-width: 600px) {
+    .search-hero { padding: 40px 20px 56px; }
+  }
+
+  /* ======= MAIN ======= */
+  .search-main {
+    background: #ffffff;
+    padding: 48px 24px 80px;
+    min-height: 320px;
+  }
+  .search-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .search-status {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 28px;
+  }
+
+  /* ======= RESULTADOS ======= */
+  .result-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 24px 0;
+  }
+  .result-item:first-child { border-top: 1px solid #e5e7eb; }
+
+  .result-link {
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+    align-items: flex-start;
+  }
+  .result-link:hover .result-title { color: #2d6a4f; }
+
+  .result-thumb {
+    flex-shrink: 0;
+    width: 160px;
+    height: 108px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .result-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .result-link:hover .result-thumb img { transform: scale(1.04); }
+  .result-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2d6a4f 0%, #1a3a2a 100%);
+  }
+
+  .result-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .result-category {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2d6a4f;
+  }
+
+  .result-title {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.45;
+    margin: 0;
+    transition: color 0.15s;
+  }
+
+  .result-desc {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .result-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 4px;
+  }
+  .result-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .result-author {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+  }
+  .result-date {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 13px;
+    color: #9ca3af;
+  }
+  .result-date::before { content: '·'; margin-right: 8px; }
+
+  /* ======= VAZIO ======= */
+  .search-empty {
+    text-align: center;
+    padding: 64px 0 32px;
+  }
+  .search-empty-icon {
+    margin-bottom: 20px;
+  }
+  .search-empty-title {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 10px;
+  }
+  .search-empty-desc {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .search-empty-desc a {
+    color: #2d6a4f;
+    text-decoration: underline;
+  }
+
+  /* ======= INICIAL ======= */
+  .search-initial {
+    text-align: center;
+    padding: 64px 0 32px;
+  }
+  .search-initial-text {
+    font-family: 'Nunito Sans', 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  /* ======= RESPONSIVO ======= */
+  @media (max-width: 600px) {
+    .search-main { padding: 32px 20px 64px; }
+    .result-thumb { width: 100px; height: 72px; }
+    .result-title { font-size: 0.9rem; }
+    .result-desc { display: none; }
+  }
+</style>
