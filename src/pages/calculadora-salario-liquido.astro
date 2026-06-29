@@ -565,7 +565,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
                    : (linha.valor > 0 ? pct(linha.valor, r.bruto) : '—');
 
         tr.innerHTML =
-          '<td style="text-align:left; color:' + (linha.bold ? '#1a3a5c' : '#374151') + '">' +
+          '<td style="text-align:left; color:' + (linha.bold ? '#0d4a28' : '#374151') + '">' +
             (linha.bold ? '<strong>' + linha.label + '</strong>' : linha.label) +
           '</td>' +
           '<td>' + (linha.bold ? '<strong>' + valor + '</strong>' : valor) + '</td>' +
@@ -623,7 +623,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
           labels: ['Salário líquido', 'INSS', 'IRRF', 'Outros'],
           datasets: [{
             data: [0, 0, 0, 0],
-            backgroundColor: ['#1a3a5c', '#e74c3c', '#eab308', '#9ca3af'],
+            backgroundColor: ['#16a34a', '#e74c3c', '#eab308', '#9ca3af'],
             borderColor: ['#fff', '#fff', '#fff', '#fff'],
             borderWidth: 3,
             hoverOffset: 8,
@@ -678,7 +678,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       font-size: 13px;
     }
     .calc-breadcrumb li { display: flex; align-items: center; gap: 6px; margin: 0; margin-left: 0 !important; }
-    .calc-breadcrumb a { color: #2d6a9f; text-decoration: none; }
+    .calc-breadcrumb a { color: #16a34a; text-decoration: none; }
     .calc-breadcrumb a:hover { text-decoration: underline; }
     .calc-breadcrumb span { color: #9ca3af; }
     .calc-breadcrumb span.current { color: #374151; font-weight: 500; }
@@ -767,14 +767,14 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       flex-shrink: 0;
       transition: border-color 0.15s, color 0.15s;
     }
-    .tip-wrap:hover .tip-icon { border-color: #2d6a9f; color: #2d6a9f; }
+    .tip-wrap:hover .tip-icon { border-color: #16a34a; color: #16a34a; }
     .tip-box {
       position: absolute;
       left: 50%;
       bottom: calc(100% + 8px);
       transform: translateX(-50%);
       width: 220px;
-      background: #1a3a5c;
+      background: #0d4a28;
       color: #fff;
       font-size: 12px;
       font-weight: 400;
@@ -797,7 +797,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       left: 50%;
       transform: translateX(-50%);
       border: 5px solid transparent;
-      border-top-color: #1a3a5c;
+      border-top-color: #0d4a28;
     }
     .tip-wrap:hover .tip-box,
     .tip-wrap:focus-within .tip-box { opacity: 1; visibility: visible; }
@@ -811,7 +811,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       top: auto;
       bottom: 100%;
       border-top-color: transparent;
-      border-bottom-color: #1a3a5c;
+      border-bottom-color: #0d4a28;
     }
 
     /* Inputs */
@@ -825,8 +825,8 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
     .calc-input-wrap:focus-within {
-      border-color: #2d6a9f;
-      box-shadow: 0 0 0 3px rgba(45,106,159,0.12);
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
     }
     .calc-unit {
       padding: 0 12px;
@@ -912,7 +912,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
     .calc-chart-total {
       font-size: 2rem;
       font-weight: 900;
-      color: #1a3a5c;
+      color: #0d4a28;
       margin: 0;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -949,7 +949,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       display: inline-block;
       flex-shrink: 0;
     }
-    .calc-legend-swatch.liquido { background: #1a3a5c; }
+    .calc-legend-swatch.liquido { background: #16a34a; }
     .calc-legend-swatch.inss    { background: #e74c3c; }
     .calc-legend-swatch.irrf    { background: #eab308; }
     .calc-legend-swatch.outros  { background: #9ca3af; }
@@ -997,8 +997,8 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
     }
     .calc-table tbody tr:hover { background: #f9fafb; }
     .calc-table tr.highlight td {
-      background: #eff6ff;
-      color: #1a3a5c;
+      background: #f0fdf4;
+      color: #0d4a28;
       font-weight: 700;
       border-bottom: none;
     }
@@ -1037,7 +1037,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
     .calc-article strong { color: #111827; font-weight: 700; }
     .calc-formula-block {
       background: #f9fafb;
-      border-left: 3px solid #2d6a9f;
+      border-left: 3px solid #16a34a;
       border-radius: 0 6px 6px 0;
       padding: 14px 18px;
       margin-bottom: 16px;
@@ -1046,7 +1046,7 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       font-family: 'Courier New', monospace;
       font-size: 15px;
       font-weight: 700;
-      color: #1a3a5c;
+      color: #0d4a28;
       background: none;
       padding: 0;
     }
