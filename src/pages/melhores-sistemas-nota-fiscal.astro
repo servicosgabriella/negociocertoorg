@@ -51,6 +51,113 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
     ]}
 >
 
+<style>
+  /* ===== NF CARD — nota fiscal review boxes ===== */
+  .pdv-wrap { margin-bottom: 40px; }
+  .pdv-card { border: 2px solid #e5e7eb; border-radius: 14px; overflow: hidden; background: #fff; margin: 20px 0 0; }
+  .pdv-ribbon { background: #ecfdf5; border-bottom: 1px solid #d1fae5; padding: 9px 22px; font-size: 12.5px; font-weight: 700; color: #065f46; letter-spacing: .03em; text-transform: uppercase; }
+  .pdv-header { display: flex; align-items: center; gap: 20px; padding: 20px 24px; border-bottom: 1px solid #e5e7eb; }
+  .pdv-logo-zone { flex-shrink: 0; width: 155px; }
+  .pdv-logo-zone img { max-width: 100%; height: auto; display: block; }
+  .pdv-meta { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .pdv-brand { font-size: 20px; font-weight: 700; color: #111827; }
+  .pdv-rating-row { display: flex; align-items: center; gap: 8px; }
+  .pdv-stars { color: #f59e0b; font-size: 15px; letter-spacing: 1px; }
+  .pdv-score { font-size: 15px; font-weight: 700; color: #111827; }
+  .pdv-score-label { font-size: 12px; color: #6b7280; }
+  .pdv-tag { font-size: 13px; color: #374151; background: #f3f4f6; border-radius: 5px; padding: 3px 8px; display: inline-block; width: fit-content; }
+  .pdv-cta-zone { flex-shrink: 0; min-width: 165px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .pdv-cta-price { font-size: 14px; font-weight: 400; color: #6b7280; text-align: center; line-height: 1.3; }
+  .pdv-cta-price span { font-size: 12px; }
+  .pdv-cta-btn { display: block; width: 100%; background: #16a34a; color: #fff; text-align: center; border-radius: 7px; padding: 13px 18px; font-size: 15px; font-weight: 700; text-decoration: none; }
+  .pdv-cta-btn:hover { background: #15803d; }
+  .pdv-cta-caption { font-size: 11px; color: #9ca3af; text-align: center; }
+  .pdv-features { display: flex; flex-wrap: wrap; gap: 8px; padding: 13px 22px; background: #fafafa; border-top: 1px solid #e5e7eb; }
+  .pdv-feature-chip { border: 1px solid #e5e7eb; border-radius: 20px; padding: 5px 12px; font-size: 12.5px; color: #374151; background: #fff; white-space: nowrap; }
+  .pdv-feature-chip i { color: #16a34a; margin-right: 4px; }
+  .pdv-data-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid #e5e7eb; }
+  .pdv-cell { padding: 14px 18px; border-right: 1px solid #e5e7eb; }
+  .pdv-cell:last-child { border-right: none; }
+  .pdv-cell-label { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+  .pdv-cell-value { font-size: 15px; font-weight: 700; color: #111827; }
+  .pdv-cell-sub { font-size: 11.5px; color: #6b7280; margin-top: 2px; }
+  .pdv-cell-highlight { background: #f0f9ff; }
+  .pdv-hl-badge { display: inline-block; color: #0369a1; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+  .pdv-review { padding: 18px 4px 4px; font-size: 15px; color: #374151; line-height: 1.7; }
+  .pdv-review p { margin: 0 0 10px; }
+
+  @media (max-width: 700px) {
+    .pdv-header { gap: 14px; padding: 16px; flex-wrap: wrap; }
+    .pdv-logo-zone { width: 120px; }
+    .pdv-cta-zone { min-width: 140px; }
+    .pdv-features { gap: 6px; padding: 10px 14px; }
+    .pdv-feature-chip { font-size: 11.5px; padding: 4px 9px; }
+    .pdv-data-row { grid-template-columns: 1fr 1fr; }
+    .pdv-cell-highlight { grid-column: 1 / -1; }
+    .pdv-cell { padding: 11px 14px; }
+  }
+  @media (max-width: 460px) {
+    .pdv-header { flex-direction: column; align-items: flex-start; }
+    .pdv-cta-zone { width: 100%; }
+    .pdv-cta-btn { padding: 12px; }
+    .pdv-data-row.pdv-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+    .pdv-data-row.pdv-data-row-secondary .pdv-cell { padding: 9px 10px; }
+    .pdv-data-row.pdv-data-row-secondary .pdv-cell-value { font-size: 13px; }
+    .pdv-data-row.pdv-data-row-secondary .pdv-cell-label { font-size: 10px; }
+  }
+
+  /* sidebar offers */
+  .sidebar-offers { display: flex; flex-direction: column; gap: 16px; }
+  .sidebar-offers-title { font-size: 15px; font-weight: 700; color: #1a3a5c; margin: 0 0 4px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
+  .soc-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 16px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+  .soc-top { display: flex; align-items: center; gap: 12px; }
+  .soc-logo img { width: 80px; height: auto; display: block; }
+  .soc-info { flex: 1; }
+  .soc-name { font-size: 14px; font-weight: 700; color: #111827; }
+  .soc-score { font-size: 12.5px; color: #6b7280; }
+  .soc-score span { font-weight: 700; color: #1d6fe8; }
+  .soc-desc { font-size: 12.5px; color: #374151; line-height: 1.5; }
+  .soc-btn { display: block; background: #1d6fe8; color: #fff; text-align: center; border-radius: 6px; padding: 9px 14px; font-size: 13px; font-weight: 700; text-decoration: none; }
+  .soc-btn:hover { background: #1558c0; }
+</style>
+
+    <!-- ===================== SLOT SIDEBAR OFFERS ===================== -->
+    <div slot="sidebar-offers" class="sidebar-offers">
+        <h3 class="sidebar-offers-title">Ofertas de sistemas de NF-e</h3>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <div class="soc-logo">
+                    <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" target="_blank" rel="sponsored noopener">
+                        <img src="/images/bling logo png .png" alt="Bling" width="80" height="32" loading="lazy">
+                    </a>
+                </div>
+                <div class="soc-info">
+                    <div class="soc-name">Bling</div>
+                    <div class="soc-score">Avaliação: <span>9,7/10</span></div>
+                </div>
+            </div>
+            <div class="soc-desc">NF-e, NFC-e e NFS-e no mesmo plano. ERP completo com integração para e-commerce.</div>
+            <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" class="soc-btn" target="_blank" rel="sponsored noopener">Ver Planos → A partir de R$ 47,90/mês</a>
+        </div>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <div class="soc-logo">
+                    <a href="https://spedy.com.br/" target="_blank" rel="sponsored noopener">
+                        <img src="/images/spedy nf logo png .png" alt="Spedy" width="80" height="32" loading="lazy">
+                    </a>
+                </div>
+                <div class="soc-info">
+                    <div class="soc-name">Spedy</div>
+                    <div class="soc-score">Avaliação: <span>9,2/10</span></div>
+                </div>
+            </div>
+            <div class="soc-desc">API robusta para alto volume. Validação fiscal automática e gestão de certificados.</div>
+            <a href="https://spedy.com.br/" class="soc-btn" target="_blank" rel="sponsored noopener">Ver Planos → Teste grátis 14 dias</a>
+        </div>
+    </div>
+
     <!-- ===================== SLOT RANKING (cards de comparação rápida) ===================== -->
     <div slot="ranking" style="padding: 0 24px;">
         <div class="contabilidade-wrapper" id="wrapper">
@@ -213,6 +320,74 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
     <!-- ===================== H2 RANKING ===================== -->
     <h2>Ranking dos Melhores Sistemas de Nota Fiscal Eletrônica em 2026</h2>
 
+    <!-- ===== BLING CARD ===== -->
+    <article id="bling-card" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">🏆 #1 MELHOR PARA E-COMMERCE, LOJAS FÍSICAS E MEI · Escolha NegócioCerto 2026</div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" target="_blank" rel="sponsored noopener">
+                        <img src="/images/bling logo png .png" alt="Bling" width="155" height="62" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Bling</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">9,7</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para e-commerce, lojas físicas e prestadores de serviço</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">A partir de R$ 47,90<span>/mês</span></div>
+                    <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" class="pdv-cta-btn" target="_blank" rel="sponsored noopener">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site bling.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> NF-e, NFC-e e NFS-e inclusa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Integração com marketplaces</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Gestão de estoque inclusa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Compatível com Reforma Tributária 2026</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Preço mensal</div>
+                    <div class="pdv-cell-value">R$ 47,90</div>
+                    <div class="pdv-cell-sub">plano Essencial</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Teste grátis</div>
+                    <div class="pdv-cell-value">15 dias</div>
+                    <div class="pdv-cell-sub">sem cartão de crédito</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">★ Diferencial</div>
+                    <div class="pdv-cell-value">ERP completo</div>
+                    <div class="pdv-cell-sub">fiscal + estoque + financeiro</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web + App</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e, NFC-e, NFS-e</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">Chat e e-mail</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O Bling é o sistema mais completo para quem precisa emitir nota fiscal e ainda quer integrar com e-commerce. Ele emite NF-e, NFC-e e NFS-e no mesmo plano, sem módulos separados, e conecta automaticamente com Mercado Livre, Shopify e Nuvemshop. Para quem vende em múltiplos canais, é a opção que elimina mais trabalho manual.</p>
+        </div>
+    </article>
+
     <!-- ===== BLING ===== -->
     <article id="bling" class="review-container">
         <div class="top-section">
@@ -318,6 +493,74 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
                     <p>As críticas mais frequentes são sobre o suporte, que pode demorar para responder em períodos de pico, e sobre a curva de aprendizado inicial para quem nunca usou um ERP antes.</p>
                 </div>
             </div>
+        </div>
+    </article>
+
+    <!-- ===== SPEDY CARD ===== -->
+    <article id="spedy-card" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">#2 MELHOR PARA ALTO VOLUME E INTEGRAÇÃO VIA API · Avaliação NegócioCerto 2026</div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://spedy.com.br/" target="_blank" rel="sponsored noopener">
+                        <img src="/images/spedy nf logo png .png" alt="Spedy" width="155" height="62" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Spedy</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">9,2</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para desenvolvedores e empresas com alto volume</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Teste grátis<span> por 14 dias</span></div>
+                    <a href="https://spedy.com.br/" class="pdv-cta-btn" target="_blank" rel="sponsored noopener">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site spedy.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> NF-e + NFS-e + MDF-e</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> API REST completa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Validação fiscal automática</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Gestão de certificados digitais</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Preço mensal</div>
+                    <div class="pdv-cell-value">R$ 79,00</div>
+                    <div class="pdv-cell-sub">plano Essencial</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Teste grátis</div>
+                    <div class="pdv-cell-value">14 dias</div>
+                    <div class="pdv-cell-sub">sem cartão de crédito</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">★ Diferencial</div>
+                    <div class="pdv-cell-value">API robusta</div>
+                    <div class="pdv-cell-sub">valida NCM/CFOP antes da emissão</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web + API</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e, NFS-e, MDF-e</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">Técnico especializado</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O Spedy é a escolha para empresas que precisam de automação fiscal de verdade. O diferencial está na API REST completa e no assistente fiscal que valida NCM e CFOP antes da emissão, reduzindo rejeições pela SEFAZ. Para quem tem equipe técnica ou usa sistema de gestão próprio, é a integração mais flexível do mercado.</p>
         </div>
     </article>
 
@@ -429,6 +672,74 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
         </div>
     </article>
 
+    <!-- ===== ASAAS CARD ===== -->
+    <article id="asaas-card" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">#3 MELHOR PARA PRESTADORES DE SERVIÇO · Avaliação NegócioCerto 2026</div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://www.asaas.com/nota-fiscal" target="_blank" rel="sponsored noopener">
+                        <img src="/images/logo asaas png .png" alt="Asaas" width="155" height="62" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Asaas</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">8,9</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para autônomos, consultores e MEI de serviços</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Grátis<span> (por transação)</span></div>
+                    <a href="https://www.asaas.com/nota-fiscal" class="pdv-cta-btn" target="_blank" rel="sponsored noopener">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site asaas.com</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> NFS-e emitida automaticamente</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Sem mensalidade fixa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Cobrança + fiscal integrado</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Boleto, Pix e cartão incluso</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Mensalidade</div>
+                    <div class="pdv-cell-value">Grátis</div>
+                    <div class="pdv-cell-sub">paga por transação</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Teste grátis</div>
+                    <div class="pdv-cell-value">Sempre grátis</div>
+                    <div class="pdv-cell-sub">sem prazo de expiração</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">★ Diferencial</div>
+                    <div class="pdv-cell-value">NFS-e automática</div>
+                    <div class="pdv-cell-sub">nota gerada ao receber pagamento</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web + App</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NFS-e</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">Chat e e-mail</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O Asaas é uma plataforma financeira que inclui emissão de NFS-e como parte do fluxo de cobrança. Para prestadores de serviço que já usam o Asaas para cobrar clientes, a nota sai sozinha quando o pagamento é confirmado — sem etapas manuais. A limitação é que emite apenas NFS-e, não NF-e de produtos ou NFC-e no caixa.</p>
+        </div>
+    </article>
+
     <!-- ===== ASAAS ===== -->
     <article id="asaas" class="review-container">
         <div class="top-section">
@@ -512,6 +823,74 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
                     <p>As críticas se concentram em municípios com sistemas de NFS-e mais antigos, onde a integração pode demorar para ser homologada.</p>
                 </div>
             </div>
+        </div>
+    </article>
+
+    <!-- ===== EMITTE CARD ===== -->
+    <article id="emitte-card" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">#4 MELHOR CUSTO-BENEFÍCIO PARA MEI E MICRO EMPRESAS · Avaliação NegócioCerto 2026</div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://emitte.com.br/" target="_blank" rel="sponsored noopener">
+                        <img src="/images/emitte logo.png" alt="Emitte" width="155" height="62" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Emitte</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">8,5</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para MEI e micro empresas que querem simplicidade</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">A partir de R$ 29,90<span>/mês</span></div>
+                    <a href="https://emitte.com.br/" class="pdv-cta-btn" target="_blank" rel="sponsored noopener">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site emitte.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> NF-e + NFS-e + NFC-e</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Interface simples e intuitiva</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> 84.000+ usuários ativos</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Menor preço da categoria</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Preço mensal</div>
+                    <div class="pdv-cell-value">R$ 29,90</div>
+                    <div class="pdv-cell-sub">plano Starter</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Usuários ativos</div>
+                    <div class="pdv-cell-value">84.000+</div>
+                    <div class="pdv-cell-sub">base consolidada</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">★ Diferencial</div>
+                    <div class="pdv-cell-value">Menor preço</div>
+                    <div class="pdv-cell-sub">NF-e, NFS-e e NFC-e no mesmo plano</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e, NFS-e, NFC-e</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">Chat e e-mail</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O Emitte ocupa o espaço ideal entre o emissor gratuito da SEFAZ e os ERPs completos. Para MEI ou ME que emite entre 20 e 200 notas por mês e quer uma interface limpa sem curva de aprendizado, é difícil encontrar custo-benefício melhor. Os três tipos de nota no menor preço da categoria são o grande diferencial.</p>
         </div>
     </article>
 
@@ -608,6 +987,74 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
                     <p>As reclamações mais comuns são sobre o limite de documentos no plano básico e sobre a ausência de integração com plataformas de venda online.</p>
                 </div>
             </div>
+        </div>
+    </article>
+
+    <!-- ===== NFE+ CARD ===== -->
+    <article id="nfemais-card" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">#5 MELHOR OPÇÃO GRATUITA PARA QUEM ESTÁ COMEÇANDO · Avaliação NegócioCerto 2026</div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://nfemais.com.br" target="_blank" rel="sponsored noopener">
+                        <img src="/images/nfemais.png" alt="NFE+" width="155" height="62" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">NFE+</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★</span>
+                        <span class="pdv-score">7,8</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para MEI com baixo volume de notas</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Grátis<span> até 15 NF-e/mês</span></div>
+                    <a href="https://nfemais.com.br" class="pdv-cta-btn" target="_blank" rel="sponsored noopener">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site nfemais.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Grátis até 15 NF-e/mês</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Sem prazo de validade</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> XML armazenado em nuvem</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check"></i> Plano ilimitado disponível</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Preço mensal</div>
+                    <div class="pdv-cell-value">Grátis</div>
+                    <div class="pdv-cell-sub">até 15 NF-e por mês</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Limite gratuito</div>
+                    <div class="pdv-cell-value">15 NF-e</div>
+                    <div class="pdv-cell-sub">por mês, sem expiração</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">★ Diferencial</div>
+                    <div class="pdv-cell-value">Sem cartão</div>
+                    <div class="pdv-cell-sub">começa grátis sem dados de pagamento</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">E-mail (limitado)</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O NFE+ tem um posicionamento claro: emissor gratuito para volume baixo. Para MEI que emite menos de 15 notas por mês, é difícil justificar pagar R$ 29,90 no Emitte quando o NFE+ atende de graça. A limitação é óbvia — sem integrações e sem NFS-e — mas para começar sem gastar nada, ele cumpre o papel.</p>
         </div>
     </article>
 
