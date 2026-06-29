@@ -1083,20 +1083,19 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
-      /* Layout geral */
-      .calc-main { padding: 16px 14px 48px; }
-      .calc-tool { gap: 12px; margin-bottom: 20px; }
+      /* Container */
+      .calc-main { padding: 16px 16px 40px; }
+      .calc-tool { grid-template-rows: auto; gap: 12px; margin-bottom: 20px; }
 
       /* Título e descrição */
-      .calc-page-title { font-size: 1.35rem !important; line-height: 1.25; }
-      .calc-page-desc { font-size: 0.875rem; margin: 0 0 18px; }
+      .calc-page-title { font-size: 22px !important; line-height: 1.25; }
+      .calc-page-desc { font-size: 14px; margin: 0 0 16px; }
 
-      /* Painel de formulário */
+      /* Formulário */
       .calc-form-panel { padding: 16px; gap: 12px; }
-      .calc-form-title { font-size: 0.95rem; }
-
-      /* Inputs */
-      .calc-input { font-size: 14px; height: 40px; }
+      .calc-form-title { font-size: 14px; }
+      .calc-label { font-size: 13px; }
+      .calc-input { font-size: 15px; height: 40px; }
       .calc-unit { height: 40px; padding: 0 10px; font-size: 13px; }
 
       /* Tooltip: ancora à direita para não sair da tela */
@@ -1128,34 +1127,29 @@ const canonicalUrl = new URL('/calculadora-salario-liquido/', Astro.site).href;
       /* Resumo rápido */
       .calc-summary-box { padding: 12px 14px; }
       .calc-summary-row { font-size: 12px; }
+      .calc-disclaimer { font-size: 10px; }
 
-      /* Painel do gráfico */
-      .calc-chart-panel { padding: 16px; min-height: 280px; }
-      .calc-chart-area { min-height: 200px; }
-      .calc-chart-total { font-size: 1.5rem; }
-      .calc-chart-label { font-size: 14px; }
-      .calc-chart-legend { gap: 8px 12px; flex-wrap: wrap; justify-content: center; }
+      /* Gráfico: corrige height:100% que colapsa no mobile empilhado */
+      .calc-chart-panel { height: auto; padding: 16px; }
+      .calc-chart-total { font-size: 28px; }
+      .calc-chart-sub { font-size: 12px; }
+      .calc-chart-label { font-size: 13px; }
+      .calc-chart-area { flex: none; height: 230px; min-height: 230px; }
+      .calc-chart-legend { gap: 6px 12px; font-size: 11px; flex-wrap: wrap; margin-top: 8px; }
+      .calc-chart-area canvas { max-width: 100% !important; }
 
-      /* Seção de tabela */
+      /* Tabela */
       .calc-table-section { padding: 16px 12px; border-radius: 8px; margin-bottom: 20px; }
-      .calc-section-title { font-size: 0.95rem; margin: 0 0 14px; }
+      .calc-section-title { font-size: 15px; margin: 0 0 14px; }
       .calc-table th { padding: 8px 10px; font-size: 11px; }
       .calc-table td { padding: 9px 10px; font-size: 13px; }
 
-      /* Fórmula */
-      .calc-formula-block { padding: 12px 14px; }
-      .calc-formula-block code { font-size: 13px; }
-
       /* Artigo */
-      .calc-article h2 { font-size: 1.2rem; margin: 28px 0 10px; }
-      .calc-article h3 { font-size: 1rem; }
-      .calc-article p, .calc-article li { font-size: 0.9rem; }
-
-      /* Breadcrumb */
-      .calc-breadcrumb ol { font-size: 12px; gap: 4px; }
-
-      /* Disclaimer */
-      .calc-disclaimer { font-size: 10px; }
+      .calc-formula-block { padding: 12px 14px; overflow-x: auto; }
+      .calc-formula-block code { font-size: 13px; }
+      .calc-article h2 { font-size: 20px; margin: 28px 0 10px; }
+      .calc-article h3 { font-size: 17px; }
+      .calc-article p, .calc-article li { font-size: 15px; line-height: 1.65; }
     }
   </style>
 
