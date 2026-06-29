@@ -8,9 +8,10 @@ interface Props {
   description?: string;
   breadcrumb?: { label: string; href?: string }[];
   schemas?: object[];
+  noCard?: boolean;
 }
 
-const { title, description = '', breadcrumb = [], schemas = [] } = Astro.props;
+const { title, description = '', breadcrumb = [], schemas = [], noCard = false } = Astro.props;
 const canonicalUrl = Astro.url.href;
 
 const fullBreadcrumb = [
@@ -65,9 +66,15 @@ const fullBreadcrumb = [
   </section>
 
   <!-- CONTEÚDO -->
-  <div style="max-width: 820px; margin: 0 auto; padding: 40px 24px;">
-    <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-      <slot />
+  <div style="padding: 40px 24px;">
+    <div style="max-width: 820px; margin: 0 auto;">
+      {noCard ? (
+        <slot />
+      ) : (
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+          <slot />
+        </div>
+      )}
     </div>
   </div>
 
