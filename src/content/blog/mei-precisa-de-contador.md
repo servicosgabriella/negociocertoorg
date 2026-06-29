@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/mei-precisa-de-contador.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Finanças"
+categoryHref: "/financas/"
 breadcrumb:
   - label: "Home"
     href: "/"

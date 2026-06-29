@@ -7,6 +7,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 authorHref: "/autor/gabriella-fernandes"
+category: "Finanças"
+categoryHref: "/financas/"
 coverImage: "/images/ativar-vale-refeicao-maquininha.png"
 coverAlt: "Maquininha de cartão sendo usada para pagamento com vale refeição em estabelecimento comercial."
 breadcrumb:

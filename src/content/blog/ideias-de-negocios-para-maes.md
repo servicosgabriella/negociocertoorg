@@ -7,6 +7,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Redatora especialista em empreendedorismo"
 authorImage: "/images/perfil.jpg"
 authorHref: "/autor/gabriella-fernandes/"
+category: "Planejamento"
+categoryHref: "/planejamento/"
 coverImage: "/images/maes-trabalhando-conta-propria-1024x559.webp"
 coverAlt: "Mãe trabalhando em casa com criança ao lado"
 breadcrumb:

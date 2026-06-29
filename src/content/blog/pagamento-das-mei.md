@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/pagamento-das-mei.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Finanças"
+categoryHref: "/financas/"
 breadcrumb:
   - label: "Home"
     href: "/"

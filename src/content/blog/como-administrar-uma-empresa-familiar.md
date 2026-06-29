@@ -7,6 +7,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Redatora especialista em empreendedorismo"
 authorImage: "/images/perfil.jpg"
 authorHref: "/autor/gabriella-fernandes/"
+category: "Gestão"
+categoryHref: "/gestao/"
 coverImage: "/images/administrar-empresa-familiar-1024x559.webp"
 coverAlt: "Reunião familiar em uma mesa de trabalho"
 breadcrumb:

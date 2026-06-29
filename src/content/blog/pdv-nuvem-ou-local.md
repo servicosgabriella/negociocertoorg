@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/pdv-nuvem-ou-local.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Gestão"
+categoryHref: "/gestao/"
 breadcrumb:
   - label: "Home"
     href: "/"

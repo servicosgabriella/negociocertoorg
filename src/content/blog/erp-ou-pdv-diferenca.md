@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/erp-ou-pdv-diferenca.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Gestão"
+categoryHref: "/gestao/"
 breadcrumb:
   - label: "Home"
     href: "/"

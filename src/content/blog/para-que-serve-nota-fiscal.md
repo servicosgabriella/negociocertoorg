@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/para-que-serve-nota-fiscal.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Gestão"
+categoryHref: "/gestao/"
 coverAlt: "Empreendedor emitindo nota fiscal eletrônica pelo computador."
 breadcrumb:
   - label: "Home"

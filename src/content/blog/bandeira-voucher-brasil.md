@@ -10,6 +10,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/bandeira-voucher-brasil.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Finanças"
+categoryHref: "/financas/"
 breadcrumb:
   - label: "Home"
     href: "/"

@@ -8,6 +8,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Redatora especialista em empreendedorismo"
 authorImage: "/images/perfil.jpg"
 authorHref: "/autor/gabriella-fernandes/"
+category: "Planejamento"
+categoryHref: "/planejamento/"
 coverImage: "/images/como-consultar-marca-no-inpi-em-5-minutos-passo-a-passo.webp"
 coverAlt: "Profissional consultando documentos de marca registrada em laptop"
 breadcrumb:

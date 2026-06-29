@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/Como-migrar-de-contabilidade-online-.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Finanças"
+categoryHref: "/financas/"
 coverAlt: "Pessoa trocando de contador, com documentos e computador."
 breadcrumb:
   - label: "Home"

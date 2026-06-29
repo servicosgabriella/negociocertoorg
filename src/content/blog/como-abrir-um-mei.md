@@ -8,6 +8,8 @@ authorRole: "Especialista em Negócios"
 authorImage: "/images/perfil.jpg"
 coverImage: "/images/como-abrir-um-mei.png"
 authorHref: "/autor/gabriella-fernandes"
+category: "Planejamento"
+categoryHref: "/planejamento/"
 coverAlt: "Empreendedor abrindo MEI pelo computador, processo online gratuito."
 breadcrumb:
   - label: "Home"

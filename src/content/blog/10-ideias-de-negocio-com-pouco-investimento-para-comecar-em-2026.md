@@ -7,6 +7,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Redatora especialista em empreendedorismo"
 authorImage: "/images/perfil.jpg"
 authorHref: "/autor/gabriella-fernandes/"
+category: "Planejamento"
+categoryHref: "/planejamento/"
 coverImage: "/images/ideias-de-negocio-pouco-investimento-1024x559.webp"
 coverAlt: "Mesa com caderno, caneta e laptop simbolizando ideias de negócio"
 breadcrumb:

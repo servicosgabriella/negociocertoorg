@@ -7,6 +7,8 @@ authorName: "Gabriella Fernandes"
 authorRole: "Redatora especialista em empreendedorismo"
 authorImage: "/images/autor/gabriella-fernandes.jpg"
 authorHref: "/autor/gabriella-fernandes/"
+category: "RH"
+categoryHref: "/rh/"
 coverImage: "/images/sinais-que-esta-na-hora-de-contratar-1024x559.webp"
 coverAlt: "Empreendedor conversando com candidato em uma entrevista"
 breadcrumb:

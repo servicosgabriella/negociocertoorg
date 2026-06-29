@@ -23,11 +23,21 @@ const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.data.categor
 <body>
   <Header />
 
+  <!-- HERO VERDE -->
+  <section class="blog-hero">
+    <div class="blog-hero-inner">
+      <div class="blog-hero-text">
+        <h1 class="blog-hero-title">Artigos para Empreendedores</h1>
+        <p class="blog-hero-desc">Nossos especialistas pesquisam, testam e explicam — para que você tome decisões melhores para o seu negócio.</p>
+      </div>
+    </div>
+    <!-- Triângulos decorativos -->
+    <div class="blog-hero-tri blog-hero-tri-1" aria-hidden="true"></div>
+    <div class="blog-hero-tri blog-hero-tri-2" aria-hidden="true"></div>
+  </section>
+
   <main class="blog-index-main">
     <div class="blog-index-container">
-
-      <!-- Título editorial -->
-      <h1 class="blog-index-title">Blog do NegócioCerto</h1>
 
       <!-- Tabs de categoria -->
       {categories.length > 1 && (
@@ -119,26 +129,78 @@ const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.data.categor
   <style>
     body { margin: 0; background: #ffffff; }
 
+    /* ======= HERO ======= */
+    .blog-hero {
+      position: relative;
+      background: linear-gradient(135deg, #0d4a28 0%, #1d6b3d 50%, #2d6a4f 100%);
+      overflow: hidden;
+      padding: 64px 32px 72px;
+    }
+    .blog-hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .blog-hero-text {
+      max-width: 680px;
+    }
+    .blog-hero-title {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 20px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .blog-hero-desc {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.65;
+      margin: 0;
+      max-width: 560px;
+    }
+
+    /* Triângulos decorativos */
+    .blog-hero-tri {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    .blog-hero-tri-1 {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 180px 180px;
+      border-color: transparent transparent #ace347 transparent;
+      opacity: 0.55;
+      right: 80px;
+    }
+    .blog-hero-tri-2 {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 120px 120px;
+      border-color: transparent transparent #5cb85c transparent;
+      opacity: 0.30;
+      right: 0;
+    }
+
+    @media (max-width: 600px) {
+      .blog-hero { padding: 44px 20px 56px; }
+      .blog-hero-tri { display: none; }
+    }
+
     /* ======= MAIN ======= */
     .blog-index-main {
       background: #ffffff;
-      min-height: 60vh;
-      padding: 56px 24px 80px;
+      padding: 48px 24px 80px;
     }
     .blog-index-container {
       max-width: 1120px;
       margin: 0 auto;
-    }
-
-    /* ======= TÍTULO ======= */
-    .blog-index-title {
-      font-family: 'Nunito Sans', 'Inter', sans-serif;
-      font-size: clamp(1.75rem, 3vw, 2.75rem);
-      font-weight: 800;
-      color: #111827;
-      margin: 0 0 32px;
-      letter-spacing: -0.5px;
-      line-height: 1.15;
     }
 
     /* ======= TABS ======= */
@@ -181,9 +243,6 @@ const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.data.categor
     .blog-article-item {
       border-bottom: 1px solid #e5e7eb;
       padding: 24px 0;
-    }
-    .blog-article-item:nth-child(odd):last-child {
-      grid-column: 1 / -1;
     }
 
     .blog-article-link {
