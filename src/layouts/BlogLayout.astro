@@ -101,6 +101,12 @@ const articleSchema = {
     '@type': 'Organization',
     name: 'Negócio Certo',
     url: Astro.site?.href ?? '',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', Astro.site).href,
+      width: 512,
+      height: 512,
+    },
   },
 };
 
