@@ -7,6 +7,8 @@ import Header from '../../components/Header.astro';
 const posts = (await getCollection('blog')).sort(
   (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
+
+const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.data.category).filter(Boolean)))];
 ---
 
 <!doctype html>
@@ -14,78 +16,271 @@ const posts = (await getCollection('blog')).sort(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog</title>
-  <meta name="description" content="Artigos e guias para empreendedores brasileiros." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Blog — NegócioCerto</title>
+  <meta name="description" content="Artigos, guias e comparações para empreendedores brasileiros." />
+  <link rel="canonical" href="https://negociocerto.org/blog/" />
 </head>
-<body style="margin: 0; font-family: Arial, sans-serif; background: #f9fafb;">
+<body>
   <Header />
 
-  <!-- HERO AZUL -->
-  <section style="background: linear-gradient(to right, #1a3a5c, #2d6a9f); padding: 48px 24px 64px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <nav aria-label="Breadcrumb" style="font-size: 13px; margin-bottom: 16px;">
-        <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
-          <li style="display: flex; align-items: center; gap: 4px;">
-            <a href="/" style="color: #bfdbfe; text-decoration: none;">Home</a>
-            <span style="color: #bfdbfe;">›</span>
-          </li>
-          <li>
-            <span style="color: #ffffff; font-weight: 500;">Blog</span>
-          </li>
-        </ol>
-      </nav>
-      <h1 style="color: white; font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin: 0 0 12px 0;">Blog</h1>
-      <p style="color: #bfdbfe; font-size: 1.125rem; margin: 0;">Guias, comparações e dicas para empreendedores brasileiros.</p>
-    </div>
-  </section>
+  <main class="blog-index-main">
+    <div class="blog-index-container">
 
-  <!-- GRID DE POSTS -->
-  <div style="max-width: 1200px; margin: -32px auto 0; padding: 0 24px 64px;">
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-      {posts.map((post) => (
-        <a href={`/blog/${post.id}/`} style="text-decoration: none; display: block; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'; this.style.transform='translateY(0)'">
-          {(post.data.coverImage || post.data.heroImage) && (
-            <img
-              src={post.data.coverImage ?? post.data.heroImage?.src}
-              alt={post.data.coverAlt ?? post.data.title}
-              style="width: 100%; height: 200px; object-fit: cover; display: block;"
-              loading="lazy"
-            />
-          )}
-          <div style="padding: 20px;">
-            <div style="font-size: 12px; color: #6b7280; margin-bottom: 8px;">
-              <i class="fa-regular fa-clock" style="margin-right: 4px;"></i>
-              {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </div>
-            <h2 style="font-size: 16px; font-weight: 700; color: #111827; margin: 0 0 8px 0; line-height: 1.4;">{post.data.title}</h2>
-            <p style="font-size: 14px; color: #6b7280; margin: 0 0 16px 0; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{post.data.description}</p>
-            <span style="font-size: 13px; font-weight: 700; color: #276fbd;">Ler artigo →</span>
-          </div>
-        </a>
-      ))}
-    </div>
+      <!-- Título editorial -->
+      <h1 class="blog-index-title">Blog do NegócioCerto</h1>
 
-    {posts.length === 0 && (
-      <div style="text-align: center; padding: 80px 24px; color: #6b7280;">
-        <i class="fa fa-newspaper" style="font-size: 48px; margin-bottom: 16px; display: block; color: #d1d5db;"></i>
-        <p style="font-size: 16px;">Nenhum post publicado ainda.</p>
+      <!-- Tabs de categoria -->
+      {categories.length > 1 && (
+        <div class="blog-tabs" role="tablist" aria-label="Filtrar por categoria">
+          {categories.map((cat, i) => (
+            <button
+              class={`blog-tab${i === 0 ? ' active' : ''}`}
+              data-cat={cat === 'Todos' ? 'todos' : cat}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+            >
+              {cat.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <!-- Grade de artigos — 2 colunas -->
+      <div class="blog-articles-grid">
+        {posts.map((post) => (
+          <article
+            class="blog-article-item"
+            data-cat={post.data.category ?? 'todos'}
+          >
+            <a href={`/blog/${post.id}/`} class="blog-article-link">
+              <div class="blog-article-thumb">
+                {post.data.coverImage ? (
+                  <img
+                    src={post.data.coverImage}
+                    alt={post.data.coverAlt ?? post.data.title}
+                    loading="lazy"
+                    width="160"
+                    height="110"
+                  />
+                ) : (
+                  <div class="blog-article-thumb-placeholder"></div>
+                )}
+              </div>
+              <div class="blog-article-body">
+                <h2 class="blog-article-title">{post.data.title}</h2>
+                <div class="blog-article-author">
+                  <img
+                    src={post.data.authorImage}
+                    alt={post.data.authorName}
+                    class="blog-article-avatar"
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                  />
+                  <span class="blog-article-author-name">Por {post.data.authorName}</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
       </div>
-    )}
-  </div>
+
+      {posts.length === 0 && (
+        <p class="blog-empty">Nenhum post publicado ainda.</p>
+      )}
+
+    </div>
+  </main>
 
   <Footer />
 
+  <script is:inline>
+    const tabs = document.querySelectorAll('.blog-tab');
+    const articles = document.querySelectorAll('.blog-article-item');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const cat = tab.dataset.cat;
+        articles.forEach(article => {
+          if (cat === 'todos') {
+            article.style.display = '';
+          } else {
+            article.style.display = article.dataset.cat === cat ? '' : 'none';
+          }
+        });
+      });
+    });
+  </script>
+
   <style>
-    @media (max-width: 768px) {
-      div[style*="grid-template-columns: repeat(3"] {
-        grid-template-columns: 1fr !important;
-      }
+    body { margin: 0; background: #ffffff; }
+
+    /* ======= MAIN ======= */
+    .blog-index-main {
+      background: #ffffff;
+      min-height: 60vh;
+      padding: 56px 24px 80px;
     }
-    @media (min-width: 769px) and (max-width: 1024px) {
-      div[style*="grid-template-columns: repeat(3"] {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
+    .blog-index-container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* ======= TÍTULO ======= */
+    .blog-index-title {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 32px;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    /* ======= TABS ======= */
+    .blog-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid #e5e7eb;
+      margin-bottom: 40px;
+    }
+    .blog-tab {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      padding: 10px 20px;
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #6b7280;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .blog-tab:hover { color: #111827; }
+    .blog-tab.active {
+      color: #2d6a4f;
+      border-bottom-color: #2d6a4f;
+    }
+
+    /* ======= GRADE DE ARTIGOS ======= */
+    .blog-articles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 56px;
+    }
+
+    /* ======= ARTIGO INDIVIDUAL ======= */
+    .blog-article-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 24px 0;
+    }
+    .blog-article-item:nth-child(odd):last-child {
+      grid-column: 1 / -1;
+    }
+
+    .blog-article-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      text-decoration: none;
+    }
+    .blog-article-link:hover .blog-article-title {
+      color: #2d6a4f;
+    }
+
+    /* Thumb */
+    .blog-article-thumb {
+      flex-shrink: 0;
+      width: 160px;
+      height: 110px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .blog-article-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .blog-article-link:hover .blog-article-thumb img {
+      transform: scale(1.03);
+    }
+    .blog-article-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2d6a4f 0%, #1a3a2a 100%);
+      border-radius: 8px;
+    }
+
+    /* Corpo */
+    .blog-article-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .blog-article-title {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.45;
+      margin: 0;
+      transition: color 0.15s;
+    }
+
+    /* Autor */
+    .blog-article-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .blog-article-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .blog-article-author-name {
+      font-family: 'Nunito Sans', 'Inter', sans-serif;
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* Vazio */
+    .blog-empty {
+      font-family: 'Nunito Sans', sans-serif;
+      color: #6b7280;
+      text-align: center;
+      padding: 80px 0;
+      font-size: 16px;
+    }
+
+    /* ======= RESPONSIVO ======= */
+    @media (max-width: 768px) {
+      .blog-index-main { padding: 36px 20px 64px; }
+      .blog-articles-grid { grid-template-columns: 1fr; column-gap: 0; }
+      .blog-tab { padding: 10px 14px; font-size: 11px; }
+      .blog-article-thumb { width: 120px; height: 84px; }
+    }
+    @media (max-width: 480px) {
+      .blog-article-thumb { width: 96px; height: 68px; }
+      .blog-article-title { font-size: 0.9rem; }
     }
   </style>
 
