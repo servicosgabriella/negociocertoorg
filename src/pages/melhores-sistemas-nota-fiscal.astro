@@ -106,19 +106,6 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
     .pdv-data-row.pdv-data-row-secondary .pdv-cell-label { font-size: 10px; }
   }
 
-  /* sidebar offers */
-  .sidebar-offers { display: flex; flex-direction: column; gap: 16px; }
-  .sidebar-offers-title { font-size: 15px; font-weight: 700; color: #1a3a5c; margin: 0 0 4px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
-  .soc-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 16px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
-  .soc-top { display: flex; align-items: center; gap: 12px; }
-  .soc-logo img { width: 80px; height: auto; display: block; }
-  .soc-info { flex: 1; }
-  .soc-name { font-size: 14px; font-weight: 700; color: #111827; }
-  .soc-score { font-size: 12.5px; color: #6b7280; }
-  .soc-score span { font-weight: 700; color: #1d6fe8; }
-  .soc-desc { font-size: 12.5px; color: #374151; line-height: 1.5; }
-  .soc-btn { display: block; background: #1d6fe8; color: #fff; text-align: center; border-radius: 6px; padding: 9px 14px; font-size: 13px; font-weight: 700; text-decoration: none; }
-  .soc-btn:hover { background: #1558c0; }
 </style>
 
     <!-- ===================== SLOT SIDEBAR OFFERS ===================== -->
@@ -127,35 +114,36 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas de NF-e, NFS-e e N
 
         <div class="soc-card">
             <div class="soc-top">
-                <div class="soc-logo">
-                    <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" target="_blank" rel="sponsored noopener">
-                        <img src="/images/bling logo png .png" alt="Bling" width="80" height="32" loading="lazy">
-                    </a>
-                </div>
-                <div class="soc-info">
-                    <div class="soc-name">Bling</div>
-                    <div class="soc-score">Avaliação: <span>9,7/10</span></div>
+                <img src="/images/bling logo png .png" alt="Bling" class="soc-logo" style="max-width:120px;">
+                <div class="soc-rating">
+                    <span class="soc-score">9,7</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
                 </div>
             </div>
-            <div class="soc-desc">NF-e, NFC-e e NFS-e no mesmo plano. ERP completo com integração para e-commerce.</div>
-            <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" class="soc-btn" target="_blank" rel="sponsored noopener">Ver Planos → A partir de R$ 47,90/mês</a>
+            <div class="soc-bottom">
+                <span class="soc-badge">15 dias grátis</span>
+                <a href="https://www.bling.com.br/planos-e-precos/NEGOCIOCERTO" class="soc-button" target="_blank" rel="sponsored noopener">Obter oferta ›</a>
+            </div>
         </div>
 
         <div class="soc-card">
             <div class="soc-top">
-                <div class="soc-logo">
-                    <a href="https://spedy.com.br/" target="_blank" rel="sponsored noopener">
-                        <img src="/images/spedy nf logo png .png" alt="Spedy" width="80" height="32" loading="lazy">
-                    </a>
-                </div>
-                <div class="soc-info">
-                    <div class="soc-name">Spedy</div>
-                    <div class="soc-score">Avaliação: <span>9,2/10</span></div>
+                <img src="/images/spedy nf logo png .png" alt="Spedy" class="soc-logo" style="max-width:120px;">
+                <div class="soc-rating">
+                    <span class="soc-score">9,2</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
                 </div>
             </div>
-            <div class="soc-desc">API robusta para alto volume. Validação fiscal automática e gestão de certificados.</div>
-            <a href="https://spedy.com.br/" class="soc-btn" target="_blank" rel="sponsored noopener">Ver Planos → Teste grátis 14 dias</a>
+            <div class="soc-bottom">
+                <span class="soc-badge">14 dias grátis</span>
+                <a href="https://spedy.com.br/" class="soc-button" target="_blank" rel="sponsored noopener">Obter oferta ›</a>
+            </div>
         </div>
+
     </div>
 
     <!-- ===================== SLOT RANKING (cards de comparação rápida) ===================== -->
