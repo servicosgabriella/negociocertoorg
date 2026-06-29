@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description?: string;
   breadcrumb?: { label: string; href?: string }[];
+  schemas?: object[];
 }
 
-const { title, description = '', breadcrumb = [] } = Astro.props;
+const { title, description = '', breadcrumb = [], schemas = [] } = Astro.props;
 const canonicalUrl = Astro.url.href;
 
 const fullBreadcrumb = [
@@ -27,6 +28,9 @@ const fullBreadcrumb = [
   {description && <meta name="description" content={description} />}
   <link rel="canonical" href={canonicalUrl} />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  {schemas.map(schema => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  ))}
 </head>
 <body style="background: #f9fafb; margin: 0; font-family: Arial, sans-serif;">
   <Header />

@@ -1,8 +1,42 @@
 ---
 import InstitucionalLayout from '../layouts/InstitucionalLayout.astro';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contato — Negócio Certo',
+  description: 'Entre em contato com a equipe do Negócio Certo.',
+  url: canonicalUrl,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Negócio Certo',
+    url: Astro.site?.href ?? '',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', Astro.site).href,
+      width: 512,
+      height: 512,
+    },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: Astro.site?.href ?? '' },
+    { '@type': 'ListItem', position: 2, name: 'Contato', item: canonicalUrl },
+  ],
+};
 ---
 
-<InstitucionalLayout title="Contato" description="Entre em contato com a equipe do Negócio Certo.">
+<InstitucionalLayout
+  title="Contato"
+  description="Entre em contato com a equipe do Negócio Certo."
+  schemas={[contactPageSchema, breadcrumbSchema]}
+>
   <div style="display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;">
 
     <div style="flex: 1; min-width: 240px;">
