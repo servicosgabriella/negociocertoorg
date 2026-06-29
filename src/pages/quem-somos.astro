@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
@@ -46,34 +47,33 @@ const breadcrumbSchema = {
 <body style="margin: 0; font-family: Arial, sans-serif; background: #ffffff;">
 
   <!-- HEADER -->
+  <Header />
 
   <!-- BREADCRUMB -->
-  <section style="background: #ffffff; padding: 16px 24px 0 24px;">
-    <nav aria-label="Breadcrumb" style="max-width: 1000px; margin: 0 auto; font-size: 13px;">
-      <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
-        <li style="display: flex; align-items: center; gap: 4px;">
+  <nav style="background: #ffffff; border-bottom: 1px solid #e5e7eb; padding: 12px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px;">
+        <li style="display: flex; align-items: center; gap: 8px;">
           <a href="/" style="color: #6b7280; text-decoration: none;">Início</a>
-          <span style="color: #9ca3af;">›</span>
+          <span style="color: #9ca3af;">/</span>
         </li>
-        <li style="display: flex; align-items: center; gap: 4px;">
-          <span style="color: #f59e0b; font-weight: 500;">Quem Somos</span>
-        </li>
+        <li><span style="color: #111827; font-weight: 500;">Quem Somos</span></li>
       </ol>
-    </nav>
-  </section>
+    </div>
+  </nav>
 
-  <!-- SEÇÃO 1: HERO COM TEXTO + IMAGEM -->
-  <section style="background: #ffffff; padding: 48px 24px 64px 24px;">
+  <!-- HERO -->
+  <section style="background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%); padding: 56px 24px 64px;">
     <div style="max-width: 1000px; margin: 0 auto; display: flex; gap: 48px; align-items: center; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 280px;">
-        <p style="font-size: 12px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 12px 0;">Quem Somos</p>
-        <h1 style="font-size: 2rem; font-weight: 800; color: #111827; line-height: 1.25; margin: 0 0 20px 0;">O Negócio Certo nasceu para resolver um problema real</h1>
-        <p style="font-size: 0.95rem; color: #374151; line-height: 1.75; margin-bottom: 16px;">O Negócio Certo nasceu para resolver um problema que todo pequeno e médio empresário brasileiro enfrenta: escolher os serviços certos sem perder tempo nem dinheiro. Testamos e comparamos contabilidades online, maquininhas de cartão, contas digitais PJ, cartões de crédito empresariais e serviços de registro de marca para mostrar o que realmente funciona no dia a dia da sua empresa.</p>
-        <p style="font-size: 0.95rem; color: #374151; line-height: 1.75;">Nosso trabalho é simples: você economiza horas de pesquisa e toma decisões melhores baseadas em testes reais, não em promessas de marketing.</p>
+        <p style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .12em; margin: 0 0 12px;">Negócio Certo</p>
+        <h1 style="font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #ffffff; line-height: 1.2; margin: 0 0 20px;">O Negócio Certo nasceu para resolver um problema real</h1>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 16px;">Testamos e comparamos contabilidades online, maquininhas de cartão, contas digitais PJ, cartões de crédito empresariais e serviços de registro de marca para mostrar o que realmente funciona no dia a dia da sua empresa.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.75;">Nosso trabalho é simples: você economiza horas de pesquisa e toma decisões melhores baseadas em testes reais, não em promessas de marketing.</p>
       </div>
-      <div style="flex-shrink: 0; width: 280px; display: flex; align-items: center; justify-content: center;">
-        <div style="width: 240px; height: 240px; border-radius: 50%; background: #fef3f2; display: flex; align-items: center; justify-content: center;">
-          <i class="fas fa-users" style="font-size: 80px; color: #f87171;"></i>
+      <div style="flex-shrink: 0; width: 220px; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-users" style="font-size: 72px; color: rgba(255,255,255,0.9);"></i>
         </div>
       </div>
     </div>
@@ -89,35 +89,35 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <!-- SEÇÃO 3: METODOLOGIA (FUNDO PRETO) -->
-  <section style="background: #111827; padding: 64px 24px;">
+  <!-- SEÇÃO 3: METODOLOGIA -->
+  <section style="background: #1a3a5c; padding: 64px 24px;">
     <div style="max-width: 1000px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 280px;">
         <h2 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin: 0 0 24px 0;">Metodologia de Pesquisa</h2>
-        <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75; margin-bottom: 16px;">No Negócio Certo, cada avaliação passa por um processo rigoroso antes de chegar até você. Nossa equipe cria contas reais, paga taxas reais e usa os serviços por semanas ou meses para entender como funcionam na prática.</p>
-        <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75; margin-bottom: 16px;">Testamos atendimento ao cliente em horários diferentes, calculamos custos escondidos nas entrelinhas dos contratos e comparamos prazos reais de entrega com o que foi prometido.</p>
-        <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75;">Atualizamos nossas comparações regularmente porque sabemos que preços mudam, serviços melhoram (ou pioram) e novas opções surgem no mercado. Nossa missão é simples: você toma decisões baseadas em fatos, não em achismos.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 16px;">No Negócio Certo, cada avaliação passa por um processo rigoroso antes de chegar até você. Nossa equipe cria contas reais, paga taxas reais e usa os serviços por semanas ou meses para entender como funcionam na prática.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 16px;">Testamos atendimento ao cliente em horários diferentes, calculamos custos escondidos nas entrelinhas dos contratos e comparamos prazos reais de entrega com o que foi prometido.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75;">Atualizamos nossas comparações regularmente porque sabemos que preços mudam, serviços melhoram (ou pioram) e novas opções surgem no mercado. Nossa missão é simples: você toma decisões baseadas em fatos, não em achismos.</p>
       </div>
       <div style="flex-shrink: 0; min-width: 240px; display: flex; flex-direction: column; gap: 16px;">
-        <div style="background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
-          <i class="fas fa-cog" style="font-size: 28px; color: #9ca3af;"></i>
+        <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
+          <i class="fas fa-cog" style="font-size: 28px; color: rgba(255,255,255,0.6);"></i>
           <div>
             <div style="font-size: 1.75rem; font-weight: 800; color: #ffffff;">50+</div>
-            <div style="font-size: 13px; color: #9ca3af;">Serviços Avaliados</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.65);">Serviços Avaliados</div>
           </div>
         </div>
-        <div style="background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
-          <i class="fas fa-book-open" style="font-size: 28px; color: #9ca3af;"></i>
+        <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
+          <i class="fas fa-book-open" style="font-size: 28px; color: rgba(255,255,255,0.6);"></i>
           <div>
             <div style="font-size: 1.75rem; font-weight: 800; color: #ffffff;">20+</div>
-            <div style="font-size: 13px; color: #9ca3af;">Guias Publicados</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.65);">Guias Publicados</div>
           </div>
         </div>
-        <div style="background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
-          <i class="fas fa-hand-holding-usd" style="font-size: 28px; color: #9ca3af;"></i>
+        <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;">
+          <i class="fas fa-hand-holding-usd" style="font-size: 28px; color: rgba(255,255,255,0.6);"></i>
           <div>
             <div style="font-size: 1.75rem; font-weight: 800; color: #ffffff;">5.000+</div>
-            <div style="font-size: 13px; color: #9ca3af;">Empresários ajudados</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.65);">Empresários ajudados</div>
           </div>
         </div>
       </div>
@@ -145,12 +145,12 @@ const breadcrumbSchema = {
       <p style="font-size: 0.95rem; color: #374151; line-height: 1.75; margin-bottom: 16px;">Simplificar a vida do empresário brasileiro na hora de escolher serviços financeiros e ferramentas essenciais para o negócio. Acreditamos que todo dono de empresa, independente do tamanho, merece ter acesso a informações confiáveis e práticas para tomar decisões inteligentes.</p>
       <p style="font-size: 0.95rem; color: #374151; line-height: 1.75;">Nossa missão é testar, comparar e avaliar cada serviço com honestidade, mostrando o que funciona de verdade no dia a dia empresarial. Queremos que você gaste menos tempo pesquisando e mais tempo fazendo seu negócio crescer.</p>
     </div>
-    <div style="flex: 1; min-width: 300px; background: #111827; padding: 64px 48px;">
+    <div style="flex: 1; min-width: 300px; background: #1a3a5c; padding: 64px 48px;">
       <h2 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin: 0 0 20px 0;">Nossos Valores</h2>
-      <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Transparência:</strong> Falamos abertamente sobre custos, problemas e limitações de cada serviço que testamos.</p>
-      <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Independência:</strong> Nossas avaliações não mudam por causa de parcerias comerciais. O que importa é a experiência real.</p>
-      <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Praticidade:</strong> Entregamos informação direto ao ponto, sem enrolação. Seu tempo vale dinheiro.</p>
-      <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.75;"><strong style="color: #ffffff;">Compromisso com o empresário:</strong> Testamos tudo pensando em quem realmente usa: o dono que precisa de respostas rápidas e certas.</p>
+      <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Transparência:</strong> Falamos abertamente sobre custos, problemas e limitações de cada serviço que testamos.</p>
+      <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Independência:</strong> Nossas avaliações não mudam por causa de parcerias comerciais. O que importa é a experiência real.</p>
+      <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 16px;"><strong style="color: #ffffff;">Praticidade:</strong> Entregamos informação direto ao ponto, sem enrolação. Seu tempo vale dinheiro.</p>
+      <p style="font-size: 0.95rem; color: rgba(255,255,255,0.82); line-height: 1.75;"><strong style="color: #ffffff;">Compromisso com o empresário:</strong> Testamos tudo pensando em quem realmente usa: o dono que precisa de respostas rápidas e certas.</p>
     </div>
   </section>
 
