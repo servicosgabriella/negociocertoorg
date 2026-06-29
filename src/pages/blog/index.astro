@@ -10,8 +10,9 @@ const posts = (await getCollection('blog')).sort(
 
 const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.data.category).filter(Boolean)))];
 
-const featured = posts[0];
-const secondary = posts.slice(1, 4);
+const newsPosts = posts.filter(p => p.data.category === 'Notícia');
+const featured = newsPosts[0] ?? posts[0];
+const secondary = (newsPosts.length > 1 ? newsPosts.slice(1, 4) : posts.slice(1, 4));
 ---
 
 <!doctype html>
@@ -198,10 +199,10 @@ const secondary = posts.slice(1, 4);
     .top-news-heading {
       font-family: 'Nunito Sans', 'Inter', sans-serif;
       font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 800;
-      color: #111827;
+      font-weight: 400;
+      color: #374151;
       margin: 0 0 32px;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
     }
     .top-news-grid {
       display: grid;
