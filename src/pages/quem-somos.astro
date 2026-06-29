@@ -1,6 +1,36 @@
 ---
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const aboutPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Quem Somos — Negócio Certo',
+  description: 'Conheça a história, missão e valores do Negócio Certo.',
+  url: canonicalUrl,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Negócio Certo',
+    url: Astro.site?.href ?? '',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', Astro.site).href,
+      width: 512,
+      height: 512,
+    },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: Astro.site?.href ?? '' },
+    { '@type': 'ListItem', position: 2, name: 'Quem Somos', item: canonicalUrl },
+  ],
+};
 ---
 
 <html lang="pt-BR">
@@ -10,6 +40,8 @@ import Footer from '../components/Footer.astro';
   <title>Quem Somos</title>
   <meta name="description" content="Conheça a história, missão e valores do Negócio Certo." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="application/ld+json" set:html={JSON.stringify(aboutPageSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
 </head>
 <body style="margin: 0; font-family: Arial, sans-serif; background: #ffffff;">
 
