@@ -9,14 +9,65 @@ const allPosts = (await getCollection('blog'))
 
 const recentPosts = allPosts.slice(0, 6);
 
-const searchData = allPosts.map(p => ({
-  id: p.id,
+const blogEntries = allPosts.map(p => ({
+  url: `/blog/${p.id}/`,
   title: p.data.title,
   description: p.data.description ?? '',
-  coverImage: p.data.coverImage ?? '',
-  coverAlt: p.data.coverAlt ?? p.data.title,
   category: p.data.category ?? '',
 }));
+
+const reviewEntries = [
+  {
+    url: '/melhores-maquininhas-cartao-voucher-refeicao',
+    title: 'Maquininhas que aceitam voucher e vale refeição (2026)',
+    description: 'Quais maquininhas aceitam vale refeição, VR, VA e Sodexo? Compare as 5 melhores de 2026: PagBank, Ton, Yelly e SumUp.',
+    category: 'Reviews',
+  },
+  {
+    url: '/melhores-contabilidades-online',
+    title: 'Melhores Contabilidades Online (Atualizado 2026)',
+    description: 'Comparação completa das 6 melhores contabilidades online do Brasil. Análise de preços, serviços, prós e contras.',
+    category: 'Reviews',
+  },
+  {
+    url: '/melhores-sistemas-pdv',
+    title: 'Melhores sistemas PDV: Atualizado Maio 2026',
+    description: 'Compare os melhores sistemas PDV do Brasil em 2026. Análise por tipo de negócio, preços reais, integração com TEF e NF-e.',
+    category: 'Reviews',
+  },
+  {
+    url: '/melhores-sistemas-nota-fiscal',
+    title: 'Melhores Sistemas de NF-e, NFS-e e NFC-e (Atualizado 2026)',
+    description: 'Comparativo dos melhores sistemas de emissão de nota fiscal eletrônica. Preços reais e qual escolher para MEI, ME ou EPP.',
+    category: 'Reviews',
+  },
+  {
+    url: '/como-fazer-um-plano-de-negocios-guia-completo-e-pratico-2026',
+    title: 'Como Fazer um Plano de Negócios: Guia Completo e Prático 2026',
+    description: 'Aprenda a criar um plano de negócios do zero com exemplos práticos e modelos prontos.',
+    category: 'Guias',
+  },
+  {
+    url: '/como-registrar-uma-marca',
+    title: 'Como Registrar uma Marca no INPI: Passo a Passo 2026',
+    description: 'Guia completo para registrar sua marca no INPI. Etapas, prazos e custos explicados de forma simples.',
+    category: 'Guias',
+  },
+  {
+    url: '/calculadora-salario-liquido',
+    title: 'Calculadora de Salário Líquido',
+    description: 'Calcule o salário líquido descontando INSS e IRRF de forma rápida e precisa.',
+    category: 'Calculadoras',
+  },
+  {
+    url: '/calculadora-juros-compostos',
+    title: 'Calculadora de Juros Compostos',
+    description: 'Simule investimentos e financiamentos com juros compostos. Resultado imediato.',
+    category: 'Calculadoras',
+  },
+];
+
+const searchData = [...blogEntries, ...reviewEntries];
 ---
 
 <Layout 
@@ -217,6 +268,10 @@ const searchData = allPosts.map(p => ({
       overflow: hidden;
       z-index: 50;
       border: 1px solid rgba(0,0,0,0.06);
+      max-height: 360px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #d1d5db transparent;
     }
     .search-dropdown[hidden] { display: none; }
 
@@ -279,21 +334,6 @@ const searchData = allPosts.map(p => ({
       color: #2d6a4f;
       transform: translateX(2px);
     }
-    :global(.sd-footer) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 16px;
-      border-top: 1px solid #f3f4f6;
-      font-family: 'Nunito Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: #2d6a4f;
-      text-decoration: none;
-      transition: background 0.12s;
-    }
-    :global(.sd-footer:hover) { background: #f0faf4; }
     :global(.sd-empty) {
       padding: 20px 16px;
       font-family: 'Nunito Sans', sans-serif;
@@ -827,18 +867,16 @@ const searchData = allPosts.map(p => ({
           dropdown.innerHTML = `<p class="sd-empty">Nenhum resultado para <strong>"${q.trim()}"</strong>.</p>`;
           return;
         }
-        const shown = results.slice(0, 6);
         const header = `<div class="sd-header">${results.length} resultado${results.length !== 1 ? 's' : ''}</div>`;
-        const items = shown.map(p => `
-          <a href="/blog/${p.id}/" class="sd-item">
+        const items = results.map(p => `
+          <a href="${p.url}" class="sd-item">
             <span class="sd-icon-wrap">${searchIcon}</span>
             <span class="sd-title">${p.title}</span>
             <span class="sd-arrow">${arrowIcon}</span>
           </a>
         `).join('');
-        const footer = `<a href="/busca?q=${encodeURIComponent(q.trim())}" class="sd-footer">Ver todos os resultados ${arrowIcon}</a>`;
         dropdown.hidden = false;
-        dropdown.innerHTML = header + items + footer;
+        dropdown.innerHTML = header + items;
       }
 
       input.addEventListener('input', () => {
