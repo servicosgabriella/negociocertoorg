@@ -213,45 +213,95 @@ const searchData = allPosts.map(p => ({
       right: 0;
       background: #fff;
       border-radius: 14px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06);
       overflow: hidden;
       z-index: 50;
-      border: 1px solid rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.06);
     }
     .search-dropdown[hidden] { display: none; }
-    .sd-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 18px;
-      text-decoration: none;
-      border-bottom: 1px solid #f3f4f6;
-      transition: background 0.12s;
-    }
-    .sd-item:last-child { border-bottom: none; }
-    .sd-item:hover { background: #f0faf4; }
-    .sd-item:hover .sd-title { color: #2d6a4f; }
-    .sd-icon {
-      flex-shrink: 0;
+
+    /* :global() needed because these are injected via innerHTML */
+    :global(.sd-header) {
+      padding: 10px 16px 9px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
       color: #9ca3af;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    :global(.sd-item) {
       display: flex;
       align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-bottom: 1px solid #f9fafb;
+      transition: background 0.12s;
+      color: #111827;
     }
-    .sd-title {
+    :global(.sd-item:last-of-type) { border-bottom: none; }
+    :global(.sd-item:hover) { background: #f0faf4; }
+    :global(.sd-item:hover .sd-title) { color: #1d6b3d; }
+    :global(.sd-icon-wrap) {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: #e8f5ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2d6a4f;
+    }
+    :global(.sd-title) {
       font-family: 'Nunito Sans', sans-serif;
       font-size: 14px;
       font-weight: 600;
       color: #111827;
-      line-height: 1.4;
+      line-height: 1.35;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       transition: color 0.12s;
     }
-    .sd-empty {
-      padding: 22px 18px;
+    :global(.sd-arrow) {
+      flex-shrink: 0;
+      color: #d1d5db;
+      display: flex;
+      align-items: center;
+      transition: color 0.12s, transform 0.12s;
+    }
+    :global(.sd-item:hover .sd-arrow) {
+      color: #2d6a4f;
+      transform: translateX(2px);
+    }
+    :global(.sd-footer) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-top: 1px solid #f3f4f6;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #2d6a4f;
+      text-decoration: none;
+      transition: background 0.12s;
+    }
+    :global(.sd-footer:hover) { background: #f0faf4; }
+    :global(.sd-empty) {
+      padding: 20px 16px;
       font-family: 'Nunito Sans', sans-serif;
       font-size: 14px;
       color: #9ca3af;
       text-align: center;
     }
+    :global(.sd-empty strong) { color: #6b7280; font-weight: 600; }
 
     /* ======= CATEGORIES ======= */
     .categories-section {
@@ -764,7 +814,8 @@ const searchData = allPosts.map(p => ({
         });
       }
 
-      const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" /></svg>`;
+      const searchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6 6a7.5 7.5 0 0 0 10.65 10.65Z" /></svg>`;
+      const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>`;
 
       function render(results, q) {
         if (!q.trim() || q.trim().length < 2) {
@@ -773,16 +824,21 @@ const searchData = allPosts.map(p => ({
         }
         if (results.length === 0) {
           dropdown.hidden = false;
-          dropdown.innerHTML = '<p class="sd-empty">Nenhum resultado encontrado.</p>';
+          dropdown.innerHTML = `<p class="sd-empty">Nenhum resultado para <strong>"${q.trim()}"</strong>.</p>`;
           return;
         }
-        dropdown.hidden = false;
-        dropdown.innerHTML = results.map(p => `
+        const shown = results.slice(0, 6);
+        const header = `<div class="sd-header">${results.length} resultado${results.length !== 1 ? 's' : ''}</div>`;
+        const items = shown.map(p => `
           <a href="/blog/${p.id}/" class="sd-item">
-            <span class="sd-icon">${searchIcon}</span>
+            <span class="sd-icon-wrap">${searchIcon}</span>
             <span class="sd-title">${p.title}</span>
+            <span class="sd-arrow">${arrowIcon}</span>
           </a>
         `).join('');
+        const footer = `<a href="/busca?q=${encodeURIComponent(q.trim())}" class="sd-footer">Ver todos os resultados ${arrowIcon}</a>`;
+        dropdown.hidden = false;
+        dropdown.innerHTML = header + items + footer;
       }
 
       input.addEventListener('input', () => {
