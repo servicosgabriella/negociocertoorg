@@ -95,6 +95,9 @@ const searchData = [...blogEntries, ...reviewEntries];
           <div class="search-dropdown" id="heroSearchDropdown" role="listbox" hidden></div>
         </div>
       </div>
+      <div class="hero-image-wrap">
+        <img src="/images/hero-empreendedor.png" alt="Empreendedor gerenciando seu negócio" class="hero-image" />
+      </div>
     </div>
   </section>
 
@@ -181,15 +184,47 @@ const searchData = [...blogEntries, ...reviewEntries];
     /* ======= HERO ======= */
     .hero-section {
       background: linear-gradient(135deg, #0d4a28 0%, #1d6b3d 45%, #3aaa62 100%);
+      overflow: hidden;
     }
     .hero-inner {
       max-width: 1200px;
       margin: 0 auto;
       padding: 64px 32px 80px;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      align-items: center;
+      gap: 0;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 960px) {
       .hero-inner {
+        grid-template-columns: 1fr;
         padding: 40px 20px 64px;
+      }
+    }
+
+    /* Imagem hero */
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 100%;
+      min-height: 380px;
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 0;
+      mask-image: linear-gradient(to right, transparent 0%, black 35%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 35%);
+    }
+    @media (max-width: 960px) {
+      .hero-image-wrap {
+        display: none;
       }
     }
 
