@@ -970,9 +970,10 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
     /* ===== TOOL: 2 COLUNAS ===== */
     .calc-tool {
       display: grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 16px;
       margin-bottom: 40px;
+      align-items: start;
     }
     @media (max-width: 860px) {
       .calc-tool { grid-template-columns: 1fr; }
@@ -1226,7 +1227,6 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       display: flex;
       flex-direction: column;
       gap: 0;
-      height: 100%;
       box-sizing: border-box;
       background: #fff;
       border-radius: 0;
@@ -1243,7 +1243,7 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       line-height: 1;
     }
     .calc-chart-sub { font-size: 13px; color: #9ca3af; margin: 4px 0 0; font-weight: 500; }
-    .calc-chart-area { flex: 1; position: relative; min-height: 200px; }
+    .calc-chart-area { position: relative; height: 300px; }
     .calc-chart-legend {
       display: flex;
       justify-content: center;
