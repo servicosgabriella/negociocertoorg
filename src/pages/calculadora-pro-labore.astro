@@ -99,6 +99,38 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
               "@type": "Answer",
               "text": "No Lucro Presumido, o sócio administrador é classificado como contribuinte individual. A empresa retém 11% do pró-labore como contribuição do sócio (ou aplica a tabela progressiva, que pode resultar em valor menor) e paga ao INSS via GPS. Além disso, a empresa paga 20% de INSS patronal sobre o pró-labore, mais RAT (1% a 3%) e contribuições a terceiros (~5,8%). O custo total patronal gira em torno de 27% a 29% sobre o valor do pró-labore, tornando-o mais caro que no Simples Nacional."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Sócio tem direito a 13° salário e férias sobre o pró-labore?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O pró-labore não gera direito a 13° salário, férias remuneradas, aviso prévio ou FGTS. Esses benefícios são exclusivos do regime CLT e não se aplicam ao sócio remunerado por pró-labore. O sócio é dono do negócio — sua relação com a empresa é de participação societária, não de emprego. Para ter acesso a esses benefícios seria necessário estabelecer vínculo empregatício formal, o que na maioria dos casos é tributariamente menos eficiente do que manter a relação societária com pró-labore e distribuição de lucros."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que acontece se a empresa não recolher o INSS do pró-labore no prazo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O não recolhimento gera multa automática de 0,33% ao dia (limitada a 20%) mais juros pela taxa Selic. O débito pode se inscrever em Dívida Ativa da União, impedindo a empresa de obter certidão negativa de débitos (CND). Para o sócio, o período sem recolhimento não conta para carência previdenciária, afetando futuros benefícios como aposentadoria e auxílio-doença."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sócio com emprego CLT precisa pagar INSS sobre o pró-labore mesmo já atingindo o teto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. A empresa tem obrigação de reter INSS sobre o pró-labore mesmo que o sócio já tenha atingido o teto de R$ 988,09 pelo vínculo CLT. O excesso recolhido acima do teto é recuperável na declaração anual do IRPF, onde é registrado como dedução e abatido do imposto devido ou restituído."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pró-labore pode ser zero? Quais são os riscos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tecnicamente sim — a legislação não obriga um valor mínimo para sócios de empresas comuns. Na prática, pró-labore zero para sócios ativos é sinal de alerta para a Receita Federal, que pode requalificar parte da distribuição de lucros como pró-labore disfarçado e cobrar INSS e IRPF retroativos com juros e multas. A orientação conservadora é manter pelo menos o salário mínimo como pró-labore para sócios operacionalmente ativos."
+            }
           }
         ]
       }
@@ -487,6 +519,12 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       <p>A obrigatoriedade do INSS sobre o pró-labore depende da função exercida pelo sócio. Para o <strong>sócio administrador</strong> — aquele que exerce funções de gerência ou direção da empresa — o recolhimento é obrigatório, sem exceção. A Receita Federal e a Previdência Social entendem que o exercício de poder de gestão é uma atividade remunerada que exige contribuição.</p>
       <p>Para o <strong>sócio não administrador</strong> — que participa da empresa apenas com capital, sem exercer funções executivas — o INSS sobre o pró-labore é facultativo. Se optar por não recolher, esse sócio não terá cobertura previdenciária sobre esses rendimentos, ficando sem direito a aposentadoria por tempo de contribuição, auxílio-doença, salário-maternidade e outros benefícios com base nessa fonte de renda. Muitos sócios não administradores que têm outro emprego CLT já contribuem pelo vínculo empregatício e optam por não recolher INSS sobre o pró-labore para reduzir custos.</p>
 
+      <h2>Sócio que também tem emprego CLT: como fica o INSS e o teto de contribuição</h2>
+      <p>É comum que sócios de pequenas empresas mantenham um emprego CLT enquanto desenvolvem o negócio. Nesse caso, surgem dúvidas importantes sobre a contribuição ao INSS nos dois vínculos simultâneos.</p>
+      <p>O <strong>teto de contribuição do INSS em 2026 é R$ 988,09 mensais</strong>, independentemente de quantos vínculos o contribuinte possui. A empresa onde o sócio trabalha como CLT já retém e recolhe o INSS sobre o salário. A empresa do pró-labore também tem obrigação de reter o INSS sobre o pró-labore — mesmo que o sócio já tenha atingido o teto pelo vínculo CLT.</p>
+      <p>O resultado prático é que o sócio pode recolher INSS acima do teto ao longo do ano. O excesso é recuperável: na declaração anual do IRPF, o valor total de INSS recolhido em todos os vínculos é somado e o excesso sobre o teto é registrado como dedução, abatendo o imposto devido ou gerando restituição. Para isso, é essencial guardar os comprovantes de recolhimento de ambos os vínculos — contracheques, GPS e informes de rendimentos.</p>
+      <p>A empresa do pró-labore não pode deixar de reter o INSS alegando que o teto já foi atingido pelo CLT — a obrigação de retenção existe independentemente. A compensação só ocorre na declaração anual. Para minimizar o recolhimento duplicado, muitos sócios com vínculo CLT ativo optam por manter o pró-labore no valor mínimo (salário mínimo) enquanto o emprego estiver em vigor.</p>
+
       <h2>Custo patronal do pró-labore: a diferença entre Simples Nacional e Lucro Presumido</h2>
       <p>O regime tributário da empresa determina o custo adicional que ela tem sobre o pró-labore dos sócios. Essa diferença pode ser significativa e é um dos fatores que influenciam a escolha do regime tributário.</p>
       <p>No <strong>Simples Nacional</strong>, a Contribuição Patronal Previdenciária (CPP) está incluída no DAS mensal, que é calculado sobre a receita bruta. Não há INSS patronal adicional sobre o pró-labore. O custo da empresa é exatamente o valor do pró-labore pago.</p>
@@ -503,6 +541,54 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       <p>No Simples Nacional, o pró-labore tem tratamento diferenciado do ponto de vista patronal, mas o sócio ainda paga seu INSS normalmente. A empresa retém o INSS do sócio pela tabela progressiva e recolhe via GPS separadamente do Simples. O DAS do Simples já inclui a CPP patronal calculada sobre a receita bruta, então não há INSS patronal adicional sobre o pró-labore.</p>
       <p>Para o IRPF, a regra é a mesma independentemente do regime: a empresa pode reter na fonte e recolher via DARF mensalmente, ou o sócio pode recolher por conta própria via carnê-leão. A base de cálculo é o pró-labore bruto menos o INSS recolhido menos as deduções por dependentes e outras deduções legais.</p>
       <p>Uma dúvida comum é se o pró-labore entra na base de cálculo do Simples Nacional. A resposta é não. O pró-labore é uma despesa da empresa, mas a base do Simples é a receita bruta, não a receita menos despesas. Pagar pró-labore não reduz o Simples a pagar, mas reduz o lucro distribuível — o que indiretamente pode ser planejado pelo contador para otimizar a carga tributária total.</p>
+
+      <h2>Prazo para recolher INSS e IRPF do pró-labore: GPS, DARF e datas de vencimento</h2>
+      <p>A empresa que paga pró-labore assume a obrigação de reter e recolher os encargos dentro dos prazos legais. Atraso gera multa automática e juros pela taxa Selic, além de criar débito previdenciário que pode bloquear certidões negativas da empresa. As datas de vencimento variam conforme o encargo.</p>
+      <div class="calc-table-scroll" style="margin-bottom:16px">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Encargo</th>
+              <th style="text-align:left">Guia</th>
+              <th>Código</th>
+              <th style="text-align:left">Vencimento</th>
+              <th style="text-align:left">Quem recolhe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left; color:#374151">INSS do sócio (contribuinte individual)</td>
+              <td style="text-align:left; color:#374151">GPS</td>
+              <td>1007</td>
+              <td style="text-align:left; color:#374151">Dia 20 do mês seguinte</td>
+              <td style="text-align:left; color:#374151">Empresa retém e recolhe</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">INSS patronal (Lucro Presumido / Lucro Real)</td>
+              <td style="text-align:left; color:#374151">GPS</td>
+              <td>2100</td>
+              <td style="text-align:left; color:#374151">Dia 20 do mês seguinte</td>
+              <td style="text-align:left; color:#374151">Empresa (custo próprio)</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">IRPF retido na fonte pela empresa</td>
+              <td style="text-align:left; color:#374151">DARF</td>
+              <td>0561</td>
+              <td style="text-align:left; color:#374151">Último dia útil do mês seguinte</td>
+              <td style="text-align:left; color:#374151">Empresa retém e recolhe</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">IRPF via carnê-leão (sem retenção)</td>
+              <td style="text-align:left; color:#374151">DARF</td>
+              <td>0190</td>
+              <td style="text-align:left; color:#374151">Último dia útil do mês seguinte</td>
+              <td style="text-align:left; color:#374151">Sócio recolhe por conta própria</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>No <strong>Simples Nacional</strong>, a GPS do INSS do sócio é recolhida separadamente do DAS — o DAS não quita a contribuição previdenciária do sócio. Se a empresa esquecer a GPS, o INSS do sócio fica em aberto mesmo com o DAS em dia. No <strong>Lucro Presumido e Lucro Real</strong>, o INSS patronal e o INSS do sócio são recolhidos em GPS separadas, ambas com vencimento no dia 20.</p>
+      <p>Quando o vencimento cai em sábado, domingo ou feriado, a guia vence no <strong>próximo dia útil</strong>. Atraso na GPS gera multa de 0,33% ao dia (limitada a 20%) mais juros Selic. O débito acumulado pode resultar em inscrição em <strong>Dívida Ativa</strong> e impedir a emissão de certidão negativa de débitos (CND), necessária para licitações, renovação de alvarás e acesso a crédito.</p>
 
       <h2>Quanto pagar de pró-labore? Mínimo legal, padrão de mercado e riscos</h2>
       <p>A legislação brasileira não define valor mínimo de pró-labore para sócios de empresas comuns. Tecnicamente, é possível ter pró-labore zero. No entanto, a Receita Federal e o INSS podem questionar essa situação, especialmente quando os sócios são ativos na empresa e recebem distribuição de lucros expressiva sem remuneração pelo trabalho.</p>
@@ -537,6 +623,18 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
 
       <h3>Como funciona o INSS do sócio no Lucro Presumido?</h3>
       <p>No Lucro Presumido, o sócio administrador é classificado como contribuinte individual. A empresa retém o INSS do sócio pela tabela progressiva 2026 e paga ao INSS via GPS. Além disso, a empresa paga 20% de INSS patronal sobre o pró-labore com recursos próprios, mais RAT (1% a 3%) e contribuições a terceiros (~5,8%). O custo patronal total gira entre 27% e 29% sobre o valor do pró-labore.</p>
+
+      <h3>Sócio tem direito a 13° salário e férias sobre o pró-labore?</h3>
+      <p>Não. O pró-labore não gera direito a 13° salário, férias remuneradas com 1/3, aviso prévio ou FGTS. Esses benefícios são exclusivos do regime CLT e não se aplicam ao sócio remunerado por pró-labore. O sócio é dono do negócio — sua relação com a empresa é de participação societária, não de emprego. Para ter acesso a esses benefícios seria necessário estabelecer vínculo empregatício formal, o que na maioria dos casos é tributariamente menos eficiente do que manter a relação societária com pró-labore e distribuição de lucros.</p>
+
+      <h3>O que acontece se a empresa não recolher o INSS do pró-labore no prazo?</h3>
+      <p>O não recolhimento gera multa automática de 0,33% ao dia (limitada a 20%) mais juros pela taxa Selic sobre o valor em atraso. O débito se inscreve em Dívida Ativa da União se não regularizado, impedindo a empresa de obter certidão negativa de débitos (CND) — necessária para licitações, renovações de alvará e acesso a financiamentos. Para o sócio, o período sem recolhimento não conta para carência previdenciária, podendo afetar benefícios futuros como aposentadoria e auxílio-doença. A regularização pode ser feita via parcelamento, mas os juros e multas acumulados podem ser elevados em atrasos prolongados.</p>
+
+      <h3>Sócio com emprego CLT precisa pagar INSS sobre o pró-labore mesmo já atingindo o teto?</h3>
+      <p>Sim. A empresa tem obrigação de reter INSS sobre o pró-labore mesmo que o sócio já tenha atingido o teto de R$ 988,09 pelo vínculo CLT. Não é possível solicitar dispensa da retenção. O excesso recolhido acima do teto é recuperável na declaração anual do IRPF: o INSS total de todos os vínculos é somado e o valor acima do teto é registrado como dedução, abatendo o imposto devido ou gerando restituição.</p>
+
+      <h3>Pró-labore pode ser zero? Quais são os riscos?</h3>
+      <p>Tecnicamente sim — a legislação não define valor mínimo de pró-labore para sócios de empresas comuns. Na prática, pró-labore zero para sócios ativos no negócio é um sinal de alerta para a Receita Federal e o INSS. Se os sócios trabalham visivelmente na empresa mas recebem apenas distribuição de lucros, as autoridades podem requalificar parte da distribuição como pró-labore disfarçado e cobrar INSS e IRPF retroativos com juros e multas. O risco é maior em empresas onde os sócios exercem funções que teriam valor de mercado relevante e não há funcionários que justifiquem a operação sem eles. A orientação da maioria dos contadores é manter pelo menos o salário mínimo como pró-labore para sócios operacionalmente ativos.</p>
 
     </article>
 
