@@ -276,6 +276,14 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
           </div>
         </div>
 
+        <div class="calc-isencao-notice" id="aviso-isencao" style="display:none">
+          <strong>Isenção de IR 2026</strong> — Pró-labore até R$ 5.000 é isento de Imposto de Renda pela Lei 15.270/2025. O valor zero não é erro de cálculo.
+        </div>
+
+        <div class="calc-isencao-notice calc-isencao-notice--redutor" id="aviso-redutor" style="display:none">
+          <strong>Redutor 2026</strong> — Entre R$ 5.000 e R$ 7.350 o IR é reduzido gradualmente pela Lei 15.270/2025. O imposto é menor do que o calculado pela tabela progressiva pura.
+        </div>
+
         <p class="calc-disclaimer" id="disc-mei" style="display:none">MEI: INSS já incluído no DAS (valor fixo mensal). Não é descontado do pró-labore.</p>
         <p class="calc-disclaimer" id="disc-padrao">Tabelas INSS e IRPF 2026 (Lei 15.270/2025). Isenção IR até R$ 5.000 bruto.</p>
       </aside>
@@ -676,6 +684,12 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       document.getElementById('disc-mei').style.display    = r.isMEI ? '' : 'none';
       document.getElementById('disc-padrao').style.display = r.isMEI ? 'none' : '';
 
+      // Avisos de isenção/redutor 2026
+      var avisoIsencao = document.getElementById('aviso-isencao');
+      var avisoReductor = document.getElementById('aviso-redutor');
+      if (avisoIsencao) avisoIsencao.style.display = (reterIR && r.bruto > 0 && r.bruto <= 5000) ? '' : 'none';
+      if (avisoReductor) avisoReductor.style.display = (reterIR && r.bruto > 5000 && r.bruto <= 7350) ? '' : 'none';
+
       // Resultado principal
       document.getElementById('result-liquido').textContent = fmt(r.liquido);
       document.getElementById('result-pct').textContent     = r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto';
@@ -696,7 +710,7 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
         { label: 'Pró-labore bruto',   valor: r.bruto,    sinal: '',  obs: 'Valor definido em contrato social ou ata',   bold: false },
         { label: 'INSS sócio',         valor: r.inss,     sinal: '−', obs: r.isMEI ? 'Incluído no DAS do MEI' : (r.inssAtivo ? 'Tabela progressiva 2026' : 'Não recolhido (facultativo)'), bold: false },
         { label: 'Base de cálculo IR', valor: baseIR,     sinal: '',  obs: 'Pró-labore − INSS − Deduções',               bold: false, skip: !reterIR },
-        { label: 'IRPF',               valor: r.irpf,     sinal: '−', obs: reterIR ? 'Tabela progressiva 2026' : 'Não retido na fonte — recolher via carnê-leão', bold: false },
+        { label: 'IRPF',               valor: r.irpf,     sinal: '−', obs: !reterIR ? 'Não retido na fonte — recolher via carnê-leão' : (r.bruto <= 5000 ? 'Isento pela Lei 15.270/2025 (até R$ 5.000)' : r.bruto <= 7350 ? 'Redutor 2026 aplicado (Lei 15.270/2025)' : 'Tabela progressiva 2026'), bold: false },
         { label: 'Deduções adicionais',valor: r.deducoes, sinal: '−', obs: 'Pensão alimentícia, prev. privada, etc.',     bold: false, skip: r.deducoes === 0 },
         { label: 'Pró-labore líquido', valor: r.liquido,  sinal: '',  obs: r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto', bold: true },
       ];
@@ -1188,6 +1202,22 @@ const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
       color: #9ca3af;
       margin: 0;
       line-height: 1.5;
+    }
+    .calc-isencao-notice {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 3px solid #16a34a;
+      border-radius: 4px;
+      padding: 9px 12px;
+      font-size: 12px;
+      color: #166534;
+      line-height: 1.5;
+    }
+    .calc-isencao-notice--redutor {
+      background: #fefce8;
+      border-color: #fde68a;
+      border-left-color: #eab308;
+      color: #854d0e;
     }
 
     /* ===== CHART PANEL ===== */
