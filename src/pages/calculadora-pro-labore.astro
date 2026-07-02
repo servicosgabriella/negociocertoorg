@@ -1,0 +1,1414 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Calculadora de Pró-Labore 2026 — INSS e IRPF para Sócios";
+const description = "Calcule o pró-labore líquido do sócio com INSS progressivo e IRPF 2026 atualizados. Simples Nacional, Lucro Presumido e MEI. Custo total para a empresa incluído.";
+const canonicalUrl = new URL('/calculadora-pro-labore/', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": canonicalUrl + "#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://negociocerto.org/" },
+          { "@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://negociocerto.org/calculadoras/" },
+          { "@type": "ListItem", "position": 3, "name": "Calculadora de Pró-Labore" }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "@id": canonicalUrl + "#app",
+        "name": "Calculadora de Pró-Labore",
+        "description": description,
+        "url": canonicalUrl,
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Negócio Certo",
+          "url": Astro.site?.href ?? ''
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": canonicalUrl + "#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Sócio não administrador precisa pagar INSS sobre pró-labore?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para sócios não administradores, o pagamento de INSS sobre o pró-labore é facultativo. Se optar por não recolher, perde o direito a benefícios previdenciários como aposentadoria por tempo de contribuição, auxílio-doença e salário-maternidade com base nessa renda. Sócios administradores têm recolhimento obrigatório, independentemente do regime tributário da empresa (exceto MEI, onde o DAS já cobre o INSS)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O pró-labore entra no cálculo do Simples Nacional?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O pró-labore é uma despesa da empresa, mas não compõe a receita bruta utilizada para calcular o Simples Nacional. A tributação do pró-labore é feita separadamente: a empresa retém o INSS do sócio (tabela progressiva) e recolhe via GPS, e o sócio paga IRPF mensalmente via carnê-leão ou DARF, ou tem o imposto retido na fonte pela empresa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual é o pró-labore mínimo permitido por lei?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A legislação brasileira não define um valor mínimo obrigatório de pró-labore para sócios de empresas comuns. No entanto, a Receita Federal pode questionar valores muito abaixo do mercado como forma de planejamento tributário para reduzir INSS e IRPF. O padrão de mercado e a orientação contábil é pagar pelo menos o salário mínimo vigente (R$ 1.621,00 em 2026) como pró-labore para sócios ativos. Para MEI, o pró-labore recomendado é exatamente o salário mínimo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pró-labore e distribuição de lucros são a mesma coisa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. São remunerações completamente diferentes com tratamentos tributários opostos. O pró-labore é a remuneração pelo trabalho do sócio e incide INSS e IRPF. A distribuição de lucros é a participação nos resultados da empresa e, quando feita com base em escrituração contábil regular, é isenta de INSS e de IRPF para o sócio. Por isso, muitos contadores recomendam manter o pró-labore no mínimo necessário e maximizar a distribuição de lucros dentro da legalidade."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona o INSS do sócio no Lucro Presumido?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No Lucro Presumido, o sócio administrador é classificado como contribuinte individual. A empresa retém 11% do pró-labore como contribuição do sócio (ou aplica a tabela progressiva, que pode resultar em valor menor) e paga ao INSS via GPS. Além disso, a empresa paga 20% de INSS patronal sobre o pró-labore, mais RAT (1% a 3%) e contribuições a terceiros (~5,8%). O custo total patronal gira em torno de 27% a 29% sobre o valor do pró-labore, tornando-o mais caro que no Simples Nacional."
+            }
+          }
+        ]
+      }
+    ]
+  })} />
+</head>
+<body>
+  <Header />
+
+  <main class="calc-main">
+
+    <nav aria-label="Breadcrumb" class="calc-breadcrumb">
+      <ol>
+        <li><a href="/" aria-label="Início"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display:inline-block;vertical-align:-2px"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h4a1 1 0 001-1v-3h2v3a1 1 0 001 1h4a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg></a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><a href="/calculadoras/">Calculadoras</a></li>
+        <li><span aria-hidden="true">›</span></li>
+        <li><span class="current">Calculadora de Pró-Labore</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="calc-page-title">Calculadora de Pró-Labore 2026 — INSS e IRPF para Sócios</h1>
+    <p class="calc-page-desc">Descubra quanto o sócio realmente recebe depois de INSS e Imposto de Renda, e quanto a empresa paga no total com encargos patronais.</p>
+
+    <div class="calc-tool">
+
+      <!-- PAINEL ESQUERDO: FORM -->
+      <aside class="calc-form-panel">
+        <h2 class="calc-form-title">Dados do pró-labore</h2>
+
+        <div class="calc-field">
+          <label class="calc-label" for="inp-bruto">
+            Pró-labore bruto
+            <span class="tip-wrap" aria-label="Valor do pró-labore definido em contrato social ou ata. É a remuneração pelo trabalho do sócio antes de qualquer desconto.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Valor do pró-labore definido em contrato social ou ata. É a remuneração pelo trabalho do sócio antes de qualquer desconto.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <span class="calc-unit left">R$</span>
+            <input id="inp-bruto" class="calc-input" type="text" inputmode="numeric" value="5.000" />
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">
+            Tipo de sócio
+            <span class="tip-wrap" aria-label="Sócio administrador tem INSS obrigatório. Sócio não administrador pode optar por não recolher INSS, mas perde os benefícios previdenciários.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Sócio administrador tem INSS obrigatório. Sócio não administrador pode optar por não recolher INSS, mas perde os benefícios previdenciários.</span>
+            </span>
+          </label>
+          <div class="calc-toggle-group" role="group" aria-label="Tipo de sócio">
+            <button class="calc-toggle active" data-value="admin" type="button" id="btn-admin">Administrador</button>
+            <button class="calc-toggle" data-value="nao-admin" type="button" id="btn-nao-admin">Não admin.</button>
+          </div>
+        </div>
+
+        <!-- Apenas para não-admin: toggle INSS facultativo -->
+        <div class="calc-field" id="field-inss-facultativo" style="display:none">
+          <label class="calc-label">
+            Recolher INSS?
+            <span class="tip-wrap" aria-label="Sócios não administradores podem optar por não recolher INSS, economizando até R$ 988,09/mês, mas ficam sem cobertura previdenciária.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Sócios não administradores podem optar por não recolher INSS, economizando até R$ 988,09/mês, mas ficam sem cobertura previdenciária.</span>
+            </span>
+          </label>
+          <div class="calc-toggle-group" role="group" aria-label="Recolher INSS">
+            <button class="calc-toggle active" data-value="sim" type="button" id="btn-inss-sim">Sim</button>
+            <button class="calc-toggle" data-value="nao" type="button" id="btn-inss-nao">Não</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="sel-regime">
+            Regime tributário
+            <span class="tip-wrap" aria-label="O regime da empresa afeta os encargos patronais. No Simples Nacional e MEI, não há INSS patronal adicional. No Lucro Presumido/Real, a empresa paga 20% de INSS patronal + RAT + terceiros sobre o pró-labore.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">O regime da empresa afeta os encargos patronais. No Simples Nacional e MEI, não há INSS patronal adicional. No Lucro Presumido/Real, a empresa paga 20% de INSS patronal + RAT + terceiros sobre o pró-labore.</span>
+            </span>
+          </label>
+          <div class="calc-select-wrap">
+            <select id="sel-regime" class="calc-select">
+              <option value="simples">Simples Nacional</option>
+              <option value="presumido">Lucro Presumido / Lucro Real</option>
+              <option value="mei">MEI</option>
+            </select>
+            <span class="calc-select-arrow">&#9662;</span>
+          </div>
+        </div>
+
+        <!-- RAT (apenas para Lucro Presumido/Real) -->
+        <div class="calc-field" id="field-rat" style="display:none">
+          <label class="calc-label" for="sel-rat">
+            Grau de risco (RAT)
+            <span class="tip-wrap" aria-label="Alíquota do Seguro Acidente de Trabalho, definida pelo grau de risco da atividade da empresa conforme CNAE. Baixo risco: 1%, médio: 2%, alto: 3%.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Alíquota do Seguro Acidente de Trabalho, definida pelo grau de risco da atividade da empresa conforme CNAE. Baixo risco: 1%, médio: 2%, alto: 3%.</span>
+            </span>
+          </label>
+          <div class="calc-select-wrap">
+            <select id="sel-rat" class="calc-select">
+              <option value="0.01">1% — Baixo risco</option>
+              <option value="0.02" selected>2% — Médio risco</option>
+              <option value="0.03">3% — Alto risco</option>
+            </select>
+            <span class="calc-select-arrow">&#9662;</span>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">
+            Reter IRPF na fonte?
+            <span class="tip-wrap" aria-label="Se sim, a empresa retém e recolhe o IRPF mensalmente. Se não, o sócio deve recolher o imposto por conta própria via carnê-leão ou DARF mensal.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Se sim, a empresa retém e recolhe o IRPF mensalmente. Se não, o sócio deve recolher o imposto por conta própria via carnê-leão ou DARF mensal.</span>
+            </span>
+          </label>
+          <div class="calc-toggle-group" role="group" aria-label="Reter IRPF na fonte">
+            <button class="calc-toggle active" data-value="sim" type="button" id="btn-ir-sim">Sim</button>
+            <button class="calc-toggle" data-value="nao" type="button" id="btn-ir-nao">Não</button>
+          </div>
+        </div>
+
+        <div class="calc-field" id="field-dependentes">
+          <label class="calc-label" for="inp-dependentes">
+            Número de dependentes
+            <span class="tip-wrap" aria-label="Filhos, cônjuge ou outros dependentes declarados. Cada um reduz a base de cálculo do IRPF em R$ 189,59. Não afeta o desconto do INSS.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Filhos, cônjuge ou outros dependentes declarados. Cada um reduz a base de cálculo do IRPF em R$ 189,59. Não afeta o desconto do INSS.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <input id="inp-dependentes" class="calc-input" type="text" inputmode="numeric" value="0" />
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label" for="inp-deducoes">
+            Deduções adicionais
+            <span class="tip-wrap" aria-label="Pensão alimentícia judicial, previdência privada ou outras deduções aprovadas pela Receita Federal. Reduzem a base de cálculo do IRPF.">
+              <span class="tip-icon" aria-hidden="true">i</span>
+              <span class="tip-box" role="tooltip">Pensão alimentícia judicial, previdência privada ou outras deduções aprovadas pela Receita Federal. Reduzem a base de cálculo do IRPF.</span>
+            </span>
+          </label>
+          <div class="calc-input-wrap">
+            <span class="calc-unit left">R$</span>
+            <input id="inp-deducoes" class="calc-input" type="text" inputmode="numeric" value="0" />
+          </div>
+        </div>
+
+        <!-- RESUMO RÁPIDO -->
+        <div class="calc-summary-box">
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">INSS sócio</span>
+            <span class="calc-summary-val red" id="res-inss">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">IRPF</span>
+            <span class="calc-summary-val red" id="res-irpf">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-row">
+            <span class="calc-summary-label">Deduções</span>
+            <span class="calc-summary-val red" id="res-deducoes">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-divider"></div>
+          <div class="calc-summary-row total">
+            <span class="calc-summary-label">Total descontado</span>
+            <span class="calc-summary-val red" id="res-total-desc">− R$ 0,00</span>
+          </div>
+          <div class="calc-summary-divider"></div>
+          <div class="calc-summary-row" id="row-custo-emp">
+            <span class="calc-summary-label">Custo p/ empresa</span>
+            <span class="calc-summary-val" id="res-custo-empresa" style="color:#0d4a28; font-weight:700">R$ 0,00</span>
+          </div>
+        </div>
+
+        <p class="calc-disclaimer" id="disc-mei" style="display:none">MEI: INSS já incluído no DAS (valor fixo mensal). Não é descontado do pró-labore.</p>
+        <p class="calc-disclaimer" id="disc-padrao">Tabelas INSS e IRPF 2026 (Lei 15.270/2025). Isenção IR até R$ 5.000 bruto.</p>
+      </aside>
+
+      <!-- PAINEL DIREITO: GRÁFICO -->
+      <div class="calc-chart-panel">
+        <div class="calc-chart-header">
+          <p class="calc-chart-label">Pró-Labore Líquido</p>
+          <p class="calc-chart-total" id="result-liquido">R$ 0,00</p>
+          <p class="calc-chart-sub" id="result-pct">0% do bruto</p>
+        </div>
+        <div class="calc-chart-area">
+          <canvas id="grafico" aria-label="Gráfico de composição do pró-labore"></canvas>
+        </div>
+        <div class="calc-chart-legend">
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch liquido"></span>
+            Pró-labore líquido
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch inss"></span>
+            INSS sócio
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch irpf"></span>
+            IRPF
+          </span>
+          <span class="calc-legend-item">
+            <span class="calc-legend-swatch outros"></span>
+            Deduções
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABELA COMPOSIÇÃO DETALHADA -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Composição detalhada do pró-labore</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Item</th>
+              <th>Valor</th>
+              <th>% do Bruto</th>
+              <th style="text-align:left">Observação</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-body">
+            <!-- preenchido pelo JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TABELA CUSTO EMPRESA -->
+    <div class="calc-table-section" id="tabela-custo-section">
+      <h2 class="calc-section-title">Custo total para a empresa</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Encargo patronal</th>
+              <th>Alíquota</th>
+              <th>Valor</th>
+              <th style="text-align:left">Regime</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-custo-body">
+            <!-- preenchido pelo JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TABELA INSS DE REFERÊNCIA -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Tabela INSS 2026 — contribuinte individual (sócio)</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Faixa do pró-labore</th>
+              <th>Alíquota</th>
+              <th>Desconto máximo na faixa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left; color:#374151">Até R$ 1.621,00</td>
+              <td>7,5%</td>
+              <td>R$ 121,58</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 1.621,01 a R$ 2.902,84</td>
+              <td>9,0%</td>
+              <td>R$ 115,37</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.902,85 a R$ 4.354,27</td>
+              <td>12,0%</td>
+              <td>R$ 174,17</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 4.354,28 a R$ 8.475,55</td>
+              <td>14,0%</td>
+              <td>R$ 576,98</td>
+            </tr>
+            <tr class="highlight">
+              <td style="text-align:left"><strong>Teto de contribuição</strong></td>
+              <td><strong>—</strong></td>
+              <td><strong>R$ 988,09</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:14px 0 0; font-size:13px; color:#6b7280;">
+        A partir de 2020, o INSS do contribuinte individual passou a seguir a <strong>tabela progressiva</strong>, igual ao empregado CLT. A empresa retém a contribuição do sócio e recolhe via GPS separadamente do Simples Nacional ou da folha de pagamento.
+      </p>
+    </div>
+
+    <!-- TABELA IRPF DE REFERÊNCIA -->
+    <div class="calc-table-section">
+      <h2 class="calc-section-title">Tabela IRPF 2026 — faixas de tributação mensal</h2>
+      <div class="calc-table-scroll">
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th style="text-align:left">Base de cálculo (após INSS e deduções)</th>
+              <th>Alíquota</th>
+              <th>Parcela a deduzir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:left; color:#374151">Até R$ 2.428,80</td>
+              <td>Isento</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.428,81 a R$ 2.826,65</td>
+              <td>7,5%</td>
+              <td>R$ 182,16</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 2.826,66 a R$ 3.751,05</td>
+              <td>15%</td>
+              <td>R$ 394,16</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">De R$ 3.751,06 a R$ 4.664,68</td>
+              <td>22,5%</td>
+              <td>R$ 675,49</td>
+            </tr>
+            <tr>
+              <td style="text-align:left; color:#374151">Acima de R$ 4.664,68</td>
+              <td>27,5%</td>
+              <td>R$ 908,73</td>
+            </tr>
+            <tr class="highlight">
+              <td style="text-align:left"><strong>Dedução por dependente</strong></td>
+              <td><strong>—</strong></td>
+              <td><strong>R$ 189,59 / dependente</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:16px 0 0; font-size:13px; color:#6b7280;">
+        <strong>Redutor 2026 (Lei 15.270/2025):</strong> pró-labore bruto até R$ 5.000 está isento de IR.
+        Entre R$ 5.000,01 e R$ 7.350, aplica-se redução gradual: <code>Redutor = R$ 978,62 − (0,133145 × pró-labore bruto)</code>.
+        Acima de R$ 7.350, tabela progressiva integral.
+      </p>
+    </div>
+
+    <!-- CONTEÚDO EDUCATIVO -->
+    <article class="calc-article">
+
+      <h2>O que é pró-labore e por que ele é diferente de salário e distribuição de lucros</h2>
+      <p>O pró-labore é a remuneração que os sócios de uma empresa recebem pelo trabalho que prestam ao negócio. O nome vem do latim e significa "pelo trabalho". Diferente do salário de um empregado CLT, o pró-labore não gera FGTS, férias remuneradas, 13° salário ou aviso prévio. Mas assim como o salário, incide INSS e pode incidir Imposto de Renda.</p>
+      <p>A confusão mais comum é entre pró-labore e distribuição de lucros. São remunerações completamente diferentes com tributações opostas. O pró-labore é a contraprestação pelo trabalho — mesmo que a empresa tenha prejuízo, o sócio pode receber pró-labore. A distribuição de lucros, por sua vez, depende de resultado positivo e contabilidade regular, mas é isenta de INSS e de IRPF para o sócio quando feita com base em escrituração contábil.</p>
+      <div class="calc-formula-block">
+        <code>Pró-labore líquido = Bruto − INSS − IRPF − Deduções adicionais</code>
+      </div>
+      <p>Na prática, a estratégia mais eficiente para sócios ativos costuma ser manter o pró-labore no valor mínimo necessário para cumprir as obrigações previdenciárias e tributárias, complementando a remuneração com distribuição de lucros — que não tem incidência de INSS nem de IR.</p>
+
+      <h2>INSS sobre pró-labore: quem paga, quanto paga e como é calculado em 2026</h2>
+      <p>Desde a reforma do INSS em 2020, o contribuinte individual — categoria que inclui sócios e titulares de firma individual — passou a recolher INSS pela tabela progressiva, igual ao empregado CLT. Antes, a alíquota de 11% incidia sobre o valor total do pró-labore em uma única alíquota. Hoje, cada faixa tem sua alíquota própria.</p>
+      <p>Para um sócio administrador com pró-labore de R$ 5.000 em 2026:</p>
+      <ul>
+        <li>Os primeiros R$ 1.621,00 pagam 7,5% = R$ 121,58</li>
+        <li>A faixa de R$ 1.621,01 a R$ 2.902,84 paga 9% = R$ 115,37</li>
+        <li>A faixa de R$ 2.902,85 a R$ 4.354,27 paga 12% = R$ 174,17</li>
+        <li>A faixa de R$ 4.354,28 a R$ 5.000,00 paga 14% = R$ 90,40</li>
+        <li><strong>Total INSS: R$ 501,51</strong></li>
+      </ul>
+      <p>O teto de contribuição em 2026 é R$ 988,09. Para pró-labores acima de R$ 8.475,55, o INSS não aumenta mais. Um sócio que toma R$ 20.000 de pró-labore paga o mesmo INSS que um que toma R$ 8.476.</p>
+      <p>A empresa é responsável por reter o INSS do sócio e recolher via GPS (Guia da Previdência Social) até o dia 20 do mês seguinte. No Simples Nacional, esse GPS é separado do DAS. No Lucro Presumido e no Lucro Real, a empresa também paga o INSS patronal de 20% sobre o pró-labore com recursos próprios.</p>
+
+      <h2>INSS obrigatório ou facultativo: quando o sócio pode optar por não pagar</h2>
+      <p>A obrigatoriedade do INSS sobre o pró-labore depende da função exercida pelo sócio. Para o <strong>sócio administrador</strong> — aquele que exerce funções de gerência ou direção da empresa — o recolhimento é obrigatório, sem exceção. A Receita Federal e a Previdência Social entendem que o exercício de poder de gestão é uma atividade remunerada que exige contribuição.</p>
+      <p>Para o <strong>sócio não administrador</strong> — que participa da empresa apenas com capital, sem exercer funções executivas — o INSS sobre o pró-labore é facultativo. Se optar por não recolher, esse sócio não terá cobertura previdenciária sobre esses rendimentos, ficando sem direito a aposentadoria por tempo de contribuição, auxílio-doença, salário-maternidade e outros benefícios com base nessa fonte de renda. Muitos sócios não administradores que têm outro emprego CLT já contribuem pelo vínculo empregatício e optam por não recolher INSS sobre o pró-labore para reduzir custos.</p>
+
+      <h2>Custo patronal do pró-labore: a diferença entre Simples Nacional e Lucro Presumido</h2>
+      <p>O regime tributário da empresa determina o custo adicional que ela tem sobre o pró-labore dos sócios. Essa diferença pode ser significativa e é um dos fatores que influenciam a escolha do regime tributário.</p>
+      <p>No <strong>Simples Nacional</strong>, a Contribuição Patronal Previdenciária (CPP) está incluída no DAS mensal, que é calculado sobre a receita bruta. Não há INSS patronal adicional sobre o pró-labore. O custo da empresa é exatamente o valor do pró-labore pago.</p>
+      <p>No <strong>Lucro Presumido e Lucro Real</strong>, a empresa paga sobre o pró-labore de sócios administradores:</p>
+      <ul>
+        <li><strong>INSS patronal: 20%</strong> sobre o valor do pró-labore</li>
+        <li><strong>RAT (Risco Acidente de Trabalho): 1% a 3%</strong> conforme o grau de risco da atividade (CNAE)</li>
+        <li><strong>Contribuições a terceiros: ~5,8%</strong> (SENAI/SESI, SENAC/SESC, SEBRAE, INCRA, Salário-Educação)</li>
+      </ul>
+      <p>Com RAT de 2%, o custo patronal total sobre o pró-labore no Lucro Presumido é de aproximadamente <strong>27,8%</strong>. Para um pró-labore de R$ 10.000, a empresa desembolsa R$ 12.780. Para R$ 5.000, desembolsa R$ 6.390.</p>
+      <p>No <strong>MEI</strong>, o DAS mensal fixo cobre o INSS do próprio titular. O pró-labore no MEI é limitado ao salário mínimo vigente e o INSS já está embutido no DAS — não há desconto adicional sobre o pró-labore.</p>
+
+      <h2>Pró-labore no Simples Nacional: como funciona na prática</h2>
+      <p>No Simples Nacional, o pró-labore tem tratamento diferenciado do ponto de vista patronal, mas o sócio ainda paga seu INSS normalmente. A empresa retém o INSS do sócio pela tabela progressiva e recolhe via GPS separadamente do Simples. O DAS do Simples já inclui a CPP patronal calculada sobre a receita bruta, então não há INSS patronal adicional sobre o pró-labore.</p>
+      <p>Para o IRPF, a regra é a mesma independentemente do regime: a empresa pode reter na fonte e recolher via DARF mensalmente, ou o sócio pode recolher por conta própria via carnê-leão. A base de cálculo é o pró-labore bruto menos o INSS recolhido menos as deduções por dependentes e outras deduções legais.</p>
+      <p>Uma dúvida comum é se o pró-labore entra na base de cálculo do Simples Nacional. A resposta é não. O pró-labore é uma despesa da empresa, mas a base do Simples é a receita bruta, não a receita menos despesas. Pagar pró-labore não reduz o Simples a pagar, mas reduz o lucro distribuível — o que indiretamente pode ser planejado pelo contador para otimizar a carga tributária total.</p>
+
+      <h2>Quanto pagar de pró-labore? Mínimo legal, padrão de mercado e riscos</h2>
+      <p>A legislação brasileira não define valor mínimo de pró-labore para sócios de empresas comuns. Tecnicamente, é possível ter pró-labore zero. No entanto, a Receita Federal e o INSS podem questionar essa situação, especialmente quando os sócios são ativos na empresa e recebem distribuição de lucros expressiva sem remuneração pelo trabalho.</p>
+      <p>O risco de pró-labore zero ou muito baixo é a <strong>requalificação do rendimento</strong>: a Receita pode reinterpretar parte da distribuição de lucros como pró-labore disfarçado e cobrar INSS e IRPF retroativos, com juros e multas. Esse risco é maior em empresas cujos sócios trabalham visivelmente no negócio mas recebem distribuições muito superiores ao que o mercado pagaria por funções equivalentes.</p>
+      <p>O padrão de mercado e a orientação da maioria dos contadores é pagar pelo menos o <strong>salário mínimo vigente</strong> como pró-labore (R$ 1.621,00 em 2026). Nesse valor, o INSS é de R$ 121,58 e o IRPF é zero. O custo mensal de manter esse pró-labore mínimo para garantir a cobertura previdenciária é pequeno comparado aos benefícios de aposentadoria e saúde que o INSS pode proporcionar.</p>
+      <p>Para sócios que dependem financeiramente da empresa e não têm outra fonte de renda, o ideal é calcular o pró-labore ideal considerando o equilíbrio entre: necessidade de renda, carga tributária (INSS + IRPF), benefícios previdenciários e custo patronal (se Lucro Presumido/Real). Em muitos casos, pró-labore de R$ 3.000 a R$ 5.000 combinado com distribuição de lucros oferece a melhor relação entre tributação e benefícios.</p>
+
+      <h2>Como declarar pró-labore no Imposto de Renda anual</h2>
+      <p>O pró-labore recebido ao longo do ano deve ser declarado na ficha de <strong>Rendimentos Tributáveis Recebidos de Pessoa Jurídica</strong> na declaração anual do IRPF. O valor a declarar é o total bruto recebido no ano, e os dados (CNPJ da empresa, valor pago, IR retido na fonte e INSS recolhido) devem constar no <strong>Informe de Rendimentos</strong> emitido pela empresa até o último dia útil de fevereiro.</p>
+      <p>Se o IRPF não foi retido na fonte ao longo do ano, o sócio deve ter recolhido mensalmente via <strong>carnê-leão</strong> ou <strong>DARF</strong> com código 0190. Na declaração anual, esses pagamentos são informados como "Imposto Pago" e abatidos do imposto devido. A não quitação mensal gera multa de 0,33% ao dia e juros pela taxa Selic.</p>
+      <p>A distribuição de lucros, por sua vez, é declarada na ficha de <strong>Rendimentos Isentos e Não Tributáveis</strong>, desde que a empresa tenha escrituração contábil regular e o lucro seja comprovado. Lucros distribuídos além do lucro contábil apurado podem ser tributados como pró-labore disfarçado.</p>
+
+      <h2>Pró-labore x CLT: para qual valor compensa contratar como empregado em vez de sócio</h2>
+      <p>Sócios que trabalham na empresa frequentemente têm dúvida sobre se seria mais vantajoso se contratar como empregado CLT. A resposta depende do valor da remuneração, do regime tributário e dos benefícios desejados.</p>
+      <p>O <strong>empregado CLT</strong> tem direito a FGTS (8% do salário depositado pelo empregador), 13° salário, férias com 1/3, aviso prévio e estabilidade. O custo do empregador é maior: além dos 20% de INSS patronal, há FGTS (8%), RAT e contribuições a terceiros. O custo total sobre o salário bruto fica entre 65% e 90% dependendo do porte e setor da empresa.</p>
+      <p>O <strong>sócio com pró-labore</strong> não tem FGTS, 13° ou férias remuneradas. No Lucro Presumido, o custo patronal sobre o pró-labore é de ~28%, significativamente menor que o CLT. No Simples Nacional, não há custo patronal adicional além do próprio pró-labore.</p>
+      <p>Para remunerações acima de R$ 8.000, o pró-labore no Simples Nacional costuma ser mais vantajoso que o CLT. No Lucro Presumido, a diferença diminui porque o INSS patronal se aproxima do custo CLT em termos percentuais. Em todos os casos, a análise deve ser feita com um contador considerando o regime tributário específico, o CNAE e o nível de remuneração.</p>
+
+      <h2>Perguntas frequentes sobre pró-labore</h2>
+
+      <h3>Sócio não administrador precisa pagar INSS sobre pró-labore?</h3>
+      <p>Para sócios não administradores, o pagamento de INSS sobre o pró-labore é facultativo. Se optar por não recolher, perde o direito a benefícios previdenciários como aposentadoria por tempo de contribuição, auxílio-doença e salário-maternidade com base nessa renda. Sócios administradores têm recolhimento obrigatório, independentemente do regime tributário da empresa — exceto MEI, onde o DAS já cobre o INSS do titular.</p>
+
+      <h3>O pró-labore entra no cálculo do Simples Nacional?</h3>
+      <p>Não. O pró-labore é uma despesa da empresa, mas não compõe a receita bruta utilizada para calcular o Simples Nacional. A tributação do pró-labore é feita separadamente: a empresa retém o INSS do sócio e recolhe via GPS, e o sócio paga IRPF via carnê-leão ou DARF, ou tem o imposto retido na fonte pela empresa. O DAS mensal cobre apenas os tributos sobre a receita bruta da empresa.</p>
+
+      <h3>Qual é o pró-labore mínimo permitido por lei?</h3>
+      <p>A legislação brasileira não define valor mínimo obrigatório de pró-labore para sócios de empresas comuns. No entanto, a Receita Federal pode questionar valores muito abaixo do mercado como planejamento tributário para reduzir INSS e IRPF. O padrão contábil recomendado é pagar pelo menos o salário mínimo vigente (R$ 1.621,00 em 2026) para sócios ativos. Para MEI, o pró-labore recomendado é exatamente o salário mínimo.</p>
+
+      <h3>Pró-labore e distribuição de lucros são a mesma coisa?</h3>
+      <p>Não. O pró-labore é a remuneração pelo trabalho do sócio e incide INSS e IRPF. A distribuição de lucros é a participação nos resultados da empresa e, quando feita com base em escrituração contábil regular, é isenta de INSS e de IRPF para o sócio. A estratégia mais eficiente para a maioria dos sócios ativos é manter o pró-labore no mínimo necessário e maximizar a distribuição de lucros tributariamente isenta.</p>
+
+      <h3>Como funciona o INSS do sócio no Lucro Presumido?</h3>
+      <p>No Lucro Presumido, o sócio administrador é classificado como contribuinte individual. A empresa retém o INSS do sócio pela tabela progressiva 2026 e paga ao INSS via GPS. Além disso, a empresa paga 20% de INSS patronal sobre o pró-labore com recursos próprios, mais RAT (1% a 3%) e contribuições a terceiros (~5,8%). O custo patronal total gira entre 27% e 29% sobre o valor do pró-labore.</p>
+
+    </article>
+
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+  (function () {
+    'use strict';
+
+    var chart = null;
+    var debounceTimer = null;
+
+    // Estado
+    var tipoSocio = 'admin';
+    var recolherINSS = true;
+    var reterIR = true;
+
+    var BRL = new Intl.NumberFormat('pt-BR', {
+      style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2
+    });
+
+    /* ---------- helpers ---------- */
+    function parseVal(str) {
+      var s = String(str).replace(/[R$\s%]/g, '').trim();
+      if (s.indexOf(',') !== -1) {
+        s = s.replace(/\./g, '').replace(',', '.');
+      } else {
+        s = s.replace(/\.(\d{3})(?=\.|$)/g, '$1');
+      }
+      return parseFloat(s) || 0;
+    }
+    function fmt(v) { return BRL.format(v); }
+    function pct(v, total) { return total > 0 ? (v / total * 100).toFixed(1) + '%' : '0,0%'; }
+
+    /* ---------- INSS 2026 progressivo ---------- */
+    function calcularINSS(bruto) {
+      var faixas = [
+        { ate: 1621.00,  aliquota: 0.075 },
+        { ate: 2902.84,  aliquota: 0.09  },
+        { ate: 4354.27,  aliquota: 0.12  },
+        { ate: 8475.55,  aliquota: 0.14  },
+      ];
+      var inss = 0, anterior = 0;
+      for (var i = 0; i < faixas.length; i++) {
+        if (bruto <= anterior) break;
+        var topo = faixas[i].ate;
+        var base = Math.min(bruto, topo) - anterior;
+        inss += base * faixas[i].aliquota;
+        anterior = topo;
+        if (bruto <= topo) break;
+      }
+      return Math.min(inss, 988.09);
+    }
+
+    /* ---------- IRPF 2026 ---------- */
+    function calcularIRPF(baseCalculo, dependentes, bruto) {
+      var deducaoDep = 189.59;
+      var base = Math.max(0, baseCalculo - dependentes * deducaoDep);
+      var faixas = [
+        { ate: 2428.80,  aliquota: 0,     deducao: 0      },
+        { ate: 2826.65,  aliquota: 0.075, deducao: 182.16 },
+        { ate: 3751.05,  aliquota: 0.15,  deducao: 394.16 },
+        { ate: 4664.68,  aliquota: 0.225, deducao: 675.49 },
+        { ate: Infinity, aliquota: 0.275, deducao: 908.73 },
+      ];
+      var irpf = 0;
+      for (var i = 0; i < faixas.length; i++) {
+        if (base <= faixas[i].ate) {
+          irpf = Math.max(0, base * faixas[i].aliquota - faixas[i].deducao);
+          break;
+        }
+      }
+      // Redutor 2026
+      if (bruto <= 5000) {
+        irpf = 0;
+      } else if (bruto <= 7350) {
+        var redutor = 978.62 - (0.133145 * bruto);
+        irpf = Math.max(0, irpf - redutor);
+      }
+      return irpf;
+    }
+
+    /* ---------- cálculo principal ---------- */
+    function calcular() {
+      var bruto      = parseVal(document.getElementById('inp-bruto').value);
+      var dependentes = Math.max(0, Math.round(parseVal(document.getElementById('inp-dependentes').value)));
+      var deducoes   = parseVal(document.getElementById('inp-deducoes').value);
+      var regime     = document.getElementById('sel-regime').value;
+      var rat        = parseFloat(document.getElementById('sel-rat').value) || 0.02;
+      var isMEI      = regime === 'mei';
+      var isSimples  = regime === 'simples';
+
+      // INSS do sócio
+      var inss = 0;
+      var inssAtivo = !isMEI && (tipoSocio === 'admin' || (tipoSocio === 'nao-admin' && recolherINSS));
+      if (inssAtivo) {
+        inss = calcularINSS(bruto);
+      }
+
+      // IRPF
+      var irpf = 0;
+      if (reterIR) {
+        var baseIR = Math.max(0, bruto - inss - deducoes);
+        irpf = calcularIRPF(baseIR, dependentes, bruto);
+      }
+
+      var totalDesc  = inss + irpf + deducoes;
+      var liquido    = Math.max(0, bruto - totalDesc);
+      var pctLiq     = bruto > 0 ? (liquido / bruto * 100) : 0;
+
+      // Custo patronal (apenas Lucro Presumido/Real + sócio admin)
+      var inssPat   = 0;
+      var ratVal    = 0;
+      var terceiros = 0;
+      var tercPct   = 0.058;
+      if (!isMEI && !isSimples && tipoSocio === 'admin') {
+        inssPat   = bruto * 0.20;
+        ratVal    = bruto * rat;
+        terceiros = bruto * tercPct;
+      }
+      var totalPat     = inssPat + ratVal + terceiros;
+      var custoEmpresa = bruto + totalPat;
+
+      return {
+        bruto, inss, irpf, deducoes, totalDesc, liquido, pctLiq,
+        inssPat, ratVal, terceiros, totalPat, custoEmpresa,
+        isMEI, isSimples, rat, inssAtivo
+      };
+    }
+
+    /* ---------- atualiza UI ---------- */
+    function atualizar() {
+      var r = calcular();
+
+      // Resumo painel esquerdo
+      document.getElementById('res-inss').textContent      = '− ' + fmt(r.inss);
+      document.getElementById('res-irpf').textContent      = '− ' + fmt(r.irpf);
+      document.getElementById('res-deducoes').textContent  = '− ' + fmt(r.deducoes);
+      document.getElementById('res-total-desc').textContent = '− ' + fmt(r.totalDesc);
+      document.getElementById('res-custo-empresa').textContent = fmt(r.custoEmpresa);
+
+      // Disclaimer MEI
+      document.getElementById('disc-mei').style.display    = r.isMEI ? '' : 'none';
+      document.getElementById('disc-padrao').style.display = r.isMEI ? 'none' : '';
+
+      // Resultado principal
+      document.getElementById('result-liquido').textContent = fmt(r.liquido);
+      document.getElementById('result-pct').textContent     = r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto';
+
+      // Gráfico donut
+      if (chart) {
+        chart.data.datasets[0].data = [r.liquido, r.inss, r.irpf, r.deducoes];
+        chart.update();
+      }
+
+      // ---------- Tabela composição ----------
+      var tbody = document.getElementById('tabela-body');
+      tbody.innerHTML = '';
+
+      var baseIR = Math.max(0, r.bruto - r.inss - r.deducoes);
+
+      var linhas = [
+        { label: 'Pró-labore bruto',   valor: r.bruto,    sinal: '',  obs: 'Valor definido em contrato social ou ata',   bold: false },
+        { label: 'INSS sócio',         valor: r.inss,     sinal: '−', obs: r.isMEI ? 'Incluído no DAS do MEI' : (r.inssAtivo ? 'Tabela progressiva 2026' : 'Não recolhido (facultativo)'), bold: false },
+        { label: 'Base de cálculo IR', valor: baseIR,     sinal: '',  obs: 'Pró-labore − INSS − Deduções',               bold: false, skip: !reterIR },
+        { label: 'IRPF',               valor: r.irpf,     sinal: '−', obs: reterIR ? 'Tabela progressiva 2026' : 'Não retido na fonte — recolher via carnê-leão', bold: false },
+        { label: 'Deduções adicionais',valor: r.deducoes, sinal: '−', obs: 'Pensão alimentícia, prev. privada, etc.',     bold: false, skip: r.deducoes === 0 },
+        { label: 'Pró-labore líquido', valor: r.liquido,  sinal: '',  obs: r.pctLiq.toFixed(1).replace('.', ',') + '% do bruto', bold: true },
+      ];
+
+      linhas.forEach(function(linha) {
+        if (linha.skip) return;
+        if (linha.label === 'Base de cálculo IR') return;
+        var tr = document.createElement('tr');
+        if (linha.bold) tr.className = 'highlight';
+
+        var valorStr = linha.sinal ? linha.sinal + ' ' + fmt(linha.valor) : fmt(linha.valor);
+        var pctStr = linha.label === 'Pró-labore bruto' ? '100%'
+                   : linha.label === 'Pró-labore líquido' ? r.pctLiq.toFixed(1).replace('.', ',') + '%'
+                   : (linha.valor > 0 ? pct(linha.valor, r.bruto) : '—');
+
+        tr.innerHTML =
+          '<td style="text-align:left; color:' + (linha.bold ? '#0d4a28' : '#374151') + '">' +
+            (linha.bold ? '<strong>' + linha.label + '</strong>' : linha.label) +
+          '</td>' +
+          '<td>' + (linha.bold ? '<strong>' + valorStr + '</strong>' : valorStr) + '</td>' +
+          '<td>' + pctStr + '</td>' +
+          '<td style="text-align:left; color:#9ca3af; font-size:13px">' + linha.obs + '</td>';
+
+        tbody.appendChild(tr);
+      });
+
+      // ---------- Tabela custo empresa ----------
+      var tbodyCusto = document.getElementById('tabela-custo-body');
+      tbodyCusto.innerHTML = '';
+
+      var custoLinhas = [];
+      custoLinhas.push({ label: 'Pró-labore bruto', aliq: '—', valor: r.bruto, obs: 'Valor pago ao sócio', bold: false });
+
+      if (r.isMEI) {
+        custoLinhas.push({ label: 'INSS patronal', aliq: '—', valor: 0, obs: 'Incluído no DAS fixo mensal', bold: false });
+        custoLinhas.push({ label: 'RAT e terceiros', aliq: '—', valor: 0, obs: 'Incluído no DAS fixo mensal', bold: false });
+      } else if (r.isSimples) {
+        custoLinhas.push({ label: 'INSS patronal (CPP)', aliq: '—', valor: 0, obs: 'Incluído no Simples Nacional (DAS)', bold: false });
+        custoLinhas.push({ label: 'RAT e terceiros', aliq: '—', valor: 0, obs: 'Substituído pelo Simples Nacional', bold: false });
+      } else if (tipoSocio === 'admin') {
+        var ratPct = (r.rat * 100).toFixed(0) + '%';
+        custoLinhas.push({ label: 'INSS patronal', aliq: '20%', valor: r.inssPat, obs: 'Lucro Presumido / Lucro Real', bold: false });
+        custoLinhas.push({ label: 'RAT', aliq: ratPct, valor: r.ratVal, obs: 'Seguro Acidente de Trabalho (CNAE)', bold: false });
+        custoLinhas.push({ label: 'Terceiros (SENAI/SESI etc.)', aliq: '5,8%', valor: r.terceiros, obs: 'Contribuições a entidades do Sistema S', bold: false });
+      } else {
+        custoLinhas.push({ label: 'INSS patronal', aliq: '20%', valor: 0, obs: 'Não incide sobre sócio não administrador sem pró-labore gerencial', bold: false });
+      }
+
+      custoLinhas.push({ label: 'Custo total para empresa', aliq: '—', valor: r.custoEmpresa, obs: 'Desembolso total para remunerar o sócio', bold: true });
+
+      custoLinhas.forEach(function(linha) {
+        var tr = document.createElement('tr');
+        if (linha.bold) tr.className = 'highlight';
+        tr.innerHTML =
+          '<td style="text-align:left; color:' + (linha.bold ? '#0d4a28' : '#374151') + '">' +
+            (linha.bold ? '<strong>' + linha.label + '</strong>' : linha.label) +
+          '</td>' +
+          '<td>' + linha.aliq + '</td>' +
+          '<td>' + (linha.bold ? '<strong>' + fmt(linha.valor) + '</strong>' : fmt(linha.valor)) + '</td>' +
+          '<td style="text-align:left; color:#9ca3af; font-size:13px">' + linha.obs + '</td>';
+        tbodyCusto.appendChild(tr);
+      });
+    }
+
+    /* ---------- tooltip externo donut ---------- */
+    function customTooltip(context) {
+      var chartObj = context.chart;
+      var tooltip  = context.tooltip;
+
+      var el = document.getElementById('calc-tooltip');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'calc-tooltip';
+        chartObj.canvas.parentNode.style.position = 'relative';
+        chartObj.canvas.parentNode.appendChild(el);
+      }
+
+      if (tooltip.opacity === 0) { el.style.opacity = '0'; return; }
+
+      var labels = ['Pró-labore líquido', 'INSS sócio', 'IRPF', 'Deduções'];
+      var pt = tooltip.dataPoints && tooltip.dataPoints[0];
+      if (!pt) return;
+
+      el.innerHTML =
+        '<div class="ct-title">' + (labels[pt.dataIndex] || '') + '</div>' +
+        '<div class="ct-row ct-bold"><span>' + BRL.format(pt.parsed || 0) + '</span></div>';
+
+      var canvasW = chartObj.canvas.offsetWidth;
+      var tipW = 200;
+      var left = tooltip.caretX + 12;
+      if (left + tipW > canvasW) left = tooltip.caretX - tipW - 12;
+
+      el.style.opacity = '1';
+      el.style.left    = left + 'px';
+      el.style.top     = (tooltip.caretY - 20) + 'px';
+    }
+
+    /* ---------- inicializa gráfico donut ---------- */
+    function initChart() {
+      var canvas = document.getElementById('grafico');
+      if (!canvas || !window.Chart) return;
+
+      chart = new window.Chart(canvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Pró-labore líquido', 'INSS sócio', 'IRPF', 'Deduções'],
+          datasets: [{
+            data: [0, 0, 0, 0],
+            backgroundColor: ['#16a34a', '#e74c3c', '#eab308', '#9ca3af'],
+            borderColor: ['#fff', '#fff', '#fff', '#fff'],
+            borderWidth: 3,
+            hoverOffset: 8,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '65%',
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false, external: customTooltip },
+          },
+        },
+      });
+
+      atualizar();
+    }
+
+    /* ---------- debounce ---------- */
+    function debounce(fn) {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(fn, 280);
+    }
+
+    /* ---------- mostrar/ocultar campos condicionais ---------- */
+    function syncUI() {
+      // INSS facultativo: só para não-admin
+      var fieldINSS = document.getElementById('field-inss-facultativo');
+      fieldINSS.style.display = tipoSocio === 'nao-admin' ? '' : 'none';
+
+      // RAT: só para Lucro Presumido/Real
+      var regime = document.getElementById('sel-regime').value;
+      document.getElementById('field-rat').style.display =
+        (regime === 'presumido' && tipoSocio === 'admin') ? '' : 'none';
+
+      // Dependentes e deduções: só quando IR retido
+      document.getElementById('field-dependentes').style.display = reterIR ? '' : 'none';
+    }
+
+    /* ---------- DOMContentLoaded ---------- */
+    document.addEventListener('DOMContentLoaded', function () {
+      initChart();
+      syncUI();
+
+      // Inputs numéricos
+      ['inp-bruto', 'inp-dependentes', 'inp-deducoes'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('input',  function () { debounce(function() { atualizar(); }); });
+        el.addEventListener('change', atualizar);
+        el.addEventListener('blur',   atualizar);
+      });
+
+      // Select regime
+      document.getElementById('sel-regime').addEventListener('change', function () {
+        syncUI();
+        atualizar();
+      });
+
+      // Select RAT
+      document.getElementById('sel-rat').addEventListener('change', atualizar);
+
+      // Toggle tipo sócio
+      document.getElementById('btn-admin').addEventListener('click', function () {
+        tipoSocio = 'admin';
+        document.getElementById('btn-admin').classList.add('active');
+        document.getElementById('btn-nao-admin').classList.remove('active');
+        syncUI();
+        atualizar();
+      });
+      document.getElementById('btn-nao-admin').addEventListener('click', function () {
+        tipoSocio = 'nao-admin';
+        document.getElementById('btn-nao-admin').classList.add('active');
+        document.getElementById('btn-admin').classList.remove('active');
+        syncUI();
+        atualizar();
+      });
+
+      // Toggle INSS facultativo (não-admin)
+      document.getElementById('btn-inss-sim').addEventListener('click', function () {
+        recolherINSS = true;
+        document.getElementById('btn-inss-sim').classList.add('active');
+        document.getElementById('btn-inss-nao').classList.remove('active');
+        atualizar();
+      });
+      document.getElementById('btn-inss-nao').addEventListener('click', function () {
+        recolherINSS = false;
+        document.getElementById('btn-inss-nao').classList.add('active');
+        document.getElementById('btn-inss-sim').classList.remove('active');
+        atualizar();
+      });
+
+      // Toggle IRPF na fonte
+      document.getElementById('btn-ir-sim').addEventListener('click', function () {
+        reterIR = true;
+        document.getElementById('btn-ir-sim').classList.add('active');
+        document.getElementById('btn-ir-nao').classList.remove('active');
+        syncUI();
+        atualizar();
+      });
+      document.getElementById('btn-ir-nao').addEventListener('click', function () {
+        reterIR = false;
+        document.getElementById('btn-ir-nao').classList.add('active');
+        document.getElementById('btn-ir-sim').classList.remove('active');
+        syncUI();
+        atualizar();
+      });
+    });
+
+  }());
+  </script>
+
+  <style is:global>
+
+    /* ===== BREADCRUMB + TÍTULO ===== */
+    .calc-breadcrumb ol {
+      list-style: none;
+      padding: 0; margin: 0 0 10px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+      font-size: 13px;
+    }
+    .calc-breadcrumb li { display: flex; align-items: center; gap: 6px; margin: 0; margin-left: 0 !important; }
+    .calc-breadcrumb a { color: #16a34a; text-decoration: none; }
+    .calc-breadcrumb a:hover { text-decoration: underline; }
+    .calc-breadcrumb span { color: #9ca3af; }
+    .calc-breadcrumb span.current { color: #374151; font-weight: 500; }
+    .calc-page-title {
+      font-size: 1.875rem !important;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.2;
+      margin: 0 0 8px !important;
+    }
+    .calc-page-desc {
+      font-size: 1rem;
+      color: #6b7280;
+      margin: 0 0 36px;
+    }
+
+    /* ===== MAIN ===== */
+    .calc-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+    }
+
+    /* ===== TOOL: 2 COLUNAS ===== */
+    .calc-tool {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 860px) {
+      .calc-tool { grid-template-columns: 1fr; }
+    }
+
+    /* ===== FORM PANEL ===== */
+    .calc-form-panel {
+      background: #f9fafb;
+      padding: 20px 22px;
+      border-radius: 0;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .calc-form-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 4px;
+    }
+
+    /* Fields */
+    .calc-field { display: flex; flex-direction: column; gap: 6px; }
+    .calc-label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tooltip */
+    .tip-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1.5px solid #9ca3af;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 9px;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1;
+      cursor: default;
+      user-select: none;
+      flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .tip-wrap:hover .tip-icon { border-color: #16a34a; color: #16a34a; }
+    .tip-box {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: 220px;
+      background: #0d4a28;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 9px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s, visibility 0.15s;
+      z-index: 50;
+      white-space: normal;
+      text-align: left;
+    }
+    .tip-box::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #0d4a28;
+    }
+    .tip-wrap:hover .tip-box,
+    .tip-wrap:focus-within .tip-box { opacity: 1; visibility: visible; }
+    .calc-field:first-child .tip-box,
+    .calc-field:nth-child(2) .tip-box {
+      top: calc(100% + 8px);
+      bottom: auto;
+    }
+    .calc-field:first-child .tip-box::after,
+    .calc-field:nth-child(2) .tip-box::after {
+      top: auto;
+      bottom: 100%;
+      border-top-color: transparent;
+      border-bottom-color: #0d4a28;
+    }
+
+    /* Inputs */
+    .calc-input-wrap {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      overflow: visible;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .calc-input-wrap:focus-within {
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+    }
+    .calc-unit {
+      padding: 0 12px;
+      font-size: 14px;
+      color: #6b7280;
+      background: #f9fafb;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      border-right: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+    .calc-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 12px;
+      height: 42px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #374151;
+      font-family: Arial, sans-serif;
+      min-width: 0;
+    }
+
+    /* Select */
+    .calc-select-wrap {
+      position: relative;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      transition: border-color 0.15s;
+    }
+    .calc-select-wrap:focus-within {
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+    }
+    .calc-select {
+      width: 100%;
+      border: none;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      padding: 0 36px 0 12px;
+      height: 42px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #374151;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+    }
+    .calc-select-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      color: #6b7280;
+      pointer-events: none;
+    }
+
+    /* Toggle buttons */
+    .calc-toggle-group { display: flex; }
+    .calc-toggle {
+      flex: 1;
+      height: 42px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      font-family: Arial, sans-serif;
+    }
+    .calc-toggle:first-child { border-radius: 4px 0 0 4px; border-right: none; }
+    .calc-toggle:last-child  { border-radius: 0 4px 4px 0; }
+    .calc-toggle.active { background: #0d4a28; color: #fff; border-color: #0d4a28; }
+    .calc-toggle:not(.active):hover { background: #f3f4f6; }
+
+    /* Resumo rápido no form */
+    .calc-summary-box {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .calc-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .calc-summary-row.total { font-weight: 700; }
+    .calc-summary-label { color: #6b7280; }
+    .calc-summary-val { font-variant-numeric: tabular-nums; font-weight: 600; color: #374151; }
+    .calc-summary-val.red { color: #dc2626; }
+    .calc-summary-divider { height: 1px; background: #f3f4f6; margin: 4px 0; }
+    .calc-disclaimer {
+      font-size: 11px;
+      color: #9ca3af;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ===== CHART PANEL ===== */
+    .calc-chart-panel {
+      padding: 20px 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      height: 100%;
+      box-sizing: border-box;
+      background: #fff;
+      border-radius: 0;
+      border: 1px solid #e5e7eb;
+    }
+    .calc-chart-header { text-align: center; margin-bottom: 12px; }
+    .calc-chart-label { font-size: 16px; color: #6b7280; margin: 0 0 2px; font-weight: 500; }
+    .calc-chart-total {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #0d4a28;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .calc-chart-sub { font-size: 13px; color: #9ca3af; margin: 4px 0 0; font-weight: 500; }
+    .calc-chart-area { flex: 1; position: relative; min-height: 200px; }
+    .calc-chart-legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #374151;
+    }
+    .calc-legend-item { display: flex; align-items: center; gap: 7px; }
+    .calc-legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .calc-legend-swatch.liquido { background: #16a34a; }
+    .calc-legend-swatch.inss    { background: #e74c3c; }
+    .calc-legend-swatch.irpf    { background: #eab308; }
+    .calc-legend-swatch.outros  { background: #9ca3af; }
+
+    /* ===== TABLE ===== */
+    .calc-table-section {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .calc-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 20px;
+    }
+    .calc-table-scroll { overflow-x: auto; }
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .calc-table th {
+      background: #f9fafb;
+      padding: 10px 16px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .calc-table th:first-child { text-align: left; }
+    .calc-table td {
+      padding: 11px 16px;
+      text-align: right;
+      color: #374151;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .calc-table tbody tr:hover { background: #f9fafb; }
+    .calc-table tr.highlight td {
+      background: #f0fdf4;
+      color: #0d4a28;
+      font-weight: 700;
+      border-bottom: none;
+    }
+
+    /* ===== ARTICLE CONTENT ===== */
+    .calc-article h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 40px 0 12px;
+      line-height: 1.3;
+    }
+    .calc-article h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 28px 0 8px;
+      line-height: 1.4;
+    }
+    .calc-article p {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .calc-article ul {
+      margin: 0 0 16px;
+      padding-left: 24px;
+    }
+    .calc-article li {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+    .calc-article strong { color: #111827; font-weight: 700; }
+    .calc-formula-block {
+      background: #f9fafb;
+      border-left: 3px solid #16a34a;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+    .calc-formula-block code {
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: #0d4a28;
+      background: none;
+      padding: 0;
+    }
+
+    /* ===== TOOLTIP EXTERNO ===== */
+    #calc-tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      padding: 12px 14px;
+      min-width: 160px;
+      z-index: 20;
+      font-family: Arial, sans-serif;
+    }
+    .ct-title { font-size: 12px; color: #6b7280; font-weight: 500; margin-bottom: 6px; }
+    .ct-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #374151; }
+    .ct-bold { font-weight: 700; color: #111827; font-size: 14px; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .calc-main { padding: 16px 16px 40px; }
+      .calc-tool { grid-template-rows: auto; gap: 12px; margin-bottom: 20px; }
+      .calc-page-title { font-size: 22px !important; line-height: 1.25; }
+      .calc-page-desc { font-size: 14px; margin: 0 0 16px; }
+      .calc-form-panel { padding: 16px; gap: 12px; }
+      .calc-form-title { font-size: 14px; }
+      .calc-label { font-size: 13px; }
+      .calc-input { font-size: 15px; height: 40px; }
+      .calc-unit { height: 40px; padding: 0 10px; font-size: 13px; }
+      .calc-toggle { height: 40px; font-size: 12px; }
+      .tip-box {
+        left: auto !important;
+        right: -8px !important;
+        transform: none !important;
+        width: 180px;
+        font-size: 11px;
+      }
+      .tip-box::after {
+        left: auto !important;
+        right: 14px !important;
+        transform: none !important;
+      }
+      .calc-field:first-child .tip-box,
+      .calc-field:nth-child(2) .tip-box {
+        left: auto !important;
+        right: -8px !important;
+        transform: none !important;
+      }
+      .calc-field:first-child .tip-box::after,
+      .calc-field:nth-child(2) .tip-box::after {
+        right: 14px !important;
+        left: auto !important;
+        transform: none !important;
+      }
+      .calc-summary-box { padding: 12px 14px; }
+      .calc-summary-row { font-size: 12px; }
+      .calc-disclaimer { font-size: 10px; }
+      .calc-chart-panel { height: auto; padding: 16px; }
+      .calc-chart-total { font-size: 28px; }
+      .calc-chart-sub { font-size: 12px; }
+      .calc-chart-label { font-size: 13px; }
+      .calc-chart-area { flex: none; height: 230px; min-height: 230px; }
+      .calc-chart-legend { gap: 6px 12px; font-size: 11px; flex-wrap: wrap; margin-top: 8px; }
+      .calc-chart-area canvas { max-width: 100% !important; }
+      .calc-table-section { padding: 16px 12px; border-radius: 8px; margin-bottom: 20px; }
+      .calc-section-title { font-size: 15px; margin: 0 0 14px; }
+      .calc-table th { padding: 8px 10px; font-size: 11px; }
+      .calc-table td { padding: 9px 10px; font-size: 13px; }
+      .calc-formula-block { padding: 12px 14px; overflow-x: auto; }
+      .calc-formula-block code { font-size: 13px; }
+      .calc-article h2 { font-size: 20px; margin: 28px 0 10px; }
+      .calc-article h3 { font-size: 17px; }
+      .calc-article p, .calc-article li { font-size: 15px; line-height: 1.65; }
+    }
+  </style>
+
+</body>
+</html>
