@@ -171,19 +171,21 @@ const itemListSchema =
 			/* === Review Subnav — tabs de subcategorias (estilo NerdWallet) === */
 			.review-subnav {
 				background: #fff;
-				border-bottom: 1px solid #e5e7eb;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.06);
 				width: 100%;
 				overflow-x: auto;
 				-webkit-overflow-scrolling: touch;
 				scrollbar-width: none;
+				position: relative;
+				z-index: 10;
 			}
 			.review-subnav::-webkit-scrollbar { display: none; }
 			.review-subnav-inner {
 				display: flex;
-				align-items: center;
+				align-items: stretch;
 				max-width: 1100px;
 				margin: 0 auto;
-				padding: 0 24px;
+				padding: 0 16px;
 				gap: 0;
 				white-space: nowrap;
 			}
@@ -191,50 +193,60 @@ const itemListSchema =
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				gap: 4px;
-				padding: 12px 20px;
+				justify-content: center;
+				gap: 6px;
+				padding: 14px 22px 10px;
 				text-decoration: none !important;
-				color: #374151;
-				font-size: 13px;
+				color: #4b5563;
+				font-size: 12px;
 				font-weight: 500;
 				border-bottom: 3px solid transparent;
-				transition: color 0.15s, border-color 0.15s;
+				transition: color 0.2s, border-color 0.2s;
 				flex-shrink: 0;
+				line-height: 1.2;
 			}
 			.review-subnav-item:hover {
-				color: #16a34a;
-				border-bottom-color: #d1fae5;
+				color: #15803d;
+			}
+			.review-subnav-item:hover .subnav-icon {
+				border-color: #86efac;
+				background: #f0fdf4;
 			}
 			.review-subnav-item.active {
 				color: #15803d;
 				font-weight: 700;
 				border-bottom-color: #16a34a;
 			}
+			.review-subnav-item.active .subnav-icon {
+				border-color: #16a34a;
+				background: #f0fdf4;
+			}
 			.subnav-icon {
-				font-size: 22px;
+				font-size: 20px;
 				line-height: 1;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 44px;
-				height: 44px;
-				background: #f0fdf4;
+				width: 48px;
+				height: 48px;
 				border-radius: 50%;
 				border: 2px solid #d1fae5;
-				transition: background 0.15s, border-color 0.15s;
-			}
-			.review-subnav-item.active .subnav-icon {
-				background: #dcfce7;
-				border-color: #86efac;
+				background: #f9fafb;
+				transition: background 0.2s, border-color 0.2s;
+				flex-shrink: 0;
 			}
 			.subnav-label {
 				font-size: 12px;
-				letter-spacing: 0.01em;
+				text-align: center;
+				max-width: 80px;
+				white-space: normal;
+				line-height: 1.3;
 			}
 			@media (max-width: 640px) {
-				.review-subnav-inner { padding: 0 8px; }
-				.review-subnav-item { padding: 10px 14px; }
-				.subnav-icon { width: 38px; height: 38px; font-size: 18px; }
+				.review-subnav-inner { padding: 0 4px; }
+				.review-subnav-item { padding: 10px 14px 8px; gap: 5px; }
+				.subnav-icon { width: 40px; height: 40px; font-size: 17px; }
+				.subnav-label { font-size: 11px; max-width: 64px; }
 			}
 		</style>
 	</head>
