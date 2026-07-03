@@ -166,10 +166,10 @@ export function getBreadcrumb(
   const cat = estrutura[categoria as Categoria];
   const items: { label: string; href?: string }[] = [
     { label: "Início", href: "/" },
-    { label: cat.label },
+    { label: cat.label, href: cat.href },
   ];
   if (subcategoria) {
-    items.push({ label: subcategoria.label });
+    items.push({ label: subcategoria.label, href: subcategoria.href });
   }
   items.push({ label: paginaLabel });
   return items;

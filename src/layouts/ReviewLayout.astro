@@ -72,12 +72,18 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: title,
+  url: canonicalUrl,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
   datePublished: new Date(publishDate).toISOString(),
   dateModified: new Date(updatedDate).toISOString(),
   ...(image ? { image: new URL(image, Astro.site).href } : {}),
   author: {
     '@type': 'Person',
     name: authorName,
+    ...(authorHref ? { url: new URL(authorHref, Astro.site).href } : {}),
   },
   publisher: {
     '@type': 'Organization',
