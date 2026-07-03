@@ -1,0 +1,995 @@
+---
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+import { afiliados } from '../../data/afiliados.ts';
+import { getBreadcrumb, getSubcategoria } from '../../data/estrutura';
+
+const subcategoria = getSubcategoria('financas', 'contabilidade');
+const breadcrumb = getBreadcrumb('financas', 'Melhores Contabilidades Online', subcategoria);
+
+const subnavItems = [
+    { label: 'Ranking Geral', href: '/melhores-contabilidades-online/', icon: '🏆' },
+    { label: 'Para Médicos', href: '/melhores-contabilidades-online/medico', icon: '🩺' },
+    { label: 'Para MEI', href: '/melhores-contabilidades-online/mei', icon: '📋' },
+    { label: 'Para E-commerce', href: '/melhores-contabilidades-online/ecommerce', icon: '🛒' },
+];
+---
+
+<ReviewLayout
+    title="Melhores Contabilidades Online (Atualizado 2026)"
+    description="Comparação completa das 6 melhores contabilidades online do Brasil. Análise de preços, serviços, prós e contras para você escolher a ideal."
+    publishDate="2026-02-21"
+    updatedDate="2026-02-21"
+    authorName="Gabriella Fernandes"
+    authorHref="/autor/gabriella-fernandes/"
+    authorRole="Analista Sênior"
+    authorImage="/images/autor/gabriella-fernandes.jpg"
+    breadcrumb={breadcrumb}
+    subnav={subnavItems}
+    ranking={[
+        { position: 1, name: "Contabilidade.com", url: "https://contabilidade.com.br" },
+        { position: 2, name: "Colinear", url: "https://colinear.com.br" },
+        { position: 3, name: "Agilize", url: "https://agilize.com.br" },
+        { position: 4, name: "Contajá", url: "https://contaja.com.br" },
+        { position: 5, name: "Contabilizei", url: "https://contabilizei.com.br" },
+        { position: 6, name: "Contabilivre", url: "https://contabilivre.com.br" },
+    ]}
+>
+    <div slot="sidebar-offers" class="sidebar-offers">
+        <h3 class="sidebar-offers-title">Ofertas de contabilidade</h3>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" class="soc-logo" style="max-width:130px;">
+                <div class="soc-rating">
+                    <span class="soc-score">9,5</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="soc-bottom">
+                <span class="soc-badge">Oferta</span>
+                <a href="https://dub.sh/contabilidade" class="soc-button" target="_blank" rel="sponsored noopener">Obter oferta ›</a>
+            </div>
+        </div>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <img src="/images/colinear-logo.png" alt="Colinear" class="soc-logo soc-logo-sm" style="max-width:130px;">
+                <div class="soc-rating">
+                    <span class="soc-score">9,8</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="soc-bottom">
+                <span class="soc-badge">Oferta</span>
+                <a href="https://dub.sh/colinear" class="soc-button" target="_blank" rel="sponsored noopener">Obter oferta ›</a>
+            </div>
+        </div>
+    </div>
+
+    <div slot="ranking" style="padding: 0 24px;">
+
+        <div class="contabilidade-wrapper" id="wrapper">
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/contabilidade" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" class="logo-image" width="180" height="72" loading="eager" fetchpriority="high">
+                        </a>
+                        <a href="https://dub.sh/contabilidade" class="logo-text" target="_blank" rel="sponsored noopener">Contabilidade.com</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,5</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para todas as empresas</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 189,00</li>
+                            <li>Abertura de empresa GRÁTIS</li>
+                            <li>Contabilidade Completa</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">A partir de R$ 189<span>/mês</span></div>
+                        <a href="https://dub.sh/contabilidade" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/colinear" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/colinear-logo.png" alt="Colinear" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/colinear" class="logo-text" target="_blank" rel="sponsored noopener">Colinear.com.br</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,8</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para Profissionais de Tecnologia</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 207,00</li>
+                            <li>Abertura de CNPJ grátis</li>
+                            <li>Certificado digital grátis</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">A partir de R$ 207<span>/mês</span></div>
+                        <a href="https://dub.sh/colinear" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/agilize-contabilidade" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/agilize-contabilidade-online-logo.png" alt="Agilize Contabilidade" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/agilize-contabilidade" class="logo-text" target="_blank" rel="sponsored noopener">Agilize.com.br</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,2</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para todas as empresas</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 259,00</li>
+                            <li>Certificado digital incluso para sempre</li>
+                            <li>IRPF grátis nos planos Unique</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">A partir de R$ 259<span>/mês</span></div>
+                        <a href="https://dub.sh/agilize-contabilidade" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/contaja" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/contaja-contabilidade.png" alt="ContaJÁ" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/contaja" class="logo-text" target="_blank" rel="sponsored noopener">Contaja.com.br</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,0</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para empreendedores iniciantes</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 117,90</li>
+                            <li>Abertura de empresa grátis</li>
+                            <li>Planos especializados</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <a href="https://dub.sh/contaja" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/contabilizei" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/contabilizei-logo.png" alt="Contabilizei" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/contabilizei" class="logo-text" target="_blank" rel="sponsored noopener">Contabilizei.com.br</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,9</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para todas as empresas</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 195,00</li>
+                            <li>Certificado digital incluso</li>
+                            <li>Plataforma para emissão gratuita de notas fiscais</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <a href="https://dub.sh/contabilizei" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/contabilivre" class="logo-link" target="_blank" rel="sponsored noopener">
+                            <img src="/images/contabilivre-logo.png" alt="Contabilivre" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/contabilivre" class="logo-text" target="_blank" rel="sponsored noopener">Contabilivre.com.br</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,7</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para todas as empresas</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 129,90</li>
+                            <li>Pró-labore de até 2 sócios</li>
+                            <li>Uso ilimitado do emissor de notas fiscais</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <a href="https://dub.sh/contabilivre" class="visit-button" target="_blank" rel="sponsored noopener">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-overlay" id="fadeOverlay">
+                <button class="show-more-button" onclick="showMore()">Ver Todas Contabilidades</button>
+            </div>
+
+        </div>
+    </div>
+
+    <p>Você ainda paga R$800, R$1.000 ou até mais por mês numa contabilidade tradicional?</p>
+    <p>Pois é. Enquanto isso, <strong>tem gente pagando menos de R$200 pelo mesmo serviço </strong>(ou até melhor).</p>
+    <p>A revolução da contabilidade já aconteceu. E não, não é aquele papo de "futuro" ou "transformação digital", isso aqui é presente. Funciona de verdade.</p>
+    <p>E pode colocar <strong>milhares de reais por mês de volta no seu bolso</strong>.</p>
+    <p>Neste artigo, você vai ver exatamente quais são as melhores contabilidades online do Brasil em 2026, quanto cada uma cobra, o que entrega de verdade, e qual faz mais sentido pro seu tipo de negócio.</p>
+    <p>Sem enrolação e sem parceria escondida.</p>
+    <h2>Ranking das Melhores Contabilidades Online em 2026</h2>
+
+    <style>
+        /* === CBox Card — NerdWallet style para contabilidades === */
+        .cbox-wrap { margin-bottom: 40px; }
+        .cbox-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            margin: 20px 0 0;
+        }
+        .cbox-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .cbox-logo-zone {
+            flex-shrink: 0;
+            width: 155px;
+            display: flex;
+            align-items: center;
+        }
+        .cbox-logo-img {
+            max-width: 145px;
+            max-height: 58px;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+        .cbox-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .cbox-brand {
+            font-size: 19px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .cbox-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+        .cbox-stars {
+            color: #f59e0b;
+            font-size: 15px;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .cbox-score {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1d6fe8;
+        }
+        .cbox-score-label {
+            font-size: 13px;
+            color: #1d6fe8;
+        }
+        .cbox-tag {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid #e5e7eb;
+        }
+        .cbox-cta-zone {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 165px;
+        }
+        .cbox-cta-btn {
+            display: block;
+            background: #16a34a;
+            color: #fff !important;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none !important;
+            padding: 13px 18px;
+            border-radius: 7px;
+            text-align: center;
+            width: 100%;
+            transition: background 0.2s;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+        .cbox-cta-btn:hover { background: #15803d; color: #fff !important; }
+        .cbox-cta-caption {
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+        }
+        /* Data rows */
+        .cbox-data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid #e5e7eb;
+        }
+        .cbox-cell {
+            padding: 14px 18px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .cbox-cell:last-child { border-right: none; }
+        .cbox-cell-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .cbox-cell-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .cbox-cell-unit {
+            font-size: 13px;
+            font-weight: 400;
+            color: #6b7280;
+        }
+        .cbox-cell-sub {
+            font-size: 12px;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+        /* Highlighted cell (como o "Intro offer" do NerdWallet) */
+        .cbox-cell-highlight {
+            background: #f0f9ff;
+            position: relative;
+        }
+        .cbox-hl-badge {
+            font-size: 10px;
+            font-weight: 700;
+            color: #0369a1;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cbox-hl-badge::before {
+            content: "●";
+            font-size: 7px;
+            color: #0ea5e9;
+        }
+        .cbox-cell-highlight .cbox-cell-value {
+            color: #0c4a6e;
+        }
+        /* Secondary row — valores menores */
+        .cbox-data-row-secondary .cbox-cell-value {
+            font-size: 15px;
+        }
+        /* Review text corrido */
+        .cbox-review {
+            margin-top: 20px;
+        }
+        .cbox-review p {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .cbox-header {
+                flex-wrap: wrap;
+                gap: 14px;
+                padding: 16px;
+            }
+            .cbox-logo-zone { width: 130px; }
+            .cbox-cta-zone { width: 100%; min-width: unset; }
+            /* Linha principal: 2 colunas + destaque full-width */
+            .cbox-data-row { grid-template-columns: 1fr 1fr; }
+            .cbox-cell-highlight { grid-column: 1 / -1; border-right: none; border-top: 1px solid #e5e7eb; }
+            .cbox-cell { padding: 12px 14px; }
+            .cbox-cell-value { font-size: 15px; }
+            /* Linha secundária: mantém 3 colunas para não ficar célula solta */
+            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+            .cbox-data-row-secondary .cbox-cell { padding: 10px 8px; }
+            .cbox-data-row-secondary .cbox-cell-label { font-size: 10px; letter-spacing: 0.03em; }
+            .cbox-data-row-secondary .cbox-cell-value { font-size: 13px; }
+            .cbox-data-row-secondary .cbox-cell-sub { font-size: 10px; }
+        }
+        @media (max-width: 460px) {
+            .cbox-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .cbox-logo-zone { width: 100%; }
+            .cbox-data-row { grid-template-columns: 1fr 1fr; }
+            .cbox-cell-highlight { grid-column: 1 / -1; }
+            /* Mantém 3 colunas também em telas menores */
+            .cbox-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+        }
+    </style>
+
+    <article id="contabilidade-com" class="cbox-wrap">
+
+        <div class="cbox-card">
+            <!-- Topo: logo | info + rating | CTA -->
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/contabilidade" target="_blank" rel="sponsored noopener">
+                        <img src="/images/logo-contabilidade-com.png" alt="Contabilidade.com" class="cbox-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Contabilidade.com</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">9,5</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Ideal para todas as empresas</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/contabilidade" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site contabilidade.com</div>
+                </div>
+            </div>
+
+            <!-- Dados principais -->
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 189<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">Plano Essencial</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">em até 72 horas</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Certificado digital</div>
+                    <div class="cbox-cell-value">Grátis no 1º ano</div>
+                    <div class="cbox-cell-sub">economia de R$ 150–200</div>
+                </div>
+            </div>
+
+            <!-- Dados secundários -->
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,8 ★</div>
+                    <div class="cbox-cell-sub">milhares de avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">Excelente</div>
+                    <div class="cbox-cell-sub">5 reclamações / 6 meses</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">No mercado</div>
+                    <div class="cbox-cell-value">+15 anos</div>
+                    <div class="cbox-cell-sub">CRC regularizado</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Texto de review corrido (sem acordeão) -->
+        <div class="cbox-review">
+            <p>Depois de analisar mais de 15 contabilidades online, a Contabilidade.com se destacou por um motivo simples: ela equilibra preço justo, atendimento humanizado de verdade e tecnologia que funciona.</p>
+            <p>Não é a mais barata (tem opções de R$ 128/mês no mercado), mas entrega mais valor por real investido. A escolha como #1 considerou três pilares: custo-benefício real (não só preço baixo), qualidade do atendimento e completude dos serviços. A Contabilidade.com pontuou bem nos três.</p>
+            <p>Ela existe há mais de 15 anos e tem foco claro: prestadores de serviço. Se você é consultor, dev, designer, profissional liberal ou tem agência, eles entendem bem as suas dores.</p>
+            <p>A nota 4,8 estrelas no Google é impressionante — milhares de avaliações reais, não infladas. No Reclame Aqui, apenas 5 reclamações nos últimos 6 meses para uma empresa que atende milhares de clientes. Respondeu 100%, com a maior parte resolvida.</p>
+        </div>
+
+    </article>
+
+    <div class="cbox-wrap">
+        <div class="cbox-card">
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/colinear" target="_blank" rel="sponsored noopener">
+                        <img src="/images/colinear-logo.png" alt="Colinear" class="cbox-logo-img" width="150" height="60" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Colinear</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">9,8</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Ideal para profissionais de tecnologia</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/colinear" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site colinear.com.br</div>
+                </div>
+            </div>
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 207<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">Plano Stage</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">em até 48 horas</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Certificado digital</div>
+                    <div class="cbox-cell-value">Grátis</div>
+                    <div class="cbox-cell-sub">+ suporte a contas internacionais</div>
+                </div>
+            </div>
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">5,0 ★</div>
+                    <div class="cbox-cell-sub">+60 avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">Zero</div>
+                    <div class="cbox-cell-sub">nenhuma reclamação</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Foco</div>
+                    <div class="cbox-cell-value">Tech</div>
+                    <div class="cbox-cell-sub">especialização em tecnologia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cbox-review">
+        <p>A Colinear não tenta atender todo mundo. Esse é exatamente o ponto forte deles. O foco é exclusivo em profissionais de tecnologia que prestam serviço, e essa especialização faz toda a diferença quando você precisa saber como declarar uma receita em dólar via Stripe ou Payoneer.</p>
+        <p>A abertura de CNPJ em até 48 horas é real, não marketing. Eles fazem sempre a mesma operação (PJ de serviço tech) e o processo é otimizado para isso. O certificado digital está incluso em todos os planos sem custo adicional.</p>
+        <p>Os planos são três: Stage (R$ 207/mês) para quem fatura até R$ 15 mil/mês, Nomad (R$ 347/mês) com endereço fiscal incluso e faturamento ilimitado, e Global (R$ 557/mês) com gestão financeira completa feita pelo time deles. No plano anual, há 15% de desconto em todos os planos.</p>
+        <p>O endereço fiscal (incluso do Nomad pra cima) abre sua empresa num município com ISS mais baixo, gerando economia real de impostos todo mês. No Reclame Aqui, zero reclamações. No Google, 5,0 estrelas com mais de 60 avaliações.</p>
+        <p>A limitação é clara: se você não trabalha com tecnologia, a Colinear não é pra você. Comércio, restaurante, loja física, busque outra opção. Mas se você é dev, designer, consultor ou recebe do exterior, dificilmente encontra atendimento mais especializado no Brasil.</p>
+    </div>
+
+    <div class="cbox-wrap">
+        <div class="cbox-card">
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/agilize-contabilidade" target="_blank" rel="sponsored noopener">
+                        <img src="/images/agilize-contabilidade-online-logo.png" alt="Agilize" class="cbox-logo-img" width="150" height="60" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Agilize</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">9,2</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">1ª contabilidade 100% online do Brasil (2012)</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/agilize-contabilidade" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site agilize.com.br</div>
+                </div>
+            </div>
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 259<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">era R$ 324/mês</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">inclusa no plano</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Wellhub + Starbem</div>
+                    <div class="cbox-cell-value">Incluso</div>
+                    <div class="cbox-cell-sub">acesso a 80 mil academias</div>
+                </div>
+            </div>
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,7 ★</div>
+                    <div class="cbox-cell-sub">+2.000 avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">RA1000</div>
+                    <div class="cbox-cell-sub">96,2% resolvidas</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">No mercado</div>
+                    <div class="cbox-cell-value">+12 anos</div>
+                    <div class="cbox-cell-sub">pioneira no digital</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cbox-review">
+        <p>A Agilize carrega um título que ninguém tira: foi a primeira contabilidade 100% online do Brasil, lá em 2012. Mais de 12 anos depois, a plataforma amadureceu e o histórico de atendimento continua sólido.</p>
+        <p>O grande diferencial escondido não está no preço. São os benefícios de bem-estar: Wellhub (mais de 90 mil academias no mundo) e StarBem (consultas médicas online) vêm inclusos desde o plano básico, sem custo extra. PJ que tem esses benefícios via contabilidade não precisa pagar separado por eles.</p>
+        <p>O plano Basic custa R$ 259/mês e inclui financeiro automático com conexão bancária via Open Finance, Fator R automático (que pode reduzir muito o imposto no Simples Nacional) e certificado digital E-CNPJ A1. O plano Unique (R$ 450/mês) adiciona gerente de conta exclusivo, IRPF grátis dos sócios e atendimento até as 21h com seu gerente pessoal.</p>
+        <p>A reputação confirma a qualidade: 4,7 estrelas no Google com mais de 2 mil avaliações e selo RA1000 no Reclame Aqui, com 96,2% das reclamações resolvidas. Para uma empresa com esse volume de clientes, é uma taxa impressionante.</p>
+        <p>O ponto de atenção é o preço. R$ 259/mês no básico não é o mais barato do mercado. Mas para quem quer estabilidade, plataforma sem surpresas e os benefícios de bem-estar inclusos, o custo-benefício fecha bem.</p>
+    </div>
+
+    <div class="cbox-wrap">
+        <div class="cbox-card">
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/contaja" target="_blank" rel="sponsored noopener">
+                        <img src="/images/contaja-contabilidade.png" alt="ContaJá" class="cbox-logo-img" width="150" height="60" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">ContaJá</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">9,0</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Ideal para empreendedores iniciantes</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/contaja" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site contaja.com.br</div>
+                </div>
+            </div>
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 137<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">Plano Simples Nacional</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">inclusa no plano</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Conta PJ + Cartão PJ</div>
+                    <div class="cbox-cell-value">Grátis</div>
+                    <div class="cbox-cell-sub">sem taxas de manutenção</div>
+                </div>
+            </div>
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,7 ★</div>
+                    <div class="cbox-cell-sub">565 avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">RA1000</div>
+                    <div class="cbox-cell-sub">97,4% resolvidas</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Planos especiais</div>
+                    <div class="cbox-cell-value">Sim</div>
+                    <div class="cbox-cell-sub">dropshipping, infoprodutor</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cbox-review">
+        <p>A ContaJá joga a carta que todo empreendedor iniciante quer ver: preço baixo de verdade. Com planos a partir de R$ 137/mês, é uma das opções mais acessíveis entre as contabilidades online que mantêm qualidade no serviço.</p>
+        <p>O plano básico no Simples Nacional atende empresas que faturam até R$ 25 mil/mês com contabilidade completa, abertura de empresa grátis, conta bancária PJ grátis e cartão de crédito PJ grátis. Para quem está começando e precisa de estrutura sem gastar muito, resolve bem.</p>
+        <p>Os planos especializados são um diferencial real: dropshipping com endereço fiscal, infoprodutores e afiliados, construção civil. Cada um com configuração fiscal adequada para o nicho, não um plano genérico adaptado. O ponto de atenção é que o certificado digital não está incluso no plano básico.</p>
+        <p>A reputação impressiona para o nível de preço: 4,7 estrelas no Google com 565 avaliações e selo RA1000 no Reclame Aqui com 97,4% das reclamações resolvidas. É uma das maiores taxas de resolução da lista. O modelo é de volume com processo padronizado, então atendimento personalizado não é o forte, mas para quem prioriza custo, a ContaJá entrega o que promete.</p>
+    </div>
+
+    <div class="cbox-wrap">
+        <div class="cbox-card">
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/contabilizei" target="_blank" rel="sponsored noopener">
+                        <img src="/images/contabilizei-logo.png" alt="Contabilizei" class="cbox-logo-img" width="150" height="60" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Contabilizei</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★★</span>
+                        <span class="cbox-score">8,9</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Maior contabilidade online do Brasil</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/contabilizei" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site contabilizei.com.br</div>
+                </div>
+            </div>
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 195<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">Plano Padrão</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">inclui taxas da Junta Comercial (plano anual)</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">DIFERENCIAL</div>
+                    <div class="cbox-cell-label">WhatsApp</div>
+                    <div class="cbox-cell-value">Até 22h</div>
+                    <div class="cbox-cell-sub">todos os dias</div>
+                </div>
+            </div>
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,5 ★</div>
+                    <div class="cbox-cell-sub">+2.000 avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">RA1000</div>
+                    <div class="cbox-cell-sub">93,4% resolvidas</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Clientes atendidos</div>
+                    <div class="cbox-cell-value">70 mil</div>
+                    <div class="cbox-cell-sub">maior do Brasil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cbox-review">
+        <p>A Contabilizei é o maior nome do setor no Brasil. Setenta mil clientes ativos. Esse volume não acontece por acaso — representa mais de uma década construindo processo, plataforma e atendimento que funciona em escala.</p>
+        <p>A plataforma é objetiva: você entra, emite sua nota, acompanha impostos, acessa relatórios. O atendimento via WhatsApp até as 22h todos os dias é um diferencial real. Mesmo sendo gigante, a Contabilizei mantém esse horário em todos os planos.</p>
+        <p>O plano Padrão custa R$ 195/mês e inclui certificado digital, conta PJ gratuita integrada, pró-labore de até 2 sócios e contabilidade completa. Quem contratar no plano anual tem abertura de empresa 100% grátis — eles pagam até as taxas da Junta Comercial e o certificado digital em cidades estratégicas, economia de R$ 300 a R$ 800.</p>
+        <p>A nota 4,5 no Google com mais de 2 mil avaliações é honesta para o tamanho da empresa. No Reclame Aqui, foram 720 reclamações nos últimos 6 meses com 93,4% resolvidas e selo RA1000. A Contabilizei não é a escolha mais barata nem a mais especializada, mas é a mais segura para quem quer uma contabilidade consolidada com histórico comprovado.</p>
+    </div>
+
+    <div class="cbox-wrap">
+        <div class="cbox-card">
+            <div class="cbox-header">
+                <div class="cbox-logo-zone">
+                    <a href="https://dub.sh/contabilivre" target="_blank" rel="sponsored noopener">
+                        <img src="/images/contabilivre-logo.png" alt="Contabilivre" class="cbox-logo-img" width="150" height="60" loading="lazy">
+                    </a>
+                </div>
+                <div class="cbox-meta">
+                    <div class="cbox-brand">Contabilivre</div>
+                    <div class="cbox-rating-row">
+                        <span class="cbox-stars">★★★★☆</span>
+                        <span class="cbox-score">8,7</span>
+                        <span class="cbox-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="cbox-tag">Ideal para todas as empresas</div>
+                </div>
+                <div class="cbox-cta-zone">
+                    <a href="https://dub.sh/contabilivre" class="cbox-cta-btn" target="_blank" rel="sponsored noopener">Visitar Site ↗</a>
+                    <div class="cbox-cta-caption">no site contabilivre.com.br</div>
+                </div>
+            </div>
+            <div class="cbox-data-row">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Preço mensal</div>
+                    <div class="cbox-cell-value">R$ 139<span class="cbox-cell-unit">/mês</span></div>
+                    <div class="cbox-cell-sub">Plano Basic</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Abertura de empresa</div>
+                    <div class="cbox-cell-value">GRÁTIS</div>
+                    <div class="cbox-cell-sub">inclusa no plano</div>
+                </div>
+                <div class="cbox-cell cbox-cell-highlight">
+                    <div class="cbox-hl-badge">INCLUSO NO PLANO</div>
+                    <div class="cbox-cell-label">Certificado digital</div>
+                    <div class="cbox-cell-value">Incluso</div>
+                    <div class="cbox-cell-sub">em todos os planos</div>
+                </div>
+            </div>
+            <div class="cbox-data-row cbox-data-row-secondary">
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Nota no Google</div>
+                    <div class="cbox-cell-value">4,3 ★</div>
+                    <div class="cbox-cell-sub">+300 avaliações</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Reclame Aqui</div>
+                    <div class="cbox-cell-value">8,6/10</div>
+                    <div class="cbox-cell-sub">92% respondidas</div>
+                </div>
+                <div class="cbox-cell">
+                    <div class="cbox-cell-label">Diferencial</div>
+                    <div class="cbox-cell-value">Reuniões</div>
+                    <div class="cbox-cell-sub">trimestrais c/ contador (Pro)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cbox-review">
+        <p>A Contabilivre não tenta vender sonho. O negócio deles é simples: contabilidade bem feita por um preço justo. O plano Basic custa R$ 139/mês e inclui abertura de empresa grátis, certificado digital E-CNPJ A1, emissor de notas fiscais ilimitado, pró-labore de até 2 sócios e conta PJ gratuita. Tudo com suporte via e-mail, telefone e WhatsApp.</p>
+        <p>O plano Pro (R$ 209/mês) adiciona integração bancária via Open Finance com até 2 contas e faturamento suportado até R$ 60 mil/mês. O Enterprise (R$ 359/mês) é para empresas maiores: até 4 sócios, 2 funcionários inclusos, emissão de até 15 notas pelo time deles e reuniões trimestrais com o contador para planejamento estratégico.</p>
+        <p>Essas reuniões trimestrais são um diferencial subestimado. Não é atendimento reativo — é reunião de planejamento real. Os contadores olham os números, discutem regime tributário, falam sobre distribuição de lucros. Para empresas no Enterprise, o valor gerado supera o custo mensal extra.</p>
+        <p>A nota 4,3 no Google com mais de 300 avaliações e 8,6/10 no Reclame Aqui com 92% de respostas são números honestos. A Contabilivre não é a mais popular nem a mais reconhecida, mas entrega consistência. Para quem quer uma contabilidade séria sem pagar caro, é uma escolha sólida.</p>
+    </div>
+
+    <h2>Como escolhemos as melhores contabilidades (e por que você pode confiar)</h2>
+    <p>Antes de mostrar o ranking, preciso explicar como cheguei nessa lista. Porque não adianta eu colocar várias contabilidades aqui e falar "confie em mim" sem mostrar qual foi o critério, né?</p>
+    <h3>Os 5 pilares que usamos pra avaliar</h3>
+    <p>Analisei cada contabilidade usando 5 critérios principais. Nenhum deles sozinho define se a empresa é boa — o que importa é o conjunto.</p>
+    <p><strong>1. Custo-benefício (não só preço)</strong></p>
+    <p>Preço baixo não significa automaticamente melhor. Uma contabilidade que cobra R$ 128/mês mas não tem WhatsApp, não tem certificado digital e demora 3 dias pra responder pode sair mais cara no final do que uma de R$ 209/mês que resolve tudo rápido.</p>
+    <p><strong>2. Reputação comprovada</strong></p>
+    <p>Fui atrás de dados públicos e verificáveis: nota no Google (e quantidade de avaliações), Reclame Aqui, tempo de mercado e CRC ativo e regularizado.</p>
+    <p><strong>3. Qualidade do atendimento</strong></p>
+    <p>Avaliei canais disponíveis, horário de atendimento, tempo médio de resposta e se tem assessor dedicado ou atendimento genérico. WhatsApp é quase obrigatório hoje.</p>
+    <p><strong>4. Recursos e plataforma</strong></p>
+    <p>Emissor de notas fiscais integrado, importação automática via Open Finance, painel com visão clara de impostos e plataforma estável.</p>
+    <p><strong>5. Especialização e casos de uso</strong></p>
+    <p>Colinear é excelente pra dev que recebe em dólar. Mas péssima pra quem tem loja física. Contaja tem plano pra construção civil. Isso importa.</p>
+
+    <h2>Contabilidade Online vs. Digital vs. Tradicional: Qual vale a pena?</h2>
+    <p>"Contabilidade online" e "contabilidade digital" são basicamente a mesma coisa. Só muda o nome que a empresa prefere usar no site.</p>
+    <p>Contabilidade tradicional é aquele escritório de bairro onde você precisa aparecer pessoalmente, entregar documentos em papel, e esperar o contador te atender quando der tempo.</p>
+    <h3>A diferença na ponta do lápis</h3>
+    <p><strong>Contabilidade tradicional de bairro:</strong> Serviço básico R$ 600 a R$ 1.200/mês. Abertura de empresa: R$ 800 a R$ 2.000 cobrado à parte.</p>
+    <p><strong>Contabilidade online:</strong> Serviço básico R$ 129 a R$ 199/mês. Abertura de empresa: <strong>GRÁTIS na maioria</strong>.</p>
+    <p>A conta é simples: se você paga R$ 800/mês hoje e migrar pra um plano online de R$ 200/mês, <strong>são R$ 600 economizados. Por mês. R$ 7.200 por ano.</strong></p>
+
+    <h2>Como escolher a melhor contabilidade online para o seu momento de negócio</h2>
+    <h3>Para quem está abrindo empresa agora</h3>
+    <p>Sua prioridade é simples: gastar pouco e não ter dor de cabeça. Os planos básicos dão conta do recado. Você precisa de abertura grátis, certificado digital incluso, suporte via WhatsApp e emissor de notas fiscais.</p>
+    <h3>Para quem quer trocar de contador</h3>
+    <p>Não vá no plano mais básico só pra economizar. Pega um intermediário com WhatsApp, certificado digital incluso e suporte melhor — nos primeiros 2-3 meses você VAI precisar falar com eles com mais frequência.</p>
+    <h3>Prestadores de Serviço vs. Comércio: As necessidades mudam</h3>
+    <p>Empresa de serviço e empresa de comércio têm necessidades COMPLETAMENTE diferentes. Se você tem loja física ou e-commerce, não tenta economizar pegando plano de serviço. Não vai funcionar.</p>
+
+    <h2>Como saber se a contabilidade é confiável</h2>
+    <h3>O que checar no Reclame Aqui e Google Reviews</h3>
+    <p>O que importa: a nota geral (idealmente acima de 7.0), a taxa de resposta (próxima de 100%), o que a empresa responde e o tipo de reclamação. Uma empresa com 8.5 de nota e 98% de resposta tá no caminho certo.</p>
+    <h3>Segurança dos dados e backup na nuvem</h3>
+    <p>Pergunte antes de contratar: onde os dados ficam armazenados, com que frequência fazem backup e quanto tempo pra recuperar em caso de problema.</p>
+    <p><strong>CRC do contador responsável:</strong> Isso é OBRIGATÓRIO por lei. Pede o número do CRC e consulta no site do CRC do seu estado. Se a empresa enrolar pra te dar o CRC, foge.</p>
+
+    <h2>Perguntas frequentes sobre Contabilidades Online</h2>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Contabilidade online serve para qualquer empresa?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Serve pra maioria, mas não pra todas. Funciona bem pra MEI que virou ME, prestadores de serviço, pequeno comércio e e-commerce, empresas com até 10-15 funcionários e faturamento até R$ 500 mil/mês no Simples Nacional.</p>
+                <p>Pode não funcionar pra empresas muito grandes (acima de R$ 1-2 milhões/mês), operações com importação/exportação constante ou quem precisa de assessoria presencial frequente.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Qual a diferença entre contabilidade online e tradicional?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>A diferença principal é o modelo de atendimento e o preço. Na tradicional você vai até o escritório e paga entre R$ 600 e R$ 1.500/mês. Na online tudo acontece pela internet e você paga entre R$ 117 e R$ 350/mês em média.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Contabilidade online é confiável e segura?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Sim, desde que você escolha uma empresa regularizada com CRC ativo, contadores formados e dados em nuvem com backup. Antes de contratar, verifique o CRC, confira avaliações no Google e Reclame Aqui e veja se o site tem certificado SSL.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Quanto custa uma contabilidade online por mês?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Os preços variam de R$ 117 a R$ 700/mês. Para prestador de serviço que fatura até R$ 50 mil/mês, a média fica entre R$ 120 e R$ 250/mês. Para comércio, entre R$ 200 e R$ 400/mês.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Vale a pena trocar de contador tradicional pra online?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Geralmente sim, principalmente se você paga mais de R$ 500/mês hoje. A economia média é de R$ 400 a R$ 800/mês, o que dá R$ 4.800 a R$ 9.600 por ano.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Como funciona a migração de uma contabilidade pra outra?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Você contrata a nova contabilidade, eles pedem seus acessos (e-CAC, Simples Nacional), fazem a alteração de responsável técnico e solicitam os documentos da antiga (que é obrigada por lei a entregar). O processo leva de 15 a 30 dias. Não cancele a antiga antes de confirmar que a nova assumiu tudo.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Preciso de contador se sou MEI?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Não é obrigatório por lei. O MEI foi criado pra ser simples o suficiente pro empreendedor fazer sozinho: você paga DAS mensal fixo e faz declaração anual (DASN-SIMEI). Tem até aplicativo oficial do governo pra isso.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Qual o melhor plano: mensal ou anual?</span>
+                <span class="faq-icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Plano anual é sempre mais barato (desconto de 15-20%) e algumas contabilidades só fazem abertura totalmente grátis se você fechar anual. O problema é que você fica preso por 12 meses. Se você já tem CNPJ e está trocando de contador, comece no mensal pra testar 2-3 meses antes de migrar pro anual.</p>
+            </div>
+        </div>
+    </div>
+
+</ReviewLayout>

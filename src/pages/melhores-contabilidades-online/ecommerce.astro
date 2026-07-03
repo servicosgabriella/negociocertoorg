@@ -1,0 +1,36 @@
+---
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+import { getBreadcrumb, getSubcategoria } from '../../data/estrutura';
+
+const subcategoria = getSubcategoria('financas', 'contabilidade');
+const breadcrumb = getBreadcrumb('financas', 'Melhores Contabilidades Online para E-commerce', subcategoria);
+
+const subnavItems = [
+    { label: 'Ranking Geral', href: '/melhores-contabilidades-online/', icon: '🏆' },
+    { label: 'Para Médicos', href: '/melhores-contabilidades-online/medico', icon: '🩺' },
+    { label: 'Para MEI', href: '/melhores-contabilidades-online/mei', icon: '📋' },
+    { label: 'Para E-commerce', href: '/melhores-contabilidades-online/ecommerce', icon: '🛒' },
+];
+---
+
+<ReviewLayout
+    title="Melhores Contabilidades Online para E-commerce (2026)"
+    description="As melhores contabilidades online para lojas virtuais e e-commerce. Compare preços, serviços e quais entendem de Simples Nacional, ICMS e marketplaces."
+    publishDate="2026-07-02"
+    updatedDate="2026-07-02"
+    authorName="Gabriella Fernandes"
+    authorHref="/autor/gabriella-fernandes/"
+    authorRole="Analista Sênior"
+    authorImage="/images/autor/gabriella-fernandes.jpg"
+    breadcrumb={breadcrumb}
+    subnav={subnavItems}
+    ranking={[
+        { position: 1, name: "Contabilidade.com", url: "https://contabilidade.com.br" },
+        { position: 2, name: "ContaJá", url: "https://contaja.com.br" },
+        { position: 3, name: "Contabilizei", url: "https://contabilizei.com.br" },
+    ]}
+>
+    <h2>Melhores Contabilidades Online para E-commerce em 2026</h2>
+    <p>E-commerce tem complexidade tributária maior que prestação de serviço: ICMS entre estados, substituição tributária, gestão de estoque, integrações com marketplaces como Mercado Livre, Shopee e Amazon, e emissão de NF-e por produto.</p>
+    <p>Este artigo está sendo preparado com análise completa das melhores opções para lojas virtuais. <a href="/melhores-contabilidades-online/">Enquanto isso, veja o ranking geral de melhores contabilidades online.</a></p>
+</ReviewLayout>
