@@ -1,0 +1,34 @@
+---
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+import { getBreadcrumb, getSubcategoria } from '../../data/estrutura';
+
+const subcategoria = getSubcategoria('gestao', 'pdv');
+const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas PDV para Supermercados', subcategoria);
+
+const subnavItems = [
+    { label: 'Ranking Geral', href: '/melhores-sistemas-pdv/', icon: '🏆' },
+    { label: 'Para Supermercados', href: '/melhores-sistemas-pdv/supermercado', icon: '🛒' },
+];
+---
+
+<ReviewLayout
+    title="Melhores Sistemas PDV para Supermercados (2026)"
+    description="Os melhores sistemas PDV para supermercados e mercadinhos em 2026. Veja quais têm balança integrada, frente de caixa ágil, controle de estoque e emissão de NF-e."
+    publishDate="2026-07-20"
+    updatedDate="2026-07-20"
+    authorName="Gabriella Fernandes"
+    authorHref="/autor/gabriella-fernandes/"
+    authorRole="Analista Sênior"
+    authorImage="/images/autor/gabriella-fernandes.jpg"
+    breadcrumb={breadcrumb}
+    subnav={subnavItems}
+    ranking={[
+        { position: 1, name: "Bling", url: "https://dub.sh/bling" },
+        { position: 2, name: "Vhsys", url: "https://dub.sh/vhsys" },
+        { position: 3, name: "GestãoClick", url: "https://dub.sh/gestaoclick" },
+    ]}
+>
+    <h2>Melhores Sistemas PDV para Supermercados em 2026</h2>
+    <p>Supermercados e mercadinhos têm exigências específicas no PDV: integração com balança, frente de caixa rápida para fila, controle de estoque de perecíveis e emissão de NFC-e.</p>
+    <p>Este artigo está sendo preparado com análise completa das melhores opções para o segmento. <a href="/melhores-sistemas-pdv/">Enquanto isso, veja o ranking geral de melhores sistemas PDV.</a></p>
+</ReviewLayout>

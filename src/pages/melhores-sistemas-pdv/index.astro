@@ -1,9 +1,14 @@
 ---
-import ReviewLayout from '../layouts/ReviewLayout.astro';
-import { getBreadcrumb, getSubcategoria } from '../data/estrutura';
+import ReviewLayout from '../../layouts/ReviewLayout.astro';
+import { getBreadcrumb, getSubcategoria } from '../../data/estrutura';
 
 const subcategoria = getSubcategoria('gestao', 'pdv');
 const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas PDV', subcategoria);
+
+const subnavItems = [
+    { label: 'Ranking Geral', href: '/melhores-sistemas-pdv/', icon: '🏆' },
+    { label: 'Para Supermercados', href: '/melhores-sistemas-pdv/supermercado', icon: '🛒' },
+];
 ---
 
 <ReviewLayout
@@ -16,6 +21,7 @@ const breadcrumb = getBreadcrumb('gestao', 'Melhores Sistemas PDV', subcategoria
     authorRole="Analista Sênior"
     authorImage="/images/autor/gabriella-fernandes.jpg"
     breadcrumb={breadcrumb}
+    subnav={subnavItems}
     faq={[
         {
             question: "Qual a diferença entre sistema PDV e ERP?",
