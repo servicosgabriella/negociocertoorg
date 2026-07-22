@@ -12,23 +12,1312 @@ const subnavItems = [
 ---
 
 <ReviewLayout
-    title="Melhores Sistemas PDV para Supermercados (2026)"
-    description="Os melhores sistemas PDV para supermercados e mercadinhos em 2026. Veja quais têm balança integrada, frente de caixa ágil, controle de estoque e emissão de NF-e."
-    publishDate="2026-07-20"
-    updatedDate="2026-07-20"
+    title="6 Melhores Sistemas PDV para Supermercado em 2026"
+    description="Compare os melhores sistemas PDV para supermercado, minimercado, padaria e açougue em 2026. Veja qual tem balança integrada, offline real, TEF e suporte no fim de semana."
+    publishDate="2026-07-22"
+    updatedDate="2026-07-22"
     authorName="Gabriella Fernandes"
     authorHref="/autor/gabriella-fernandes/"
     authorRole="Analista Sênior"
     authorImage="/images/autor/gabriella-fernandes.jpg"
     breadcrumb={breadcrumb}
     subnav={subnavItems}
+    faq={[
+        {
+            question: "Como funciona se a minha internet cair?",
+            answer: "Depende do sistema escolhido. O Hiper opera offline por até 7 dias, registrando vendas localmente e sincronizando quando a internet retorna. Nextar e CPlug também têm modo offline nativo para app e desktop. O GestãoClick é 100% nuvem — verifique com o suporte se há modo de contingência antes de contratar. VRSoft e Sismega não detalham essa funcionalidade publicamente. Para supermercado, açougue ou padaria que não pode parar o caixa, perguntar sobre o modo offline é a primeira questão a resolver antes de assinar qualquer contrato."
+        },
+        {
+            question: "O sistema tem integração homologada com quais marcas de balanças e pin pads?",
+            answer: "O Hiper tem integração confirmada com balança eletrônica (cálculo automático de preço no caixa) e com a maquininha Stone (modelos S920, Q92, L3, A8 e P2). A VRSoft também confirma integração com balanças e pin pads. O GestãoClick menciona integração com balanças, mas não lista modelos homologados no site. O Nextar não menciona integração com balança — ponto crítico para açougue e hortifruti. CPlug e Sismega não especificam modelos de balança publicamente. Para negócio que vende por peso, perguntar sobre os modelos exatos de balança homologados é obrigatório antes de fechar qualquer contrato."
+        },
+        {
+            question: "Como funciona a integração com cartões? É via TEF ou a maquininha é separada?",
+            answer: "Hiper, VRSoft, GestãoClick e CPlug têm TEF integrado. Com TEF, o valor da venda vai automaticamente para a maquininha sem precisar redigitar nada. O GestãoClick integra com Stone, Cielo, Rede e GetNet. O Hiper integra nativamente com a maquininha Stone. O CPlug usa TEF Sitef. O Nextar tem parceria com Stone, mas o modelo de integração (TEF completo ou API básica) deve ser confirmado com o comercial. Sem TEF, o operador precisa registrar o valor no sistema e digitar o mesmo valor na maquininha manualmente, o que abre margem para erro e deixa o caixa mais lento."
+        },
+        {
+            question: "O imposto do meu produto atualiza sozinho ou preciso configurar manualmente?",
+            answer: "A VRSoft tem módulo específico de conformidade com a Reforma Tributária, o que indica atualização de alíquotas. Os demais sistemas emitem NF-e e NFC-e corretamente, mas a atualização automática de tributação de produto não está explicitamente declarada nos sites. Em qualquer sistema PDV, o cadastro tributário inicial (NCM, CEST, CSOSN, alíquotas) precisa ser configurado na implantação, feito pelo suporte do sistema ou pelo seu contador. Mudanças de alíquota por decreto precisam ser verificadas pontualmente com o fornecedor do sistema."
+        },
+        {
+            question: "Se eu crescer e precisar de ERP no futuro, esse PDV se integra a outros sistemas? Como é feita a exportação para o contador?",
+            answer: "A VRSoft é a solução mais completa para quem quer ERP do mesmo fornecedor: o VR Master é o ERP nativo integrado ao VR PDV. GestãoClick e CPlug já entregam ERP + PDV no mesmo sistema, sem necessidade de trocar ao crescer. O Hiper tem o plano Gestão com financeiro completo e integração contábil via NF-e. O Nextar é focado em PDV e estoque, sem ERP completo, então ao crescer pode ser necessário migrar ou integrar via exportação XML. Para a exportação ao contador, todos os sistemas emitem XML de NF-e, o formato padrão aceito pelos contadores. Sistemas com módulo financeiro geram DRE e fluxo de caixa que facilitam o trabalho contábil."
+        },
+        {
+            question: "Como funciona o suporte técnico no sábado à tarde ou no domingo?",
+            answer: "O CPlug é o único da lista que declara explicitamente suporte humano 7 dias por semana. Os demais não publicam os horários de atendimento de fim de semana. O Nextar tem chat e WhatsApp com resposta rápida (até 5 minutos), mas não especifica se isso inclui sábado e domingo. Para Hiper, VRSoft, Sismega e GestãoClick, recomendamos perguntar antes de fechar contrato: qual é o SLA de atendimento no sábado à tarde e no domingo? O caixa que trava num domingo de manhã com fila é exatamente o cenário que exige suporte rápido, e é quando a maioria dos sistemas de suporte em horário comercial não atende."
+        }
+    ]}
     ranking={[
-        { position: 1, name: "Bling", url: "https://dub.sh/bling" },
-        { position: 2, name: "Vhsys", url: "https://dub.sh/vhsys" },
+        { position: 1, name: "Hiper", url: "https://hiper.com.br" },
+        { position: 2, name: "VRSoft", url: "https://vrsoft.com.br" },
         { position: 3, name: "GestãoClick", url: "https://dub.sh/gestaoclick" },
+        { position: 4, name: "Nextar", url: "https://nextar.com.br" },
+        { position: 5, name: "Sismega", url: "https://sismega.com.br" },
+        { position: 6, name: "CPlug", url: "https://cplug.com.br" },
     ]}
 >
-    <h2>Melhores Sistemas PDV para Supermercados em 2026</h2>
-    <p>Supermercados e mercadinhos têm exigências específicas no PDV: integração com balança, frente de caixa rápida para fila, controle de estoque de perecíveis e emissão de NFC-e.</p>
-    <p>Este artigo está sendo preparado com análise completa das melhores opções para o segmento. <a href="/melhores-sistemas-pdv/">Enquanto isso, veja o ranking geral de melhores sistemas PDV.</a></p>
+
+    <div slot="sidebar-offers" class="sidebar-offers">
+        <h3 class="sidebar-offers-title">Melhores PDV para supermercado</h3>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <img src="/images/hiper logo.png" alt="Hiper" class="soc-logo" style="max-width:120px;">
+                <div class="soc-rating">
+                    <span class="soc-score">9,2</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="soc-bottom">
+                <span class="soc-badge">Offline 7 dias</span>
+                <a href="https://hiper.com.br" class="soc-button" target="_blank" rel="noopener nofollow">Obter oferta ›</a>
+            </div>
+        </div>
+
+        <div class="soc-card">
+            <div class="soc-top">
+                <img src="/images/gestao click logo png .webp" alt="GestãoClick" class="soc-logo soc-logo-sm" style="max-width:120px;">
+                <div class="soc-rating">
+                    <span class="soc-score">8,8</span>
+                    <div class="soc-stars">
+                        <span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-full">★</span><span class="soc-star-half">★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="soc-bottom">
+                <span class="soc-badge">30 dias grátis</span>
+                <a href="https://dub.sh/gestaoclick" class="soc-button" target="_blank" rel="noopener nofollow">Obter oferta ›</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div slot="ranking" style="padding: 0 24px;">
+
+        <div class="contabilidade-wrapper" id="wrapper">
+
+            <!-- #1 Hiper -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://hiper.com.br" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/hiper logo.png" alt="Hiper" class="logo-image" width="160" height="64" loading="eager" fetchpriority="high">
+                        </a>
+                        <a href="https://hiper.com.br" class="logo-text" target="_blank" rel="noopener nofollow">Hiper</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,2</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Ideal para minimercado, açougue e padaria</h3>
+                        <ul class="info-list">
+                            <li>Offline por até 7 dias sem internet</li>
+                            <li>Balança integrada com cálculo automático</li>
+                            <li>NF-e, NFC-e e Stone nativos</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">Sob<span> consulta</span></div>
+                        <a href="https://hiper.com.br" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #2 VRSoft -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://vrsoft.com.br" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/vrsoft logo.png" alt="VRSoft" class="logo-image" width="160" height="64" loading="lazy">
+                        </a>
+                        <a href="https://vrsoft.com.br" class="logo-text" target="_blank" rel="noopener nofollow">VRSoft</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">9,0</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Referência para supermercados e hipermercados</h3>
+                        <ul class="info-list">
+                            <li>ERP + PDV + BI do mesmo fornecedor</li>
+                            <li>20 anos de experiência no segmento</li>
+                            <li>Presente em 26 estados brasileiros</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">Sob<span> consulta</span></div>
+                        <a href="https://vrsoft.com.br" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #3 GestãoClick -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://dub.sh/gestaoclick" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/gestao click logo png .webp" alt="GestãoClick" class="logo-image" width="180" height="72" loading="lazy">
+                        </a>
+                        <a href="https://dub.sh/gestaoclick" class="logo-text" target="_blank" rel="noopener nofollow">GestãoClick</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,8</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Melhor custo-benefício para pequenos mercados</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 119,00/mês</li>
+                            <li>TEF nativo com Stone, Cielo, Rede e GetNet</li>
+                            <li>30 dias de teste gratuito</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">A partir de R$ 119<span>/mês</span></div>
+                        <a href="https://dub.sh/gestaoclick" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #4 Nextar -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://nextar.com.br" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/nextar logo.png" alt="Nextar" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://nextar.com.br" class="logo-text" target="_blank" rel="noopener nofollow">Nextar</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,6</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Menor preço com offline real para padaria e mercadinho</h3>
+                        <ul class="info-list">
+                            <li>A partir de R$ 39/mês, sem contrato</li>
+                            <li>Offline nativo com sincronização automática</li>
+                            <li>50.000+ lojas e 23 anos de mercado</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">A partir de R$ 39<span>/mês</span></div>
+                        <a href="https://nextar.com.br" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #5 Sismega -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://sismega.com.br" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/sismega logo.png" alt="Sismega" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://sismega.com.br" class="logo-text" target="_blank" rel="noopener nofollow">Sismega</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,4</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Sistema consolidado para mercados locais e padarias</h3>
+                        <ul class="info-list">
+                            <li>Empresa fundada em 1993</li>
+                            <li>Soluções personalizadas por segmento</li>
+                            <li>Suporte especializado para varejo alimentar</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">Sob<span> consulta</span></div>
+                        <a href="https://sismega.com.br" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #6 CPlug -->
+            <div class="contabilidade-container">
+                <div class="contabilidade-grid">
+                    <div class="logo-column">
+                        <a href="https://cplug.com.br" class="logo-link" target="_blank" rel="noopener nofollow">
+                            <img src="/images/cplug logo.png" alt="CPlug" class="logo-image" width="140" height="56" loading="lazy">
+                        </a>
+                        <a href="https://cplug.com.br" class="logo-text" target="_blank" rel="noopener nofollow">CPlug</a>
+                    </div>
+                    <div class="rating-column">
+                        <div class="rating-wrapper"><span class="rating-score">8,2</span><span class="rating-total">/10</span></div>
+                        <div class="rating-label">Avaliação do editor</div>
+                    </div>
+                    <div class="info-column">
+                        <h3 class="info-title">Único com suporte 7 dias por semana</h3>
+                        <ul class="info-list">
+                            <li>Offline nativo + TEF Sitef integrado</li>
+                            <li>ERP financeiro e BI inclusos</li>
+                            <li>Suporte humano sábado e domingo</li>
+                        </ul>
+                    </div>
+                    <div class="button-column">
+                        <div class="visit-price">Sob<span> consulta</span></div>
+                        <a href="https://cplug.com.br" class="visit-button" target="_blank" rel="noopener nofollow">Visitar Site</a>
+                        <div class="button-caption">Clique no botão para saber mais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-overlay" id="fadeOverlay">
+                <button class="show-more-button" onclick="showMore()">Ver Todos os Sistemas PDV para Supermercado</button>
+            </div>
+
+        </div>
+    </div>
+
+    <h2>Melhores sistemas PDV para supermercado, minimercado e mercadinho em 2026</h2>
+
+    <p>PDV para supermercado não é a mesma coisa que PDV para loja de roupas ou restaurante. O varejo alimentar tem exigências específicas que eliminam a maioria dos sistemas generalistas: integração com balança eletrônica, frente de caixa capaz de processar centenas de itens por hora, modo offline para quando a internet cai, controle de validade de perecíveis e emissão de NFC-e em volume alto.</p>
+
+    <p>Quem tem minimercado, mercadinho de bairro, açougue ou padaria sabe que o sistema de caixa não pode falhar. Uma fila parada por cinco minutos já representa perda de venda e cliente insatisfeito. Por isso, a escolha do PDV certo é uma das decisões mais críticas para esse segmento.</p>
+
+    <p>Neste guia você encontra os 6 melhores sistemas PDV para supermercado e varejo alimentar em 2026, com análise técnica real, preços atualizados (quando publicados), funcionalidades específicas por segmento e as respostas para as perguntas que você deveria fazer antes de contratar qualquer sistema.</p>
+
+    <h2>Qual sistema PDV para mercado é o certo para o meu negócio?</h2>
+
+    <div class="seg-table-wrap">
+        <table class="seg-table">
+            <thead>
+                <tr>
+                    <th>Perfil do negócio</th>
+                    <th>Sistema recomendado</th>
+                    <th>Por que?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Minimercado ou mercadinho de bairro com balança e açougue</td>
+                    <td><strong>Hiper</strong></td>
+                    <td>Balança integrada, offline 7 dias, preço progressivo (atacarejo), Stone nativa</td>
+                </tr>
+                <tr>
+                    <td>Supermercado médio ou grande, rede com múltiplas lojas</td>
+                    <td><strong>VRSoft</strong></td>
+                    <td>ERP + PDV + BI do mesmo fornecedor, 20 anos de experiência, balança e TEF</td>
+                </tr>
+                <tr>
+                    <td>Pequeno mercado ou mercearia formalizando o caixa</td>
+                    <td><strong>GestãoClick</strong></td>
+                    <td>TEF nativo com 4 adquirentes, nuvem, R$ 119/mês, 30 dias grátis</td>
+                </tr>
+                <tr>
+                    <td>Padaria, hortifruti ou mercadinho com orçamento controlado</td>
+                    <td><strong>Nextar</strong></td>
+                    <td>R$ 39/mês, offline real, sem contrato, importação de NF-e automática</td>
+                </tr>
+                <tr>
+                    <td>Mercado local que valoriza atendimento próximo e personalização</td>
+                    <td><strong>Sismega</strong></td>
+                    <td>30+ anos no mercado, soluções sob medida, suporte especializado</td>
+                </tr>
+                <tr>
+                    <td>Mercado ou padaria com atendimento no balcão, que opera no fim de semana</td>
+                    <td><strong>CPlug</strong></td>
+                    <td>Suporte 7 dias, offline nativo, ERP + BI inclusos, TEF Sitef</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <style>
+        /* === Segmentation Table === */
+        .seg-table-wrap {
+            overflow-x: auto;
+            margin: 24px 0 32px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        .seg-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .seg-table thead tr {
+            background: #f9fafb;
+        }
+        .seg-table th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .seg-table td {
+            padding: 13px 16px;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .seg-table tbody tr:last-child td { border-bottom: none; }
+        .seg-table tbody tr:nth-child(even) { background: #fafafa; }
+
+        /* === Tech Comparison Table === */
+        .tech-table-wrap {
+            overflow-x: auto;
+            margin: 24px 0 32px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+        .tech-table thead tr { background: #1d4ed8; }
+        .tech-table th {
+            padding: 11px 14px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.03em;
+        }
+        .tech-table th:first-child { text-align: left; }
+        .tech-table td {
+            padding: 11px 14px;
+            text-align: center;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+        }
+        .tech-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #111827;
+        }
+        .tech-table tbody tr:nth-child(even) { background: #fafafa; }
+        .tech-table tbody tr:last-child td { border-bottom: none; }
+        .tc-yes { color: #16a34a; font-weight: 700; font-size: 16px; }
+        .tc-no { color: #dc2626; font-weight: 700; font-size: 16px; }
+        .tc-partial { color: #d97706; font-weight: 600; font-size: 13px; }
+
+        /* === PDV Card — NegócioCerto Design System === */
+        .pdv-wrap { margin-bottom: 40px; }
+        .pdv-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fff;
+            margin: 20px 0 0;
+        }
+        .pdv-ribbon {
+            background: #ecfdf5;
+            border-bottom: 1px solid #d1fae5;
+            padding: 9px 22px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #065f46;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.03em;
+        }
+        .pdv-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .pdv-logo-zone {
+            flex-shrink: 0;
+            width: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pdv-logo-img {
+            max-width: 145px;
+            max-height: 58px;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+        .pdv-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .pdv-brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .pdv-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+        .pdv-stars { color: #f59e0b; font-size: 15px; letter-spacing: 1px; line-height: 1; }
+        .pdv-score { font-size: 14px; font-weight: 700; color: #1d6fe8; }
+        .pdv-score-label { font-size: 13px; color: #1d6fe8; }
+        .pdv-tag {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid #e5e7eb;
+        }
+        .pdv-cta-zone {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-width: 165px;
+        }
+        .pdv-cta-btn {
+            display: block;
+            background: #16a34a;
+            color: #fff !important;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none !important;
+            padding: 13px 18px;
+            border-radius: 7px;
+            text-align: center;
+            width: 100%;
+            transition: background 0.2s;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+        .pdv-cta-btn:hover { background: #15803d; color: #fff !important; }
+        .pdv-cta-price {
+            font-size: 14px;
+            font-weight: 400;
+            color: #6b7280;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .pdv-cta-price span { font-size: 13px; }
+        .pdv-cta-caption { font-size: 11px; color: #6b7280; text-align: center; }
+        /* Feature chips */
+        .pdv-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 13px 22px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fafafa;
+        }
+        .pdv-feature-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 12.5px;
+            color: #374151;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .pdv-feature-chip i { color: #16a34a; font-size: 12px; }
+        /* Data rows */
+        .pdv-data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid #e5e7eb;
+        }
+        .pdv-cell {
+            padding: 14px 18px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .pdv-cell:last-child { border-right: none; }
+        .pdv-cell-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .pdv-cell-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+        }
+        .pdv-cell-unit { font-size: 13px; font-weight: 400; color: #6b7280; }
+        .pdv-cell-sub { font-size: 12px; color: #9ca3af; line-height: 1.4; }
+        .pdv-cell-highlight { background: #f0f9ff; }
+        .pdv-hl-badge {
+            font-size: 10px;
+            font-weight: 700;
+            color: #0369a1;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .pdv-hl-badge::before { content: "●"; font-size: 7px; color: #0ea5e9; }
+        .pdv-cell-highlight .pdv-cell-value { color: #0c4a6e; }
+        /* Secondary row */
+        .pdv-data-row-secondary .pdv-cell-value { font-size: 15px; }
+        /* Review text */
+        .pdv-review { margin-top: 20px; }
+        .pdv-review p {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .pdv-header { flex-wrap: wrap; gap: 14px; padding: 16px; }
+            .pdv-logo-zone { width: 130px; }
+            .pdv-cta-zone { width: 100%; min-width: unset; }
+            .pdv-data-row { grid-template-columns: 1fr 1fr; }
+            .pdv-cell-highlight { grid-column: 1 / -1; border-right: none; border-top: 1px solid #e5e7eb; }
+            .pdv-cell { padding: 12px 14px; }
+            .pdv-cell-value { font-size: 15px; }
+            .pdv-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+            .pdv-data-row-secondary .pdv-cell { padding: 10px 8px; }
+            .pdv-data-row-secondary .pdv-cell-value { font-size: 13px; }
+            .pdv-features { padding: 10px 14px; gap: 5px; }
+            .pdv-feature-chip { font-size: 11px; padding: 4px 9px; gap: 4px; }
+            .pdv-feature-chip i { font-size: 10px; }
+        }
+        @media (max-width: 460px) {
+            .pdv-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .pdv-logo-zone { width: 100%; justify-content: flex-start; }
+            .pdv-data-row { grid-template-columns: 1fr 1fr; }
+            .pdv-cell-highlight { grid-column: 1 / -1; }
+            .pdv-data-row-secondary { grid-template-columns: 1fr 1fr 1fr; }
+            .pdv-data-row-secondary .pdv-cell { padding: 10px 6px; }
+            .pdv-data-row-secondary .pdv-cell-label { font-size: 9px; }
+            .pdv-data-row-secondary .pdv-cell-value { font-size: 12px; }
+            .pdv-data-row-secondary .pdv-cell-sub { font-size: 10px; }
+        }
+    </style>
+
+    <h2>Análise detalhada: os 6 melhores PDV para supermercado</h2>
+
+    <p>Abaixo você encontra a análise completa de cada sistema, com funcionalidades verificadas nos sites oficiais, pontos fortes, pontos fracos e para qual perfil de negócio cada um faz mais sentido.</p>
+
+    <!-- ==================== #1 HIPER ==================== -->
+    <article id="hiper" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                🏆 #1 MELHOR PDV PARA MINIMERCADO, AÇOUGUE E PADARIA · Escolha NegócioCerto 2026
+            </div>
+
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://hiper.com.br" target="_blank" rel="noopener nofollow">
+                        <img src="/images/hiper logo.png" alt="Hiper" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Hiper</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">9,2</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para minimercado, mercadinho, açougue e padaria</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Sob<span> consulta</span></div>
+                    <a href="https://hiper.com.br" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site hiper.com.br</div>
+                </div>
+            </div>
+
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Balança integrada no caixa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Offline até 7 dias</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> NF-e e NFC-e inclusa</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Stone nativa (TEF integrado)</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Atacarejo com preço progressivo</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Controle de validade</span>
+            </div>
+
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Planos</div>
+                    <div class="pdv-cell-value">Mini / Gestão</div>
+                    <div class="pdv-cell-sub">preços via parceiro regional</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Modo offline</div>
+                    <div class="pdv-cell-value">7 dias</div>
+                    <div class="pdv-cell-sub">sincronização automática</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">Funciona offline por</div>
+                    <div class="pdv-cell-value">7 dias</div>
+                    <div class="pdv-cell-sub">sem perder uma venda</div>
+                </div>
+            </div>
+
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Desktop</div>
+                    <div class="pdv-cell-sub">online + offline</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e / NFC-e</div>
+                    <div class="pdv-cell-sub">inclusa nos planos</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Maquininha</div>
+                    <div class="pdv-cell-value">Stone</div>
+                    <div class="pdv-cell-sub">S920, Q92, L3, A8, P2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pdv-review">
+            <p>O Hiper é o sistema mais completo para minimercado, mercadinho, açougue e padaria. Desenvolvido especificamente para o pequeno varejo alimentar, reúne no mesmo ambiente frente de caixa, controle de estoque, emissão fiscal, integração com balança e maquininha — tudo pensado para quem precisa processar muitos itens rapidamente.</p>
+
+            <p>O diferencial técnico mais importante é a capacidade de operar offline por até 7 dias sem internet. Enquanto a maioria dos sistemas em nuvem trava quando cai a conexão, o Hiper registra as vendas localmente e sincroniza tudo quando a internet retorna. Para quem opera em bairros com conexão instável ou depende de link de qualidade variável, isso resolve um problema real e frequente.</p>
+
+            <p>A integração com balança eletrônica é nativa: o produto pesado no caixa tem o preço calculado automaticamente, sem digitação manual. Isso acelera o fluxo de clientes e elimina erro de cálculo — fundamental para açougue, casa de carnes, hortifruti e padaria que vende por peso.</p>
+
+            <p>O módulo de atacarejo permite configurar preços progressivos por quantidade: R$ 3 a unidade, R$ 8 as três. A lógica é aplicada automaticamente no caixa, sem precisar criar promoções manualmente para cada venda. Para mercadinho que também vende no atacado ou que trabalha com promoções de volume, esse recurso evita retrabalho diário.</p>
+
+            <p>A integração com Stone é direta. Os modelos S920, Q92, L3, A8 e P2 são compatíveis. O pagamento via PIX está incluído. O controle de validade de produtos com alertas de vencimento fecha o ciclo para operações de varejo alimentar com perecíveis.</p>
+
+            <p>Para crescimento, o Hiper tem dois planos: Mini (até 3 usuários) e Gestão (4+ usuários, módulo financeiro completo, multi-loja, 60+ relatórios). Os preços são praticados por parceiros regionais e não são publicados no site — o que facilita suporte próximo, mas exige solicitar cotação antes de comparar.</p>
+
+            <p><strong>Prós:</strong> offline por até 7 dias, balança integrada com cálculo automático, NF-e e NFC-e inclusas, atacarejo com preço progressivo, Stone nativa com PIX, controle de validade para perecíveis, 30+ segmentos suportados.</p>
+
+            <p><strong>Contras:</strong> preços não públicos (necessário solicitar cotação a parceiro regional), horário de suporte varia por parceiro.</p>
+
+            <p><strong>Para quem é:</strong> minimercado, mercadinho de bairro, açougue, casa de carnes e padaria — especialmente quem tem internet instável ou precisa de balança integrada e controle de perecíveis.</p>
+        </div>
+    </article>
+
+    <!-- ==================== #2 VRSOFT ==================== -->
+    <article id="vrsoft" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                ⭐ #2 REFERENCIA PARA SUPERMERCADOS E HIPERMERCADOS · NegócioCerto 2026
+            </div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://vrsoft.com.br" target="_blank" rel="noopener nofollow">
+                        <img src="/images/vrsoft logo.png" alt="VRSoft" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">VRSoft</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">9,0</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para supermercados, hipermercados e redes multi-loja</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Sob<span> consulta</span></div>
+                    <a href="https://vrsoft.com.br" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site vrsoft.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> ERP VR Master integrado</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Balança e pin pad homologados</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> TEF integrado</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> BI e controladoria (VR Controller 360)</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Conformidade Reforma Tributária</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Universidade VR (treinamento)</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Modelo comercial</div>
+                    <div class="pdv-cell-value">Sob consulta</div>
+                    <div class="pdv-cell-sub">proposta personalizada</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Experiência</div>
+                    <div class="pdv-cell-value">20 anos</div>
+                    <div class="pdv-cell-sub">no setor supermercadista</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">Cobertura nacional</div>
+                    <div class="pdv-cell-value">26 estados</div>
+                    <div class="pdv-cell-sub">suporte e presença local</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Modular</div>
+                    <div class="pdv-cell-sub">PDV + ERP + BI</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e / NFC-e</div>
+                    <div class="pdv-cell-sub">conformidade fiscal inclusa</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">(19) 3442-7600</div>
+                    <div class="pdv-cell-sub">+ Universidade VR</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>A VRSoft é a referência brasileira para supermercados e hipermercados que precisam de tecnologia específica para o segmento. Diferente dos sistemas generalistas, a VRSoft foi construída do zero para o varejo alimentar e tem 20 anos de experiência e presença em 26 estados brasileiros.</p>
+
+            <p>A plataforma é modular: o <strong>VR PDV</strong> opera na frente de caixa, o <strong>VR Master</strong> cobre o ERP completo (compras, financeiro, estoque), o <strong>VR Controller 360</strong> entrega BI e controladoria em tempo real, e o <strong>VR Mobile</strong> funciona como coletor de dados no corredor para gestão de estoque e etiquetas. Cada módulo integra com os demais em tempo real, eliminando a necessidade de exportar dados manualmente entre sistemas.</p>
+
+            <p>Para supermercados que precisam monitorar margens por categoria, conciliar cartões automaticamente, gerenciar clube de vantagens e adaptar preços de forma ágil, a VRSoft entrega uma solução vertical que poucos sistemas generalistas conseguem replicar com a mesma profundidade.</p>
+
+            <p>O módulo de conformidade com a Reforma Tributária é um diferencial concreto para o varejo alimentar, onde a tributação de produtos como alimentos da cesta básica muda com frequência. Ter isso gerenciado dentro do próprio sistema reduz risco de autuação e retrabalho do contador.</p>
+
+            <p>O suporte inclui a <strong>Universidade VR</strong>, plataforma de treinamento para toda a equipe operacional, o que reduz o custo de capacitação ao longo do tempo e diminui a dependência de suporte técnico para dúvidas básicas.</p>
+
+            <p>O ponto de atenção é o modelo comercial: preços não são divulgados, o processo inclui demonstração e proposta personalizada. Isso é padrão para soluções enterprise, mas exige mais tempo de avaliação antes de uma decisão. A VRSoft é mais indicada para supermercados com faturamento relevante e para redes que precisam de uma solução robusta e escalável.</p>
+
+            <p><strong>Prós:</strong> tecnologia específica para supermercado, ERP + PDV + BI do mesmo fornecedor, 20 anos de especialização, integração com balança e TEF, conformidade com Reforma Tributária, Universidade VR para treinamento, presença em 26 estados.</p>
+
+            <p><strong>Contras:</strong> preços não divulgados (modelo sob consulta), mais indicado para médio e grande porte — pode ser excesso para mercadinho pequeno.</p>
+
+            <p><strong>Para quem é:</strong> supermercado a partir de médio porte, hipermercado, rede com múltiplas lojas que precisa de ERP + PDV integrados do mesmo fornecedor especializado no segmento.</p>
+        </div>
+    </article>
+
+    <!-- ==================== #3 GESTAOCLICK ==================== -->
+    <article id="gestaoclick" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                🛒 #3 MELHOR CUSTO-BENEFÍCIO PARA PEQUENOS MERCADOS · NegócioCerto 2026
+            </div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://dub.sh/gestaoclick" target="_blank" rel="noopener nofollow">
+                        <img src="/images/gestao click logo png .webp" alt="GestãoClick" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">GestãoClick</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">8,8</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para pequenos mercados e mercearias que estão formalizando o caixa</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">A partir de R$ 119<span>/mês</span></div>
+                    <a href="https://dub.sh/gestaoclick" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site gestao.click</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> TEF nativo (Stone, Cielo, Rede, GetNet)</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Balança integrada</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> 100% nuvem com acesso remoto</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> NF-e e NFC-e (plano Prata)</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Controle de caixa por turno</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> 30 dias grátis</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plano base</div>
+                    <div class="pdv-cell-value">R$ 119<span class="pdv-cell-unit">/mês</span></div>
+                    <div class="pdv-cell-sub">Plano Bronze</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Com NF-e</div>
+                    <div class="pdv-cell-value">R$ 199<span class="pdv-cell-unit">/mês</span></div>
+                    <div class="pdv-cell-sub">Plano Prata</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">TEF integrado com</div>
+                    <div class="pdv-cell-value">4 adquirentes</div>
+                    <div class="pdv-cell-sub">Stone · Cielo · Rede · GetNet</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">100% Nuvem</div>
+                    <div class="pdv-cell-sub">acesso remoto</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Teste grátis</div>
+                    <div class="pdv-cell-value">30 dias</div>
+                    <div class="pdv-cell-sub">sem cartão de crédito</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">Chat + Tel.</div>
+                    <div class="pdv-cell-sub">equipe brasileira</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O GestãoClick é a opção mais acessível com TEF nativo para quem está formalizando o caixa de um pequeno mercado ou mercearia. Com planos a partir de R$ 119/mês, entrega PDV, estoque e financeiro num sistema em nuvem que funciona em qualquer computador sem instalar nada.</p>
+
+            <p>O TEF integrado nativo é o diferencial principal para o caixa de mercado. Quando o cliente paga no cartão, o valor aparece automaticamente na maquininha, sem precisar redigitar. O GestãoClick integra com Stone, Cielo, Rede e GetNet — as quatro principais adquirentes do mercado. Sem TEF, o operador registra o valor no PDV e digita o mesmo valor na maquininha manualmente, o que abre espaço para erro e torna o checkout mais lento em dias de movimento alto.</p>
+
+            <p>O sistema é 100% em nuvem. O dono consegue monitorar o caixa em tempo real pelo celular, acompanhar o estoque e ver o financeiro sem estar na loja. Para quem tem mais de um ponto de venda ou precisa gerenciar o negócio à distância, isso tem valor prático imediato.</p>
+
+            <p>O plano Bronze (R$ 119/mês) cobre PDV, estoque e financeiro completo, mas sem emissão de NF-e. Para emitir nota fiscal, é necessário o plano Prata (R$ 199/mês). Para mercado que ainda não emite nota ou que emite em volume baixo, o Bronze resolve. O GestãoClick informa integração com balanças, impressoras fiscais e leitores de código de barras — mas não detalha modelos homologados no site, então vale confirmar com o suporte antes de contratar.</p>
+
+            <p>O ponto fraco mais relevante para supermercado é a ausência de modo offline confirmado. O sistema roda na nuvem e não há informação pública sobre modo de contingência para queda de internet. Para mercado em área com internet estável, não é problema. Para quem tem link instável, esse ponto exige verificação antes de decidir.</p>
+
+            <p><strong>Prós:</strong> TEF nativo com as 4 principais adquirentes, 100% nuvem com acesso remoto, plano a partir de R$ 119/mês, 30 dias de teste gratuito, integração com balança e leitor de código de barras.</p>
+
+            <p><strong>Contras:</strong> sem NF-e no plano base (exige Prata para emitir nota), modo offline não confirmado publicamente, menos especializado em supermercado do que Hiper ou VRSoft.</p>
+
+            <p><strong>Planos:</strong> Bronze (R$ 119/mês — PDV + estoque + financeiro), Prata (R$ 199/mês — + NF-e e NFC-e), Ouro (R$ 289/mês — + área do cliente), Platina (R$ 379/mês — + assinatura digital). Preços para planos anuais.</p>
+
+            <p><strong>Para quem é:</strong> pequeno mercado ou mercearia com até 3 a 5 caixas que precisa de TEF nativo, quer acesso remoto via nuvem e busca plano a partir de R$ 119/mês para começar.</p>
+        </div>
+    </article>
+
+    <!-- ==================== #4 NEXTAR ==================== -->
+    <article id="nextar" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                💰 #4 MELHOR PRECO: A PARTIR DE R$ 39/MES · NegócioCerto 2026
+            </div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://nextar.com.br" target="_blank" rel="noopener nofollow">
+                        <img src="/images/nextar logo.png" alt="Nextar" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Nextar</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★★</span>
+                        <span class="pdv-score">8,6</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para padaria, hortifruti e mercadinho com orçamento controlado</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">A partir de R$ 39<span>/mês</span></div>
+                    <a href="https://nextar.com.br" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site nextar.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Offline nativo (app + desktop)</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Importação automática de XML NF-e</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Controle de datas de validade</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Usuários ilimitados</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Sem contrato ou taxa de adesão</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Migração gratuita de dados</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plano gratuito</div>
+                    <div class="pdv-cell-value">Grátis</div>
+                    <div class="pdv-cell-sub">funcionalidades básicas</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plano Pro</div>
+                    <div class="pdv-cell-value">R$ 39<span class="pdv-cell-unit">/mês</span></div>
+                    <div class="pdv-cell-sub">sem contrato, sem fidelidade</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">50.000+ lojas e</div>
+                    <div class="pdv-cell-value">23 anos</div>
+                    <div class="pdv-cell-sub">de experiência no mercado</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Plataforma</div>
+                    <div class="pdv-cell-value">Web + App</div>
+                    <div class="pdv-cell-sub">iOS e Android</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">WhatsApp</div>
+                    <div class="pdv-cell-sub">resposta em até 5 min</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Hardware</div>
+                    <div class="pdv-cell-value">Windows</div>
+                    <div class="pdv-cell-sub">compatível com máquinas simples</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>O Nextar (Nex) é o sistema com menor barreira de entrada da lista: começa grátis, tem plano pago a partir de R$ 39/mês, sem contrato e sem taxa de adesão. Com mais de 50.000 lojas usuárias e 23 anos no mercado, é uma opção sólida para padaria, hortifruti, mercadinho de bairro e negócio que quer o essencial funcionando rápido e com baixo custo.</p>
+
+            <p>O modo offline funciona no app e no desktop: você continua vendendo sem internet e o sistema sincroniza automaticamente quando a conexão retorna. Para padaria e mercadinho em área urbana com internet razoável, o offline é um backup útil para os momentos em que a conexão cai.</p>
+
+            <p>Um diferencial prático que economiza tempo real é a leitura automática do XML da NF-e do fornecedor: quando a mercadoria chega, o Nextar importa a nota e atualiza o estoque automaticamente, produto por produto, sem precisar cadastrar nada manualmente. Para mercado que recebe mercadoria diariamente, isso elimina horas de digitação por semana.</p>
+
+            <p>O controle de datas de validade e o suporte a múltiplas unidades de medida (kg, litros, metros) são recursos importantes para o varejo alimentar. O sistema também permite usuários ilimitados e oferece migração gratuita de dados para quem está trocando de sistema.</p>
+
+            <p>O ponto fraco principal é a ausência de integração com balança eletrônica — fundamental para açougue, hortifruti e padaria que vende por peso. O site não menciona essa integração. Antes de contratar para um negócio que depende de pesagem, confirmar diretamente com o suporte é obrigatório. Para padaria que vende por peça (pão, bolo, salgado) e não precisa pesar no caixa, esse ponto não é limitante.</p>
+
+            <p><strong>Prós:</strong> a partir de R$ 39/mês, offline nativo para app e desktop, importação automática de XML de NF-e de fornecedor, sem contrato ou fidelidade, usuários ilimitados, 50.000+ lojas, migração gratuita de dados.</p>
+
+            <p><strong>Contras:</strong> integração com balança não mencionada no site (verificar antes de contratar para açougue/hortifruti), não é ERP completo, horário de suporte no fim de semana não declarado.</p>
+
+            <p><strong>Planos:</strong> gratuito (funcionalidades básicas), Pro a partir de R$ 39/mês (gestão completa), 14 dias de teste sem cartão de crédito.</p>
+
+            <p><strong>Para quem é:</strong> padaria, hortifruti, mercadinho de bairro ou negócio que quer o mínimo essencial com o menor custo possível e offline real como garantia.</p>
+        </div>
+    </article>
+
+    <!-- ==================== #5 SISMEGA ==================== -->
+    <article id="sismega" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                🏛️ #5 EMPRESA COM 30+ ANOS NO MERCADO DE AUTOMAÇÃO COMERCIAL · NegócioCerto 2026
+            </div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://sismega.com.br" target="_blank" rel="noopener nofollow">
+                        <img src="/images/sismega logo.png" alt="Sismega" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">Sismega</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★</span>
+                        <span class="pdv-score">8,4</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para mercados locais e padarias que valorizam atendimento personalizado</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Sob<span> consulta</span></div>
+                    <a href="https://sismega.com.br" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site sismega.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Fundada em 1993</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Frente de caixa integrada</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Controle de estoque em tempo real</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Emissão NF-e</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Soluções personalizadas</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Opções em nuvem</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Modelo comercial</div>
+                    <div class="pdv-cell-value">Sob consulta</div>
+                    <div class="pdv-cell-sub">proposta personalizada</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">No mercado desde</div>
+                    <div class="pdv-cell-value">1993</div>
+                    <div class="pdv-cell-sub">30+ anos de experiência</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">Reconhecida como</div>
+                    <div class="pdv-cell-value">Referência SP</div>
+                    <div class="pdv-cell-sub">suporte próximo e personalizado</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Segmentos</div>
+                    <div class="pdv-cell-value">Varejo alimentar</div>
+                    <div class="pdv-cell-sub">mercado, padaria, açougue</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NF-e</div>
+                    <div class="pdv-cell-sub">inclusa no sistema</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Suporte</div>
+                    <div class="pdv-cell-value">0800 042 0847</div>
+                    <div class="pdv-cell-sub">sac@sismega.com.br</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>A Sismega é uma das empresas mais antigas do mercado de automação comercial, fundada em 1993, com reconhecimento consolidado especialmente no estado de São Paulo. Mais de três décadas atendendo mercados, supermercados, padarias, açougues e farmácias configuram um histórico difícil de replicar.</p>
+
+            <p>A proposta da Sismega é de solução sob medida: o sistema é adaptado às especificidades do negócio do cliente, não o contrário. Para quem já teve experiência ruim com sistemas rígidos que não se encaixam na operação específica do seu mercado, essa flexibilidade tem valor real.</p>
+
+            <p>O sistema entrega frente de caixa com integração de estoque em tempo real, emissão de NF-e e opções em nuvem. O foco está no varejo alimentar e no suporte técnico especializado que vem com décadas de experiência no segmento.</p>
+
+            <p>O ponto de atenção mais relevante para quem está avaliando o sistema é a escassez de informação técnica pública. O site não detalha integração com balança, modo offline, homologação de hardware ou tabela de preços. Todas essas informações precisam ser levantadas no processo comercial — o que é mais demorado do que comparar sistemas que publicam specs completas online.</p>
+
+            <p>Para quem valoriza relacionamento de longo prazo com o fornecedor, quer atendimento próximo e prefere uma empresa com histórico comprovado em vez de um SaaS anônimo, a Sismega representa uma escolha segura — especialmente para negócios no estado de São Paulo.</p>
+
+            <p><strong>Prós:</strong> empresa com 30+ anos no mercado, soluções personalizadas por segmento, suporte especializado em varejo alimentar, presença consolidada em SP, opções em nuvem.</p>
+
+            <p><strong>Contras:</strong> informações técnicas não publicadas (exige contato direto para avaliar), sem tabela de preços no site, processo de avaliação mais longo do que sistemas com especificações públicas.</p>
+
+            <p><strong>Para quem é:</strong> mercado local, padaria ou açougue que valoriza atendimento personalizado e fornecedor com histórico comprovado no segmento — especialmente em São Paulo.</p>
+        </div>
+    </article>
+
+    <!-- ==================== #6 CPLUG ==================== -->
+    <article id="cplug" class="pdv-wrap">
+        <div class="pdv-card">
+            <div class="pdv-ribbon">
+                📞 #6 UNICO COM SUPORTE HUMANO 7 DIAS POR SEMANA · NegócioCerto 2026
+            </div>
+            <div class="pdv-header">
+                <div class="pdv-logo-zone">
+                    <a href="https://cplug.com.br" target="_blank" rel="noopener nofollow">
+                        <img src="/images/cplug logo.png" alt="CPlug" class="pdv-logo-img" width="160" height="64" loading="lazy">
+                    </a>
+                </div>
+                <div class="pdv-meta">
+                    <div class="pdv-brand">CPlug</div>
+                    <div class="pdv-rating-row">
+                        <span class="pdv-stars">★★★★</span>
+                        <span class="pdv-score">8,2</span>
+                        <span class="pdv-score-label">Avaliação NegócioCerto</span>
+                    </div>
+                    <div class="pdv-tag">Ideal para mercado com açougue ou padaria com atendimento no balcão</div>
+                </div>
+                <div class="pdv-cta-zone">
+                    <div class="pdv-cta-price">Sob<span> consulta</span></div>
+                    <a href="https://cplug.com.br" class="pdv-cta-btn" target="_blank" rel="noopener nofollow">Ver Planos ↗</a>
+                    <div class="pdv-cta-caption">no site cplug.com.br</div>
+                </div>
+            </div>
+            <div class="pdv-features">
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Offline nativo — "nunca para de vender"</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> TEF Sitef integrado</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Interface touchscreen ultrarrápida</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> ERP financeiro e BI inclusos</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Suporte 7 dias por semana</span>
+                <span class="pdv-feature-chip"><i class="fa fa-check" aria-hidden="true"></i> Implantação dedicada</span>
+            </div>
+            <div class="pdv-data-row">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Modelo comercial</div>
+                    <div class="pdv-cell-value">Sob consulta</div>
+                    <div class="pdv-cell-sub">planos varejo e food</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Modo offline</div>
+                    <div class="pdv-cell-value">Nativo</div>
+                    <div class="pdv-cell-sub">sync automático ao reconectar</div>
+                </div>
+                <div class="pdv-cell pdv-cell-highlight">
+                    <div class="pdv-hl-badge">DIFERENCIAL</div>
+                    <div class="pdv-cell-label">Suporte humano</div>
+                    <div class="pdv-cell-value">7 dias/semana</div>
+                    <div class="pdv-cell-sub">sábado e domingo inclusos</div>
+                </div>
+            </div>
+            <div class="pdv-data-row pdv-data-row-secondary">
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Emissão fiscal</div>
+                    <div class="pdv-cell-value">NFC-e / SAT</div>
+                    <div class="pdv-cell-sub">automática no caixa</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">TEF</div>
+                    <div class="pdv-cell-value">Sitef</div>
+                    <div class="pdv-cell-sub">PIX · cartão · dinheiro</div>
+                </div>
+                <div class="pdv-cell">
+                    <div class="pdv-cell-label">Contato</div>
+                    <div class="pdv-cell-value">(41) 3040-5271</div>
+                    <div class="pdv-cell-sub">contato@cplug.com.br</div>
+                </div>
+            </div>
+        </div>
+        <div class="pdv-review">
+            <p>A CPlug combina PDV completo para varejo com ferramentas de food service — o que faz sentido para açougue com atendimento no balcão, padaria com lanchonete integrada ou mercado que também serve refeições. O sistema atende mais de 20 segmentos, incluindo mercados, adegas, lojas de calçados e pet shops.</p>
+
+            <p>O sistema opera offline por padrão: a empresa afirma que "você nunca para de vender", com sincronização automática quando a internet retorna. Para estabelecimento que não pode parar o caixa em hipótese alguma, essa garantia tem peso. O TEF Sitef está integrado em todos os planos, com suporte a PIX, cartão de crédito, débito e dinheiro.</p>
+
+            <p>A interface touchscreen foi desenvolvida para velocidade no caixa — a empresa descreve como "ultrarrápida" para eliminar filas e erros de operação. Para mercado ou padaria com movimento alto em horário de pico, um caixa mais rápido tem impacto direto na experiência do cliente.</p>
+
+            <p>O diferencial mais concreto de atendimento é o suporte 7 dias por semana — o único da lista a declarar explicitamente atendimento nos fins de semana. Para mercado ou padaria que opera sábado e domingo, isso tem valor prático direto: o caixa que trava num domingo de manhã com fila não pode esperar segunda-feira para ser atendido.</p>
+
+            <p>A plataforma inclui ERP financeiro e BI integrado, o que permite crescer sem precisar trocar de sistema. Para mercados que planejam escalar, ter BI nativo desde o início evita o retrabalho de implantar uma nova solução mais adiante. A implantação é feita com acompanhamento dedicado e treinamento da equipe.</p>
+
+            <p>O ponto de atenção: preços não são publicados e a integração com balança eletrônica não está confirmada no site. Ambas as informações precisam ser verificadas diretamente com a equipe comercial antes de fechar contrato.</p>
+
+            <p><strong>Prós:</strong> offline nativo com sync automático, TEF Sitef integrado, suporte humano 7 dias por semana (único da lista), ERP financeiro e BI inclusos, interface touchscreen para caixa rápido, implantação dedicada com treinamento.</p>
+
+            <p><strong>Contras:</strong> preços não publicados (exige contato comercial), integração com balança não confirmada no site, menos reconhecida que os concorrentes mais antigos.</p>
+
+            <p><strong>Para quem é:</strong> mercado com açougue ou padaria com atendimento no balcão, negócio que opera no fim de semana e precisa de suporte disponível nesses dias, varejo que quer ERP + BI inclusos desde o início.</p>
+        </div>
+    </article>
+
+    <h2>Comparativo técnico: o que cada sistema PDV para mercado entrega</h2>
+
+    <p>Antes de contratar qualquer sistema, confirme diretamente com o fornecedor os itens marcados como "verificar" abaixo. Informações baseadas nos sites oficiais de cada software.</p>
+
+    <div class="tech-table-wrap">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Funcionalidade</th>
+                    <th>Hiper</th>
+                    <th>VRSoft</th>
+                    <th>GestãoClick</th>
+                    <th>Nextar</th>
+                    <th>Sismega</th>
+                    <th>CPlug</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Balança integrada no caixa</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-no">✗</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                </tr>
+                <tr>
+                    <td>Modo offline (sem internet)</td>
+                    <td><span class="tc-yes">✓</span> 7 dias</td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span> nativo</td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span> nativo</td>
+                </tr>
+                <tr>
+                    <td>TEF integrado</td>
+                    <td><span class="tc-yes">✓</span> Stone</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span> 4 adquirentes</td>
+                    <td><span class="tc-partial">Stone parceria</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span> Sitef</td>
+                </tr>
+                <tr>
+                    <td>Emissão NF-e / NFC-e</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span> plano Prata+</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span> NFC-e/SAT</td>
+                </tr>
+                <tr>
+                    <td>ERP integrado</td>
+                    <td><span class="tc-yes">✓</span> plano Gestão</td>
+                    <td><span class="tc-yes">✓</span> VR Master</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-no">✗</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                </tr>
+                <tr>
+                    <td>BI / relatórios avançados</td>
+                    <td><span class="tc-yes">✓</span> 60+ relatórios</td>
+                    <td><span class="tc-yes">✓</span> VR Controller 360</td>
+                    <td><span class="tc-partial">básico</span></td>
+                    <td><span class="tc-partial">básico</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Controle de validade</td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                </tr>
+                <tr>
+                    <td>Suporte no fim de semana</td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-partial">verificar</span></td>
+                    <td><span class="tc-yes">✓</span> 7 dias</td>
+                </tr>
+                <tr>
+                    <td>Preço inicial publicado</td>
+                    <td><span class="tc-no">✗</span></td>
+                    <td><span class="tc-no">✗</span></td>
+                    <td><span class="tc-yes">✓</span> R$ 119/mês</td>
+                    <td><span class="tc-yes">✓</span> R$ 39/mês</td>
+                    <td><span class="tc-no">✗</span></td>
+                    <td><span class="tc-no">✗</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>O que avaliar antes de contratar um PDV para supermercado ou mercado</h2>
+
+    <p>Escolher o sistema errado custa caro: migração de dados, retreinamento de equipe, dias de operação instável. Antes de assinar qualquer contrato, passe por essa lista.</p>
+
+    <h3>1. Confirme o modo offline pessoalmente</h3>
+
+    <p>Pergunte ao vendedor: "Pode me mostrar o sistema funcionando sem internet?" e peça para ele desligar o WiFi na hora da demonstração. Sistemas que dizem ter offline mas nunca foram testados em campo podem apresentar comportamento diferente do esperado. O Hiper garante 7 dias; o Nextar e o CPlug confirmam modo offline nativo. Para os demais, teste antes de assinar.</p>
+
+    <h3>2. Leve a balança do seu mercado para o teste</h3>
+
+    <p>Não aceite "tem integração com balança" como resposta genérica. Pergunte o modelo exato da sua balança (Filizola, Toledo, Urano, Elgin) e peça para o sistema demonstrar a pesagem com cálculo automático de preço. Uma coisa é ter integração no catálogo; outra é funcionar com o modelo que você já tem ou que pretende comprar.</p>
+
+    <h3>3. Teste o TEF com a maquininha que você vai usar</h3>
+
+    <p>Com TEF, o valor vai automaticamente para a maquininha. Sem TEF, o operador digita o valor manualmente — o que abre espaço para erro e deixa o checkout mais lento. Pergunte qual adquirente o sistema integra (Stone, Cielo, Rede, GetNet) e se a integração é TEF completo ou apenas comunicação básica via API.</p>
+
+    <h3>4. Verifique o SLA de suporte no sábado e no domingo</h3>
+
+    <p>Mercado, padaria e açougue operam nos fins de semana. Se o caixa travar num domingo de manhã com fila, você precisa de suporte naquele momento — não na segunda-feira. Pergunte: qual é o canal de atendimento no domingo? Qual é o tempo de resposta? Existe fila prioritária para emergência de caixa?</p>
+
+    <h3>5. Pergunte como é feita a implantação</h3>
+
+    <p>Sistemas de PDV para supermercado exigem configuração inicial: cadastro de produtos, tributação por NCM, integração com balança, configuração de TEF, treinamento de operadores de caixa. Pergunte quantos dias de implantação estão inclusos no contrato, se há custo adicional para treinamento e quem faz o suporte presencial caso necessário.</p>
+
+    <h3>6. Confirme a tributação dos seus produtos</h3>
+
+    <p>Alimentos têm tributação específica e frequentemente passam por mudanças — especialmente com a Reforma Tributária em andamento. Pergunte ao fornecedor como as atualizações de alíquota são aplicadas: automaticamente pelo sistema, ou você precisa solicitar a atualização manualmente? A resposta influencia diretamente quanto tempo o seu contador vai gastar e o risco de autuação por nota emitida com alíquota desatualizada.</p>
+
+    <script>
+        function showMore() {
+            const wrapper = document.getElementById('wrapper');
+            const overlay = document.getElementById('fadeOverlay');
+            if (wrapper) wrapper.classList.add('show-all');
+            if (overlay) overlay.style.display = 'none';
+        }
+    </script>
 </ReviewLayout>
