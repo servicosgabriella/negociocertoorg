@@ -1203,108 +1203,16 @@ O recebimento da SumUp tem três opções: na hora (Instantâneo), em 1 dia úti
 
 ---
 
-### Plano Instantâneo — Recebimento em até 1 hora
+### Plano Instantâneo e Antecipado — Taxas por faixa de faturamento
 
-#### Até R$ 5.000/mês
+> As taxas abaixo se aplicam tanto ao Plano Instantâneo (recebimento em até 1 hora) quanto ao Plano Antecipado (recebimento em 1 dia útil).
 
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Débito | 1,85% | 2,59% |
-| Crédito à vista | 4,49% | 5,39% |
-| 2x | 10,49% | 12,99% |
-| 3x | 11,99% | 13,99% |
-| 4x | 13,49% | 15,99% |
-| 5x | 14,49% | 16,99% |
-| 6x | 15,99% | 17,99% |
-| 7x | 17,49% | 18,99% |
-| 8x | 18,49% | 19,99% |
-| 9x | 19,49% | 20,49% |
-| 10x | 20,90% | 21,90% |
-| 11x | 21,90% | 22,90% |
-| 12x | 21,90% | 22,90% |
-
-#### R$ 5.000 a R$ 20.000/mês
+#### Até R$ 20.000/mês
 
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
-| Débito | 1,59% | 2,59% |
-| Crédito à vista | 3,79% | 4,99% |
-| 2x | 7,99% | 9,99% |
-| 3x | 8,49% | 10,49% |
-| 4x | 8,99% | 10,99% |
-| 5x | 9,99% | 11,99% |
-| 6x | 10,49% | 12,49% |
-| 7x | 11,99% | 12,99% |
-| 8x | 12,99% | 13,99% |
-| 9x | 13,99% | 14,99% |
-| 10x | 13,99% | 14,99% |
-| 11x | 14,99% | 15,99% |
-| 12x | 14,99% | 15,99% |
-
-#### R$ 20.000 a R$ 50.000/mês
-
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Débito | 1,49% | 2,19% |
-| Crédito à vista | 3,49% | 4,39% |
-| 2x | 4,99% | 5,99% |
-| 3x | 6,49% | 7,49% |
-| 4x | 6,99% | 7,99% |
-| 5x | 7,99% | 8,99% |
-| 6x | 8,49% | 9,49% |
-| 7x | 9,49% | 10,49% |
-| 8x | 9,99% | 10,99% |
-| 9x | 10,99% | 11,99% |
-| 10x | 10,99% | 11,99% |
-| 11x | 11,99% | 12,99% |
-| 12x | 12,99% | 13,99% |
-
-#### Acima de R$ 50.000/mês
-
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Débito | 1,09% | 2,19% |
-| Crédito à vista | 3,49% | 4,39% |
-| 2x | 4,49% | 5,99% |
-| 3x | 5,29% | 6,99% |
-| 4x | 5,99% | 7,49% |
-| 5x | 6,49% | 7,99% |
-| 6x | 7,49% | 8,99% |
-| 7x | 8,49% | 9,49% |
-| 8x | 8,99% | 9,99% |
-| 9x | 9,99% | 10,49% |
-| 10x | 10,49% | 10,99% |
-| 11x | 10,99% | 11,49% |
-| 12x | 10,99% | 11,99% |
-
----
-
-### Plano Antecipado — Recebimento em 1 dia útil
-
-#### Até R$ 5.000/mês
-
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Débito | 1,69% | 2,59% |
-| Crédito à vista | 3,99% | 5,39% |
-| 2x | 8,99% | 12,99% |
-| 3x | 9,99% | 13,99% |
-| 4x | 13,49% | 15,99% |
-| 5x | 13,49% | 16,99% |
-| 6x | 15,49% | 17,99% |
-| 7x | 16,99% | 18,99% |
-| 8x | 17,99% | 19,99% |
-| 9x | 18,99% | 20,49% |
-| 10x | 19,99% | 21,90% |
-| 11x | 19,99% | 22,90% |
-| 12x | 19,99% | 22,90% |
-
-#### R$ 5.000 a R$ 20.000/mês
-
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Débito | 1,49% | 2,49% |
-| Crédito à vista | 3,49% | 4,49% |
+| Débito | 0,99% | 2,49% |
+| Crédito à vista (1x) | 3,49% | 4,49% |
 | 2x | 6,49% | 7,49% |
 | 3x | 7,49% | 8,49% |
 | 4x | 7,99% | 8,99% |
@@ -1317,12 +1225,12 @@ O recebimento da SumUp tem três opções: na hora (Instantâneo), em 1 dia úti
 | 11x | 12,49% | 13,49% |
 | 12x | 13,99% | 14,99% |
 
-#### R$ 20.000 a R$ 50.000/mês
+#### Entre R$ 20.000 e R$ 50.000/mês
 
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
-| Débito | 1,29% | 2,19% |
-| Crédito à vista | 3,29% | 4,39% |
+| Débito | 0,99% | 2,19% |
+| Crédito à vista (1x) | 3,29% | 4,39% |
 | 2x | 4,49% | 5,99% |
 | 3x | 4,99% | 6,99% |
 | 4x | 5,49% | 7,49% |
@@ -1340,7 +1248,7 @@ O recebimento da SumUp tem três opções: na hora (Instantâneo), em 1 dia úti
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
 | Débito | 0,99% | 2,19% |
-| Crédito à vista | 3,19% | 4,39% |
+| Crédito à vista (1x) | 3,19% | 4,39% |
 | 2x | 3,99% | 5,99% |
 | 3x | 4,59% | 6,99% |
 | 4x | 5,19% | 7,49% |
