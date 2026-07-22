@@ -64,6 +64,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 14,87% | 14,87% |
 | 17x | 14,87% | 14,87% |
 | 18x | 14,87% | 14,87% |
+| 19x | 14,87% | 14,87% |
+| 20x | 14,87% | 14,87% |
+| 21x | 14,87% | 14,87% |
 
 ---
 
