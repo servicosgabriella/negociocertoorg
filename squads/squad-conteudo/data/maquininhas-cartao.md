@@ -710,10 +710,10 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | Débito | 2,57% |
 | Crédito à vista | 4,34% |
 | 2x | 7,02% |
-| 3x | 6,99% |
-| 4x | 6,99% |
-| 5x | 6,99% |
-| 6x | 6,99% |
+| 3x | 7,02% |
+| 4x | 8,02% |
+| 5x | 9,02% |
+| 6x | 10,02% |
 | 7x | 10,72% |
 | 8x | 10,72% |
 | 9x | 10,72% |
@@ -732,8 +732,8 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | Pix | 0,99% |
 | Débito | 2,39% |
 | Crédito à vista | 4,99% |
-| 2x | 9,90% |
-| 3x | 11,28% |
+| 2x | 9,91% |
+| 3x | 11,29% |
 | 4x | 12,64% |
 | 5x | 13,97% |
 | 6x | 15,27% |
@@ -751,8 +751,8 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | Pix | 0,99% |
 | Débito | 2,98% |
 | Crédito à vista | 6,17% |
-| 2x | 11,09% |
-| 3x | 12,47% |
+| 2x | 11,10% |
+| 3x | 12,48% |
 | 4x | 13,83% |
 | 5x | 15,16% |
 | 6x | 16,46% |
