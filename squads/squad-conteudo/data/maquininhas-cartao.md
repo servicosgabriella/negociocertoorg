@@ -805,7 +805,7 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | 11x | 14,78% |
 | 12x | 15,08% |
 
-## Plano Essential taxas: 
+## Plano Essential taxas:
 
 ### Período Promocional
 
@@ -814,17 +814,17 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | Pix | 0,00% | 0,00% |
 | Débito | 0,00% | 0,00% |
 | Crédito à vista | 0,00% | 0,00% |
-| 2x | 9,90% | 11,09% |
-| 3x | 11,28% | 12,47% |
-| 4x | 12,64% | 13,83% |
-| 5x | 13,97% | 15,16% |
-| 6x | 15,27% | 16,46% |
-| 7x | 16,55% | 17,74% |
-| 8x | 17,81% | 19,00% |
-| 9x | 19,04% | 20,23% |
-| 10x | 20,24% | 21,43% |
-| 11x | 21,43% | 22,62% |
-| 12x | 22,59% | 23,78% |
+| 2x | 9,91% | 9,91% |
+| 3x | 11,29% | 11,29% |
+| 4x | 12,64% | 12,64% |
+| 5x | 13,97% | 13,97% |
+| 6x | 15,27% | 15,27% |
+| 7x | 16,55% | 16,55% |
+| 8x | 17,81% | 17,81% |
+| 9x | 19,04% | 19,04% |
+| 10x | 20,24% | 20,24% |
+| 11x | 21,43% | 21,43% |
+| 12x | 22,59% | 22,59% |
 
 ---
 
@@ -833,10 +833,10 @@ A Pagbank conta com apenas uma modalidade de recebimento, o recebimento acontece
 | Método de Pagamento | Visa e Mastercard | Elo e Demais Bandeiras |
 |---|---|---|
 | Pix | 0,99% | 0,99% |
-| Débito | 1,99% | 1,99% |
+| Débito | 2,39% | 2,98% |
 | Crédito à vista | 4,99% | 6,17% |
-| 2x | 9,90% | 11,09% |
-| 3x | 11,28% | 12,47% |
+| 2x | 9,91% | 11,10% |
+| 3x | 11,29% | 12,48% |
 | 4x | 12,64% | 13,83% |
 | 5x | 13,97% | 15,16% |
 | 6x | 15,27% | 16,46% |
