@@ -941,7 +941,7 @@ Pix QRCode direto na maquininha | frete grátis | Tecnologia NFC | Somente CNPJ|
 
 ## Recebimento 
 
-A infinitepay conta com recebimento padrão em um dia útil, porém você tem a opção de ativar o "nitro" que você recebe na hora, pagando uma taxa maior pela atencipação. 
+A InfinitePay oferece dois planos de recebimento: **1 Dia Útil** e **Recebimento na Hora**. No plano de 1 Dia Útil, é possível ativar a função **Nitro** para receber na hora pagando uma taxa maior — o Nitro pode ser ativado/desativado a qualquer momento, inclusive em feriados e fins de semana. O plano **Recebimento na Hora** é um plano separado com taxas fixas para qualquer bandeira e qualquer faixa de faturamento.
 
 ## Bandeiras
 
@@ -951,11 +951,11 @@ A infinitepay conta com recebimento padrão em um dia útil, porém você tem a 
 
 ## Planos 
 
-A infinitepay não tem diversos planos e tambem não trabalha com taxas promocionais, ela conta com faixas de faturamento. são elas: Vendas mensais até R$ 20 mil por mÊs | Acima de R$ 20 mil por mês | Acima de R$ 40 mil por mÊs | Faturamento acima de R$ 80 mil por mês. 
+A InfinitePay não trabalha com taxas promocionais. Ela oferece dois planos de recebimento: **1 Dia Útil** (com opção de ativar o Nitro para receber na hora) e **Recebimento na Hora** (plano separado com taxas fixas para todas as bandeiras e faixas). Ambos os planos contam com faixas de faturamento: até R$ 20 mil/mês | de R$ 20 mil a R$ 40 mil/mês | de R$ 40 mil a R$ 80 mil/mês | acima de R$ 80 mil/mês.
 
 ## Taxas 
 
->  O plano **Nitro** permite recebimento na hora e pode ser ativado/desativado a qualquer momento, inclusive em feriados e fins de semana. As taxas Nitro são iguais para todas as faixas de faturamento.
+> As taxas abaixo são do plano **1 Dia Útil**, organizadas por faixa de faturamento. O plano **Nitro** (ativável no plano 1 Dia Útil) e o plano **Recebimento na Hora** têm taxas fixas independentes da faixa — veja ao final desta seção.
 
 
 ### Faixa 1 — Até R$ 20.000/mês
@@ -1121,9 +1121,9 @@ A infinitepay não tem diversos planos e tambem não trabalha com taxas promocio
 | 12x | 10,77% |
 
 
-### Plano Nitro — Recebimento na Hora (Todas as Faixas)
+### Plano Nitro — Recebimento na Hora (função do plano 1 Dia Útil)
 
-> As taxas Nitro são fixas independentemente do faturamento mensal. Válido para Visa, Mastercard, Elo e American Express.
+> As taxas Nitro são fixas independentemente da faixa de faturamento. Válido para Visa, Mastercard, Elo e American Express. Pode ser ativado/desativado a qualquer momento, inclusive em feriados e fins de semana.
 
 | Método de Pagamento | Taxa |
 |---|---|
@@ -1141,6 +1141,27 @@ A infinitepay não tem diversos planos e tambem não trabalha com taxas promocio
 | 10x | 17,39% |
 | 11x | 18,39% |
 | 12x | 18,79% |
+
+### Plano Recebimento na Hora
+
+> Plano separado do Nitro. As taxas são fixas para todas as bandeiras (Visa, Mastercard, Elo e American Express) e para qualquer faixa de faturamento.
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 2,29% |
+| Crédito à vista | 5,49% |
+| 2x | 10,89% |
+| 3x | 11,99% |
+| 4x | 12,59% |
+| 5x | 13,29% |
+| 6x | 13,99% |
+| 7x | 14,99% |
+| 8x | 15,59% |
+| 9x | 16,19% |
+| 10x | 16,89% |
+| 11x | 17,89% |
+| 12x | 18,29% |
 
 
 ## Link de Afiliado
