@@ -32,7 +32,7 @@ A Ton conta com recebimento em duas modalidades, em 1 dia útil (taxas mais baix
 
 
 ## Planos:
-* Ton Mega+ (único plano disponível no site a partir de abril de 2026): Válido para CPF, MEI ou CNPJ. Inicia com período promocional de 30 dias ou até atingir R$ 5 mil em vendas (o que acontecer primeiro). Após o período promocional, o cliente é movido automaticamente para a faixa de R$ 6 mil a R$ 10 mil (nivelamento). Depois de 1 mês de calendário completo de transações, é alocado na faixa de faturamento real que atingiu. Parcelamento em até 18x. Os planos Super, Pro e Max foram descontinuados.
+* Ton Mega+ (único plano disponível no site a partir de abril de 2026): Válido para CPF, MEI ou CNPJ. Inicia com período promocional de 30 dias ou até atingir R$ 5 mil em vendas (o que acontecer primeiro). Após o período promocional, o cliente é movido automaticamente para a faixa de R$ 6 mil a R$ 10 mil (nivelamento). Depois de 1 mês de calendário completo de transações, é alocado na faixa de faturamento real que atingiu. Parcelamento em até 21x. Os planos Super, Pro e Max foram descontinuados.
 
 * Ton Black (exclusivo via programa de parceiros, apenas para CNPJ): Taxas imbatíveis para faturamento maior. PIX 0% sem pré-requisito. Parcelamento em até 12x.
 
@@ -90,6 +90,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 22,95% | 23,95% |
 | 17x | 23,59% | 24,59% |
 | 18x | 24,23% | 25,23% |
+| 19x | 24,87% | — |
+| 20x | 25,51% | — |
+| 21x | 26,15% | — |
 
 ---
 
@@ -116,6 +119,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 14,94% | 15,78% |
 | 17x | 15,58% | 16,42% |
 | 18x | 16,22% | 17,06% |
+| 19x | 16,86% | 17,70% |
+| 20x | 17,50% | 18,34% |
+| 21x | 18,14% | 18,98% |
 
 ---
 
@@ -142,6 +148,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 14,91% | 15,22% |
 | 17x | 15,55% | 15,86% |
 | 18x | 16,19% | 16,50% |
+| 19x | 16,83% | 17,14% |
+| 20x | 17,47% | 17,78% |
+| 21x | 18,11% | 18,42% |
 
 ---
 
@@ -168,6 +177,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 14,29% | 14,51% |
 | 17x | 14,93% | 15,15% |
 | 18x | 15,57% | 15,79% |
+| 19x | 16,21% | 16,43% |
+| 20x | 16,85% | 17,07% |
+| 21x | 17,49% | 17,71% |
 
 ---
 
@@ -194,6 +206,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 14,07% | 14,29% |
 | 17x | 14,71% | 14,93% |
 | 18x | 15,35% | 15,57% |
+| 19x | 15,99% | 16,21% |
+| 20x | 16,63% | 16,85% |
+| 21x | 17,27% | 17,49% |
 
 ---
 
