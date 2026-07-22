@@ -650,19 +650,19 @@ ton.com.br | maquininhacerta.com.br
 * Moderninha Smart 2: R$ 127,44 ou 12x R$ 10,62 sem juros 
 
 ### Moderninha ProFit:
-Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor Colorido | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis | Bateria com duração de 7 horas 
+Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Venda em até 12x | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor Colorido | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis | Bateria com duração de 7 horas 
  
 
 ### Moderninha Pro 2:
 
-Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor Colorido | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis | Bateria com duração de 12 horas | Garantia 5 anos 
+Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Venda em até 12x | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor Colorido | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis | Bateria com duração de 12 horas | Garantia 5 anos 
 
 ### Minizinha Chip 3:
-Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Teclado Físico | Comprovante via SMS| Visor Colorido 2.4" | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis
+Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Venda em até 12x | Teclado Físico | Comprovante via SMS| Visor Colorido 2.4" | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis
  
 
 ### Moderninha Smart 2:
-Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor
+Recebimento na hora | Tecnologia NFC | Conexão Wi-Fi e Chip grátis | Venda em até 12x | Teclado Físico | Comprovante Impresso | Reposição de bobina grátis | Visor
 5.5" - Colorido e Touchscreen | Sem aluguel | Não precisa de celular | Aceite PIX via QRcode Direto na maquininha | Aceita CPF e CNPJ | Frete grátis | Bateria com duração de 10 horas | Garantia 5 anos | Câmera 5.0 Mpixels + LED_Flash
 
 ## Recebimento:
