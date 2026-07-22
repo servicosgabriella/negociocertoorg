@@ -941,7 +941,7 @@ Pix QRCode direto na maquininha | frete grátis | Tecnologia NFC | Somente CNPJ|
 
 ## Recebimento 
 
-A InfinitePay oferece dois planos de recebimento: **1 Dia Útil** e **Recebimento na Hora**. No plano de 1 Dia Útil, é possível ativar a função **Nitro** para receber na hora pagando uma taxa maior — o Nitro pode ser ativado/desativado a qualquer momento, inclusive em feriados e fins de semana. O plano **Recebimento na Hora** é um plano separado com taxas fixas para qualquer bandeira e qualquer faixa de faturamento.
+A InfinitePay oferece três planos de recebimento: **1 Dia Útil**, **Recebimento na Hora** e **Não Antecipado**. No plano de 1 Dia Útil, é possível ativar a função **Nitro** para receber na hora pagando uma taxa maior — o Nitro pode ser ativado/desativado a qualquer momento, inclusive em feriados e fins de semana. O plano **Recebimento na Hora** é um plano separado com taxas fixas para qualquer bandeira e faixa de faturamento. O plano **Não Antecipado** é exclusivo para faturamento acima de R$ 20.000/mês: Pix e Débito são recebidos em 1 dia útil, enquanto o crédito é recebido a partir de 30 dias — em vendas parceladas, o prazo é multiplicado pelo número de parcelas (ex: 2x = 60 dias). Em troca, as taxas são significativamente menores.
 
 ## Bandeiras
 
@@ -951,11 +951,17 @@ A InfinitePay oferece dois planos de recebimento: **1 Dia Útil** e **Recebiment
 
 ## Planos 
 
-A InfinitePay não trabalha com taxas promocionais. Ela oferece dois planos de recebimento: **1 Dia Útil** (com opção de ativar o Nitro para receber na hora) e **Recebimento na Hora** (plano separado com taxas fixas para todas as bandeiras e faixas). Ambos os planos contam com faixas de faturamento: até R$ 20 mil/mês | de R$ 20 mil a R$ 40 mil/mês | de R$ 40 mil a R$ 80 mil/mês | acima de R$ 80 mil/mês.
+A InfinitePay não trabalha com taxas promocionais. Ela oferece três planos de recebimento:
+
+* **1 Dia Útil** — com opção de ativar a função Nitro para receber na hora. Disponível para todas as faixas de faturamento.
+* **Recebimento na Hora** — plano separado com taxas fixas para todas as bandeiras e faixas de faturamento.
+* **Não Antecipado** — exclusivo para faturamento acima de R$ 20.000/mês. Pix e Débito recebidos em 1 dia útil; crédito recebido a partir de 30 dias (parcelado = 30 dias × número de parcelas). Taxas significativamente menores em troca do prazo maior.
+
+Todos os planos contam com faixas de faturamento: até R$ 20 mil/mês | de R$ 20 mil a R$ 40 mil/mês | de R$ 40 mil a R$ 80 mil/mês | acima de R$ 80 mil/mês (exceto o Não Antecipado, que começa em R$ 20 mil).
 
 ## Taxas 
 
-> As taxas abaixo são do plano **1 Dia Útil**, organizadas por faixa de faturamento. O plano **Nitro** (ativável no plano 1 Dia Útil) e o plano **Recebimento na Hora** têm taxas fixas independentes da faixa — veja ao final desta seção.
+> As taxas abaixo são do plano **1 Dia Útil**, organizadas por faixa de faturamento. O plano **Nitro** (ativável no plano 1 Dia Útil), o plano **Recebimento na Hora** e o plano **Não Antecipado** estão ao final desta seção.
 
 
 ### Faixa 1 — Até R$ 20.000/mês
@@ -1162,6 +1168,131 @@ A InfinitePay não trabalha com taxas promocionais. Ela oferece dois planos de r
 | 10x | 16,89% |
 | 11x | 17,89% |
 | 12x | 18,29% |
+
+
+### Plano Não Antecipado
+
+> Disponível apenas para faturamento acima de R$ 20.000/mês. Pix e Débito recebidos em 1 dia útil. Crédito recebido a partir de 30 dias — em vendas parceladas, o prazo é multiplicado pelo número de parcelas (ex: 2x = 60 dias, 12x = 360 dias). As taxas de crédito parcelado são iguais independentemente do número de parcelas dentro de cada faixa.
+
+#### Faixa — Acima de R$ 20.000/mês
+
+##### Visa e Mastercard
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 0,85% |
+| Crédito à vista | 2,22% |
+| 2x | 2,75% |
+| 3x | 2,75% |
+| 4x | 2,75% |
+| 5x | 2,75% |
+| 6x | 2,75% |
+| 7x | 2,75% |
+| 8x | 2,75% |
+| 9x | 2,75% |
+| 10x | 2,75% |
+| 11x | 2,75% |
+| 12x | 2,75% |
+
+##### Elo e American Express
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 2,08% |
+| Crédito à vista | 4,00% |
+| 2x | 4,65% |
+| 3x | 4,65% |
+| 4x | 4,65% |
+| 5x | 4,65% |
+| 6x | 4,65% |
+| 7x | 4,65% |
+| 8x | 4,65% |
+| 9x | 4,65% |
+| 10x | 4,65% |
+| 11x | 4,65% |
+| 12x | 4,65% |
+
+#### Faixa — Acima de R$ 40.000/mês
+
+##### Visa e Mastercard
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 0,79% |
+| Crédito à vista | 2,12% |
+| 2x | 2,60% |
+| 3x | 2,60% |
+| 4x | 2,60% |
+| 5x | 2,60% |
+| 6x | 2,60% |
+| 7x | 2,60% |
+| 8x | 2,60% |
+| 9x | 2,60% |
+| 10x | 2,60% |
+| 11x | 2,60% |
+| 12x | 2,60% |
+
+##### Elo e American Express
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 1,98% |
+| Crédito à vista | 3,90% |
+| 2x | 4,50% |
+| 3x | 4,50% |
+| 4x | 4,50% |
+| 5x | 4,50% |
+| 6x | 4,50% |
+| 7x | 4,50% |
+| 8x | 4,50% |
+| 9x | 4,50% |
+| 10x | 4,50% |
+| 11x | 4,50% |
+| 12x | 4,50% |
+
+#### Faixa — Acima de R$ 80.000/mês
+
+##### Visa e Mastercard
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 0,75% |
+| Crédito à vista | 1,62% |
+| 2x | 2,25% |
+| 3x | 2,25% |
+| 4x | 2,25% |
+| 5x | 2,25% |
+| 6x | 2,25% |
+| 7x | 2,25% |
+| 8x | 2,25% |
+| 9x | 2,25% |
+| 10x | 2,25% |
+| 11x | 2,25% |
+| 12x | 2,25% |
+
+##### Elo e American Express
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | Grátis |
+| Débito | 1,88% |
+| Crédito à vista | 3,40% |
+| 2x | 4,15% |
+| 3x | 4,15% |
+| 4x | 4,15% |
+| 5x | 4,15% |
+| 6x | 4,15% |
+| 7x | 4,15% |
+| 8x | 4,15% |
+| 9x | 4,15% |
+| 10x | 4,15% |
+| 11x | 4,15% |
+| 12x | 4,15% |
 
 
 ## Link de Afiliado
