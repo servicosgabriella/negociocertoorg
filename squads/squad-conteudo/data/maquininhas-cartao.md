@@ -1166,7 +1166,7 @@ PIX QRCode direto na maquininha com taxa zero | Impressão de comprovante | Cat�
 
 ## Recebimento 
 
-O recebimento da SumUp tem duas opções, na hora ou em 1 dia útil 
+O recebimento da SumUp tem três opções: na hora (Instantâneo), em 1 dia útil (Antecipado) ou a cada 30 dias conforme as parcelas da venda (Econômico).
 
 ## Bandeiras
 
@@ -1176,7 +1176,7 @@ O recebimento da SumUp tem duas opções, na hora ou em 1 dia útil
 
 ## Planos 
 
-> A SumUp Smart possui 3 planos de recebimento: **Instantâneo** (em até 1 hora), **Antecipado** (em 1 dia útil) e **Econômico** (a cada 30 dias conforme as parcelas da venda). Além do período promocional 
+> A SumUp Smart possui 3 planos de recebimento: **Instantâneo** (em até 1 hora), **Antecipado** (em 1 dia útil) e **Econômico** (a cada 30 dias conforme as parcelas da venda). No primeiro mês, o cliente utiliza as Taxas Promocionais. Após esse período, a SumUp realiza em até 15 dias uma análise para ajustar o cliente ao plano de taxas mais adequado ao seu faturamento mensal.
 
 ## Taxas 
 
