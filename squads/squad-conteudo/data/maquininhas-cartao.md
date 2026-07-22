@@ -237,6 +237,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 16,79% | 16,79% |
 | 17x | 17,43% | 17,43% |
 | 18x | 18,07% | 18,07% |
+| 19x | 18,71% | 18,71% |
+| 20x | 19,35% | 19,35% |
+| 21x | 19,99% | 19,99% |
 
 ---
 
@@ -263,6 +266,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 25,24% | 26,24% |
 | 17x | 25,88% | 26,88% |
 | 18x | 26,52% | 27,52% |
+| 19x | — | 28,16% |
+| 20x | — | 28,80% |
+| 21x | — | 29,44% |
 
 ---
 
@@ -289,6 +295,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 17,23% | 18,07% |
 | 17x | 17,87% | 18,71% |
 | 18x | 18,51% | 19,35% |
+| 19x | — | 19,99% |
+| 20x | — | 20,63% |
+| 21x | — | 21,27% |
 
 ---
 
@@ -315,6 +324,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 17,20% | 17,51% |
 | 17x | 17,84% | 18,15% |
 | 18x | 18,48% | 18,79% |
+| 19x | — | 19,43% |
+| 20x | — | 20,07% |
+| 21x | — | 20,71% |
 
 ---
 
@@ -341,6 +353,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 16,58% | 16,80% |
 | 17x | 17,22% | 17,44% |
 | 18x | 17,86% | 18,08% |
+| 19x | — | 18,72% |
+| 20x | — | 19,36% |
+| 21x | — | 20,00% |
 
 ---
 
@@ -367,6 +382,9 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 16x | 16,36% | 16,58% |
 | 17x | 17,00% | 17,22% |
 | 18x | 17,64% | 17,86% |
+| 19x | — | 18,50% |
+| 20x | — | 19,14% |
+| 21x | — | 19,78% |
 
 ---
 
