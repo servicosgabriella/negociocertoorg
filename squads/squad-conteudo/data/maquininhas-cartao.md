@@ -390,7 +390,7 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 
 ### Plano Ton Black — Visa e Mastercard (exclusivo CNPJ)
 
-> Parcelamento máximo em 12x. PIX 0% sem nenhum pré-requisito. Exclusivo para clientes CNPJ. Disponível apenas via programa de parceiros Ton.
+> Parcelamento máximo em 21x. PIX 0% sem nenhum pré-requisito. Exclusivo para clientes CNPJ. Disponível apenas via programa de parceiros Ton.
 
 #### Faixa 1 — Até R$ 20.000/mês
 
@@ -409,6 +409,15 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 10x | 11,05% | 16,88% |
 | 11x | 11,73% | 17,88% |
 | 12x | 12,39% | 18,28% |
+| 13x | 15,39% | 21,28% |
+| 14x | 16,01% | 22,13% |
+| 15x | 16,65% | 23,02% |
+| 16x | 17,31% | 23,94% |
+| 17x | 18,00% | 24,89% |
+| 18x | 18,72% | 25,89% |
+| 19x | 19,36% | 26,53% |
+| 20x | 20,00% | 27,17% |
+| 21x | 20,64% | 27,81% |
 
 ---
 
@@ -429,6 +438,15 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 10x | 8,97% | 16,88% |
 | 11x | 9,55% | 17,88% |
 | 12x | 10,11% | 18,28% |
+| 13x | 13,11% | 21,28% |
+| 14x | 13,63% | 22,13% |
+| 15x | 14,18% | 23,02% |
+| 16x | 14,75% | 23,94% |
+| 17x | 15,34% | 24,89% |
+| 18x | 15,95% | 25,89% |
+| 19x | 16,59% | 26,53% |
+| 20x | 17,23% | 27,17% |
+| 21x | 17,87% | 27,81% |
 
 ---
 
@@ -449,6 +467,15 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 10x | 8,48% | 16,88% |
 | 11x | 9,02% | 17,88% |
 | 12x | 9,55% | 18,28% |
+| 13x | 12,55% | 21,28% |
+| 14x | 13,05% | 22,13% |
+| 15x | 13,57% | 23,02% |
+| 16x | 14,12% | 23,94% |
+| 17x | 14,68% | 24,89% |
+| 18x | 15,27% | 25,89% |
+| 19x | 15,91% | 26,53% |
+| 20x | 16,55% | 27,17% |
+| 21x | 17,19% | 27,81% |
 
 ---
 
@@ -469,6 +496,15 @@ As taxas variam de acordo com: Plano/Recebimento/Bandeiras/Faturamento
 | 10x | 7,98% | 16,88% |
 | 11x | 8,48% | 17,88% |
 | 12x | 8,98% | 18,28% |
+| 13x | 11,98% | 21,28% |
+| 14x | 12,46% | 22,13% |
+| 15x | 12,96% | 23,02% |
+| 16x | 13,48% | 23,94% |
+| 17x | 14,01% | 24,89% |
+| 18x | 14,58% | 25,89% |
+| 19x | 15,22% | 26,53% |
+| 20x | 15,86% | 27,17% |
+| 21x | 16,50% | 27,81% |
 
 ---
 
