@@ -25,11 +25,11 @@ const subnavItems = [
     faq={[
         {
             question: "Como funciona se a minha internet cair?",
-            answer: "Depende do sistema escolhido. O Hiper opera offline por até 7 dias, registrando vendas localmente e sincronizando quando a internet retorna. Nextar e CPlug também têm modo offline nativo para app e desktop. O GestãoClick é 100% nuvem — verifique com o suporte se há modo de contingência antes de contratar. VRSoft e Sismega não detalham essa funcionalidade publicamente. Para supermercado, açougue ou padaria que não pode parar o caixa, perguntar sobre o modo offline é a primeira questão a resolver antes de assinar qualquer contrato."
+            answer: "Depende do sistema escolhido. O Hiper opera offline por até 7 dias, registrando vendas localmente e sincronizando quando a internet retorna. Nextar e CPlug também têm modo offline nativo para app e desktop. O GestãoClick é 100% nuvem. Verifique com o suporte se há modo de contingência antes de contratar. VRSoft e Sismega não detalham essa funcionalidade publicamente. Para supermercado, açougue ou padaria que não pode parar o caixa, perguntar sobre o modo offline é a primeira questão a resolver antes de assinar qualquer contrato."
         },
         {
             question: "O sistema tem integração homologada com quais marcas de balanças e pin pads?",
-            answer: "O Hiper tem integração confirmada com balança eletrônica (cálculo automático de preço no caixa) e com a maquininha Stone (modelos S920, Q92, L3, A8 e P2). A VRSoft também confirma integração com balanças e pin pads. O GestãoClick menciona integração com balanças, mas não lista modelos homologados no site. O Nextar não menciona integração com balança — ponto crítico para açougue e hortifruti. CPlug e Sismega não especificam modelos de balança publicamente. Para negócio que vende por peso, perguntar sobre os modelos exatos de balança homologados é obrigatório antes de fechar qualquer contrato."
+            answer: "O Hiper tem integração confirmada com balança eletrônica (cálculo automático de preço no caixa) e com a maquininha Stone (modelos S920, Q92, L3, A8 e P2). A VRSoft também confirma integração com balanças e pin pads. O GestãoClick menciona integração com balanças, mas não lista modelos homologados no site. O Nextar não menciona integração com balança, ponto crítico para açougue e hortifruti. CPlug e Sismega não especificam modelos de balança publicamente. Para negócio que vende por peso, perguntar sobre os modelos exatos de balança homologados é obrigatório antes de fechar qualquer contrato."
         },
         {
             question: "Como funciona a integração com cartões? É via TEF ou a maquininha é separada?",
@@ -282,11 +282,13 @@ const subnavItems = [
 
     <h2>Melhores sistemas PDV para supermercado, minimercado e mercadinho em 2026</h2>
 
-    <p>PDV para supermercado não é a mesma coisa que PDV para loja de roupas ou restaurante. O varejo alimentar tem exigências específicas que eliminam a maioria dos sistemas generalistas: integração com balança eletrônica, frente de caixa capaz de processar centenas de itens por hora, modo offline para quando a internet cai, controle de validade de perecíveis e emissão de NFC-e em volume alto.</p>
+    <p>Qual o melhor sistema PDV para supermercado, minimercado ou mercadinho em 2026?</p>
 
-    <p>Quem tem minimercado, mercadinho de bairro, açougue ou padaria sabe que o sistema de caixa não pode falhar. Uma fila parada por cinco minutos já representa perda de venda e cliente insatisfeito. Por isso, a escolha do PDV certo é uma das decisões mais críticas para esse segmento.</p>
+    <p>Resposta direta: depende do porte e das exigências técnicas do seu negócio. Para minimercado com açougue ou padaria, o Hiper lidera pela combinação de offline real por 7 dias e balança integrada nativa. Para supermercado médio ou rede, a VRSoft é a referência com 20 anos de especialização no segmento. Para quem está formalizando o caixa com orçamento controlado, o GestãoClick começa em R$ 119/mês e o Nextar em R$ 39/mês.</p>
 
-    <p>Neste guia você encontra os 6 melhores sistemas PDV para supermercado e varejo alimentar em 2026, com análise técnica real, preços atualizados (quando publicados), funcionalidades específicas por segmento e as respostas para as perguntas que você deveria fazer antes de contratar qualquer sistema.</p>
+    <p>Mas antes de contratar qualquer sistema, três pontos fazem toda a diferença na operação real e a maioria dos guias ignora: se o offline funciona de verdade (não só no papel), se a integração de balança cobre o modelo que você já tem e se o suporte atende no domingo às 9h quando o caixa travou com fila.</p>
+
+    <p>Neste guia você encontra análise técnica dos 6 sistemas, tabela comparativa por funcionalidade, recomendação por perfil de negócio e as perguntas obrigatórias para qualquer demonstração antes de assinar.</p>
 
     <h2>Qual sistema PDV para mercado é o certo para o meu negócio?</h2>
 
@@ -348,17 +350,17 @@ const subnavItems = [
             font-size: 14px;
         }
         .seg-table thead tr {
-            background: #f9fafb;
+            background: linear-gradient(to right, #1a3a5c, #2d6a9f);
         }
         .seg-table th {
             padding: 12px 16px;
             text-align: left;
             font-size: 12px;
             font-weight: 700;
-            color: #374151;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            border-bottom: 2px solid #e5e7eb;
+            border-bottom: 2px solid #1a3a5c;
         }
         .seg-table td {
             padding: 13px 16px;
@@ -382,7 +384,7 @@ const subnavItems = [
             border-collapse: collapse;
             font-size: 13.5px;
         }
-        .tech-table thead tr { background: #1d4ed8; }
+        .tech-table thead tr { background: linear-gradient(to right, #1a3a5c, #2d6a9f); }
         .tech-table th {
             padding: 11px 14px;
             text-align: center;
@@ -405,7 +407,7 @@ const subnavItems = [
         }
         .tech-table tbody tr:nth-child(even) { background: #fafafa; }
         .tech-table tbody tr:last-child td { border-bottom: none; }
-        .tc-yes { color: #16a34a; font-weight: 700; font-size: 16px; }
+        .tc-yes { color: #007eff; font-weight: 700; font-size: 16px; }
         .tc-no { color: #dc2626; font-weight: 700; font-size: 16px; }
         .tc-partial { color: #d97706; font-weight: 600; font-size: 13px; }
 
@@ -703,23 +705,27 @@ const subnavItems = [
         </div>
 
         <div class="pdv-review">
-            <p>O Hiper é o sistema mais completo para minimercado, mercadinho, açougue e padaria. Desenvolvido especificamente para o pequeno varejo alimentar, reúne no mesmo ambiente frente de caixa, controle de estoque, emissão fiscal, integração com balança e maquininha — tudo pensado para quem precisa processar muitos itens rapidamente.</p>
+            <p>O Hiper é o sistema mais completo para minimercado, mercadinho, açougue e padaria.</p>
 
-            <p>O diferencial técnico mais importante é a capacidade de operar offline por até 7 dias sem internet. Enquanto a maioria dos sistemas em nuvem trava quando cai a conexão, o Hiper registra as vendas localmente e sincroniza tudo quando a internet retorna. Para quem opera em bairros com conexão instável ou depende de link de qualidade variável, isso resolve um problema real e frequente.</p>
+            <p>Desenvolvido especificamente para o pequeno varejo alimentar, reúne no mesmo ambiente frente de caixa, controle de estoque, emissão fiscal, integração com balança e maquininha. Tudo pensado para quem precisa processar muitos itens rapidamente.</p>
 
-            <p>A integração com balança eletrônica é nativa: o produto pesado no caixa tem o preço calculado automaticamente, sem digitação manual. Isso acelera o fluxo de clientes e elimina erro de cálculo — fundamental para açougue, casa de carnes, hortifruti e padaria que vende por peso.</p>
+            <p>O diferencial técnico mais importante é a capacidade de operar offline por até 7 dias sem internet. Enquanto a maioria dos sistemas em nuvem trava quando cai a conexão, o Hiper registra as vendas localmente e sincroniza tudo quando a internet retorna. Para quem opera em bairros com conexão instável, isso resolve um problema real e frequente.</p>
 
-            <p>O módulo de atacarejo permite configurar preços progressivos por quantidade: R$ 3 a unidade, R$ 8 as três. A lógica é aplicada automaticamente no caixa, sem precisar criar promoções manualmente para cada venda. Para mercadinho que também vende no atacado ou que trabalha com promoções de volume, esse recurso evita retrabalho diário.</p>
+            <p>A integração com balança eletrônica é nativa: o produto pesado no caixa tem o preço calculado automaticamente, sem digitação manual. Isso acelera o fluxo de clientes e elimina erro de cálculo. Fundamental para açougue, casa de carnes, hortifruti e padaria que vende por peso.</p>
 
-            <p>A integração com Stone é direta. Os modelos S920, Q92, L3, A8 e P2 são compatíveis. O pagamento via PIX está incluído. O controle de validade de produtos com alertas de vencimento fecha o ciclo para operações de varejo alimentar com perecíveis.</p>
+            <p>O módulo de atacarejo permite configurar preços progressivos por quantidade: R$ 3 a unidade, R$ 8 as três. A lógica é aplicada automaticamente no caixa, sem precisar criar promoções manualmente para cada venda. Para mercadinho que também vende no atacado, esse recurso evita retrabalho diário.</p>
 
-            <p>Para crescimento, o Hiper tem dois planos: Mini (até 3 usuários) e Gestão (4+ usuários, módulo financeiro completo, multi-loja, 60+ relatórios). Os preços são praticados por parceiros regionais e não são publicados no site — o que facilita suporte próximo, mas exige solicitar cotação antes de comparar.</p>
+            <p>A integração com Stone é direta. Os modelos S920, Q92, L3, A8 e P2 são compatíveis. O pagamento via PIX está incluído. O controle de validade com alertas de vencimento fecha o ciclo para operações com perecíveis.</p>
+
+            <p>Para crescimento, o Hiper tem dois planos: Mini (até 3 usuários) e Gestão (4+ usuários, módulo financeiro completo, multi-loja, 60+ relatórios). Os preços são praticados por parceiros regionais e não são publicados no site. O suporte próximo é um benefício real, mas exige solicitar cotação antes de qualquer comparação de custo.</p>
 
             <p><strong>Prós:</strong> offline por até 7 dias, balança integrada com cálculo automático, NF-e e NFC-e inclusas, atacarejo com preço progressivo, Stone nativa com PIX, controle de validade para perecíveis, 30+ segmentos suportados.</p>
 
             <p><strong>Contras:</strong> preços não públicos (necessário solicitar cotação a parceiro regional), horário de suporte varia por parceiro.</p>
 
-            <p><strong>Para quem é:</strong> minimercado, mercadinho de bairro, açougue, casa de carnes e padaria — especialmente quem tem internet instável ou precisa de balança integrada e controle de perecíveis.</p>
+            <p><strong>Para quem é:</strong> minimercado, mercadinho de bairro, açougue, casa de carnes e padaria. Prioridade para quem tem internet instável ou precisa de balança integrada e controle de perecíveis.</p>
+
+            <p>Se o seu mercado já passou do porte de minimercado e você precisa de uma plataforma que una PDV, ERP e BI do mesmo fornecedor especializado no segmento, o sistema seguinte muda completamente a escala da solução.</p>
         </div>
     </article>
 
@@ -795,23 +801,27 @@ const subnavItems = [
             </div>
         </div>
         <div class="pdv-review">
-            <p>A VRSoft é a referência brasileira para supermercados e hipermercados que precisam de tecnologia específica para o segmento. Diferente dos sistemas generalistas, a VRSoft foi construída do zero para o varejo alimentar e tem 20 anos de experiência e presença em 26 estados brasileiros.</p>
+            <p>A VRSoft é a referência brasileira para supermercados e hipermercados que precisam de tecnologia específica para o segmento. Construída do zero para o varejo alimentar, tem 20 anos de experiência e presença em 26 estados brasileiros.</p>
 
-            <p>A plataforma é modular: o <strong>VR PDV</strong> opera na frente de caixa, o <strong>VR Master</strong> cobre o ERP completo (compras, financeiro, estoque), o <strong>VR Controller 360</strong> entrega BI e controladoria em tempo real, e o <strong>VR Mobile</strong> funciona como coletor de dados no corredor para gestão de estoque e etiquetas. Cada módulo integra com os demais em tempo real, eliminando a necessidade de exportar dados manualmente entre sistemas.</p>
+            <p>A plataforma é modular: <strong>VR PDV</strong> na frente de caixa, <strong>VR Master</strong> para ERP completo (compras, financeiro, estoque), <strong>VR Controller 360</strong> para BI e controladoria em tempo real, <strong>VR Mobile</strong> como coletor de dados no corredor.</p>
 
-            <p>Para supermercados que precisam monitorar margens por categoria, conciliar cartões automaticamente, gerenciar clube de vantagens e adaptar preços de forma ágil, a VRSoft entrega uma solução vertical que poucos sistemas generalistas conseguem replicar com a mesma profundidade.</p>
+            <p>Cada módulo integra com os demais em tempo real, sem exportar dados manualmente entre sistemas.</p>
 
-            <p>O módulo de conformidade com a Reforma Tributária é um diferencial concreto para o varejo alimentar, onde a tributação de produtos como alimentos da cesta básica muda com frequência. Ter isso gerenciado dentro do próprio sistema reduz risco de autuação e retrabalho do contador.</p>
+            <p>Para supermercados que precisam monitorar margens por categoria, conciliar cartões automaticamente e gerenciar clube de vantagens, a VRSoft entrega profundidade que sistemas generalistas não replicam.</p>
 
-            <p>O suporte inclui a <strong>Universidade VR</strong>, plataforma de treinamento para toda a equipe operacional, o que reduz o custo de capacitação ao longo do tempo e diminui a dependência de suporte técnico para dúvidas básicas.</p>
+            <p>O módulo de conformidade com a Reforma Tributária é um diferencial concreto para o varejo alimentar, onde a tributação de alimentos da cesta básica muda com frequência. Ter isso gerenciado dentro do próprio sistema reduz risco de autuação e retrabalho do contador.</p>
 
-            <p>O ponto de atenção é o modelo comercial: preços não são divulgados, o processo inclui demonstração e proposta personalizada. Isso é padrão para soluções enterprise, mas exige mais tempo de avaliação antes de uma decisão. A VRSoft é mais indicada para supermercados com faturamento relevante e para redes que precisam de uma solução robusta e escalável.</p>
+            <p>O suporte inclui a <strong>Universidade VR</strong>, plataforma de treinamento para toda a equipe operacional. Isso reduz o custo de capacitação ao longo do tempo e diminui a dependência de suporte técnico para dúvidas básicas.</p>
+
+            <p>O ponto de atenção é o modelo comercial: preços não são divulgados, o processo inclui demonstração e proposta personalizada. Padrão para soluções enterprise, mas exige mais tempo de avaliação. A VRSoft é indicada para supermercados com faturamento relevante e redes que precisam de solução robusta e escalável.</p>
 
             <p><strong>Prós:</strong> tecnologia específica para supermercado, ERP + PDV + BI do mesmo fornecedor, 20 anos de especialização, integração com balança e TEF, conformidade com Reforma Tributária, Universidade VR para treinamento, presença em 26 estados.</p>
 
-            <p><strong>Contras:</strong> preços não divulgados (modelo sob consulta), mais indicado para médio e grande porte — pode ser excesso para mercadinho pequeno.</p>
+            <p><strong>Contras:</strong> preços não divulgados (modelo sob consulta), mais indicado para médio e grande porte. Para mercadinho pequeno, pode ser excesso de sistema.</p>
 
             <p><strong>Para quem é:</strong> supermercado a partir de médio porte, hipermercado, rede com múltiplas lojas que precisa de ERP + PDV integrados do mesmo fornecedor especializado no segmento.</p>
+
+            <p>Para quem está no outro extremo de porte e precisa de preço publicado, trial gratuito e onboarding simples, o sistema seguinte entrega tudo isso a partir de R$ 119/mês.</p>
         </div>
     </article>
 
@@ -889,11 +899,15 @@ const subnavItems = [
         <div class="pdv-review">
             <p>O GestãoClick é a opção mais acessível com TEF nativo para quem está formalizando o caixa de um pequeno mercado ou mercearia. Com planos a partir de R$ 119/mês, entrega PDV, estoque e financeiro num sistema em nuvem que funciona em qualquer computador sem instalar nada.</p>
 
-            <p>O TEF integrado nativo é o diferencial principal para o caixa de mercado. Quando o cliente paga no cartão, o valor aparece automaticamente na maquininha, sem precisar redigitar. O GestãoClick integra com Stone, Cielo, Rede e GetNet — as quatro principais adquirentes do mercado. Sem TEF, o operador registra o valor no PDV e digita o mesmo valor na maquininha manualmente, o que abre espaço para erro e torna o checkout mais lento em dias de movimento alto.</p>
+            <p>O TEF integrado nativo é o diferencial principal para o caixa de mercado. Quando o cliente paga no cartão, o valor aparece automaticamente na maquininha, sem precisar redigitar.</p>
 
-            <p>O sistema é 100% em nuvem. O dono consegue monitorar o caixa em tempo real pelo celular, acompanhar o estoque e ver o financeiro sem estar na loja. Para quem tem mais de um ponto de venda ou precisa gerenciar o negócio à distância, isso tem valor prático imediato.</p>
+            <p>O GestãoClick integra com Stone, Cielo, Rede e GetNet, as quatro principais adquirentes do mercado. Sem TEF, o operador registra o valor no PDV e digita o mesmo valor na maquininha manualmente, o que abre espaço para erro e torna o checkout mais lento em dias de movimento alto.</p>
 
-            <p>O plano Bronze (R$ 119/mês) cobre PDV, estoque e financeiro completo, mas sem emissão de NF-e. Para emitir nota fiscal, é necessário o plano Prata (R$ 199/mês). Para mercado que ainda não emite nota ou que emite em volume baixo, o Bronze resolve. O GestãoClick informa integração com balanças, impressoras fiscais e leitores de código de barras — mas não detalha modelos homologados no site, então vale confirmar com o suporte antes de contratar.</p>
+            <p>O sistema é 100% em nuvem. O dono consegue monitorar o caixa em tempo real pelo celular, acompanhar o estoque e ver o financeiro sem estar na loja. Para quem tem mais de um ponto de venda ou gerencia o negócio à distância, isso tem valor prático imediato.</p>
+
+            <p>O plano Bronze (R$ 119/mês) cobre PDV, estoque e financeiro completo, mas sem emissão de NF-e. Para emitir nota fiscal, é necessário o plano Prata (R$ 199/mês).</p>
+
+            <p>O GestãoClick informa integração com balanças, impressoras fiscais e leitores de código de barras. Os modelos homologados não estão listados no site, então vale confirmar com o suporte antes de contratar.</p>
 
             <p>O ponto fraco mais relevante para supermercado é a ausência de modo offline confirmado. O sistema roda na nuvem e não há informação pública sobre modo de contingência para queda de internet. Para mercado em área com internet estável, não é problema. Para quem tem link instável, esse ponto exige verificação antes de decidir.</p>
 
@@ -901,9 +915,11 @@ const subnavItems = [
 
             <p><strong>Contras:</strong> sem NF-e no plano base (exige Prata para emitir nota), modo offline não confirmado publicamente, menos especializado em supermercado do que Hiper ou VRSoft.</p>
 
-            <p><strong>Planos:</strong> Bronze (R$ 119/mês — PDV + estoque + financeiro), Prata (R$ 199/mês — + NF-e e NFC-e), Ouro (R$ 289/mês — + área do cliente), Platina (R$ 379/mês — + assinatura digital). Preços para planos anuais.</p>
+            <p><strong>Planos:</strong> Bronze (R$ 119/mês: PDV + estoque + financeiro), Prata (R$ 199/mês: + NF-e e NFC-e), Ouro (R$ 289/mês: + área do cliente), Platina (R$ 379/mês: + assinatura digital). Preços para planos anuais.</p>
 
             <p><strong>Para quem é:</strong> pequeno mercado ou mercearia com até 3 a 5 caixas que precisa de TEF nativo, quer acesso remoto via nuvem e busca plano a partir de R$ 119/mês para começar.</p>
+
+            <p>Se o orçamento é ainda mais apertado ou você quer começar testando sem nenhum compromisso financeiro, a opção seguinte tem plano gratuito disponível e plano pago a partir de R$ 39/mês sem contrato.</p>
         </div>
     </article>
 
@@ -979,15 +995,17 @@ const subnavItems = [
             </div>
         </div>
         <div class="pdv-review">
-            <p>O Nextar (Nex) é o sistema com menor barreira de entrada da lista: começa grátis, tem plano pago a partir de R$ 39/mês, sem contrato e sem taxa de adesão. Com mais de 50.000 lojas usuárias e 23 anos no mercado, é uma opção sólida para padaria, hortifruti, mercadinho de bairro e negócio que quer o essencial funcionando rápido e com baixo custo.</p>
+            <p>O Nextar (Nex) é o sistema com menor barreira de entrada da lista: começa grátis, tem plano pago a partir de R$ 39/mês, sem contrato e sem taxa de adesão. Com mais de 50.000 lojas usuárias e 23 anos no mercado, é uma opção sólida para padaria, hortifruti e mercadinho de bairro.</p>
 
-            <p>O modo offline funciona no app e no desktop: você continua vendendo sem internet e o sistema sincroniza automaticamente quando a conexão retorna. Para padaria e mercadinho em área urbana com internet razoável, o offline é um backup útil para os momentos em que a conexão cai.</p>
+            <p>O modo offline funciona no app e no desktop: você continua vendendo sem internet e o sistema sincroniza automaticamente quando a conexão retorna. Para padaria e mercadinho em área urbana, o offline é um backup real para os momentos em que a conexão cai.</p>
 
-            <p>Um diferencial prático que economiza tempo real é a leitura automática do XML da NF-e do fornecedor: quando a mercadoria chega, o Nextar importa a nota e atualiza o estoque automaticamente, produto por produto, sem precisar cadastrar nada manualmente. Para mercado que recebe mercadoria diariamente, isso elimina horas de digitação por semana.</p>
+            <p>Um diferencial prático que economiza tempo: o Nextar importa o XML da NF-e do fornecedor automaticamente. Quando a mercadoria chega, o estoque é atualizado produto por produto, sem cadastrar nada manualmente.</p>
 
-            <p>O controle de datas de validade e o suporte a múltiplas unidades de medida (kg, litros, metros) são recursos importantes para o varejo alimentar. O sistema também permite usuários ilimitados e oferece migração gratuita de dados para quem está trocando de sistema.</p>
+            <p>Para mercado que recebe entrega diária, isso elimina horas de digitação por semana.</p>
 
-            <p>O ponto fraco principal é a ausência de integração com balança eletrônica — fundamental para açougue, hortifruti e padaria que vende por peso. O site não menciona essa integração. Antes de contratar para um negócio que depende de pesagem, confirmar diretamente com o suporte é obrigatório. Para padaria que vende por peça (pão, bolo, salgado) e não precisa pesar no caixa, esse ponto não é limitante.</p>
+            <p>O controle de datas de validade e o suporte a múltiplas unidades de medida (kg, litros, metros) são recursos diretos para o varejo alimentar. O sistema permite usuários ilimitados e oferece migração gratuita de dados para quem está trocando de sistema.</p>
+
+            <p>O ponto fraco principal é a ausência de integração com balança eletrônica. O site não menciona essa integração. Para açougue, hortifruti e padaria que vende por peso, confirmar diretamente com o suporte antes de contratar é obrigatório. Para padaria que vende por peça (pão, bolo, salgado), esse ponto não é limitante.</p>
 
             <p><strong>Prós:</strong> a partir de R$ 39/mês, offline nativo para app e desktop, importação automática de XML de NF-e de fornecedor, sem contrato ou fidelidade, usuários ilimitados, 50.000+ lojas, migração gratuita de dados.</p>
 
@@ -996,6 +1014,8 @@ const subnavItems = [
             <p><strong>Planos:</strong> gratuito (funcionalidades básicas), Pro a partir de R$ 39/mês (gestão completa), 14 dias de teste sem cartão de crédito.</p>
 
             <p><strong>Para quem é:</strong> padaria, hortifruti, mercadinho de bairro ou negócio que quer o mínimo essencial com o menor custo possível e offline real como garantia.</p>
+
+            <p>Para quem valoriza décadas de especialização no varejo alimentar e prefere um fornecedor com histórico comprovado no segmento em vez de um SaaS genérico, a opção seguinte existe desde 1993.</p>
         </div>
     </article>
 
@@ -1071,21 +1091,23 @@ const subnavItems = [
             </div>
         </div>
         <div class="pdv-review">
-            <p>A Sismega é uma das empresas mais antigas do mercado de automação comercial, fundada em 1993, com reconhecimento consolidado especialmente no estado de São Paulo. Mais de três décadas atendendo mercados, supermercados, padarias, açougues e farmácias configuram um histórico difícil de replicar.</p>
+            <p>A Sismega é uma das empresas mais antigas do mercado de automação comercial, fundada em 1993. Com mais de três décadas atendendo mercados, supermercados, padarias, açougues e farmácias, acumula avaliação de 4,8/5 com base em 120 avaliações no próprio site, resultado de um histórico que sistemas novos não têm como replicar.</p>
 
-            <p>A proposta da Sismega é de solução sob medida: o sistema é adaptado às especificidades do negócio do cliente, não o contrário. Para quem já teve experiência ruim com sistemas rígidos que não se encaixam na operação específica do seu mercado, essa flexibilidade tem valor real.</p>
+            <p>A proposta da Sismega é de solução sob medida: o sistema é adaptado às especificidades do negócio do cliente, não o contrário. Para quem já teve experiência ruim com sistemas rígidos que não se encaixam na operação do seu mercado, essa personalização resolve um problema concreto.</p>
 
-            <p>O sistema entrega frente de caixa com integração de estoque em tempo real, emissão de NF-e e opções em nuvem. O foco está no varejo alimentar e no suporte técnico especializado que vem com décadas de experiência no segmento.</p>
+            <p>O sistema entrega frente de caixa com integração de estoque em tempo real, emissão de NF-e e opções em nuvem. O foco está no varejo alimentar com suporte técnico especializado.</p>
 
-            <p>O ponto de atenção mais relevante para quem está avaliando o sistema é a escassez de informação técnica pública. O site não detalha integração com balança, modo offline, homologação de hardware ou tabela de preços. Todas essas informações precisam ser levantadas no processo comercial — o que é mais demorado do que comparar sistemas que publicam specs completas online.</p>
+            <p>O ponto de atenção mais relevante para quem está avaliando o sistema é a escassez de informação técnica pública. O site não detalha integração com balança, modo offline, homologação de hardware ou tabela de preços. Todas essas informações precisam ser levantadas no processo comercial, o que é mais demorado do que comparar sistemas que publicam specs completas online.</p>
 
-            <p>Para quem valoriza relacionamento de longo prazo com o fornecedor, quer atendimento próximo e prefere uma empresa com histórico comprovado em vez de um SaaS anônimo, a Sismega representa uma escolha segura — especialmente para negócios no estado de São Paulo.</p>
+            <p>O suporte opera de segunda a sexta, das 08h às 18h, pelo número 0800 042 0847. Sem atendimento declarado no fim de semana, o que é um ponto crítico para mercado e padaria que operam sábado e domingo.</p>
 
-            <p><strong>Prós:</strong> empresa com 30+ anos no mercado, soluções personalizadas por segmento, suporte especializado em varejo alimentar, presença consolidada em SP, opções em nuvem.</p>
+            <p><strong>Prós:</strong> empresa com 30+ anos no mercado, 4,8/5 em avaliações públicas, soluções personalizadas por segmento, suporte especializado em varejo alimentar, presença consolidada em SP, opções em nuvem.</p>
 
-            <p><strong>Contras:</strong> informações técnicas não publicadas (exige contato direto para avaliar), sem tabela de preços no site, processo de avaliação mais longo do que sistemas com especificações públicas.</p>
+            <p><strong>Contras:</strong> sem suporte declarado no fim de semana, informações técnicas não publicadas (exige contato direto para avaliar), sem tabela de preços no site, processo de avaliação mais longo do que sistemas com especificações públicas.</p>
 
-            <p><strong>Para quem é:</strong> mercado local, padaria ou açougue que valoriza atendimento personalizado e fornecedor com histórico comprovado no segmento — especialmente em São Paulo.</p>
+            <p><strong>Para quem é:</strong> mercado local, padaria ou açougue que valoriza atendimento personalizado e fornecedor com histórico comprovado no segmento, especialmente em São Paulo.</p>
+
+            <p>E se o critério principal for ter suporte garantido no sábado e no domingo, o próximo sistema é o único da lista a declarar explicitamente atendimento humano nesses dias.</p>
         </div>
     </article>
 
@@ -1161,13 +1183,13 @@ const subnavItems = [
             </div>
         </div>
         <div class="pdv-review">
-            <p>A CPlug combina PDV completo para varejo com ferramentas de food service — o que faz sentido para açougue com atendimento no balcão, padaria com lanchonete integrada ou mercado que também serve refeições. O sistema atende mais de 20 segmentos, incluindo mercados, adegas, lojas de calçados e pet shops.</p>
+            <p>A CPlug combina PDV completo para varejo com ferramentas de food service. A combinação faz sentido para açougue com atendimento no balcão, padaria com lanchonete integrada ou mercado que também serve refeições. O sistema atende mais de 20 segmentos, incluindo mercados, adegas, lojas de calçados e pet shops.</p>
 
             <p>O sistema opera offline por padrão: a empresa afirma que "você nunca para de vender", com sincronização automática quando a internet retorna. Para estabelecimento que não pode parar o caixa em hipótese alguma, essa garantia tem peso. O TEF Sitef está integrado em todos os planos, com suporte a PIX, cartão de crédito, débito e dinheiro.</p>
 
-            <p>A interface touchscreen foi desenvolvida para velocidade no caixa — a empresa descreve como "ultrarrápida" para eliminar filas e erros de operação. Para mercado ou padaria com movimento alto em horário de pico, um caixa mais rápido tem impacto direto na experiência do cliente.</p>
+            <p>A interface touchscreen foi desenvolvida para velocidade no caixa. A empresa a descreve como "ultrarrápida" para eliminar filas e erros de operação. Em horário de pico, cada transação mais rápida significa menos fila e menos cliente que desiste na porta.</p>
 
-            <p>O diferencial mais concreto de atendimento é o suporte 7 dias por semana — o único da lista a declarar explicitamente atendimento nos fins de semana. Para mercado ou padaria que opera sábado e domingo, isso tem valor prático direto: o caixa que trava num domingo de manhã com fila não pode esperar segunda-feira para ser atendido.</p>
+            <p>O diferencial mais concreto de atendimento é o suporte 7 dias por semana. É o único da lista a declarar explicitamente atendimento nos fins de semana. Para mercado ou padaria que opera sábado e domingo, isso tem valor prático direto: o caixa que trava num domingo de manhã com fila não pode esperar segunda-feira para ser atendido.</p>
 
             <p>A plataforma inclui ERP financeiro e BI integrado, o que permite crescer sem precisar trocar de sistema. Para mercados que planejam escalar, ter BI nativo desde o início evita o retrabalho de implantar uma nova solução mais adiante. A implantação é feita com acompanhamento dedicado e treinamento da equipe.</p>
 
@@ -1298,11 +1320,11 @@ const subnavItems = [
 
     <h3>3. Teste o TEF com a maquininha que você vai usar</h3>
 
-    <p>Com TEF, o valor vai automaticamente para a maquininha. Sem TEF, o operador digita o valor manualmente — o que abre espaço para erro e deixa o checkout mais lento. Pergunte qual adquirente o sistema integra (Stone, Cielo, Rede, GetNet) e se a integração é TEF completo ou apenas comunicação básica via API.</p>
+    <p>Com TEF, o valor vai automaticamente para a maquininha. Sem TEF, o operador digita o valor manualmente, o que abre espaço para erro e deixa o checkout mais lento. Pergunte qual adquirente o sistema integra (Stone, Cielo, Rede, GetNet) e se a integração é TEF completo ou apenas comunicação básica via API.</p>
 
     <h3>4. Verifique o SLA de suporte no sábado e no domingo</h3>
 
-    <p>Mercado, padaria e açougue operam nos fins de semana. Se o caixa travar num domingo de manhã com fila, você precisa de suporte naquele momento — não na segunda-feira. Pergunte: qual é o canal de atendimento no domingo? Qual é o tempo de resposta? Existe fila prioritária para emergência de caixa?</p>
+    <p>Mercado, padaria e açougue operam nos fins de semana. Se o caixa travar num domingo de manhã com fila, você precisa de suporte naquele momento, não na segunda-feira. Pergunte: qual é o canal de atendimento no domingo? Qual é o tempo de resposta? Existe fila prioritária para emergência de caixa?</p>
 
     <h3>5. Pergunte como é feita a implantação</h3>
 
@@ -1310,7 +1332,7 @@ const subnavItems = [
 
     <h3>6. Confirme a tributação dos seus produtos</h3>
 
-    <p>Alimentos têm tributação específica e frequentemente passam por mudanças — especialmente com a Reforma Tributária em andamento. Pergunte ao fornecedor como as atualizações de alíquota são aplicadas: automaticamente pelo sistema, ou você precisa solicitar a atualização manualmente? A resposta influencia diretamente quanto tempo o seu contador vai gastar e o risco de autuação por nota emitida com alíquota desatualizada.</p>
+    <p>Alimentos têm tributação específica e frequentemente passam por mudanças, especialmente com a Reforma Tributária em andamento. Pergunte ao fornecedor como as atualizações de alíquota são aplicadas: automaticamente pelo sistema, ou você precisa solicitar a atualização manualmente? A resposta influencia diretamente quanto tempo o seu contador vai gastar e o risco de autuação por nota emitida com alíquota desatualizada.</p>
 
     <script>
         function showMore() {
