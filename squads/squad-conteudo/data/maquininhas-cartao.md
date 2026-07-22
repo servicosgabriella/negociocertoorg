@@ -1414,25 +1414,24 @@ www.sumup.com | maquininhacerta.com.br
 30 dias de teste + reembolso |Receba por aproximação (NFC) | Sem mensalidade| Frete gratis | Chip 4g grátis + Wi-Fi | Comprovante impresso ou SMS | Gestão de produtos/estoque |
 Tela touch screen | Aceita CPF ou CNPJ | Garantia vitalicia  | Sistema Android | tela touch screen 5,5" | Câmera 5MP + flash | até 10 horas de bateria 
 
-## Recebimento 
+## Recebimento
 
-A Yelly conta com 3 formas de recebimento, Na hora, em um dia ou conforme parcelas. 
+A Yelly conta com 2 formas de recebimento, Na hora ou no dia seguinte.
 
-## Bandeiras 
+## Bandeiras
 
 Débito e crédito: Visa, Mastercard, Elo, Hiper, Hipercard, American Express (Amex), Cabal, Diners Club.
 
 Vouchers refeição e alimentação: Alelo, Ticket, VR Benefícios, Sodexo (Pluxee), Ben, Up, Green Card, Personal Card, Senff.
 
-## Planos 
+## Planos
 
-A yelly conta com 3 planos: 
+A yelly conta com 2 planos:
 
-* Max (recebe em um dia)
-* flash (recebe na hora) 
-* Economic (recebe conforme parcelas)
+* Flash (recebe na hora)
+* Premium (recebe no dia seguinte)
 
-## Taxas 
+## Taxas
 
 ---
 
@@ -1442,240 +1441,160 @@ A yelly conta com 3 planos:
 
 | Método de Pagamento | Taxa |
 |---|---|
-| Pix | 0,50% |
-| Débito | 1,39% |
-| Crédito à vista | 3,15% |
-| 2x | 5,16% |
-| 3x | 5,87% |
-| 4x | 6,59% |
-| 5x | 7,29% |
-| 6x | 8,00% |
-| 7x | 9,24% |
-| 8x | 9,93% |
-| 9x | 10,61% |
-| 10x | 11,27% |
-| 11x | 11,94% |
-| 12x | 12,61% |
-| 13x | 13,26% |
-| 14x | 13,90% |
-| 15x | 14,55% |
-| 16x | 15,18% |
-| 17x | 15,81% |
-| 18x | 16,43% |
+| Pix | 0,56% |
+| Débito | 1,45% |
+| Crédito à vista | 3,21% |
+| 2x | 5,11% |
+| 3x | 5,80% |
+| 4x | 6,48% |
+| 5x | 7,16% |
+| 6x | 7,83% |
+| 7x | 9,04% |
+| 8x | 9,70% |
+| 9x | 10,35% |
+| 10x | 10,99% |
+| 11x | 11,63% |
+| 12x | 12,27% |
+| 13x | 12,89% |
+| 14x | 13,51% |
+| 15x | 14,13% |
+| 16x | 14,74% |
+| 17x | 15,35% |
+| 18x | 15,94% |
 
-#### Elo, Hipercard e American Express
+#### Elo
 
 | Método de Pagamento | Taxa |
 |---|---|
-| Pix | 0,50% |
-| Débito | 1,45% |
-| Crédito à vista | 3,44% |
-| 2x | 5,31% |
-| 3x | 6,02% |
-| 4x | 6,74% |
-| 5x | 7,44% |
-| 6x | 8,15% |
-| 7x | 9,54% |
-| 8x | 10,23% |
-| 9x | 10,91% |
-| 10x | 11,57% |
-| 11x | 12,24% |
-| 12x | 12,91% |
-| 13x | 13,56% |
-| 14x | 14,20% |
-| 15x | 14,85% |
-| 16x | 15,48% |
-| 17x | 16,11% |
-| 18x | 16,73% |
+| Pix | 0,56% |
+| Débito | 1,51% |
+| Crédito à vista | 3,50% |
+| 2x | 5,26% |
+| 3x | 5,95% |
+| 4x | 6,63% |
+| 5x | 7,31% |
+| 6x | 7,98% |
+| 7x | 9,34% |
+| 8x | 10,00% |
+| 9x | 10,65% |
+| 10x | 11,29% |
+| 11x | 11,93% |
+| 12x | 12,57% |
+| 13x | 13,19% |
+| 14x | 13,81% |
+| 15x | 14,43% |
+| 16x | 15,04% |
+| 17x | 15,65% |
+| 18x | 16,24% |
 
 #### Outras bandeiras
 
 | Método de Pagamento | Taxa |
 |---|---|
-| Pix | 0,50% |
-| Débito | 1,60% |
-| Crédito à vista | 3,44% |
-| 2x | 5,31% |
-| 3x | 6,02% |
-| 4x | 6,74% |
-| 5x | 7,44% |
-| 6x | 8,15% |
-| 7x | 9,54% |
-| 8x | 10,23% |
-| 9x | 10,91% |
-| 10x | 11,57% |
-| 11x | 12,24% |
-| 12x | 12,91% |
-| 13x | 13,56% |
-| 14x | 14,20% |
-| 15x | 14,85% |
-| 16x | 15,48% |
-| 17x | 16,11% |
-| 18x | 16,73% |
+| Pix | 0,56% |
+| Débito | 1,66% |
+| Crédito à vista | 3,50% |
+| 2x | 5,26% |
+| 3x | 5,95% |
+| 4x | 6,63% |
+| 5x | 7,31% |
+| 6x | 7,98% |
+| 7x | 9,34% |
+| 8x | 10,00% |
+| 9x | 10,65% |
+| 10x | 11,29% |
+| 11x | 11,93% |
+| 12x | 12,57% |
+| 13x | 13,19% |
+| 14x | 13,81% |
+| 15x | 14,43% |
+| 16x | 15,04% |
+| 17x | 15,65% |
+| 18x | 16,24% |
 
 ---
 
-### Plano Max — Recebimento no Dia Seguinte
+### Plano Premium — Recebimento no Dia Seguinte
 
 #### Visa e Mastercard
 
 | Método de Pagamento | Taxa |
 |---|---|
-| Pix | 0,50% |
-| Débito | 1,39% |
-| Crédito à vista | 2,91% |
-| 2x | 4,68% |
-| 3x | 5,45% |
-| 4x | 6,21% |
-| 5x | 6,95% |
-| 6x | 7,69% |
-| 7x | 8,47% |
-| 8x | 9,19% |
-| 9x | 9,91% |
-| 10x | 10,61% |
-| 11x | 11,32% |
-| 12x | 12,01% |
-| 13x | 12,70% |
-| 14x | 13,38% |
-| 15x | 14,05% |
-| 16x | 14,72% |
-| 17x | 15,38% |
-| 18x | 16,03% |
-
-#### Elo, Hipercard e American Express
-
-| Método de Pagamento | Taxa |
-|---|---|
-| Pix | 0,50% |
+| Pix | 0,56% |
 | Débito | 1,45% |
-| Crédito à vista | 3,24% |
-| 2x | 4,83% |
-| 3x | 5,60% |
-| 4x | 6,36% |
-| 5x | 7,10% |
-| 6x | 7,84% |
-| 7x | 8,67% |
-| 8x | 9,39% |
-| 9x | 10,11% |
-| 10x | 10,81% |
-| 11x | 11,52% |
-| 12x | 12,21% |
-| 13x | 12,90% |
-| 14x | 13,58% |
-| 15x | 14,25% |
-| 16x | 14,92% |
-| 17x | 15,58% |
-| 18x | 16,23% |
+| Crédito à vista | 2,99% |
+| 2x | 4,43% |
+| 3x | 5,16% |
+| 4x | 5,88% |
+| 5x | 6,60% |
+| 6x | 7,30% |
+| 7x | 7,87% |
+| 8x | 8,57% |
+| 9x | 9,25% |
+| 10x | 9,94% |
+| 11x | 10,61% |
+| 12x | 11,27% |
+| 13x | 11,94% |
+| 14x | 12,59% |
+| 15x | 13,24% |
+| 16x | 13,88% |
+| 17x | 14,52% |
+| 18x | 15,15% |
+
+#### Elo
+
+| Método de Pagamento | Taxa |
+|---|---|
+| Pix | 0,56% |
+| Débito | 1,51% |
+| Crédito à vista | 3,30% |
+| 2x | 4,63% |
+| 3x | 5,36% |
+| 4x | 6,08% |
+| 5x | 6,80% |
+| 6x | 7,50% |
+| 7x | 8,07% |
+| 8x | 8,77% |
+| 9x | 9,45% |
+| 10x | 10,14% |
+| 11x | 10,81% |
+| 12x | 11,47% |
+| 13x | 12,14% |
+| 14x | 12,79% |
+| 15x | 13,44% |
+| 16x | 14,08% |
+| 17x | 14,72% |
+| 18x | 15,35% |
 
 #### Outras bandeiras
 
 | Método de Pagamento | Taxa |
 |---|---|
-| Pix | 0,50% |
-| Débito | 1,79% |
-| Crédito à vista | 3,24% |
-| 2x | 4,83% |
-| 3x | 5,60% |
-| 4x | 6,36% |
-| 5x | 7,10% |
-| 6x | 7,84% |
-| 7x | 8,67% |
-| 8x | 9,39% |
-| 9x | 10,11% |
-| 10x | 10,81% |
-| 11x | 11,52% |
-| 12x | 12,21% |
-| 13x | 12,90% |
-| 14x | 13,58% |
-| 15x | 14,25% |
-| 16x | 14,92% |
-| 17x | 15,58% |
-| 18x | 16,23% |
-
----
-
-### Plano Economic — Recebimento por Parcelas
-
-#### Visa e Mastercard
-
-| Método de Pagamento | Taxa |
-|---|---|
-| Pix | 0,50% |
-| Débito | 1,09% |
-| Crédito à vista | 2,20% |
-| 2x | 2,45% |
-| 3x | 2,45% |
-| 4x | 2,45% |
-| 5x | 2,45% |
-| 6x | 2,45% |
-| 7x | 2,78% |
-| 8x | 2,78% |
-| 9x | 2,78% |
-| 10x | 2,78% |
-| 11x | 2,78% |
-| 12x | 2,78% |
-| 13x | 2,80% |
-| 14x | 2,80% |
-| 15x | 2,80% |
-| 16x | 2,80% |
-| 17x | 2,80% |
-| 18x | 2,80% |
-
-#### Elo, Hipercard e American Express
-
-| Método de Pagamento | Taxa |
-|---|---|
-| Pix | 0,50% |
-| Débito | 1,39% |
-| Crédito à vista | 2,25% |
-| 2x | 2,64% |
-| 3x | 2,64% |
-| 4x | 2,64% |
-| 5x | 2,64% |
-| 6x | 2,64% |
-| 7x | 2,94% |
-| 8x | 2,94% |
-| 9x | 2,94% |
-| 10x | 2,94% |
-| 11x | 2,94% |
-| 12x | 2,94% |
-| 13x | 3,00% |
-| 14x | 3,00% |
-| 15x | 3,00% |
-| 16x | 3,00% |
-| 17x | 3,00% |
-| 18x | 3,00% |
-
-#### Outras bandeiras
-
-| Método de Pagamento | Taxa |
-|---|---|
-| Pix | 0,50% |
-| Débito | 1,39% |
-| Crédito à vista | 2,50% |
-| 2x | 2,64% |
-| 3x | 2,64% |
-| 4x | 2,64% |
-| 5x | 2,64% |
-| 6x | 2,64% |
-| 7x | 2,94% |
-| 8x | 2,94% |
-| 9x | 2,94% |
-| 10x | 2,94% |
-| 11x | 2,94% |
-| 12x | 2,94% |
-| 13x | 3,00% |
-| 14x | 3,00% |
-| 15x | 3,00% |
-| 16x | 3,00% |
-| 17x | 3,00% |
-| 18x | 3,00% |
-
+| Pix | 0,56% |
+| Débito | 1,85% |
+| Crédito à vista | 3,30% |
+| 2x | 4,63% |
+| 3x | 5,36% |
+| 4x | 6,08% |
+| 5x | 6,80% |
+| 6x | 7,50% |
+| 7x | 8,07% |
+| 8x | 8,77% |
+| 9x | 9,45% |
+| 10x | 10,14% |
+| 11x | 10,81% |
+| 12x | 11,47% |
+| 13x | 12,14% |
+| 14x | 12,79% |
+| 15x | 13,44% |
+| 16x | 14,08% |
+| 17x | 14,72% |
+| 18x | 15,35% |
 
 ## Link de Afiliado
 
 https://dub.sh/yelly
 
-## Fontes confiaveis 
+## Fontes confiaveis
 
 yelly.com.br| maquininhacerta.com.br
