@@ -1182,24 +1182,24 @@ O recebimento da SumUp tem duas opções, na hora ou em 1 dia útil
 
 ### Período Promocional — Primeiro mês para novos clientes
 
-> Válido para todos os planos de recebimento. Taxas únicas independentes de faixa de faturamento ou bandeira.
+> Válido para todos os planos de recebimento. Taxas únicas independentes de faixa de faturamento.
 
-| Método de Pagamento | Taxa |
-|---|---|
-| Pix | Grátis |
-| Débito | 0,80% |
-| Crédito à vista | 2,85% |
-| 2x | 3,90% |
-| 3x | 4,90% |
-| 4x | 5,90% |
-| 5x | 6,90% |
-| 6x | 7,90% |
-| 7x | 8,90% |
-| 8x | 9,90% |
-| 9x | 9,90% |
-| 10x | 9,90% |
-| 11x | 9,90% |
-| 12x | 9,90% |
+| Método de Pagamento | Visa/Master | Outros |
+|---|---|---|
+| Pix | Grátis | Grátis |
+| Débito | 0,80% | 2,55% |
+| Crédito à vista (1x) | 2,85% | 4,30% |
+| 2x | 3,90% | 6,00% |
+| 3x | 4,90% | 6,80% |
+| 4x | 5,90% | 7,70% |
+| 5x | 6,90% | 8,50% |
+| 6x | 7,90% | 9,40% |
+| 7x | 8,90% | 10,30% |
+| 8x | 9,90% | 11,10% |
+| 9x | 9,90% | 12,00% |
+| 10x | 9,90% | 12,80% |
+| 11x | 9,90% | 13,70% |
+| 12x | 9,90% | 14,30% |
 
 ---
 
