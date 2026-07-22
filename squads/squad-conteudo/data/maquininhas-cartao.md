@@ -1265,37 +1265,29 @@ O recebimento da SumUp tem três opções: na hora (Instantâneo), em 1 dia úti
 
 ### Plano Econômico — Recebimento a cada 30 dias conforme as parcelas
 
-#### Até R$ 5.000/mês
+#### Até R$ 20.000/mês
 
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
-| Crédito à vista | 2,99% | 4,20% |
-| Crédito parcelado 2x–6x | 3,49% | 5,70% |
-| Crédito parcelado 7x–12x | 3,99% | 5,70% |
+| Crédito 1x | 2,59% | 3,99% |
+| Crédito 2x–6x | 2,99% | 4,99% |
+| Crédito 7x–12x | 3,49% | 4,99% |
 
-#### R$ 5.000 a R$ 20.000/mês
-
-| Método de Pagamento | Visa/Master | Outros |
-|---|---|---|
-| Crédito à vista | 2,59% | 3,99% |
-| Crédito parcelado 2x–6x | 2,99% | 4,99% |
-| Crédito parcelado 7x–12x | 3,49% | 4,99% |
-
-#### R$ 20.000 a R$ 50.000/mês
+#### Entre R$ 20.000 e R$ 50.000/mês
 
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
-| Crédito à vista | 2,49% | 3,49% |
-| Crédito parcelado 2x–6x | 2,79% | 3,99% |
-| Crédito parcelado 7x–12x | 3,29% | 4,29% |
+| Crédito 1x | 2,49% | 3,49% |
+| Crédito 2x–6x | 2,79% | 3,99% |
+| Crédito 7x–12x | 3,29% | 4,29% |
 
 #### Acima de R$ 50.000/mês
 
 | Método de Pagamento | Visa/Master | Outros |
 |---|---|---|
-| Crédito à vista | 2,29% | 3,49% |
-| Crédito parcelado 2x–6x | 2,49% | 3,99% |
-| Crédito parcelado 7x–12x | 2,99% | 4,29% |
+| Crédito 1x | 2,29% | 3,49% |
+| Crédito 2x–6x | 2,49% | 3,99% |
+| Crédito 7x–12x | 2,99% | 4,29% |
 
 ## Link de Afiliado
 
