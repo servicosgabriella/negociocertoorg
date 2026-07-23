@@ -80,7 +80,8 @@ export const estrutura = {
         label: "Sistema PDV",
         href: "/gestao/sistema-pdv/",
         paginas: [
-          { label: "Melhores Sistemas PDV por Tipo de Negócio (2026)", href: "/melhores-sistemas-pdv" }
+          { label: "Melhores Sistemas PDV por Tipo de Negócio (2026)", href: "/melhores-sistemas-pdv" },
+          { label: "Melhor Sistema PDV para Supermercado (2026)", href: "/melhores-sistemas-pdv/supermercado" }
         ] as Pagina[]
       },
       nfe: {
