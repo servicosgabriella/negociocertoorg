@@ -7,9 +7,9 @@ Utilize essas informações sobre as maquininhas de cartão:
  ## Modelos e preço: 
  Todas as maquininhas podem ser parceladas em 12x sem juros e nós temos o cupom de desconto que oferece 20% OFF em todas as maquininhas do ton, o preço fornecido abaixo é com o cupom de desconto incluído. 
 
-* T3 Smart : R$ 172,69 ou 12x de R$ 14,39
-* T3 : R$ 97,20 ou 12x de R$ 8,10
-* T2 : R$ 51,52 ou 12x de R$ 4,29
+* T3 Smart : R$ 153,50 ou 12x de R$ 12,79
+* T3 : R$ 86,40 ou 12x de R$ 7,20
+* T2 : R$ 39,90 ou 12x de R$ 3,33
 
 ### T3 Design e Funcionalidades: 
 Comprovante impresso | Sem aluguel | Aceita PIX QR CODE direto na maquininha | teclado físico + tela touch | Tela colorida| Tecnologia NFC | Reposição de bobina grátis | Conexão Wifi ou 3G | Chip 3G incluso com dados moveis gratuito | Garantia Vitalicia | Aceita CPF ou CNPJ 
