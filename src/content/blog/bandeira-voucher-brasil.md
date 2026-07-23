@@ -37,7 +37,7 @@ faq:
 
 <p>Na maioria das vezes, a maquininha aceita sim. O problema é que muitos donos de negócio não sabem quais bandeiras o terminal suporta, ou acham que não aceita porque ouviram falar de problema de alguém.</p>
 
-<p>Com as mudanças na interoperabilidade dos cartões de vale, a coisa mudou bastante. Hoje quase todas as maquininhas modernas cobrem as bandeiras principais de voucher. Continue lendo para ver quais são as bandeiras em circulação, qual tem mais cobertura no seu nicho e qual maquininha escolher se você quer aceitar todas sem complicação.</p>
+<p>Com as mudanças na interoperabilidade dos cartões de vale, a coisa mudou bastante. Hoje quase todas as maquininhas modernas cobrem as bandeiras principais de voucher. Continue lendo para ver quais são as bandeiras em circulação, qual tem mais cobertura no seu nicho e qual <a href="/melhores-maquininhas-cartao-voucher-refeicao">maquininha aceita voucher refeição</a> se você quer aceitar todas sem complicação.</p>
 
 <h2>Quais são as principais bandeiras de voucher no Brasil em 2026?</h2>
 
